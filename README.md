@@ -20,12 +20,15 @@ git clone https://github.com/bernibra/CITE-wrangling.git
 Type the following commands in the working directory (you might need sudo rights):
 ```
 docker build --rm --force-rm -t cite-wrangling .
-docker run -d -e DISABLE_AUTH=true --rm -p 28787:8787 --name cite-wrangling-container cite-wrangling
+docker run -d -e DISABLE_AUTH=true --rm -p 28787:8787 -v $PWD:/home/rstudio/cite-wrangling --name cite-wrangling-container cite-wrangling
 ```
 
 ### 4. Download and process the data
 
 You can do this by running the makefile:
+```
+docker exec -u rstudio cite-wrangling-container make -C /home/rstudio/cite-wrangling
+```
 
 ### 5. Testing code
 

@@ -16,11 +16,19 @@ git clone https://github.com/bernibra/CITE-wrangling.git
 ```
 
 ### 3. Build Docker image and run container
+
 Type the following commands in the working directory (you might need sudo rights):
 ```
-docker build -t cite-wrangling
-docker run -d -e DISABLE_AUTH=true --rm -p 28787:8787 -name cite-wrangling-container cite-wrangling
+docker build --rm --force-rm -t cite-wrangling .
+docker run -d -e DISABLE_AUTH=true --rm -p 28787:8787 --name cite-wrangling-container cite-wrangling
 ```
 
 ### 4. Download and process the data
+
 You can do this by running the makefile:
+
+### 5. Testing code
+
+You can develop new code and test it in the docker container by adding the code to the directory (`./code/`), rebuilding the docker image (step 3), and accessing the container through your web browser at <yourhostip:28787>
+
+_tsss, your host ip can be seen by typing `hostname -I` in the terminal_

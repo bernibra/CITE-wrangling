@@ -22,6 +22,7 @@ Type the following commands in the working directory (you might need sudo rights
 docker build --rm --force-rm -t cite-wrangling .
 docker run -d -e DISABLE_AUTH=true --rm -p 28787:8787 -v $PWD:/home/rstudio/cite-wrangling --name cite-wrangling-container cite-wrangling
 ```
+_Building the docker image might take a bit of time, so go grab a coffee in the mean time_
 
 ### 4. Download and process the data
 
@@ -29,6 +30,7 @@ You can do this by running the makefile:
 ```
 docker exec -u rstudio cite-wrangling-container make -C /home/rstudio/cite-wrangling
 ```
+_The first time runing this might take some time again, so go grab a second coffee...?_
 
 ### 5. Testing code
 

@@ -37,3 +37,12 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Raw data
+data/raw
+
+# Mac files
+*.DS_Store
+
+# Drake files
+\.drake/

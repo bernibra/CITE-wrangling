@@ -10,3 +10,9 @@ get_file <- function(id, dest_dir, download_date = NULL){
     return(0)
   }
 }
+
+make_test <- function(){
+  pdf("data/test_plot.pdf", width = 4, height = 4)
+  plot(rnorm(1000, 0, 1))
+  dev.off()
+}

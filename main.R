@@ -1,4 +1,4 @@
-# Prepare workspace
+# Prepare workspace --------------------------------------------------------
 
 pkgconfig::set_config("strings_in_dots" = "literals")
 library(magrittr)
@@ -35,13 +35,16 @@ get_data_plan <- rbind(
 
 # Processing data --------------------------------------------------------
 
+test_plot <- drake_plan(
+  test_p = make_test()
+)
 
-# Project workflow
+# Project workflow --------------------------------------------------------
 
 project_plan <- rbind(
-  # full_plan,
   configuration_plan,
-  get_data_plan
+  get_data_plan,
+  test_plot
   )
 
 make(project_plan, lock_envir = FALSE)

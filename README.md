@@ -19,7 +19,7 @@ git clone https://github.com/bernibra/CITE-wrangling.git
 
 Type the following commands in the working directory (you might need sudo rights):
 ```
-docker build --rm --force-rm -t cite-wrangling .
+docker build --rm --force-rm --build-arg WHEN=2022-02-01 -t cite-wrangling .
 docker run -d -e DISABLE_AUTH=true --rm -p 28787:8787 -v $PWD:/home/rstudio/cite-wrangling --name cite-wrangling-container cite-wrangling
 ```
 _Building the docker image might take a bit of time, so go grab a coffee in the mean time_

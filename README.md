@@ -32,6 +32,4 @@ docker exec -u rstudio cite-wrangling-container make -C /home/rstudio/cite-wrang
 
 ### 5. Testing code
 
-You can edit or develop new code and test it in the docker container by adding the code to the directory (`./code/`), rebuilding the docker image (step 3), and accessing the container through your web browser at <yourhostip:28787>. It might not work if you are connected to a vpn.
-
-_tsss, your host ip can be seen by typing `hostname -I` in the terminal of your linux machine (simply `hostname` in mac)_
+You can edit or develop new code and test it in the docker container by adding the code to the directory (`./code/`), rebuilding the docker image (step 3), and accessing the container through your web browser at <yourhostip:28787> (`hostname` in the terminal to find your host ip). It might not work if you are connected to a vpn.

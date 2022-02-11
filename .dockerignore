@@ -1,3 +1,4 @@
 # ignore .git .drake folders
 .git
 .drake
+data/raw

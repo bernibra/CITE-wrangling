@@ -1,7 +1,7 @@
 # Download raw data for one GEO dataset
 get_file <- function(id, dest_dir, download_date = NULL){
   rdir <- file.path(dest_dir, id)
-  if(!file.exists(file.path(rdir, id))){
+  if(!file.exists(rdir)){
     dir.create(rdir, showWarnings = FALSE)
     message("donwloading data on ", download_date)
     GEOquery::getGEO(id, destdir = rdir)

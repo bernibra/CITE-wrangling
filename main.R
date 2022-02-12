@@ -20,13 +20,13 @@ configuration_plan <- drake_plan(
 
 # Download data ----------------------------------------------------------
 
-get_GEOquery_raw <- drake_plan(
-  # create download dir if not already there
-  raw_dir = dir.create(file_out("data/raw"), showWarnings = FALSE),
+# create download dir if not already there
+dir.create("data/raw", showWarnings = FALSE)
 
-  # Download data
+# Download GEOquery data
+get_GEOquery_raw <- drake_plan(
   geo_db = get_files(ids = geo_download_key, 
-                    dest_dir = file_in("data/raw"),
+                    dest_dir = file_out("data/raw"),
                     download_date = data_download_date)
 )
 

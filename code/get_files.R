@@ -1,4 +1,4 @@
-# Download raw data
+# Download raw data for one GEO dataset
 get_file <- function(id, dest_dir, download_date = NULL){
   rdir <- file.path(dest_dir, id)
   if(!file.exists(file.path(rdir, id))){
@@ -11,8 +11,6 @@ get_file <- function(id, dest_dir, download_date = NULL){
   }
 }
 
-make_test <- function(){
-  pdf("data/test_plot.pdf", width = 4, height = 4)
-  plot(rnorm(1000, 0, 1))
-  dev.off()
+get_files <- function(ids, dest_dir, download_date = NULL){
+  lapply(ids, function(id) get_file(id=id, dest_dir = dest_dir, download_date = download_date))
 }

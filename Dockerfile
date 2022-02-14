@@ -9,4 +9,8 @@ RUN R -e "install.packages(c('BiocManager', 'drake', 'purrr'), repos = c(CRAN = 
 
 RUN R -e "BiocManager::install(c('SingleCellExperiment', 'GEOquery'), version = BiocManager::version())"
 
-ENV USER rstudio
+## This might be a problem...
+#ENV USER rstudio
+
+## I might try to run this if I have conflicts between host uid and docker uid
+#RUN chmod a+rwx -R CITE-wrangling/smarty.cache.dir

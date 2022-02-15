@@ -12,7 +12,7 @@ get_raw <- function(id, target_variable, keyword, georaw, dest_dir, download_dat
       mutate(data_processing_lowercase = tolower(!!sym(target_variable))) %>%
       filter(stringr::str_detect(data_processing_lowercase, keyword)) %>%
       pull(!!sym(georaw)) %>%
-      map(getGEOSuppFiles, baseDir = rdir)
+      map(GEOquery::getGEOSuppFiles, baseDir = rdir)
   }else{
     message("raw files already found")
     return(0)

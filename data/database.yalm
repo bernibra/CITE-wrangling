@@ -1,0 +1,22 @@
+GEO_download_key:
+  doi.org/10.1016/j.celrep.2020.03.063:
+    id: GSE135325
+    description: data_processing.1
+    keyword: abseq
+    replicates: na
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1038/s41587-019-0332-7: 
+    id: GSE139369
+    description: data_processing
+    keyword: cite
+    replicates: yes
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1186/s40364-020-00253-w:
+    id: GSE152469
+    description: data_processing.3
+    keyword: antibodies
+    replicates: no
+    citelink: supplementary_file_1
+    georaw: geo_accession

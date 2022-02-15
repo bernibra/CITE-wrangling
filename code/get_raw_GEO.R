@@ -19,8 +19,18 @@ get_raw <- function(id, target_variable, keyword, georaw, dest_dir, download_dat
   }
 }
 
+# Download raw data for all GEO datasets
 get_raw_GEO <- function(ids, dest_dir, download_date = NULL){
   lapply(ids, function(id) get_raw(id=id$id, target_variable = id$description,
                                    keyword=id$keyword, georaw=id$georaw,
                                    dest_dir = dest_dir))
+  get_raw_GEO.test1(ids=ids, dest_dir = dest_dir)
 }
+
+######### TESTS ###########
+# Flag raw directories that are empty
+get_raw_GEO.test1 <- function(ids, dest_dir){
+  test <- data.frame(t(sapply(ids, function(id) c(id$id, length(list.files(file.path(dest_dir, id$id, "supp")))))))
+  write.table(file = "data/GEORawDataNotFound.txt", test[as.numeric(test[,2])==0,1], row.names = F, col.names = F)
+}
+  

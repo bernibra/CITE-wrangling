@@ -46,3 +46,6 @@ data/raw
 
 # Drake files
 \.drake/
+
+# Data files reporting errors
+data/GEORawDataNotFound.txt

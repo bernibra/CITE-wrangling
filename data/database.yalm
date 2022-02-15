@@ -6,7 +6,7 @@ GEO_download_key:
     replicates: na
     citelink: supplementary_file_1
     georaw: geo_accession
-  doi.org/10.1038/s41587-019-0332-7: 
+ doi.org/10.1038/s41587-019-0332-7:
     id: GSE139369
     description: data_processing
     keyword: cite
@@ -18,5 +18,68 @@ GEO_download_key:
     description: data_processing.3
     keyword: antibodies
     replicates: no
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1101/237693:
+    id: GSE108313
+    description: data_processing
+    keyword: cite
+    replicates: na
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1038/s41592-019-0392-0:
+    id: GSE126310
+    description: data_processing
+    keyword: cite
+    replicates: na
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1093/nargab/lqaa025:
+    id: GSE144434
+    description: data_processing
+    keyword: cite
+    replicates: na
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1038/s41590-021-00933-1:
+    id: GSE158769
+    description: data_processing
+    keyword: cite
+    replicates: na
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1093/nar/gkaa314:
+    id: GSE148665
+    description: data_processing
+    keyword: cite
+    replicates: na
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1126/science.abc6261:
+    id: GSE155673
+    description: data_processing
+    keyword: cite
+    replicates: na
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1016/j.cell.2021.02.018:
+    id: GSE161918
+    description: data_processing
+    keyword: cite
+    replicates: na
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1038/s41587-021-00927-2:
+    id: GSE156478 
+    description: data_processing
+    keyword: cite
+    replicates: na
+    citelink: supplementary_file_1
+    georaw: geo_accession
+  doi.org/10.1016/j.medj.2021.01.006:
+    id: GSE144744 
+    description: data_processing
+    keyword: cite
+    replicates: na
     citelink: supplementary_file_1
     georaw: geo_accession

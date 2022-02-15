@@ -30,11 +30,17 @@ dir.create("data/raw", showWarnings = FALSE)
 # Download GEOquery data
 get_GEOquery_raw <- drake_plan(
   geo_meta = get_metadata_GEO(ids = geo_download_key, 
-                    dest_dir = file_out("data/raw"),
+                    dest_dir = "data/raw",
                     download_date = data_download_date),
   geo_raw = get_raw_GEO(ids = geo_meta, 
                         dest_dir = "data/raw")
 )
+
+# get_figshare_raw <- drake_plan(
+# )
+
+# get_10Gen_raw <- drake_plan(
+# )
 
 get_data_plan <- rbind(
   get_GEOquery_raw

@@ -6,7 +6,7 @@ GEO_download_key:
     replicates: na
     citelink: supplementary_file_1
     georaw: geo_accession
- doi.org/10.1038/s41587-019-0332-7:
+  doi.org/10.1038/s41587-019-0332-7:
     id: GSE139369
     description: data_processing
     keyword: cite

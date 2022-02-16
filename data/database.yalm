@@ -7,6 +7,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "Before and after treatment samples"
+    rawformat:
+      sep: ","
   doi.org/10.1038/s41587-019-0332-7:
     id: GSE139369
     description: data_processing
@@ -15,6 +17,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "Healthy and leukemia treatments with replicates"
+    rawformat:
+      sep: ","
   doi.org/10.1186/s40364-020-00253-w:
     id: GSE152469
     description: library_source
@@ -23,6 +27,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "Before and after treatment samples"
+    rawformat:
+      sep: ","
   doi.org/10.1101/237693:
     id: GSE108313
     description: description
@@ -31,6 +37,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "NA"
+    rawformat:
+      sep: ","
   doi.org/10.1038/s41592-019-0392-0:
     id: GSE126310
     description: description.2
@@ -39,6 +47,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "Different cell types"
+    rawformat:
+      sep: ","
   doi.org/10.1093/nargab/lqaa025:
     id: GSE144434
     description: library_source
@@ -47,6 +57,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "NA"
+    rawformat:
+      sep: ","
   doi.org/10.1038/s41590-021-00933-1:
     id: GSE158769
     description: data_processing
@@ -55,6 +67,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "NA"
+    rawformat:
+      sep: ","
   doi.org/10.1093/nar/gkaa314:
     id: GSE148665
     description: data_processing
@@ -63,6 +77,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "NA"
+    rawformat:
+      sep: ","
   doi.org/10.1126/science.abc6261:
     id: GSE155673
     description: description
@@ -71,6 +87,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "Covid and healthy treatments"
+    rawformat:
+      sep: ","
   doi.org/10.1016/j.cell.2021.02.018:
     id: GSE161918
     description: characteristics_ch1.2
@@ -79,6 +97,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "Healthy and treatment and multiple temporal replicates"
+    rawformat:
+      sep: ","
   doi.org/10.1038/s41587-021-00927-2:
     id: GSE156478 
     description: data_processing
@@ -87,6 +107,8 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "NA"
+    rawformat:
+      sep: ","
   doi.org/10.1016/j.medj.2021.01.006:
     id: GSE144744 
     description: characteristics_ch1.17
@@ -95,3 +117,5 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "Healthy and treatment with replicates"
+    rawformat:
+      sep: ","

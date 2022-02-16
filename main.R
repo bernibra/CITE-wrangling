@@ -58,19 +58,25 @@ dir.create("data/processed", showWarnings = FALSE)
 dir.create("data/processed/protein-data", showWarnings = FALSE)
 
 Raw_to_SingleCellExperiment <- drake_plan(
-  geo_sce = load_geo(),
-  protein_db = unify_names()
+  geo_sce = load_geo(paths = geo_raw, 
+                     ids = geo_meta)
+  # protein_db = unify_names(geo_sce)
 )
 
 # build_protein_dictionary <- drake_plan(
 #   
 # )
 
+process_data_plan <- rbind(
+  Raw_to_SingleCellExperiment
+)
+
 # Project workflow --------------------------------------------------------
 
 project_plan <- rbind(
   configuration_plan,
-  get_data_plan
+  get_data_plan,
+  process_data_plan
   )
 
 make(project_plan, lock_envir = FALSE)

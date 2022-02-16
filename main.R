@@ -42,12 +42,29 @@ get_GEOquery_raw <- drake_plan(
 # get_10Gen_raw <- drake_plan(
 # )
 
+# get_ebi_raw <- drake_plan(
+# )
+
+# get_fredhutch_raw <- drake_plan(
+# )
+
 get_data_plan <- rbind(
   get_GEOquery_raw
 )
 
 # Processing data --------------------------------------------------------
 
+dir.create("data/processed", showWarnings = FALSE)
+dir.create("data/processed/protein-data", showWarnings = FALSE)
+
+Raw_to_SingleCellExperiment <- drake_plan(
+  geo_sce = load_geo(),
+  protein_db = unify_names()
+)
+
+# build_protein_dictionary <- drake_plan(
+#   
+# )
 
 # Project workflow --------------------------------------------------------
 

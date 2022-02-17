@@ -41,6 +41,9 @@ vignettes/*.pdf
 # Raw data
 data/raw
 
+# Processed data
+data/processed
+
 # Mac files
 *.DS_Store
 

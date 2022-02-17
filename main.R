@@ -8,6 +8,7 @@ library(magrittr)
 library(drake)
 library(purrr)
 library(dplyr)
+library(SingleCellExperiment)
 
 f <- lapply(list.files("code", full.names = T), source)
 

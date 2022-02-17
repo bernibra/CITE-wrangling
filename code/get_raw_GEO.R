@@ -7,6 +7,9 @@ get_raw <- function(id, target_variable, keyword, georaw, dest_dir){
 
   # Check if file is empty
   empty <- length(list.files(rdir))==0
+  
+  # remove on release
+  empty <- FALSE
 
   if((!file.exists(rdir))|(empty)){
     # Create directory if not there
@@ -64,7 +67,7 @@ get_raw_GEO.test1 <- function(ids, dest_dir){
 
   # Write report
   if (any(as.numeric(test[,2])==0)){
-    warning("Some of the GEO raw data was not found. Find those cases in: data/GEORawDataNotFound.txt")
+    message("Some of the GEO raw data was not found (and hence the warnings). Find those cases in: data/GEORawDataNotFound.txt")
     write.table(file = "data/GEORawDataNotFound.txt", test[as.numeric(test[,2])==0,1], row.names = F, col.names = F)
   }
   

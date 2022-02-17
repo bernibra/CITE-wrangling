@@ -1,10 +1,91 @@
+matrix_to_sce <- function(mat, info){
+  if(!(info$transpose)){
+    mat <- t(mat)
+  }
+  cell_properties <- which(colnames(mat) %in% info$coldata)
+  if(length(cell_properties)>0){
+    coldata <- mat[,cell_properties, drop=FALSE]
+    mat <- mat[,-cell_properties]
+    sce <- SingleCellExperiment(assays = list(counts = t(mat)), colData=coldata)
+  }else{
+    sce <- SingleCellExperiment(assays = list(counts = t(mat)))
+  }
+}
+
+h5_to_sce <- function(filename, info){
+  h5 <- Seurat::Read10X_h5(filename, use.names = TRUE, unique.features = TRUE)
+  return(Seurat::as.SingleCellExperiment(Seurat::CreateSeuratObject(h5)))
+}
+
+mtx_to_sce <- function(filename, info){
+  features <- gsub("mtx.gz$", info$features, filename)
+  cells <- gsub("mtx.gz$", info$cells, filename)
+  
+  mtx <- Seurat::ReadMtx(mtx = filename, 
+                         features = features,
+                         cells = cells,
+                         feature.column = info$column)
+  if(info$transpose){
+    return(SingleCellExperiment(t(mtx)))
+  }else{
+    return(SingleCellExperiment(mtx))
+  }
+}
+
+read_raw <- function(filename, info){
+  # File formatted as rds
+  if (grepl(".rds$|.Rds$", filename)){
+    mat <- readRDS(filename)
+    return(matrix_to_sce(as.matrix(mat), info$rawformat))
+  }
+  # File formatted as zip rds
+  if(grepl(".rds.gz$|.Rds.gz$", filename)){
+    mat <- R.utils::gunzip(filename) %>% readRDS()
+    return(matrix_to_sce(as.matrix(mat), info$rawformat))
+  }
+  # File formatted csv or tsv
+  if (grepl(".csv.gz$|.tsv.gz$", filename)){
+    mat <- read.delim(filename,
+                      header=info$rawformat$header,
+                      row.names=info$rawformat$row.names,
+                      check.names=FALSE,
+                      sep=info$rawformat$sep)
+    return(matrix_to_sce(as.matrix(mat), info$rawformat))
+  }
+  if (grepl(".h5$", filename)){
+    return(h5_to_sce(filename, info$rawformat))
+  }
+  if (grepl(".mtx.gz$", filename)){
+    return(mtx_to_sce(filename, info$rawformat))
+  }
+  stop("format not found")
+}
+
 # Load a single geo raw dataset
 load_geo_id <- function(paths, info){
-  for(id in paths){
-    if(id!="0"){
-      if(length(list.files(id))>1){
-        print("--------------------------")
-        print(list.files(id, full.names = T))
+  
+  # Go over all supplementary files
+  for(path in paths){
+
+    # Find all raw files
+    filenames <- list.files(path, full.names = T)
+
+    # Dealing with multiple files if possible
+    if (!(is.null(info$rawformat$keyword))){
+      filenames <- filenames[grepl(info$rawformat$keyword, filenames)]
+    }
+    
+    for (idx in 1:length(filenames)){
+      
+      # Define file name
+      rdir <- paste(path, paste0(idx, ".rds"), sep = "_") %>%
+        gsub("raw", "processed", .) %>%
+        gsub("/supp/", "_", .)
+      
+      # Process raw data and save as SingleCellExperiment class if not done already
+      if(!file.exists(rdir)){
+        print(filenames[idx])
+        # saveRDS(object = read_raw(filename = filenames[idx], info = info), file = rdir)
       }
     }
   }

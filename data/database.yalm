@@ -9,6 +9,13 @@ GEO_download_key:
     info: "Before and after treatment samples"
     rawformat:
       sep: ","
+      header: True
+      row.names: 1
+      keyword: NULL
+      transpose: True
+      coldata:
+        - "Sample_Name"
+        - "Sample_Tag"
   doi.org/10.1038/s41587-019-0332-7:
     id: GSE139369
     description: data_processing
@@ -19,6 +26,11 @@ GEO_download_key:
     info: "Healthy and leukemia treatments with replicates"
     rawformat:
       sep: ","
+      header: True
+      row.names: 1
+      keyword: "ADT"
+      transpose: False
+      coldata: NULL
   doi.org/10.1186/s40364-020-00253-w:
     id: GSE152469
     description: library_source
@@ -28,7 +40,13 @@ GEO_download_key:
     georaw: geo_accession
     info: "Before and after treatment samples"
     rawformat:
-      sep: ","
+      sep: "\t"
+      header: True
+      row.names: 1
+      keyword: "Ab_CLL"
+      transpose: True
+      coldata:
+        - "isotype_Ctrl"
   doi.org/10.1101/237693:
     id: GSE108313
     description: description
@@ -39,6 +57,14 @@ GEO_download_key:
     info: "NA"
     rawformat:
       sep: ","
+      header: True
+      row.names: 1
+      keyword: NULL
+      transpose: False
+      coldata:
+        - "bad_struct"
+        - "no_match"
+        - "total_reads"
   doi.org/10.1038/s41592-019-0392-0:
     id: GSE126310
     description: description.2
@@ -49,6 +75,15 @@ GEO_download_key:
     info: "Different cell types"
     rawformat:
       sep: ","
+      header: True
+      row.names: 1
+      keyword: NULL
+      transpose: True
+      coldata:
+        - "no_match"
+        - "ambiguous"
+        - "total_reads"
+        - "bad_struct"
   doi.org/10.1093/nargab/lqaa025:
     id: GSE144434
     description: library_source
@@ -58,7 +93,12 @@ GEO_download_key:
     georaw: geo_accession
     info: "NA"
     rawformat:
-      sep: ","
+      sep: "\t"
+      header: True
+      row.names: 1
+      keyword: "Antibodies"
+      transpose: True
+      coldata: NULL
   doi.org/10.1038/s41590-021-00933-1:
     id: GSE158769
     description: data_processing
@@ -69,6 +109,11 @@ GEO_download_key:
     info: "NA"
     rawformat:
       sep: ","
+      header: True
+      row.names: 1
+      keyword: NULL
+      transpose: True
+      coldata: NULL
   doi.org/10.1093/nar/gkaa314:
     id: GSE148665
     description: data_processing
@@ -79,6 +124,11 @@ GEO_download_key:
     info: "NA"
     rawformat:
       sep: ","
+      header: True
+      row.names: 1
+      keyword: NULL
+      transpose: False
+      coldata: NULL
   doi.org/10.1126/science.abc6261:
     id: GSE155673
     description: description
@@ -89,6 +139,11 @@ GEO_download_key:
     info: "Covid and healthy treatments"
     rawformat:
       sep: ","
+      header: True
+      row.names: 1
+      keyword: NULL
+      transpose: True
+      coldata: NULL
   doi.org/10.1016/j.cell.2021.02.018:
     id: GSE161918
     description: characteristics_ch1.2
@@ -98,7 +153,7 @@ GEO_download_key:
     georaw: geo_accession
     info: "Healthy and treatment and multiple temporal replicates"
     rawformat:
-      sep: ","
+      info: "h5 object that can be easily converted into an sce object"
   doi.org/10.1038/s41587-021-00927-2:
     id: GSE156478 
     description: data_processing
@@ -108,7 +163,11 @@ GEO_download_key:
     georaw: geo_accession
     info: "NA"
     rawformat:
-      sep: ","
+      keyword: "mtx.gz"
+      transpose: True
+      features: "barcodes.txt.gz"
+      cells: "proteins.txt.gz"
+      column: 1
   doi.org/10.1016/j.medj.2021.01.006:
     id: GSE144744 
     description: characteristics_ch1.17
@@ -119,3 +178,7 @@ GEO_download_key:
     info: "Healthy and treatment with replicates"
     rawformat:
       sep: ","
+      header: True
+      row.names: 1
+      keyword: NULL
+      transpose: True

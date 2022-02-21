@@ -70,6 +70,5 @@ get_raw_GEO.test1 <- function(ids, dest_dir){
     message("Some of the GEO raw data was not found (and hence the warnings). Find those cases in: data/GEORawDataNotFound.txt")
     write.table(file = "data/GEORawDataNotFound.txt", test[as.numeric(test[,2])==0,1], row.names = F, col.names = F)
   }
-  
 }
   

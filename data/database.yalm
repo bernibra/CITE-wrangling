@@ -8,10 +8,10 @@ GEO_download_key:
     georaw: geo_accession
     info: "Before and after treatment samples"
     rawformat:
-      sep: ","
-      header: True
-      row.names: 1
-      keyword: NULL
+      features: "genes.tsv.gz"
+      cells: "barcodes.tsv.gz"
+      replace: "matrix.mtx.gz"
+      column: 1
       transpose: True
       coldata:
         - "Sample_Name"
@@ -25,9 +25,6 @@ GEO_download_key:
     georaw: geo_accession
     info: "Healthy and leukemia treatments with replicates"
     rawformat:
-      sep: ","
-      header: True
-      row.names: 1
       keyword: "ADT"
       transpose: False
       coldata: NULL
@@ -40,9 +37,6 @@ GEO_download_key:
     georaw: geo_accession
     info: "Before and after treatment samples"
     rawformat:
-      sep: "\t"
-      header: True
-      row.names: 1
       keyword: "Ab_CLL"
       transpose: True
       coldata:
@@ -56,9 +50,6 @@ GEO_download_key:
     georaw: geo_accession
     info: "NA"
     rawformat:
-      sep: ","
-      header: True
-      row.names: 1
       keyword: NULL
       transpose: False
       coldata:
@@ -74,9 +65,6 @@ GEO_download_key:
     georaw: geo_accession
     info: "Different cell types"
     rawformat:
-      sep: ","
-      header: True
-      row.names: 1
       keyword: NULL
       transpose: True
       coldata:
@@ -93,9 +81,6 @@ GEO_download_key:
     georaw: geo_accession
     info: "NA"
     rawformat:
-      sep: "\t"
-      header: True
-      row.names: 1
       keyword: "Antibodies"
       transpose: True
       coldata: NULL
@@ -108,9 +93,6 @@ GEO_download_key:
     georaw: geo_accession
     info: "NA"
     rawformat:
-      sep: ","
-      header: True
-      row.names: 1
       keyword: NULL
       transpose: True
       coldata: NULL
@@ -123,9 +105,6 @@ GEO_download_key:
     georaw: geo_accession
     info: "NA"
     rawformat:
-      sep: ","
-      header: True
-      row.names: 1
       keyword: NULL
       transpose: False
       coldata: NULL
@@ -138,9 +117,6 @@ GEO_download_key:
     georaw: geo_accession
     info: "Covid and healthy treatments"
     rawformat:
-      sep: ","
-      header: True
-      row.names: 1
       keyword: NULL
       transpose: True
       coldata: NULL
@@ -153,7 +129,7 @@ GEO_download_key:
     georaw: geo_accession
     info: "Healthy and treatment and multiple temporal replicates"
     rawformat:
-      info: "h5 object that can be easily converted into an sce object"
+      info: "h5 that can be easily converted into an sce object"
   doi.org/10.1038/s41587-021-00927-2:
     id: GSE156478 
     description: data_processing
@@ -163,7 +139,7 @@ GEO_download_key:
     georaw: geo_accession
     info: "NA"
     rawformat:
-      keyword: "mtx.gz"
+      keyword: NULL
       transpose: True
       features: "barcodes.txt.gz"
       cells: "proteins.txt.gz"
@@ -177,8 +153,5 @@ GEO_download_key:
     georaw: geo_accession
     info: "Healthy and treatment with replicates"
     rawformat:
-      sep: ","
-      header: True
-      row.names: 1
       keyword: NULL
       transpose: True

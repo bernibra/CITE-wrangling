@@ -18,8 +18,9 @@ h5_to_sce <- function(filename, info){
 }
 
 mtx_to_sce <- function(filename, info){
-  features <- gsub("mtx.gz$", info$features, filename)
-  cells <- gsub("mtx.gz$", info$cells, filename)
+  print(filename)
+  features <- gsub(info$replace, info$features, filename)
+  cells <- gsub(info$replace, info$cells, filename)
   
   mtx <- Seurat::ReadMtx(mtx = filename, 
                          features = features,
@@ -45,11 +46,16 @@ read_raw <- function(filename, info){
   }
   # File formatted csv or tsv
   if (grepl(".csv.gz$|.tsv.gz$", filename)){
-    mat <- read.delim(filename,
-                      header=info$rawformat$header,
-                      row.names=info$rawformat$row.names,
-                      check.names=FALSE,
-                      sep=info$rawformat$sep)
+    
+    sep <- "," %>% read.delim(file = filename, header = T,
+                        nrows = 1, sep=",", comment.char = "#") %>% { ifelse(length(.)>2 ,",", "\t" ) }
+    mat <- read.delim(file = filename,
+                      header = T,
+                      row.names = 1,
+                      check.names = FALSE,
+                      sep = sep,
+                      comment.char = "#")
+    
     return(matrix_to_sce(as.matrix(mat), info$rawformat))
   }
   if (grepl(".h5$", filename)){
@@ -59,6 +65,22 @@ read_raw <- function(filename, info){
     return(mtx_to_sce(filename, info$rawformat))
   }
   stop("format not found")
+}
+
+# Look for relevant filenames in directory
+relevant_files <- function(filenames, keywords=NULL){
+
+  if (length(filenames)==1){
+    return(filenames)
+  }
+
+  if ( any(grepl(".rds$|.Rds$|.rds.gz$|.Rds.gz$|.mtx.gz$|.h5$", filenames)) ){
+    filenames <-  filenames[grepl(".rds$|.Rds$|.rds.gz$|.Rds.gz$|.mtx.gz$|.h5$", filenames)]
+  }
+
+  ifelse(!(is.null(keywords)), 
+          return(filenames[grepl(keywords, filenames)]), 
+          return(filenames))
 }
 
 # Load a single geo raw dataset
@@ -71,21 +93,21 @@ load_geo_id <- function(paths, info){
     filenames <- list.files(path, full.names = T)
 
     # Dealing with multiple files if possible
-    if (!(is.null(info$rawformat$keyword))){
-      filenames <- filenames[grepl(info$rawformat$keyword, filenames)]
-    }
+    filenames <- relevant_files(filenames = filenames, keywords = info$rawformat$keyword)
     
     for (idx in 1:length(filenames)){
       
       # Define file name
       rdir <- paste(path, paste0(idx, ".rds"), sep = "_") %>%
-        gsub("raw", "processed", .) %>%
+        gsub("raw", "processed/protein-data", .) %>%
         gsub("/supp/", "_", .)
       
       # Process raw data and save as SingleCellExperiment class if not done already
       if(!file.exists(rdir)){
+
         print(filenames[idx])
-        # saveRDS(object = read_raw(filename = filenames[idx], info = info), file = rdir)
+        saveRDS(object = read_raw(filename = filenames[idx], info = info), file = rdir)
+        
       }
     }
   }

@@ -143,6 +143,7 @@ GEO_download_key:
       transpose: True
       features: "barcodes.txt.gz"
       cells: "proteins.txt.gz"
+      replace: "mtx.gz"
       column: 1
   doi.org/10.1016/j.medj.2021.01.006:
     id: GSE144744 

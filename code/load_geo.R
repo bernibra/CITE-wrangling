@@ -18,10 +18,10 @@ h5_to_sce <- function(filename, info){
 }
 
 mtx_to_sce <- function(filename, info){
-  print(filename)
+
   features <- gsub(info$replace, info$features, filename)
   cells <- gsub(info$replace, info$cells, filename)
-  
+
   mtx <- Seurat::ReadMtx(mtx = filename, 
                          features = features,
                          cells = cells,

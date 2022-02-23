@@ -1,3 +1,28 @@
+# Check if one has enough RAM to read the matrix 
+should_i_load_this <- function(filename, tolerance=100){
+  print(filename)
+  return(tolerance > file.size(filename)/as.numeric(system("awk '/MemFree/ {print $2}' /proc/meminfo", intern=TRUE)))
+}
+
+# Get row and column names for big files
+big_row_column <- function(filename){
+  # filename <- "~/Downloads/GSE158769_exprs_raw.tsv.gz"
+  # a <- readr::read_delim("~/Downloads/GSE158769_exprs_raw.tsv.gz", col_names = TRUE, 
+  #                        delim = "\t",
+  #                        comment = "#", n_max = 2)
+
+  filename <- "~/Downloads/GSE158769_exprs_raw.tsv"
+  dest_dir <- "./"
+  
+  rcmd <- paste0("cut -f 1 -d'\t' ", filename, " > ", dest_dir, "row-names.csv")
+  ccmd <- paste0("head -n 1 ", filename, " > ", dest_dir, "column-names.csv")
+  system(rcmd)
+  system(ccmd)
+  
+  rows <- readr::read_delim(paste0(dest_dir, "row-names.csv"), delim = "\t")
+  column <- readr::read_delim(paste0(dest_dir, "column-names.csv"), delim = "\t")
+}
+
 # Function turning a matrix type object to SingleCellExperiment class
 matrix_to_sce <- function(mat, info){
   
@@ -41,11 +66,11 @@ mtx_to_sce <- function(filename, info){
   cells <- gsub(info$replace, info$cells, filename)
 
   # Seurat comes in handy for reading interaction-like files into matrix objects
-  mtx <- Seurat::ReadMtx(mtx = filename, 
+  mtx <- Seurat::ReadMtx(mtx = filename,
                          features = features,
                          cells = cells,
                          feature.column = info$column)
-  
+
   # Make sure the matrix is in the right order and turn into SingleCellExperiment
   if(info$transpose){
     return(SingleCellExperiment(t(mtx)))
@@ -71,9 +96,9 @@ read_raw <- function(filename, info){
   
   # File formatted csv or tsv
   if (grepl(".csv.gz$|.tsv.gz$", filename)){
-    
+
     sep <- "," %>% read.delim(file = filename, header = T,
-                        nrows = 1, sep=",", comment.char = "#") %>% { ifelse(length(.)>2 ,",", "\t" ) }
+                              nrows = 1, sep=",", comment.char = "#") %>% { ifelse(length(.)>2 ,",", "\t" ) }
     mat <- read.delim(file = filename,
                       header = T,
                       row.names = 1,
@@ -120,7 +145,7 @@ load_geo_id <- function(paths, info){
 
   # Go over all supplementary files
   for(path in paths){
-
+    print(path)
     # Find all raw files
     filenames <- list.files(path, full.names = T)
 
@@ -137,10 +162,32 @@ load_geo_id <- function(paths, info){
       # Process raw data and save as SingleCellExperiment class if not done already
       if(!file.exists(rdir)){
 
-        # Read raw data and turn into SingleCellExperiment
-        saveRDS(object = read_raw(filename = filenames[idx], info = info), file = rdir)
+        if(should_i_load_this(filenames[idx])){
+
+          # Read raw data and turn into SingleCellExperiment
+          # saveRDS(object = read_raw(filename = filenames[idx], info = info), file = rdir)
+
+        }else{
+
+          if (!file.exists("./data/NOTenoughRAM.txt")){
+
+            write("# The following files were not fully processed because you don't have enough RAM in the current machine.",file="./data/NOTenoughRAM.txt",append=TRUE)
+            write("# Nevetherless, these are accounted when building the name dictionaries.",file="./data/NOTenoughRAM.txt",append=TRUE)
+
+          }
+
+          # Find row and column names
+
+          # Not enough RAM to read this matrix
+          write(filenames[idx],file="./data/NOTenoughRAM.txt",append=TRUE)
+
+        }
+        
         return(rdir)
         
+      }else{
+        message("---> file already processed: ", basename(filenames[idx]))
+        return(rdir)
       }
     }
   }
@@ -148,6 +195,9 @@ load_geo_id <- function(paths, info){
 
 # Format all datasets as SingleCellExperiments
 load_geo <- function(paths, ids){
+  
+  # remove info files if there
+  if(file.exists("data/NOTenoughRAM.txt")){file.remove("data/NOTenoughRAM.txt")}
   
   # geo dataset names
   datasets <- names(paths)

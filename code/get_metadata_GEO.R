@@ -11,11 +11,11 @@ get_metadata <- function(id, dest_dir, download_date = NULL){
     message("donwloading data on ", download_date)
     
     # Download metadata
-    GEOquery::getGEO(id, destdir = rdir)
+    GEOquery::getGEO(id, destdir = rdir) %>% close()
 
   } else {
 
-    message("file already found")
+    message("---> file already found: ", id)
     return(0)
     
   }
@@ -25,6 +25,7 @@ get_metadata_GEO <- function(ids, dest_dir, download_date = NULL){
   
   # Loop over ids to get metadata
   lapply(ids, function(id) get_metadata(id=id$id, dest_dir = dest_dir, download_date = download_date))
+  
   return(ids)
 
 }

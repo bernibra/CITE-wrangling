@@ -10,7 +10,7 @@ big_row_column <- function(filename){
   #                        delim = "\t",
   #                        comment = "#", n_max = 2)
 
-  filename <- "~/Downloads/GSE158769_exprs_raw.tsv"
+  filename <- "./data/raw/GSE144744/supp/GSE144744/GSE144744_ADT_counts.tar.gz"
   dest_dir <- "./"
   
   rcmd <- paste0("cut -f 1 -d'\t' ", filename, " > ", dest_dir, "row-names.csv")
@@ -117,6 +117,12 @@ read_raw <- function(filename, info){
   if (grepl(".mtx.gz$", filename)){
     return(mtx_to_sce(filename, info$rawformat))
   }
+  
+  # A directory? jeeeez...
+  if (grepl(".tar.gz$", filename)){
+    untar(filename, exdir = dirname(filename))
+  }
+  
   stop("format not found")
 }
 

@@ -118,6 +118,9 @@ read_raw <- function(filename, info){
   if (grepl(".mtx.gz$", filename)){
     return(mtx_to_sce(filename, info$rawformat))
   }
+  
+  # A directory? jeeeeezzz... 
+  if (grepl)
   stop("format not found")
 }
 

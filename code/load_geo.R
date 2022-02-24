@@ -1,7 +1,6 @@
 # Check if one has enough RAM to read the matrix 
-should_i_load_this <- function(filename, tolerance=100){
-  print(filename)
-  return(tolerance > file.size(filename)/as.numeric(system("awk '/MemFree/ {print $2}' /proc/meminfo", intern=TRUE)))
+should_i_load_this <- function(filename, tolerance=20){
+  return(tolerance > file.size(filename)/memuse::swap.unit(memuse::Sys.meminfo()$freeram, "bytes")@size)
 }
 
 # Get row and column names for big files

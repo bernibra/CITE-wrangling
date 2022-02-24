@@ -1,7 +1,6 @@
 # Check if one has enough RAM to read the matrix 
-should_i_load_this <- function(filename, tolerance=100){
-  print(filename)
-  return(tolerance > file.size(filename)/as.numeric(system("awk '/MemFree/ {print $2}' /proc/meminfo", intern=TRUE)))
+should_i_load_this <- function(filename, tolerance=20){
+  return(tolerance > file.size(filename)/memuse::swap.unit(memuse::Sys.meminfo()$freeram, "bytes")@size)
 }
 
 # Get row and column names for big files
@@ -11,7 +10,7 @@ big_row_column <- function(filename){
   #                        delim = "\t",
   #                        comment = "#", n_max = 2)
 
-  filename <- "~/Downloads/GSE158769_exprs_raw.tsv"
+  filename <- "./data/raw/GSE144744/supp/GSE144744/GSE144744_ADT_counts.tar.gz"
   dest_dir <- "./"
   
   rcmd <- paste0("cut -f 1 -d'\t' ", filename, " > ", dest_dir, "row-names.csv")
@@ -119,8 +118,11 @@ read_raw <- function(filename, info){
     return(mtx_to_sce(filename, info$rawformat))
   }
   
-  # A directory? jeeeeezzz... 
-  if (grepl)
+  # A directory? jeeeez...
+  if (grepl(".tar.gz$", filename)){
+    untar(filename, exdir = dirname(filename))
+  }
+  
   stop("format not found")
 }
 

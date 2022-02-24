@@ -14,7 +14,7 @@ f <- lapply(list.files("code", full.names = T), source)
 
 # Configuration -----------------------------------------------------------
 
-Sys.setenv(VROOM_CONNECTION_SIZE = "500000")
+Sys.setenv(VROOM_CONNECTION_SIZE = "5000000")
 options(timeout = 3600)
 
 configuration_plan <- drake_plan(

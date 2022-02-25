@@ -202,6 +202,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
   # Go over all supplementary files
   for(path in paths){
     print(path)
+    
     # Find all raw files
     filenames <- list.files(path, full.names = T)
 
@@ -227,6 +228,11 @@ load_geo_id <- function(paths, info, ftype="protein"){
           # Read raw data and turn into SingleCellExperiment
           sce <- read_raw(filename = filenames[idx], info = info)
           saveRDS(object = sce, file = rdir)
+          
+          # Find row and column names
+          rdir_ <- file.path("data/processed/names", ftype)
+          saveRDS(object = colnames(column), file = file.path(rdir_, "cells", basename(rdir)))
+          saveRDS(object = rows %>% pull(1), file = file.path(rdir_, "features", basename(rdir)))
 
         }else{
 
@@ -238,7 +244,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
           }
 
           # Find row and column names
-          ridr_ <- file.path("data/processed/names", ftype)
+          rdir_ <- file.path("data/processed/names", ftype)
           get_row_column(filenames[idx], rdir = rdir_, id=basename(rdir))
           
           # Not enough RAM to read this matrix
@@ -255,7 +261,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
 }
 
 # Format all datasets as SingleCellExperiments
-load_geo <- function(paths, ids){
+load_geo <- function(paths, ids, ftype="protein"){
   
   # remove info files if there
   if(file.exists("data/NOTenoughRAM.txt")){file.remove("data/NOTenoughRAM.txt")}
@@ -264,7 +270,7 @@ load_geo <- function(paths, ids){
   datasets <- names(paths)
   
   # load each dataset
-  lapply(datasets, function(x) load_geo_id(paths=paths[[x]], info=ids[[x]]))
+  lapply(datasets, function(x) load_geo_id(paths=paths[[x]], info=ids[[x]]), ftype=ftype)
   
   return(list.files("data/processed/protein-data/"))
 }

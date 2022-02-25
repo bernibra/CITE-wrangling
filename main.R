@@ -60,11 +60,12 @@ dir.create("data/processed", showWarnings = FALSE)
 dir.create("data/processed/protein-data", showWarnings = FALSE)
 dir.create("data/processed/names", showWarnings = FALSE)
 dir.create("data/processed/names/protein", showWarnings = FALSE)
-dir.create("data/processed/names/protein", showWarnings = FALSE)
+dir.create("data/processed/names/rna", showWarnings = FALSE)
 
 Raw_to_SingleCellExperiment <- drake_plan(
-  geo_sce = load_geo(paths = geo_raw, 
-                     ids = geo_meta)
+  geo_sce_protein = load_geo(paths = geo_raw, 
+                     ids = geo_meta,
+                     ftype="protein")
   # protein_db = unify_names(geo_sce)
 )
 

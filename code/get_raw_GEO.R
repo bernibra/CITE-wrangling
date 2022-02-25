@@ -74,27 +74,50 @@ get_raw_GEO <- function(ids, dest_dir, ftype="protein",download_date = NULL){
                                    dest_dir = dest_dir, wlink = id$wlink, ftype = ftype)
                   )
   
-  # Report empty folders
-  get_raw_GEO.test1(ids=ids, dest_dir = dest_dir, ftype = ftype)
+  # Closing all connections in case a file failed to download
+  closeAllConnections()
+  
+  # Report empty folders and correct paths
+  paths <- get_raw_GEO.test1(paths=paths, ids=ids, dest_dir = dest_dir, ftype = ftype)
   
   return(paths)
 }
 
 ######### TESTS ###########
+# empty directories
+check_paths <- function(paths, report=F){
+  y <- sapply(paths, function(x){length(list.files(x))}, USE.NAMES = T)
+  if(report){
+    return(names(y)[y==0])
+  }else{
+    return(names(y)[y!=0])
+  }
+}
+
 # Flag raw directories that are empty
-get_raw_GEO.test1 <- function(ids, dest_dir, ftype="protein"){
+get_raw_GEO.test1 <- function(paths, ids, dest_dir, ftype="protein"){
   
   # Check those folders that are empty
   test <- data.frame(t(sapply(ids, function(id) c(id$id, length(list.files(file.path(dest_dir, id$id, paste("supp", ftype, sep="_"))))))))
-
-  # Closing all connections in case a file failed to download
-  closeAllConnections()
+  colnames(test) <- c("id", "files")
+  test$which <- "all"
+  
+  # Finding downloading problems
+  fails <- lapply(paths, function(x) check_paths(x, report = T))
+  paths <- lapply(paths, function(x) check_paths(x, report = F))
+  
+  # Write down those that don't pass the test
+  fails <- unlist(fails)
+  if (length(fails)>0){
+    test <- rbind(test, data.frame(id=basename(dirname(dirname(fails))), files=0,which=basename(fails)))
+  }
   
   # Write report
   if (any(as.numeric(test[,2])==0)){
     message("Some of the GEO raw data was not found (and hence the warnings). Find those cases in: data/GEORawDataNotFound.txt")
-    write.table(file = "data/GEORawDataNotFound.txt", test[as.numeric(test[,2])==0,1], row.names = F, col.names = F)
+    write.table(file = "data/GEORawDataNotFound.txt", test[as.numeric(test[,2])==0,c("id","which")], row.names = F, col.names = T)
   }
 
+  return(paths)
 }
   

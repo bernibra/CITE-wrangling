@@ -7,6 +7,7 @@ Basic workflow for the wrangling of CITE-seq data
 Check that the software and hardware requirements have been met.
 * Docker 20.10
 * 0.76 GB free on disk
+* Stable internet connection (otherwise you won't be able to run the whole thing)
 
 ### 2. Clone the repo
 

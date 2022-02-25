@@ -34,8 +34,8 @@ get_row_column <- function(filename, rdir, id){
   column <- readr::read_delim(paste0(dest_dir, "/column-names.csv"), comment = "#", show_col_types = F)
   
   # Save row and column names as rds
-  saveRDS(object = colnames(column), file = file.path(rdir, "cells", id))
-  saveRDS(object = rows %>% pull(1), file = file.path(rdir, "features", id))
+  saveRDS(object = colnames(column), file = file.path(rdir, paste0("cells_", id)))
+  saveRDS(object = rows %>% pull(1), file = file.path(rdir, paste0("features_", id)))
   
   unlink(dest_dir, recursive = T)
   return(0)
@@ -231,8 +231,8 @@ load_geo_id <- function(paths, info, ftype="protein"){
           
           # Find row and column names
           rdir_ <- file.path("data/processed/names", ftype)
-          saveRDS(object = colnames(column), file = file.path(rdir_, "cells", basename(rdir)))
-          saveRDS(object = rows %>% pull(1), file = file.path(rdir_, "features", basename(rdir)))
+          saveRDS(object = colnames(sce), file = file.path(rdir_, paste0("cells_", basename(rdir))))
+          saveRDS(object = rownames(sce), file = file.path(rdir_, paste0("features_", basename(rdir))))
 
         }else{
 

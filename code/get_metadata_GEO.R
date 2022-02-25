@@ -3,6 +3,7 @@ get_metadata <- function(id, dest_dir, download_date = NULL){
   
   # Define destination
   rdir <- file.path(dest_dir, id)
+  print(rdir)
   
   if(!file.exists(rdir)){
     
@@ -10,6 +11,7 @@ get_metadata <- function(id, dest_dir, download_date = NULL){
     dir.create(rdir, showWarnings = FALSE)
     message("donwloading data on ", download_date)
     
+    print(id)
     # Download metadata
     GEOquery::getGEO(id, destdir = rdir)
 

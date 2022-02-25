@@ -103,7 +103,7 @@ h5_to_sce <- function(filename, info){
   
   # I found this to be the easiest way to get such data into SingleCellExperiment class
   h5 <- Seurat::Read10X_h5(filename, use.names = TRUE, unique.features = TRUE)
-  return(Seurat::as.SingleCellExperiment(assays = list(counts = Seurat::CreateSeuratObject(h5))))
+  return(Seurat::as.SingleCellExperiment(Seurat::CreateSeuratObject(h5)))
 
 }
 

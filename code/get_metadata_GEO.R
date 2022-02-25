@@ -11,7 +11,7 @@ get_metadata <- function(id, dest_dir, download_date = NULL){
     message("donwloading data on ", download_date)
     
     # Download metadata
-    GEOquery::getGEO(id, destdir = rdir) %>% close()
+    GEOquery::getGEO(id, destdir = rdir)
 
   } else {
 

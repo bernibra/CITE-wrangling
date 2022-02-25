@@ -10,8 +10,9 @@ GEO_download_key:
     rawformat:
       features: "genes.tsv.gz"
       cells: "barcodes.tsv.gz"
-      replace: "matrix.mtx.gz"
+      replace: "matrix.mtx"
       column: 1
+      transposeMTX: False
       transpose: True
       coldata:
         - "Sample_Name"
@@ -95,7 +96,7 @@ GEO_download_key:
     wlink: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
     rawformat:
       keyword: NULL
-      transpose: True
+      transpose: False
       coldata: NULL
   doi.org/10.1093/nar/gkaa314:
     id: GSE148665
@@ -119,8 +120,14 @@ GEO_download_key:
     info: "Covid and healthy treatments"
     rawformat:
       keyword: NULL
-      transpose: True
+      transpose: False
+      transposeMTX: False
       coldata: NULL
+      common_features: "GSE155673_features.tsv.gz"
+      features: "features.tsv.gz"
+      cells: "barcodes.tsv.gz"
+      replace: "matrix.mtx"
+      column: 1
   doi.org/10.1016/j.cell.2021.02.018:
     id: GSE161918
     description: characteristics_ch1.2
@@ -141,10 +148,10 @@ GEO_download_key:
     info: "NA"
     rawformat:
       keyword: NULL
-      transpose: True
-      features: "barcodes.txt.gz"
-      cells: "proteins.txt.gz"
-      replace: "mtx.gz"
+      transposeMTX: True
+      features: "proteins.txt.gz"
+      cells: "barcodes.txt.gz"
+      replace: "mtx"
       column: 1
   doi.org/10.1016/j.medj.2021.01.006:
     id: GSE144744 
@@ -158,4 +165,8 @@ GEO_download_key:
     info: "Healthy and treatment with replicates"
     rawformat:
       keyword: NULL
-      transpose: True
+      transposeMTX: False
+      features: "genes.tsv"
+      cells: "barcodes.tsv"
+      replace: "matrix.mtx"
+      column: 2

@@ -1,9 +1,9 @@
 # Download raw files that contain CITE info for one GEO dataset
-get_raw <- function(id, target_variable, keyword, georaw, dest_dir, wlink=NULL){
+get_raw <- function(id, target_variable, keyword, georaw, dest_dir, wlink=NULL, ftype="protein"){
 
   # Define file paths
   basedir <- file.path(dest_dir, id)
-  rdir <- file.path(basedir, "supp")
+  rdir <- file.path(basedir, paste("supp", ftype, sep="_"))
   
   if((!file.exists(rdir))){
     # Create directory if not there
@@ -63,29 +63,29 @@ get_raw <- function(id, target_variable, keyword, georaw, dest_dir, wlink=NULL){
 }
 
 # Download raw data for all GEO datasets
-get_raw_GEO <- function(ids, dest_dir, download_date = NULL){
+get_raw_GEO <- function(ids, dest_dir, ftype="protein",download_date = NULL){
   
   # remove info file if there
   if(file.exists("data/GEORawDataNotFound.txt")){file.remove("data/GEORawDataNotFound.txt")}
 
   # Loop over ids
   paths <- lapply(ids, function(id) get_raw(id = id$id, target_variable = id$description,
-                                   keyword = id$keyword, georaw = id$georaw,
-                                   dest_dir = dest_dir, wlink = id$wlink)
+                                   keyword = id$keyword[[ftype]], georaw = id$georaw,
+                                   dest_dir = dest_dir, wlink = id$wlink, ftype = ftype)
                   )
   
   # Report empty folders
-  get_raw_GEO.test1(ids=ids, dest_dir = dest_dir)
+  get_raw_GEO.test1(ids=ids, dest_dir = dest_dir, ftype = ftype)
   
   return(paths)
 }
 
 ######### TESTS ###########
 # Flag raw directories that are empty
-get_raw_GEO.test1 <- function(ids, dest_dir){
+get_raw_GEO.test1 <- function(ids, dest_dir, ftype="protein"){
   
   # Check those folders that are empty
-  test <- data.frame(t(sapply(ids, function(id) c(id$id, length(list.files(file.path(dest_dir, id$id, "supp")))))))
+  test <- data.frame(t(sapply(ids, function(id) c(id$id, length(list.files(file.path(dest_dir, id$id, paste("supp", ftype, sep="_"))))))))
 
   # Closing all connections in case a file failed to download
   closeAllConnections()

@@ -207,7 +207,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
     filenames <- list.files(path, full.names = T)
 
     # Dealing with multiple files if possible
-    filenames <- relevant_files(filenames = filenames, keywords = info$rawformat$keyword)
+    filenames <- relevant_files(filenames = filenames, keywords = info$rawformat$keyword[[ftype]])
     
     for (idx in 1:length(filenames)){
       
@@ -218,7 +218,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
       # Define file name
       rdir <- paste(path, paste0(idx, ".rds"), sep = "_") %>%
         gsub("raw", "processed/protein-data", .) %>%
-        gsub("/supp/", "_", .)
+        gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .)
       
       # Process raw data and save as SingleCellExperiment class if not done already
       if(!file.exists(rdir)){
@@ -270,7 +270,7 @@ load_geo <- function(paths, ids, ftype="protein"){
   datasets <- names(paths)
   
   # load each dataset
-  lapply(datasets, function(x) load_geo_id(paths=paths[[x]], info=ids[[x]]), ftype=ftype)
+  lapply(datasets, function(x) load_geo_id(paths=paths[[x]], info=ids[[x]], ftype=ftype))
   
   return(list.files("data/processed/protein-data/"))
 }

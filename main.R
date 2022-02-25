@@ -34,8 +34,10 @@ get_GEOquery_raw <- drake_plan(
   geo_meta = get_metadata_GEO(ids = geo_download_key, 
                     dest_dir = "data/raw",
                     download_date = data_download_date),
-  geo_raw = get_raw_GEO(ids = geo_meta, 
-                        dest_dir = "data/raw")
+  geo_raw_protein = get_raw_GEO(ids = geo_meta, 
+                        dest_dir = "data/raw",
+                        ftype = "protein",
+                        download_date = data_download_date)
 )
 
 # get_figshare_raw <- drake_plan(
@@ -63,9 +65,9 @@ dir.create("data/processed/names/protein", showWarnings = FALSE)
 dir.create("data/processed/names/rna", showWarnings = FALSE)
 
 Raw_to_SingleCellExperiment <- drake_plan(
-  geo_sce_protein = load_geo(paths = geo_raw, 
-                     ids = geo_meta,
-                     ftype="protein")
+  geo_sce_protein = load_geo(paths = geo_raw_protein, 
+                     ids = geo_download_key,
+                     ftype ="protein")
   # protein_db = unify_names(geo_sce)
 )
 

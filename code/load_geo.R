@@ -16,8 +16,29 @@ should_i_load_this <- function(filename, tolerance=0.5){
     )
 }
 
+# Use a dictionary to rename features
+rename_features <- function(features, dictionary, key, value, path){
+  # Load the dictionary
+  dict <- readr::read_delim(file.path(path, dictionary), show_col_types = F)[, c(key, value)]
+  
+  # Basic checks
+  dict <- dict[!is.na(dict[,key]),] %>% data.frame
+  colnames(dict) <- c("key", "value")
+  
+  # Change the names
+  features <- data.frame(key=features)
+  
+  # Merge both data.frames
+  features_ <- merge(features, dict, by.x = "key", by.y = "key", all.x = TRUE)$value
+  
+  # Replace names based on dictionary
+  features[!is.na(features_)] <- features_[!is.na(features_)]
+  
+  return(features)
+}
+
 # Get row and column names for big files
-get_row_column <- function(filename, rdir, id){
+get_row_column <- function(filename){
   
   # Create temporal directory
   dest_dir <- file.path(dirname(filename), "tmp")
@@ -33,12 +54,9 @@ get_row_column <- function(filename, rdir, id){
   rows <- readr::read_delim(paste0(dest_dir, "/row-names.csv"), delim = "\t", comment = "#", show_col_types = F)
   column <- readr::read_delim(paste0(dest_dir, "/column-names.csv"), comment = "#", show_col_types = F)
   
-  # Save row and column names as rds
-  saveRDS(object = colnames(column), file = file.path(rdir, paste0("cells_", id)))
-  saveRDS(object = rows %>% pull(1), file = file.path(rdir, paste0("features_", id)))
-  
   unlink(dest_dir, recursive = T)
-  return(0)
+  
+  return(list(rows = (rows %>% pull(1)), columns=colnames(column)))
 }
 
 # Get row and column names for big files
@@ -70,9 +88,14 @@ split_big_file <- function(filename, chunks=1){
 # Function turning a matrix type object to SingleCellExperiment class
 matrix_to_sce <- function(mat, info){
   
+  tp <- info$transpose
+  
   # Transpose the matrix if need be
-  if(!(info$transpose)){
-    mat <- t(mat)
+  if(is.null(tp)){
+    tp <- ncol(mat)<nrow(mat)
+  }
+  if(!(tp)){
+      mat <- t(mat)
   }
   
   # Are there any funky columns that need to be added as coldata
@@ -219,6 +242,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
       rdir <- paste(path, paste0(idx, ".rds"), sep = "_") %>%
         gsub("raw", "processed/protein-data", .) %>%
         gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .)
+      rdir_ <- file.path("data/processed/names", ftype)
       
       # Process raw data and save as SingleCellExperiment class if not done already
       if(!file.exists(rdir)){
@@ -227,10 +251,19 @@ load_geo_id <- function(paths, info, ftype="protein"){
 
           # Read raw data and turn into SingleCellExperiment
           sce <- read_raw(filename = filenames[idx], info = info)
+          
+          # If the dataset has a dictionary, use to rename the features
+          if(!is.null(info$rawformat$dictionary)){
+            rownames(sce) <- rename_features(features=rownames(sce), dictionary=info$rawformat$dictionary$file,
+                                   key=info$rawformat$dictionary$key, 
+                                   value=info$rawformat$dictionary$value, 
+                                   path=dirname(filenames[idx]))
+          }
+          
+          # Save the reformatted data as an rds file
           saveRDS(object = sce, file = rdir)
           
           # Find row and column names
-          rdir_ <- file.path("data/processed/names", ftype)
           saveRDS(object = colnames(sce), file = file.path(rdir_, paste0("cells_", basename(rdir))))
           saveRDS(object = rownames(sce), file = file.path(rdir_, paste0("features_", basename(rdir))))
 
@@ -244,8 +277,19 @@ load_geo_id <- function(paths, info, ftype="protein"){
           }
 
           # Find row and column names
-          rdir_ <- file.path("data/processed/names", ftype)
-          get_row_column(filenames[idx], rdir = rdir_, id=basename(rdir))
+          rowcol <- get_row_column(filenames[idx])
+          
+          # If the dataset has a dictionary, use to rename the features
+          if(!is.null(info$rawformat$dictionary)){
+            rowcol$rows <- rename_features(features=rowcol$rows, dictionary=info$rawformat$dictionary$file,
+                                             key=info$rawformat$dictionary$key, 
+                                             value=info$rawformat$dictionary$value, 
+                                             path=dirname(filenames[idx]))
+          }
+          
+          # Save row and column names as rds
+          saveRDS(object = rowcol$columns, file = file.path(rdir_, paste0("cells_", basename(rdir))))
+          saveRDS(object = rowcol$rows, file = file.path(rdir_, paste0("features_", basename(rdir))))
           
           # Not enough RAM to read this matrix
           write(filenames[idx],file="./data/NOTenoughRAM.txt",append=TRUE)

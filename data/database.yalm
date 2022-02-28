@@ -76,7 +76,6 @@ GEO_download_key:
     rawformat:
       keyword:
         protein: NULL
-      transpose: True
       coldata:
         - "no_match"
         - "ambiguous"
@@ -145,6 +144,10 @@ GEO_download_key:
       cells: "barcodes.tsv.gz"
       replace: "matrix.mtx"
       column: 1
+      dictionary: 
+        file: "GSE155673_totalseq_a_hto.csv.gz"
+        key: "Gene ID"
+        value: "Specificity"
   doi.org/10.1016/j.cell.2021.02.018:
     id: GSE161918
     description: characteristics_ch1.2

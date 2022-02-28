@@ -9,7 +9,6 @@ library(drake, quietly = T)
 library(purrr, quietly = T)
 library(dplyr, quietly = T)
 library(SingleCellExperiment, quietly = T)
-library(hash, quietly = T)
 
 f <- lapply(list.files("code", full.names = T), source)
 

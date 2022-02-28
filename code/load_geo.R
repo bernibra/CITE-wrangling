@@ -272,5 +272,5 @@ load_geo <- function(paths, ids, ftype="protein"){
   # load each dataset
   lapply(datasets, function(x) load_geo_id(paths=paths[[x]], info=ids[[x]], ftype=ftype))
   
-  return(list.files("data/processed/protein-data/"))
+  return(list.files(paste0("data/processed/names/", ftype)))
 }

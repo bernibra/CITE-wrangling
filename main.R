@@ -4,11 +4,12 @@ pkgconfig::set_config("strings_in_dots" = "literals")
 
 # Load libraries
 
-library(magrittr)
-library(drake)
-library(purrr)
-library(dplyr)
-library(SingleCellExperiment)
+library(magrittr, quietly = T)
+library(drake, quietly = T)
+library(purrr, quietly = T)
+library(dplyr, quietly = T)
+library(SingleCellExperiment, quietly = T)
+library(hash, quietly = T)
 
 f <- lapply(list.files("code", full.names = T), source)
 
@@ -67,8 +68,8 @@ dir.create("data/processed/names/rna", showWarnings = FALSE)
 Raw_to_SingleCellExperiment <- drake_plan(
   geo_sce_protein = load_geo(paths = geo_raw_protein, 
                      ids = geo_download_key,
-                     ftype ="protein")
-  # protein_db = unify_names(geo_sce)
+                     ftype ="protein"),
+  protein_db = unify_names(names = geo_sce_protein)
 )
 
 # build_protein_dictionary <- drake_plan(

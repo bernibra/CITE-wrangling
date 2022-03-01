@@ -67,8 +67,8 @@ dir.create("data/processed/names/rna", showWarnings = FALSE)
 Raw_to_SingleCellExperiment <- drake_plan(
   geo_sce_protein = load_geo(paths = geo_raw_protein, 
                      ids = geo_download_key,
-                     ftype ="protein"),
-  protein_db = unify_names(names = geo_sce_protein)
+                     ftype ="protein")
+  # protein_db = unify_names(names = geo_sce_protein)
 )
 
 # build_protein_dictionary <- drake_plan(

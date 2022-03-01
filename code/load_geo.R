@@ -24,15 +24,16 @@ rename_features <- function(features, dictionary, key, value, path){
   # Basic checks
   dict <- dict[!is.na(dict[,key]),] %>% data.frame
   colnames(dict) <- c("key", "value")
+  dict %<>% distinct(key, .keep_all = T)
   
   # Change the names
   features <- data.frame(key=features)
   
   # Merge both data.frames
-  features_ <- merge(features, dict, by.x = "key", by.y = "key", all.x = TRUE)$value
+  features_ <- merge(x=features, y=dict, by = "key", all.x = TRUE)$value
   
   # Replace names based on dictionary
-  features[!is.na(features_)] <- features_[!is.na(features_)]
+  features$key[!is.na(features_)] <- features_[!is.na(features_)]
   
   return(features)
 }

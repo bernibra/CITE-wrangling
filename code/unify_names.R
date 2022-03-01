@@ -10,8 +10,9 @@ basic_formating <- function(features, ftype, keywords=c("control", "protein", "p
   }
   
   ####
-  # Provisional patch, I need to fix this in the data processing
+  # Provisional patch, I need to find a better way to filter those
   features <- features[!(features$original %>% stringr::str_detect("^ENSG*")),]
+  stopifnot(length(features)!=0)
   
   ####
   

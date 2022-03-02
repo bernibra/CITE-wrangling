@@ -1,0 +1,85 @@
+id: GSE135325
+  features: "genes.tsv.gz"
+  cells: "barcodes.tsv.gz"
+  replace: "matrix.mtx"
+  column: 2
+  transposeMTX: False
+  transpose: True
+  coldata:
+    - "Sample_Name"
+    - "Sample_Tag"
+id: GSE139369
+  keyword: 
+    protein: "ADT"
+  transpose: False
+  coldata: NULL
+id: GSE152469
+  keyword:
+    protein: "Ab_CLL"
+  transpose: True
+  coldata:
+    - "isotype_Ctrl"
+id: GSE108313
+  keyword: 
+    protein: NULL
+  transpose: False
+  coldata:
+    - "bad_struct"
+    - "no_match"
+    - "total_reads"
+id: GSE126310
+  keyword:
+    protein: NULL
+  coldata:
+    - "no_match"
+    - "ambiguous"
+    - "total_reads"
+    - "bad_struct"
+id: GSE144434
+  keyword:
+    protein: "Antibodies"
+  transpose: True
+  coldata: NULL
+id: GSE158769
+  keyword:
+    protein: NULL
+  transpose: False
+  coldata: NULL
+id: GSE148665
+  keyword:
+    protein: NULL
+  transpose: False
+  coldata: NULL
+id: GSE155673
+  keyword:
+    protein: NULL
+  transpose: False
+  transposeMTX: False
+  coldata: NULL
+  common_features: "GSE155673_features.tsv.gz"
+  features: "features.tsv.gz"
+  cells: "barcodes.tsv.gz"
+  replace: "matrix.mtx"
+  column: 1
+  dictionary: 
+    file: "GSE155673_totalseq_a_hto.csv.gz"
+    key: "Gene ID"
+    value: "Specificity"
+id: GSE161918
+  info: "h5 that can be easily converted into an sce object"
+id: GSE156478 
+  keyword:
+    protein: NULL
+  transposeMTX: True
+  features: "proteins.txt.gz"
+  cells: "barcodes.txt.gz"
+  replace: "mtx"
+  column: 1
+id: GSE144744 
+  keyword:
+    protein: NULL
+  transposeMTX: False
+  features: "genes.tsv"
+  cells: "barcodes.tsv"
+  replace: "matrix.mtx"
+  column: 2

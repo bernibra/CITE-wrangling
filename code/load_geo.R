@@ -18,6 +18,7 @@ should_i_load_this <- function(filename, tolerance=0.5){
 
 # Use a dictionary to rename features
 rename_features <- function(features, dictionary, key, value, path){
+  
   # Load the dictionary
   dict <- readr::read_delim(file.path(path, dictionary), show_col_types = F)[, c(key, value)]
   
@@ -227,7 +228,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
 
   # Go over all supplementary files
   for(path in paths){
-    print(path)
+    print(basename(path))
     
     # Find all raw files
     filenames <- list.files(path, full.names = T)

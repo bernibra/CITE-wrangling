@@ -24,7 +24,9 @@ rename_features <- function(features, dictionary, key, value, path){
   # Basic checks
   dict <- dict[!is.na(dict[,key]),] %>% data.frame
   colnames(dict) <- c("key", "value")
-  dict %<>% distinct(key, .keep_all = T)
+  
+  dict %<>% group_by(key) %>% 
+    mutate(value = paste0(value, collapse = "|")) %>% distinct(key, .keep_all = T)
   
   # Change the names
   features <- data.frame(key=features)
@@ -35,7 +37,7 @@ rename_features <- function(features, dictionary, key, value, path){
   # Replace names based on dictionary
   features$key[!is.na(features_)] <- features_[!is.na(features_)]
   
-  return(features)
+  return(features$key)
 }
 
 # Get row and column names for big files
@@ -235,10 +237,6 @@ load_geo_id <- function(paths, info, ftype="protein"){
     
     for (idx in 1:length(filenames)){
       
-      # Check if we can actually load the document
-      shouldi <- should_i_load_this(filenames[idx])
-      filenames[idx] <- shouldi$filename
-      
       # Define file name
       rdir <- paste(path, paste0(idx, ".rds"), sep = "_") %>%
         gsub("raw", "processed/protein-data", .) %>%
@@ -247,6 +245,9 @@ load_geo_id <- function(paths, info, ftype="protein"){
       
       # Process raw data and save as SingleCellExperiment class if not done already
       if(!file.exists(rdir)){
+        # Check if we can actually load the document
+        shouldi <- should_i_load_this(filenames[idx])
+        filenames[idx] <- shouldi$filename
 
         if(shouldi$shouldi){
 

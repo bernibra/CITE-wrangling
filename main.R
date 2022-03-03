@@ -39,6 +39,11 @@ get_GEOquery_raw <- drake_plan(
                         dest_dir = "data/raw",
                         ftype = "protein",
                         download_date = data_download_date)
+  # geo_raw_rna = get_raw_GEO(ids = geo_meta, 
+  #                               dest_dir = "data/raw",
+  #                               ftype = "rna",
+  #                               download_date = data_download_date,
+  #                               rmfile=FALSE)
 )
 
 # get_figshare_raw <- drake_plan(

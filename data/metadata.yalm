@@ -8,6 +8,7 @@ GEO_download_key:
     info: "Before and after treatment samples"
     keyword: 
       protein: abseq
+      rna: abseq
   doi.org/10.1038/s41587-019-0332-7:
     id: GSE139369
     description: data_processing
@@ -17,6 +18,7 @@ GEO_download_key:
     info: "Healthy and leukemia treatments with replicates"
     keyword: 
       protein: cite
+      rna: cite
   doi.org/10.1186/s40364-020-00253-w:
     id: GSE152469
     description: library_source
@@ -26,6 +28,7 @@ GEO_download_key:
     info: "Before and after treatment samples"
     keyword:
       protein: transcriptomic
+      rna: transcriptomic
   doi.org/10.1101/237693:
     id: GSE108313
     description: description
@@ -35,6 +38,7 @@ GEO_download_key:
     info: "NA"
     keyword:
       protein: adt
+      rna: rna
   doi.org/10.1038/s41592-019-0392-0:
     id: GSE126310
     description: description.2

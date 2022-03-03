@@ -10,12 +10,14 @@ GSE135325:
     - "Sample_Tag"
 GSE139369:
   keyword: 
-    protein: "ADT"
+    protein: "scADT"
+    rna: "scRNA
   transpose: False
   coldata: NULL
 GSE152469:
   keyword:
     protein: "Ab_CLL"
+    rna: "Exp"
   transpose: True
   coldata:
     - "isotype_Ctrl"

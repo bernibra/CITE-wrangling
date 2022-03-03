@@ -243,12 +243,11 @@ load_geo_id <- function(paths, info, ftype="protein"){
         gsub("raw", "processed/protein-data", .) %>%
         gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .)
       rdir_ <- file.path("data/processed/names", ftype)
-      shouldi <- should_i_load_this(filenames[idx])
       
       # Process raw data and save as SingleCellExperiment class if not done already
       if(!file.exists(rdir)){
         # Check if we can actually load the document
-
+        shouldi <- should_i_load_this(filenames[idx])
         filenames[idx] <- shouldi$filename
 
         if(shouldi$shouldi){

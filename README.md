@@ -31,8 +31,14 @@ You can do this by running the makefile:
 ```
 docker exec -u rstudio cite-wrangling-container make -C /home/rstudio/cite-wrangling
 ```
-_The first time runing this might take some time again, so go grab a second coffee...?_
+_The first time runing this might take some time again, you might want to run it over night__
 
-### 5. Testing code
-
+### 5. Other
+_Testing code_
 You can edit or develop new code and test it in the docker container by adding the code to the directory (`./code/`), rebuilding the docker image (step 3), and accessing the container through your web browser at <yourhostip:28787> (`hostname -I` in the terminal to find your host ip). It might not work if you are connected to a vpn.
+
+_Adding new datasets_
+New datasets can be added, but one needs to follow [certain instructions](data/README.md) to keep the workflow running.
+
+_Potential problems_
+If the internet connection is not stable or you have limited RAM, some of the datasets might have problems downloading or processing. The automatically generated files `NOTenoughRAM.txt` and `GEOrawDataNotFound.txt` report on these problems.

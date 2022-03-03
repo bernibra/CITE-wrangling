@@ -52,3 +52,4 @@ data/processed
 
 # Data files reporting errors
 data/GEORawDataNotFound.txt
+data/NOTenoughRAM.txt

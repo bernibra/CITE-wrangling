@@ -19,9 +19,10 @@ options(timeout = 3600)
 
 configuration_plan <- drake_plan(
   config = yaml::read_yaml(file_in("config.yaml")),
+  metadata = yaml::read_yaml(file_in("./data/metadata.yalm")),
   datasets = yaml::read_yaml(file_in("./data/database.yalm")),
   data_download_date = config$raw_data_retrieved,
-  geo_download_key = datasets$GEO_download_key
+  geo_download_key = metadata$GEO_download_key
 )
 
 # Download data ----------------------------------------------------------
@@ -67,6 +68,7 @@ dir.create("data/processed/names/rna", showWarnings = FALSE)
 Raw_to_SingleCellExperiment <- drake_plan(
   geo_sce_protein = load_geo(paths = geo_raw_protein, 
                      ids = geo_download_key,
+                     info = datasets,
                      ftype ="protein"),
   protein_db = unify_names(paths = geo_sce_protein)
 )

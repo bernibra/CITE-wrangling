@@ -163,7 +163,7 @@ read_raw <- function(filename, info){
   # File formatted as rds
   if (grepl(".rds$|.Rds$", filename)){
     mat <- readRDS(filename)
-    return(matrix_to_sce(as.matrix(mat), info$rawformat))
+    return(matrix_to_sce(as.matrix(mat), info))
   }
 
   
@@ -172,17 +172,17 @@ read_raw <- function(filename, info){
     mat <- readr::read_delim(file = filename, col_names = TRUE,
                            comment = "#", show_col_types = FALSE) %>% tibble::column_to_rownames(colnames(.)[1])
     
-    return(matrix_to_sce(mat, info$rawformat))
+    return(matrix_to_sce(mat, info))
   }
   
   # File formatted as h5
   if (grepl(".h5$", filename)){
-    return(h5_to_sce(filename, info$rawformat))
+    return(h5_to_sce(filename, info))
   }
   
   # interaction list and complementary files for columns and rows
   if (grepl(".mtx$", filename)){
-    return(mtx_to_sce(filename, info$rawformat))
+    return(mtx_to_sce(filename, info))
   }
   
   stop("format not found")
@@ -234,7 +234,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
     filenames <- list.files(path, full.names = T)
 
     # Dealing with multiple files if possible
-    filenames <- relevant_files(filenames = filenames, keywords = info$rawformat$keyword[[ftype]])
+    filenames <- relevant_files(filenames = filenames, keywords = info$keyword[[ftype]])
     
     for (idx in 1:length(filenames)){
       
@@ -243,11 +243,12 @@ load_geo_id <- function(paths, info, ftype="protein"){
         gsub("raw", "processed/protein-data", .) %>%
         gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .)
       rdir_ <- file.path("data/processed/names", ftype)
+      shouldi <- should_i_load_this(filenames[idx])
       
       # Process raw data and save as SingleCellExperiment class if not done already
       if(!file.exists(rdir)){
         # Check if we can actually load the document
-        shouldi <- should_i_load_this(filenames[idx])
+
         filenames[idx] <- shouldi$filename
 
         if(shouldi$shouldi){
@@ -256,10 +257,10 @@ load_geo_id <- function(paths, info, ftype="protein"){
           sce <- read_raw(filename = filenames[idx], info = info)
           
           # If the dataset has a dictionary, use to rename the features
-          if(!is.null(info$rawformat$dictionary)){
-            rownames(sce) <- rename_features(features=rownames(sce), dictionary=info$rawformat$dictionary$file,
-                                   key=info$rawformat$dictionary$key, 
-                                   value=info$rawformat$dictionary$value, 
+          if(!is.null(info$dictionary)){
+            rownames(sce) <- rename_features(features=rownames(sce), dictionary=info$dictionary$file,
+                                   key=info$dictionary$key, 
+                                   value=info$dictionary$value, 
                                    path=dirname(filenames[idx]))
           }
           
@@ -283,10 +284,10 @@ load_geo_id <- function(paths, info, ftype="protein"){
           rowcol <- get_row_column(filenames[idx])
           
           # If the dataset has a dictionary, use to rename the features
-          if(!is.null(info$rawformat$dictionary)){
-            rowcol$rows <- rename_features(features=rowcol$rows, dictionary=info$rawformat$dictionary$file,
-                                             key=info$rawformat$dictionary$key, 
-                                             value=info$rawformat$dictionary$value, 
+          if(!is.null(info$dictionary)){
+            rowcol$rows <- rename_features(features=rowcol$rows, dictionary=info$dictionary$file,
+                                             key=info$dictionary$key, 
+                                             value=info$dictionary$value, 
                                              path=dirname(filenames[idx]))
           }
           
@@ -300,7 +301,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
         }
         
         # Compress files again to avoid using too much disc
-        if(!(grepl(".gz$", filenames[idx]))){zip(zipfile = paste0(filenames[idx], ".gz"), files = filenames[idx])}
+        # if(!(grepl(".gz$", filenames[idx]))){zip(zipfile = paste0(filenames[idx], ".gz"), files = filenames[idx])}
         
       }else{
         message("---> file already processed: ", basename(filenames[idx]))
@@ -311,7 +312,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
 }
 
 # Format all datasets as SingleCellExperiments
-load_geo <- function(paths, ids, ftype="protein"){
+load_geo <- function(paths, ids, info, ftype="protein"){
   
   # remove info files if there
   if(file.exists("data/NOTenoughRAM.txt")){file.remove("data/NOTenoughRAM.txt")}
@@ -320,7 +321,7 @@ load_geo <- function(paths, ids, ftype="protein"){
   datasets <- names(paths)
   
   # load each dataset
-  lapply(datasets, function(x) load_geo_id(paths=paths[[x]], info=ids[[x]], ftype=ftype))
+  lapply(datasets, function(x) load_geo_id(paths=paths[[x]], info=info[[ids[[x]]$id]], ftype=ftype))
   
   return(list.files(paste0("data/processed/names/", ftype)))
 }

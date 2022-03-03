@@ -108,7 +108,6 @@ unify_features <- function(paths, ftype){
     y <- which(diss[i,]>0.5)
     z <- unic_val[y]
     if(length(z)>0){
-      print(i)
       z <- z[which.max(sapply(z, function(j) length(strsplit(split = " ", j)[[1]])))]
     }else{
       z <- x
@@ -129,10 +128,10 @@ check_cells <- function(){
 }
 
 # Unifying names across databases
-unify_names <- function(ftype="protein"){
+unify_names <- function(paths=NULL, ftype="protein"){
   paths <- list.files(file.path("data/processed/names/", ftype), full.names = T)
   
-  features <- check_features(paths=paths[grepl("features_", paths)], ftype=ftype)
+  features <- unify_features(paths=paths[grepl("features_", paths)], ftype=ftype)
   
   # cells <- check_cells(paths[grepl("cells_", paths)])
   

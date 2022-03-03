@@ -228,7 +228,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
 
   # Go over all supplementary files
   for(path in paths){
-    print(basename(path))
+    print(path)
     
     # Find all raw files
     filenames <- list.files(path, full.names = T)
@@ -298,6 +298,9 @@ load_geo_id <- function(paths, info, ftype="protein"){
           write(filenames[idx],file="./data/NOTenoughRAM.txt",append=TRUE)
 
         }
+        
+        # Compress files again to avoid using too much disc
+        if(!(grepl(".gz$", filenames[idx]))){zip(zipfile = paste0(filenames[idx], ".gz"), files = filenames[idx])}
         
       }else{
         message("---> file already processed: ", basename(filenames[idx]))

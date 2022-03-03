@@ -95,26 +95,32 @@ unify_features <- function(paths, ftype){
   for(i in 1:ncol(pairs)){
     x <- strsplit(split = " ", unic_val[pairs[1,i]])[[1]]
     y <- strsplit(split = " ", unic_val[pairs[2,i]])[[1]]
-    d <- length(intersect(x,y))/min(c(length(x), length(y)))
-    diss[pairs[1,i], pairs[2,i]] <- d
-    diss[pairs[2,i], pairs[1,i]] <- d
+    d <- length(intersect(x,y))
+    diss[pairs[1,i], pairs[2,i]] <- d/length(x)
+    diss[pairs[2,i], pairs[1,i]] <- d/length(y)
   }
   
   # starting with the longer names, we find those perfect matches across databases
   dictionary %<>% mutate(len=length(strsplit(split = " ", clean)[[1]])) %>% arrange(desc(len))
-  dictionary$genus <- sapply(1:nrow(dictionary), function(i){
-    x <- dictionary[i, ]
-    
-    y <- which(diss[x$id,]>0)
-    z <- !(y %in% dictionary$id[dictionary$db==x$db])
-    if (any(z)){
-      y <- y[which.max(diss[x$id,y[z]])]
-      value <- unic_val[y]
+  newnames <- list()
+  for(i in 1:n){
+    x <- unic_val[i]
+    y <- which(diss[i,]>0.5)
+    z <- unic_val[y]
+    if(length(z)>0){
+      print(i)
+      z <- z[which.max(sapply(z, function(j) length(strsplit(split = " ", j)[[1]])))]
     }else{
-      value <- x$clean
+      z <- x
     }
-    value
-  })
+    newnames[[i]] <- data.frame(old=x,new=z)
+  }
+  
+  newnames <- do.call("rbind",newnames)
+  
+  dictionary <- merge(dictionary, newnames, by.x="clean", by.y="old", all.x = TRUE)
+
+  return(dictionary)
 }
 
 # Cross cell names across rna and protein datasets
@@ -128,6 +134,8 @@ unify_names <- function(ftype="protein"){
   
   features <- check_features(paths=paths[grepl("features_", paths)], ftype=ftype)
   
-  cells <- check_cells(paths[grepl("cells_", paths)])
+  # cells <- check_cells(paths[grepl("cells_", paths)])
+  
+  # CD274 (B7-H1, PD-L1) vs PD-L1 alone
   
 }

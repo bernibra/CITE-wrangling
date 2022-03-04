@@ -48,6 +48,7 @@ GEO_download_key:
     info: "Different cell types"
     keyword:
       protein: adt
+      rna: gdo
   doi.org/10.1093/nargab/lqaa025:
     id: GSE144434
     description: library_source
@@ -57,6 +58,7 @@ GEO_download_key:
     info: "NA" 
     keyword:
       protein: transcriptomic
+      rna: transcriptomic
   doi.org/10.1038/s41590-021-00933-1:
     id: GSE158769
     description: data_processing
@@ -67,6 +69,7 @@ GEO_download_key:
     wlink: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
     keyword:
       protein: antibody
+      rna: antibody
   doi.org/10.1093/nar/gkaa314:
     id: GSE148665
     description: data_processing
@@ -76,6 +79,7 @@ GEO_download_key:
     info: "NA"
     keyword:
       protein: cite
+      rna: cellranger
   doi.org/10.1126/science.abc6261:
     id: GSE155673
     description: description
@@ -84,32 +88,37 @@ GEO_download_key:
     georaw: geo_accession
     info: "Covid and healthy treatments"
     keyword:
-      protein: adt
+      protein: "adt"
+      rna: "rna$"
   doi.org/10.1016/j.cell.2021.02.018:
     id: GSE161918
-    description: characteristics_ch1.2
+    description: title
     replicates: yes
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "Healthy and treatment and multiple temporal replicates"
     keyword:
-      protein: protein
+      protein: "csp$"
+      rna: "rna$"
   doi.org/10.1038/s41587-021-00927-2:
     id: GSE156478 
-    description: data_processing
+    description: title
     replicates: na
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "NA"
     keyword:
-      protein: cite
+      protein: "cite_adt|multiome_adt"
+      rna: "cite_gex|multiome_rna"
   doi.org/10.1016/j.medj.2021.01.006:
     id: GSE144744 
-    description: characteristics_ch1.17
     replicates: yes
     citelink: supplementary_file_1
     georaw: geo_accession
-    wlink: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
     info: "Healthy and treatment with replicates"
     keyword:
       protein: protein
+      rna: protein
+    wlink: 
+      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
+      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz"

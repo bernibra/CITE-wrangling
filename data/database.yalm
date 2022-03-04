@@ -11,7 +11,7 @@ GSE135325:
 GSE139369:
   keyword: 
     protein: "scADT"
-    rna: "scRNA
+    rna: "scRNA"
   transpose: False
   coldata: NULL
 GSE152469:
@@ -22,16 +22,12 @@ GSE152469:
   coldata:
     - "isotype_Ctrl"
 GSE108313:
-  keyword: 
-    protein: NULL
   transpose: False
   coldata:
     - "bad_struct"
     - "no_match"
     - "total_reads"
 GSE126310:
-  keyword:
-    protein: NULL
   coldata:
     - "no_match"
     - "ambiguous"
@@ -40,21 +36,16 @@ GSE126310:
 GSE144434:
   keyword:
     protein: "Antibodies"
+    rna: "genes"
   transpose: True
   coldata: NULL
 GSE158769:
-  keyword:
-    protein: NULL
   transpose: False
   coldata: NULL
 GSE148665:
-  keyword:
-    protein: NULL
   transpose: False
   coldata: NULL
 GSE155673:
-  keyword:
-    protein: NULL
   transpose: False
   transposeMTX: False
   coldata: NULL
@@ -70,16 +61,15 @@ GSE155673:
 GSE161918:
   info: "h5 that can be easily converted into an sce object"
 GSE156478:
-  keyword:
-    protein: NULL
   transposeMTX: True
   features: "proteins.txt.gz"
   cells: "barcodes.txt.gz"
   replace: "mtx"
   column: 1
 GSE144744:
-  keyword:
-    protein: NULL
+  keywords:
+    protein: "ADT"
+    rna: "RNA"
   transposeMTX: False
   features: "genes.tsv"
   cells: "barcodes.tsv"

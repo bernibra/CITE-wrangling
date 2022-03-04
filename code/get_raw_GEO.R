@@ -24,18 +24,20 @@ get_raw <- function(id, dest_dir, ftype="protein"){
     dir.create(rdir, showWarnings = FALSE)
     message("donwloading raw data")
     
-    # Find relevant supplementary files
-    experiments <- set_names(list.files(basedir, full.names = T,pattern = "\\.txt.gz$"))%>%
-      map(function(x) GEOquery::getGEO(filename = x)) %>%
-      map(Biobase::pData)  %>%
-      bind_rows() %>%
-      mutate(data_processing_lowercase = tolower(!!sym(id$description))) %>%
-      filter(stringr::str_detect(data_processing_lowercase, id$keyword[[ftype]])) %>%
-      pull(!!sym(id$georaw))
-    
-    # Download raw data
-    experiments %>%
-      map(quietly(GEOquery::getGEOSuppFiles), baseDir = rdir)
+    if(!(is.null(id$description))){
+      # Find relevant supplementary files
+      experiments <- set_names(list.files(basedir, full.names = T,pattern = "\\.txt.gz$"))%>%
+        map(function(x) GEOquery::getGEO(filename = x)) %>%
+        map(Biobase::pData)  %>%
+        bind_rows() %>%
+        mutate(data_processing_lowercase = tolower(!!sym(id$description))) %>%
+        filter(stringr::str_detect(data_processing_lowercase, id$keyword[[ftype]])) %>%
+        pull(!!sym(id$georaw))
+      
+      # Download raw data
+      experiments %>%
+        map(quietly(GEOquery::getGEOSuppFiles), baseDir = rdir)
+    }
     
     # Was the data downloaded or is the new directory empty?
     if (length(list.files(rdir))==0){
@@ -83,7 +85,8 @@ Tmp_get_raw_GEO <- function(){
   ftype="rna"
   download_date = NULL
   
-  x=ids[[4]]
+  # 4 was the number
+  x=ids[[12]]
   id = x
   print(id$id)
   

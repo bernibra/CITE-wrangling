@@ -38,12 +38,12 @@ get_GEOquery_raw <- drake_plan(
   geo_raw_protein = get_raw_GEO(ids = geo_meta, 
                         dest_dir = "data/raw",
                         ftype = "protein",
-                        download_date = data_download_date)
-  # geo_raw_rna = get_raw_GEO(ids = geo_meta, 
-  #                               dest_dir = "data/raw",
-  #                               ftype = "rna",
-  #                               download_date = data_download_date,
-  #                               rmfile=FALSE)
+                        download_date = data_download_date),
+  geo_raw_rna = get_raw_GEO(ids = geo_meta,
+                                dest_dir = "data/raw",
+                                ftype = "rna",
+                                download_date = data_download_date,
+                                rmfile=FALSE)
 )
 
 # get_figshare_raw <- drake_plan(
@@ -90,8 +90,8 @@ process_data_plan <- rbind(
 
 project_plan <- rbind(
   configuration_plan,
-  get_data_plan,
-  process_data_plan
+  get_data_plan
+  # process_data_plan
   )
 
 make(project_plan, lock_envir = FALSE)

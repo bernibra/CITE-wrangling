@@ -61,15 +61,14 @@ GSE155673:
 GSE161918:
   info: "h5 that can be easily converted into an sce object"
 GSE156478:
+  keyword: 
+    rna: "matrix"
   transposeMTX: True
-  features: "proteins.txt.gz"
-  cells: "barcodes.txt.gz"
+  features: "proteins.txt.gz|features.tsv.gz"
+  cells: "barcodes.txt.gz|barcodes.tsv.gz"
   replace: "mtx"
   column: 1
 GSE144744:
-  keywords:
-    protein: "ADT"
-    rna: "RNA"
   transposeMTX: False
   features: "genes.tsv"
   cells: "barcodes.tsv"

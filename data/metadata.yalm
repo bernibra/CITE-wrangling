@@ -66,7 +66,9 @@ GEO_download_key:
     citelink: supplementary_file_1
     georaw: geo_accession
     info: "NA"
-    wlink: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
+    wlink: 
+      protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
+      rna: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
     keyword:
       protein: antibody
       rna: antibody
@@ -118,7 +120,7 @@ GEO_download_key:
     info: "Healthy and treatment with replicates"
     keyword:
       protein: protein
-      rna: protein
+      rna: rna
     wlink: 
-      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
-      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz"
+      protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
+      rna: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz"

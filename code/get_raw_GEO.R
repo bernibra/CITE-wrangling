@@ -50,9 +50,9 @@ get_raw <- function(id, dest_dir, ftype="protein"){
         # Create directory as GEOquery
         dir.create(file.path(rdir, experiments), showWarnings = FALSE)
         
-        for(k in 1:length(id$wlink)){
+        for(k in 1:length(id$wlink[[ftype]])){
           # Download links
-          download.file(url = id$wlink[k], destfile = file.path(rdir, experiments, basename(id$wlink[k])))
+          download.file(url = id$wlink[[ftype]][k], destfile = file.path(rdir, experiments, basename(id$wlink[[ftype]][k])))
         }
         
       }else{

@@ -18,7 +18,7 @@ git clone https://github.com/bernibra/CITE-wrangling.git
 
 ### 3. Build Docker image and run container
 
-Type the following commands in the working directory (you might need sudo rights):
+Type the following commands in the working directory (you might need [sudo rights](https://docs.docker.com/engine/install/linux-postinstall/)):
 ```
 docker build --rm --force-rm -t cite-wrangling .
 docker run -d -e DISABLE_AUTH=true --rm -p 28787:8787 -v $PWD:/home/rstudio/cite-wrangling -e USERID="$(echo $UID)" -e GROUPID="$(echo $GID)" --name cite-wrangling-container cite-wrangling

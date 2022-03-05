@@ -90,8 +90,8 @@ process_data_plan <- rbind(
 
 project_plan <- rbind(
   configuration_plan,
-  get_data_plan
-  # process_data_plan
+  get_data_plan,
+  process_data_plan
   )
 
 make(project_plan, lock_envir = FALSE)

@@ -78,21 +78,6 @@ get_raw <- function(id, dest_dir, ftype="protein"){
   }
 }
 
-
-Tmp_get_raw_GEO <- function(){
-  ids=readd(geo_meta)
-  dest_dir = "data/raw"
-  ftype="rna"
-  download_date = NULL
-  
-  # 4 was the number
-  x=ids[[12]]
-  id = x
-  print(id$id)
-  
-  
-}
-
 # Download raw data for all GEO datasets
 get_raw_GEO <- function(ids, dest_dir, ftype="protein",download_date = NULL, rmfile=TRUE){
     

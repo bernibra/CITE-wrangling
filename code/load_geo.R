@@ -137,13 +137,22 @@ h5_to_sce <- function(filename, info){
 # Turning a mtx.gz object into a SingleCellExperiment
 mtx_to_sce <- function(filename, info){
 
+  # Find other relevant files
+  otherfiles <- list.files(path = dirname(filename), pattern=gsub(info$replace, "*", basename(filename)), full.names = T)
+  othernames <- othernames[!(othernames %in% filename)]
+  
   # What are row and what are columns
   if(!is.null(info$common_features)){
     features <- file.path(dirname(filename), info$common_features)
   }else{
-    features <- gsub(info$replace, info$features, filename)
+    features <- othernames[grepl(info$features, othernames)][1]
   }
-  cells <- gsub(info$replace, info$cells, filename)
+
+  if(!is.null(info$common_cells)){
+    cells <- file.path(dirname(filename), info$common_cells)
+  }else{
+    cells <- othernames[grepl(info$cells, othernames)][1]
+  }
 
   # Seurat comes in handy for reading interaction-like files into matrix objects
   mtx <- Seurat::ReadMtx(mtx = filename,

@@ -167,7 +167,12 @@ mtx_to_sce <- function(filename, info){
 }
 
 # Read file type and load data
-read_raw <- function(filename, info){
+read_raw <- function(filename, info, ftype){
+  
+  # interaction list and complementary files for columns and rows
+  if (grepl(".mtx$", filename) | info$force[[ftype]]=="mtx"){
+    return(mtx_to_sce(filename, info))
+  }
   
   # File formatted as rds
   if (grepl(".rds$|.Rds$", filename)){
@@ -189,16 +194,11 @@ read_raw <- function(filename, info){
     return(h5_to_sce(filename, info))
   }
   
-  # interaction list and complementary files for columns and rows
-  if (grepl(".mtx$", filename)){
-    return(mtx_to_sce(filename, info))
-  }
-  
   stop("format not found")
 }
 
 # Look for relevant filenames in directory
-relevant_files <- function(filenames, keywords=NULL){
+relevant_files <- function(filenames, ftype, info){
 
   # A directory? jeeeez...
   if (length(filenames)==1 & all(grepl(".tar.gz$|.tar$", filenames))){
@@ -219,6 +219,13 @@ relevant_files <- function(filenames, keywords=NULL){
   if (length(filenames)==1){
     return(filenames)
   }
+  
+  # If nothing works... TODO: Make this ore generalizable...
+  if(!is.null(info$force[[ftype]])){
+    if(info$force[[ftype]]=="mtx"){
+      return(filenames[grepl(info$replace, filenames)])
+    }
+  }
 
   # Files that have the following extensions are generally the main files
   filenames_ <- grepl(".rds$|.Rds$|.rds.gz$|.Rds.gz$|.mtx.gz$|.mtx$|.h5.gz$|.h5$", filenames)
@@ -227,8 +234,8 @@ relevant_files <- function(filenames, keywords=NULL){
   }
 
   # The keywords describe proteins RNA or HTOs generally
-  ifelse(!(is.null(keywords)), 
-          return(filenames[grepl(keywords, filenames)]), 
+  ifelse(!(is.null(info$keyword[[ftype]])), 
+          return(filenames[grepl(info$keyword[[ftype]], filenames)]), 
           return(filenames))
 }
 
@@ -243,7 +250,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
     filenames <- list.files(path, full.names = T)
 
     # Dealing with multiple files if possible
-    filenames <- relevant_files(filenames = filenames, keywords = info$keyword[[ftype]])
+    filenames <- relevant_files(filenames = filenames, ftype=ftype, info = info)
     
     for (idx in 1:length(filenames)){
       
@@ -262,7 +269,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
         if(shouldi$shouldi){
 
           # Read raw data and turn into SingleCellExperiment
-          sce <- read_raw(filename = filenames[idx], info = info)
+          sce <- read_raw(filename = filenames[idx], info = info, ftype = ftype)
           
           # If the dataset has a dictionary, use to rename the features
           if(!is.null(info$dictionary)){

@@ -26,9 +26,9 @@ write_warning_file <- function(sce, filename){
 
   # Save the reformatted data as an rds file
   if(is.null(sce$sce)){
-    accounted <- ifelse(!is.null(sce$colnames), TRUE, FALSE)
+    accounted <- ifelse(!is.null(sce$colnames), "T", "F")
     # Not enough RAM to read this matrix
-    write(c(filename, accounted),file="./data/NOTenoughRAM.txt",append=TRUE)
+    write(paste(c(filename, accounted), collapse = ","),file="./data/NOTenoughRAM.txt",append=TRUE)
   }
   
   return(0)  
@@ -212,7 +212,7 @@ read_raw <- function(filename, info, ftype, shouldi){
   
   # File formatted as rds
   if (grepl(".rds$|.Rds$", filename)){
-    return(ifelse(shouldi, matrix_to_sce(as.matrix(readRDS(filename)), info), return(NULL)))
+    ifelse(shouldi, matrix_to_sce(as.matrix(readRDS(filename)), info), return(NULL))
   }
 
   

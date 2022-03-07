@@ -207,7 +207,7 @@ read_raw <- function(filename, info, ftype, shouldi){
   
   # interaction list and complementary files for columns and rows
   if (grepl(".mtx$", filename) | forceANY=="mtx"){
-    ifelse(shouldi, return(mtx_to_sce(filename, info, ftype), return(NULL)))
+    ifelse(shouldi, return(mtx_to_sce(filename, info, ftype)), return(NULL))
   }
   
   # File formatted as rds

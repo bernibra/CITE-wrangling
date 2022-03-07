@@ -16,6 +16,24 @@ should_i_load_this <- function(filename, tolerance=0.05){
     )
 }
 
+write_warning_file <- function(sce, filename){
+  if (!file.exists("./data/NOTenoughRAM.txt")){
+    
+    write("# The following files were not fully processed because you don't have enough RAM in the current machine.",file="./data/NOTenoughRAM.txt",append=TRUE)
+    write("# Nevetherless, some could be accounted for when building the name dictionaries.",file="./data/NOTenoughRAM.txt",append=TRUE)
+    write("file,accounted",file="./data/NOTenoughRAM.txt",append=TRUE)
+  }
+
+  # Save the reformatted data as an rds file
+  if(is.null(sce$sce)){
+    accounted <- ifelse(!is.null(sce$colnames), TRUE, FALSE)
+    # Not enough RAM to read this matrix
+    write(c(filename, accounted),file="./data/NOTenoughRAM.txt",append=TRUE)
+  }
+  
+  return(0)  
+}
+
 # Use a dictionary to rename features
 rename_features <- function(features, dictionary, key, value, path){
   
@@ -60,7 +78,7 @@ get_row_column <- function(filename){
   
   unlink(dest_dir, recursive = T)
   
-  return(list(rows = (rows %>% pull(1)), columns=colnames(column)))
+  return(list(sce=NULL, rownames = (rows %>% pull(1)), colnames=colnames(column)))
 }
 
 # Get row and column names for big files
@@ -122,7 +140,7 @@ matrix_to_sce <- function(mat, info){
 
     }
   
-  return(sce)
+  return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
 # Turning a h5 object to SingleCellExperiment class via Seurat
@@ -133,12 +151,12 @@ h5_to_sce <- function(filename, info, ftype){
   if(!is.null(info$h5key)){
     h5 <- h5[[info$h5key[[ftype]]]]
   }
-  return(Seurat::as.SingleCellExperiment(Seurat::CreateSeuratObject(h5)))
-
+  sce <- Seurat::as.SingleCellExperiment(Seurat::CreateSeuratObject(h5))
+  return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
 # Turning a mtx.gz object into a SingleCellExperiment
-mtx_to_sce <- function(filename, info){
+mtx_to_sce <- function(filename, info, ftype){
 
   # Find other relevant files
   othernames <- list.files(path = dirname(filename), pattern=gsub(info$replace, "*", basename(filename)), full.names = T)
@@ -156,24 +174,31 @@ mtx_to_sce <- function(filename, info){
   }else{
     cells <- othernames[grepl(info$cells, othernames)][1]
   }
+  
+  # Should I transpose the matrix?
+  mtx.transpose <- ifelse(is.null(info$transposeMTX[[ftype]]), info$transposeMTX, info$transposeMTX[[ftype]])
 
+  # What column should I pick
+  feature.column <- ifelse(is.null(info$column[[ftype]]), info$column, info$column[[ftype]])
+  
   # Seurat comes in handy for reading interaction-like files into matrix objects
   mtx <- Seurat::ReadMtx(mtx = filename,
                          features = features,
                          cells = cells,
-                         feature.column = info$column,
-                         mtx.transpose = info$transposeMTX
+                         feature.column = feature.column,
+                         mtx.transpose = mtx.transpose
                          )
 
   # Make sure the matrix is in the right order and turn into SingleCellExperiment
-  return(SingleCellExperiment(assays = list(counts = mtx)))
+  sce <- SingleCellExperiment(assays = list(counts = mtx))
+  return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
 # Read file type and load data
-read_raw <- function(filename, info, ftype){
+read_raw <- function(filename, info, ftype, shouldi){
   
   forceANY <- "None"
-  # TODO: Make this ore generalizable...
+  # TODO: Make this more generalizable...
   if(!is.null(info$force[[ftype]])){
     if(info$force[[ftype]]=="mtx"){
       forceANY <- "mtx"
@@ -182,29 +207,32 @@ read_raw <- function(filename, info, ftype){
   
   # interaction list and complementary files for columns and rows
   if (grepl(".mtx$", filename) | forceANY=="mtx"){
-    return(mtx_to_sce(filename, info))
+    ifelse(shouldi, return(mtx_to_sce(filename, info, ftype), return(NULL)))
   }
   
   # File formatted as rds
   if (grepl(".rds$|.Rds$", filename)){
-    mat <- readRDS(filename)
-    return(matrix_to_sce(as.matrix(mat), info))
+    return(ifelse(shouldi, matrix_to_sce(as.matrix(readRDS(filename)), info), return(NULL)))
   }
 
   
   # File formatted csv or tsv
   if (grepl(".csv$|.tsv$|.txt$", filename)){
-    mat <- readr::read_delim(file = filename, col_names = TRUE,
-                           comment = "#", show_col_types = FALSE)
-    mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
-    mat %<>% tibble::column_to_rownames(colnames(.)[1])
-    
-    return(matrix_to_sce(mat, info))
+    if(shouldi){
+      mat <- readr::read_delim(file = filename, col_names = TRUE,
+                               comment = "#", show_col_types = FALSE)
+      mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
+      mat %<>% tibble::column_to_rownames(colnames(.)[1])
+      
+      return(matrix_to_sce(mat, info))
+    }else{
+      return(get_row_column(filename))
+    }
   }
   
   # File formatted as h5
   if (grepl(".h5$", filename)){
-    return(h5_to_sce(filename, info, ftype))
+    ifelse(shouldi, return(h5_to_sce(filename, info, ftype)), return(NULL))
   }
   
   stop("format not found")
@@ -233,7 +261,7 @@ relevant_files <- function(filenames, ftype, info){
     return(filenames)
   }
   
-  # If nothing works... TODO: Make this ore generalizable...
+  # TODO: Make this more generalizable...
   if(!is.null(info$force[[ftype]])){
     if(info$force[[ftype]]=="mtx"){
       return(filenames[grepl(info$replace, filenames)])
@@ -277,56 +305,27 @@ load_geo_id <- function(paths, info, ftype="protein"){
       if(!file.exists(rdir)){
         # Check if we can actually load the document
         shouldi <- should_i_load_this(filenames[idx])
-        filenames[idx] <- shouldi$filename
 
-        if(shouldi$shouldi){
-
-          # Read raw data and turn into SingleCellExperiment
-          sce <- read_raw(filename = filenames[idx], info = info, ftype = ftype)
-          
-          # If the dataset has a dictionary, use to rename the features
-          if(!is.null(info$dictionary)){
-            rownames(sce) <- rename_features(features=rownames(sce), dictionary=info$dictionary$file,
+        # Read raw data and turn into SingleCellExperiment
+        sce <- read_raw(filename = shouldi$filename, info = info, ftype = ftype, shouldi=shouldi$shouldi)
+        
+        # If the dataset has a dictionary, use to rename the features
+        if(!is.null(info$dictionary) & !is.null(sce$rownames)){
+          sce$rownames <- rename_features(features=sce$rownames, dictionary=info$dictionary$file,
                                    key=info$dictionary$key, 
                                    value=info$dictionary$value, 
-                                   path=dirname(filenames[idx]))
-          }
-          
-          # Save the reformatted data as an rds file
-          saveRDS(object = sce, file = rdir)
-          
-          # Find row and column names
-          saveRDS(object = colnames(sce), file = file.path(rdir_, paste0("cells_", basename(rdir))))
-          saveRDS(object = rownames(sce), file = file.path(rdir_, paste0("features_", basename(rdir))))
-
-        }else{
-
-          if (!file.exists("./data/NOTenoughRAM.txt")){
-
-            write("# The following files were not fully processed because you don't have enough RAM in the current machine.",file="./data/NOTenoughRAM.txt",append=TRUE)
-            write("# Nevetherless, these are accounted when building the name dictionaries.",file="./data/NOTenoughRAM.txt",append=TRUE)
-
-          }
-
-          # Find row and column names
-          rowcol <- get_row_column(filenames[idx])
-          
-          # If the dataset has a dictionary, use to rename the features
-          if(!is.null(info$dictionary)){
-            rowcol$rows <- rename_features(features=rowcol$rows, dictionary=info$dictionary$file,
-                                             key=info$dictionary$key, 
-                                             value=info$dictionary$value, 
-                                             path=dirname(filenames[idx]))
-          }
-          
-          # Save row and column names as rds
-          saveRDS(object = rowcol$columns, file = file.path(rdir_, paste0("cells_", basename(rdir))))
-          saveRDS(object = rowcol$rows, file = file.path(rdir_, paste0("features_", basename(rdir))))
-          
-          # Not enough RAM to read this matrix
-          write(filenames[idx],file="./data/NOTenoughRAM.txt",append=TRUE)
-
+                                   path=dirname(shouldi$filename))
         }
+          
+        # Save the reformatted data as an rds file
+        if(!is.null(sce$sce)){saveRDS(object = sce$sce, file = rdir)}
+          
+        # Find row and column names
+        if(!is.null(sce$colnames)){saveRDS(object = sce$colnames, file = file.path(rdir_, paste0("cells_", basename(rdir))))}
+        if(!is.null(sce$rownames)){saveRDS(object = sce$rownames, file = file.path(rdir_, paste0("features_", basename(rdir))))}
+
+        # Write Warning file if necessary
+        write_warning_file(sce, filenames[idx])
         
         # Compress files again to avoid using too much disc
         # if(!(grepl(".gz$", filenames[idx]))){zip(zipfile = paste0(filenames[idx], ".gz"), files = filenames[idx])}

@@ -66,11 +66,15 @@ GSE161918:
 GSE156478:
   force:
     rna: mtx
-  transposeMTX: True
+  transposeMTX: 
+    rna: False
+    protein: True
   features: "proteins.txt.gz$|features.tsv.gz$"
   cells: "barcodes.txt.gz$|barcodes.tsv.gz$"
-  replace: "mtx$|matrix.mtx$|matrix.tsv$"
-  column: 1
+  replace: "mtx$|matrix.mtx$|matrix.tsv$|mtx.gz$|matrix.mtx.gz$|matrix.tsv.gz$"
+  column: 
+    rna: 2
+    protein: 1
 GSE144744:
   transposeMTX: False
   features: "genes.tsv"

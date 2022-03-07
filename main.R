@@ -43,7 +43,7 @@ get_GEOquery_raw <- drake_plan(
                                 dest_dir = "data/raw",
                                 ftype = "rna",
                                 download_date = data_download_date,
-                                rmfile=FALSE) 
+                                rmfile=FALSE) # You shouldn't run this in your local machine
 )
 
 # get_figshare_raw <- drake_plan(

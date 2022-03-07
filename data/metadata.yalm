@@ -124,3 +124,19 @@ GEO_download_key:
     wlink: 
       protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
       rna: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz"
+figshare_download_key:
+  doi.org/10.1038/s41591-020-0769-8:
+    id: Kotliarov2020
+    wlink:
+      "https://nih.figshare.com/ndownloader/articles/11349761/versions/1"
+    supp:
+      https://static-content.springer.com/esm/art%3A10.1038%2Fs41591-020-0769-8/MediaObjects/41591_2020_769_MOESM3_ESM.xlsx
+  doi.org/10.7554/elife.69577:
+    id: Shangguan2021
+    wlink:
+      "https://figshare.com/ndownloader/articles/14555958/versions/1"
+  doi.org/10.7554/eLife.61973:
+    id: Buus2021
+    wlink:
+      - "https://figshare.com/ndownloader/articles/12472526/versions/1"
+      - "https://figshare.com/ndownloader/files/23101268"

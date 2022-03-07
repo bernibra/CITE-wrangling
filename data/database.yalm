@@ -59,6 +59,9 @@ GSE155673:
     key: "Gene ID"
     value: "Specificity"
 GSE161918:
+  h5key:
+    protein: "Antibody Capture"
+    rna: "Gene Expression"
   info: "h5 that can be easily converted into an sce object"
 GSE156478:
   force:

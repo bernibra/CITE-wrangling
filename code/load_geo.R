@@ -8,7 +8,7 @@ if_unzip <- function(filename){
 }
 
 # Check if one has enough RAM to read the matrix 
-should_i_load_this <- function(filename, tolerance=0.5){
+should_i_load_this <- function(filename, tolerance=0.05){
   filename <- if_unzip(filename)
   return(list(
     shouldi=tolerance > file.size(filename)/memuse::swap.unit(memuse::Sys.meminfo()$freeram, "bytes")@size,
@@ -126,10 +126,13 @@ matrix_to_sce <- function(mat, info){
 }
 
 # Turning a h5 object to SingleCellExperiment class via Seurat
-h5_to_sce <- function(filename, info){
+h5_to_sce <- function(filename, info, ftype){
   
   # I found this to be the easiest way to get such data into SingleCellExperiment class
   h5 <- Seurat::Read10X_h5(filename, use.names = TRUE, unique.features = TRUE)
+  if(!is.null(info$h5key)){
+    h5 <- h5[[info$h5key[[ftype]]]]
+  }
   return(Seurat::as.SingleCellExperiment(Seurat::CreateSeuratObject(h5)))
 
 }
@@ -138,7 +141,7 @@ h5_to_sce <- function(filename, info){
 mtx_to_sce <- function(filename, info){
 
   # Find other relevant files
-  otherfiles <- list.files(path = dirname(filename), pattern=gsub(info$replace, "*", basename(filename)), full.names = T)
+  othernames <- list.files(path = dirname(filename), pattern=gsub(info$replace, "*", basename(filename)), full.names = T)
   othernames <- othernames[!(othernames %in% filename)]
   
   # What are row and what are columns
@@ -169,8 +172,16 @@ mtx_to_sce <- function(filename, info){
 # Read file type and load data
 read_raw <- function(filename, info, ftype){
   
+  forceANY <- "None"
+  # TODO: Make this ore generalizable...
+  if(!is.null(info$force[[ftype]])){
+    if(info$force[[ftype]]=="mtx"){
+      forceANY <- "mtx"
+    }
+  }
+  
   # interaction list and complementary files for columns and rows
-  if (grepl(".mtx$", filename) | info$force[[ftype]]=="mtx"){
+  if (grepl(".mtx$", filename) | forceANY=="mtx"){
     return(mtx_to_sce(filename, info))
   }
   
@@ -182,16 +193,18 @@ read_raw <- function(filename, info, ftype){
 
   
   # File formatted csv or tsv
-  if (grepl(".csv$|.tsv$", filename)){
+  if (grepl(".csv$|.tsv$|.txt$", filename)){
     mat <- readr::read_delim(file = filename, col_names = TRUE,
-                           comment = "#", show_col_types = FALSE) %>% tibble::column_to_rownames(colnames(.)[1])
+                           comment = "#", show_col_types = FALSE)
+    mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
+    mat %<>% tibble::column_to_rownames(colnames(.)[1])
     
     return(matrix_to_sce(mat, info))
   }
   
   # File formatted as h5
   if (grepl(".h5$", filename)){
-    return(h5_to_sce(filename, info))
+    return(h5_to_sce(filename, info, ftype))
   }
   
   stop("format not found")
@@ -256,7 +269,7 @@ load_geo_id <- function(paths, info, ftype="protein"){
       
       # Define file name
       rdir <- paste(path, paste0(idx, ".rds"), sep = "_") %>%
-        gsub("raw", "processed/protein-data", .) %>%
+        gsub("raw", paste0("processed/",ftype,"-data"), .) %>%
         gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .)
       rdir_ <- file.path("data/processed/names", ftype)
       
@@ -327,11 +340,11 @@ load_geo_id <- function(paths, info, ftype="protein"){
 }
 
 # Format all datasets as SingleCellExperiments
-load_geo <- function(paths, ids, info, ftype="protein"){
+load_geo <- function(paths, ids, info, ftype="protein", rmfile=TRUE){
   
   # remove info files if there
-  if(file.exists("data/NOTenoughRAM.txt")){file.remove("data/NOTenoughRAM.txt")}
-  
+  if(file.exists("data/NOTenoughRAM.txt") & rmfile){file.remove("data/NOTenoughRAM.txt")}
+
   # geo dataset names
   datasets <- names(paths)
   

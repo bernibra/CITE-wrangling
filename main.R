@@ -43,7 +43,7 @@ get_GEOquery_raw <- drake_plan(
                                 dest_dir = "data/raw",
                                 ftype = "rna",
                                 download_date = data_download_date,
-                                rmfile=FALSE)
+                                rmfile=FALSE) 
 )
 
 # get_figshare_raw <- drake_plan(
@@ -66,24 +66,30 @@ get_data_plan <- rbind(
 
 dir.create("data/processed", showWarnings = FALSE)
 dir.create("data/processed/protein-data", showWarnings = FALSE)
+dir.create("data/processed/rna-data", showWarnings = FALSE)
 dir.create("data/processed/names", showWarnings = FALSE)
 dir.create("data/processed/names/protein", showWarnings = FALSE)
 dir.create("data/processed/names/rna", showWarnings = FALSE)
 
-Raw_to_SingleCellExperiment <- drake_plan(
+raw_to_SingleCellExperiment <- drake_plan(
   geo_sce_protein = load_geo(paths = geo_raw_protein, 
                      ids = geo_download_key,
                      info = datasets,
                      ftype ="protein"),
+  geo_sce_rna = load_geo(paths = geo_raw_rna, 
+                     ids = geo_download_key,
+                     info = datasets,
+                     ftype ="rna",
+                     rmfile=FALSE) # You shouldn't run this in your local machine
+)
+
+build_protein_dictionary <- drake_plan(
   protein_db = unify_names(paths = geo_sce_protein)
 )
 
-# build_protein_dictionary <- drake_plan(
-#   
-# )
-
 process_data_plan <- rbind(
-  Raw_to_SingleCellExperiment
+  raw_to_SingleCellExperiment,
+  build_protein_dictionary
 )
 
 # Project workflow --------------------------------------------------------

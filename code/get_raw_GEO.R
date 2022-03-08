@@ -1,5 +1,5 @@
 # Download raw files that contain CITE info for one GEO dataset
-get_raw <- function(id, dest_dir, ftype="protein"){
+get_geo_id <- function(id, dest_dir, ftype="protein"){
 
   # Quick check
   possible_types <- c("rna", "protein")
@@ -79,36 +79,26 @@ get_raw <- function(id, dest_dir, ftype="protein"){
 }
 
 # Download raw data for all GEO datasets
-get_raw_GEO <- function(ids, dest_dir, ftype="protein",download_date = NULL, rmfile=TRUE){
+get_raw_geo <- function(ids, dest_dir, ftype="protein",download_date = NULL, rmfile=TRUE){
     
   # remove info file if there
   if(file.exists("data/GEORawDataNotFound.txt") & rmfile){file.remove("data/GEORawDataNotFound.txt")}
 
   # Loop over ids
-  paths <- lapply(ids, function(id) get_raw(id = id, dest_dir = dest_dir, ftype = ftype))
+  paths <- lapply(ids, function(id) get_geo_id(id = id, dest_dir = dest_dir, ftype = ftype))
   
   # Closing all connections in case a file failed to download
   closeAllConnections()
   
   # Report empty folders and correct paths
-  paths <- get_raw_GEO.test1(paths=paths, ids=ids, dest_dir = dest_dir, ftype = ftype, rmfile=rmfile)
+  paths <- get_geo_test(paths=paths, ids=ids, dest_dir = dest_dir, ftype = ftype, rmfile=rmfile)
   
   return(paths)
 }
 
 ######### TESTS ###########
-# empty directories
-check_paths <- function(paths, report=F){
-  y <- sapply(paths, function(x){length(list.files(x))}, USE.NAMES = T)
-  if(report){
-    return(names(y)[y==0])
-  }else{
-    return(names(y)[y!=0])
-  }
-}
-
 # Flag raw directories that are empty
-get_raw_GEO.test1 <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
+get_geo_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
   
   # Check those folders that are empty
   test <- data.frame(t(sapply(ids, function(id) c(id$id, length(list.files(file.path(dest_dir, id$id, paste("supp", ftype, sep="_"))))))))

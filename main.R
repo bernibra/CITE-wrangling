@@ -31,15 +31,15 @@ configuration_plan <- drake_plan(
 dir.create("data/raw", showWarnings = FALSE)
 
 # Download GEOquery data
-get_GEOquery_raw <- drake_plan(
-  geo_meta = get_metadata_GEO(ids = geo_download_key, 
+get_geoquery_raw <- drake_plan(
+  geo_meta = get_metadata_geo(ids = geo_download_key, 
                     dest_dir = "data/raw",
                     download_date = data_download_date),
-  geo_raw_protein = get_raw_GEO(ids = geo_meta, 
+  geo_raw_protein = get_raw_geo(ids = geo_meta, 
                         dest_dir = "data/raw",
                         ftype = "protein",
                         download_date = data_download_date),
-  geo_raw_rna = get_raw_GEO(ids = geo_meta,
+  geo_raw_rna = get_raw_geo(ids = geo_meta,
                                 dest_dir = "data/raw",
                                 ftype = "rna",
                                 download_date = data_download_date,
@@ -59,7 +59,7 @@ get_GEOquery_raw <- drake_plan(
 # )
 
 get_data_plan <- rbind(
-  get_GEOquery_raw
+  get_geoquery_raw
 )
 
 # Processing data --------------------------------------------------------
@@ -72,11 +72,11 @@ dir.create("data/processed/names/protein", showWarnings = FALSE)
 dir.create("data/processed/names/rna", showWarnings = FALSE)
 
 raw_to_SingleCellExperiment <- drake_plan(
-  geo_sce_protein = load_geo(paths = geo_raw_protein, 
+  geo_sce_protein = load_db(paths = geo_raw_protein, 
                      ids = geo_download_key,
                      info = datasets,
                      ftype ="protein"),
-  geo_sce_rna = load_geo(paths = geo_raw_rna, 
+  geo_sce_rna = load_db(paths = geo_raw_rna, 
                      ids = geo_download_key,
                      info = datasets,
                      ftype ="rna",

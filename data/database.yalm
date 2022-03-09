@@ -81,3 +81,9 @@ GSE144744:
   cells: "barcodes.tsv"
   replace: "matrix.mtx"
   column: 2
+Buus2021:
+  info: "figshare"
+Kotliarov2020:
+  info: "figshare"
+Shangguan2021:
+  info: "figshare"

@@ -128,15 +128,42 @@ figshare_download_key:
   doi.org/10.1038/s41591-020-0769-8:
     id: Kotliarov2020
     wlink:
-      "https://nih.figshare.com/ndownloader/articles/11349761/versions/1"
-    supp:
-      https://static-content.springer.com/esm/art%3A10.1038%2Fs41591-020-0769-8/MediaObjects/41591_2020_769_MOESM3_ESM.xlsx
+      rna:
+        - "https://nih.figshare.com/ndownloader/files/20706642"
+      protein:
+        - "https://nih.figshare.com/ndownloader/files/20706642"
+    fname:
+      rna:
+        - "H1_day0_demultilexed_singlets.rds"
+      protein:
+        - "H1_day0_demultilexed_singlets.rds"
   doi.org/10.7554/elife.69577:
     id: Shangguan2021
     wlink:
-      "https://figshare.com/ndownloader/articles/14555958/versions/1"
+      rna: 
+        - "https://figshare.com/ndownloader/files/27926415"
+      protein:
+        - "https://figshare.com/ndownloader/files/27926406"
+      other:
+        - "https://figshare.com/ndownloader/files/27926397"
+        - "https://figshare.com/ndownloader/files/27926418"
+    fname:
+      other:
+        - "10x_cell_meta.rds"
+        - "10x_sample_metadata.txt"
+      protein:
+        - "10x_FB_norm.rds"
+      rna:
+        - "10x_RNA_norm.rds"
   doi.org/10.7554/eLife.61973:
     id: Buus2021
     wlink:
-      - "https://figshare.com/ndownloader/articles/12472526/versions/1"
-      - "https://figshare.com/ndownloader/files/23101268"
+      rna:
+        - "https://figshare.com/ndownloader/files/23101268/"
+      protein:
+        - "https://figshare.com/ndownloader/files/23101268/"
+    fname:
+      rna:
+        - "5P-CITE-seq_Titration_full.rds"
+      protein:
+        - "5P-CITE-seq_Titration_full.rds"

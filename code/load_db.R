@@ -205,12 +205,16 @@ select_relevant_files <- function(filenames, ftype, info){
     # Remove compressed folder
     unlink(filenames)
     # Find files
-    filenames_ <- list.files(dirname(filenames), recursive = T, full.names = T)
-    filenames <- paste(dirname(dirname(filenames_[1])), basename(filenames_), sep="/")
-    # Move files to main directory
-    file.rename(from=filenames_, to=filenames)
-    # Remove empty directory
-    unlink(dirname(filenames_[1]), recursive = T)
+    filenames_x <- list.files(dirname(filenames), full.names = T)
+    filenames_y <- list.files(dirname(filenames), recursive = T, full.names = T)
+    
+    if(!all(filenames_x==filenames_y)){
+      filenames <- paste(dirname(dirname(filenames_y[1])), basename(filenames_y), sep="/")
+      # Move files to main directory
+      file.rename(from=filenames_y, to=filenames)
+      # Remove empty directory
+      unlink(dirname(filenames_y[1]), recursive = T)
+    }
   }
   
   # If there is only one file, then there is no problem
@@ -250,47 +254,47 @@ load_db_idx <- function(paths, info, ftype="protein"){
     # Dealing with multiple files if possible
     filenames <- select_relevant_files(filenames = filenames, ftype=ftype, info = info)
     
-    for (idx in 1:length(filenames)){
-      
-      # Define file name
-      rdir <- paste(path, paste0(idx, ".rds"), sep = "_") %>%
-        gsub("raw", paste0("processed/",ftype,"-data"), .) %>%
-        gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .)
-      rdir_ <- file.path("data/processed/names", ftype)
-      
-      # Process raw data and save as SingleCellExperiment class if not done already
-      if(!file.exists(rdir)){
-        # Check if we can actually load the document
-        shouldi <- should_i_load_this(filenames[idx])
-
-        # Read raw data and turn into SingleCellExperiment
-        sce <- read_raw(filename = shouldi$filename, info = info, ftype = ftype, shouldi=shouldi$shouldi)
-        
-        # If the dataset has a dictionary, use to rename the features
-        if(!is.null(info$dictionary) & !is.null(sce$rownames)){
-          sce$rownames <- rename_features(features=sce$rownames, dictionary=info$dictionary$file,
-                                   key=info$dictionary$key, 
-                                   value=info$dictionary$value, 
-                                   path=dirname(shouldi$filename))
-        }
-          
-        # Save the reformatted data as an rds file
-        if(!is.null(sce$sce)){saveRDS(object = sce$sce, file = rdir)}
-          
-        # Find row and column names
-        if(!is.null(sce$colnames)){saveRDS(object = sce$colnames, file = file.path(rdir_, paste0("cells_", basename(rdir))))}
-        if(!is.null(sce$rownames)){saveRDS(object = sce$rownames, file = file.path(rdir_, paste0("features_", basename(rdir))))}
-
-        # Write Warning file if necessary
-        write_warning_file(sce, filenames[idx])
-        
-        # Compress files again to avoid using too much disc
-        # if(!(grepl(".gz$", filenames[idx]))){zip(zipfile = paste0(filenames[idx], ".gz"), files = filenames[idx])}
-        
-      }else{
-        message("---> file already processed: ", basename(filenames[idx]))
-      }
-    }
+    # for (idx in 1:length(filenames)){
+    #   
+    #   # Define file name
+    #   rdir <- paste(path, paste0(idx, ".rds"), sep = "_") %>%
+    #     gsub("raw", paste0("processed/",ftype,"-data"), .) %>%
+    #     gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .)
+    #   rdir_ <- file.path("data/processed/names", ftype)
+    #   
+    #   # Process raw data and save as SingleCellExperiment class if not done already
+    #   if(!file.exists(rdir)){
+    #     # Check if we can actually load the document
+    #     shouldi <- should_i_load_this(filenames[idx])
+    # 
+    #     # Read raw data and turn into SingleCellExperiment
+    #     sce <- read_raw(filename = shouldi$filename, info = info, ftype = ftype, shouldi=shouldi$shouldi)
+    #     
+    #     # If the dataset has a dictionary, use to rename the features
+    #     if(!is.null(info$dictionary) & !is.null(sce$rownames)){
+    #       sce$rownames <- rename_features(features=sce$rownames, dictionary=info$dictionary$file,
+    #                                key=info$dictionary$key, 
+    #                                value=info$dictionary$value, 
+    #                                path=dirname(shouldi$filename))
+    #     }
+    #       
+    #     # Save the reformatted data as an rds file
+    #     if(!is.null(sce$sce)){saveRDS(object = sce$sce, file = rdir)}
+    #       
+    #     # Find row and column names
+    #     if(!is.null(sce$colnames)){saveRDS(object = sce$colnames, file = file.path(rdir_, paste0("cells_", basename(rdir))))}
+    #     if(!is.null(sce$rownames)){saveRDS(object = sce$rownames, file = file.path(rdir_, paste0("features_", basename(rdir))))}
+    # 
+    #     # Write Warning file if necessary
+    #     write_warning_file(sce, filenames[idx])
+    #     
+    #     # Compress files again to avoid using too much disc
+    #     # if(!(grepl(".gz$", filenames[idx]))){zip(zipfile = paste0(filenames[idx], ".gz"), files = filenames[idx])}
+    #     
+    #   }else{
+    #     message("---> file already processed: ", basename(filenames[idx]))
+    #   }
+    # }
   }
   return(0)
 }

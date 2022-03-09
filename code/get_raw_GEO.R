@@ -46,13 +46,13 @@ get_geo_id <- function(id, dest_dir, ftype="protein"){
       
       # If still empty, try to use the link directly if available
       if (!is.null(id$wlink)){
-
-        # Create directory as GEOquery
-        dir.create(file.path(rdir, experiments), showWarnings = FALSE)
-        
         for(k in 1:length(id$wlink[[ftype]])){
+          # Create directory as GEOquery
+          experiments_ <- file.path(rdir, paste(experiments, k, sep="_"))
+          dir.create(experiments_, showWarnings = FALSE)
+        
           # Download links
-          download.file(url = id$wlink[[ftype]][k], destfile = file.path(rdir, experiments, basename(id$wlink[[ftype]][k])))
+          download.file(url = id$wlink[[ftype]][k], destfile = file.path(experiments_, basename(id$wlink[[ftype]][k])))
         }
         
       }else{
@@ -82,7 +82,7 @@ get_geo_id <- function(id, dest_dir, ftype="protein"){
 get_raw_geo <- function(ids, dest_dir, ftype="protein",download_date = NULL, rmfile=TRUE){
     
   # remove info file if there
-  if(file.exists("data/GEORawDataNotFound.txt") & rmfile){file.remove("data/GEORawDataNotFound.txt")}
+  if(file.exists("data/RawDataNotFound.txt") & rmfile){file.remove("data/RawDataNotFound.txt")}
 
   # Loop over ids
   paths <- lapply(ids, function(id) get_geo_id(id = id, dest_dir = dest_dir, ftype = ftype))
@@ -117,8 +117,8 @@ get_geo_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
   
   # Write report
   if (any(as.numeric(test[,2])==0)){
-    message("Some of the GEO raw data was not found (and hence the warnings). Find those cases in: data/GEORawDataNotFound.txt")
-    write.table(file = "data/GEORawDataNotFound.txt", test[as.numeric(test[,2])==0,c("id","which")], row.names = F, col.names = rmfile, append = !rmfile)
+    message("Some of the GEO raw data was not found (and hence the warnings). Find those cases in: data/RawDataNotFound.txt")
+    write.table(file = "data/RawDataNotFound.txt", test[as.numeric(test[,2])==0,c("id","which")], row.names = F, col.names = rmfile, append = !rmfile)
   }
 
   return(paths)

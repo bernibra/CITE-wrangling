@@ -22,7 +22,8 @@ configuration_plan <- drake_plan(
   metadata = yaml::read_yaml(file_in("./data/metadata.yalm")),
   datasets = yaml::read_yaml(file_in("./data/database.yalm")),
   data_download_date = config$raw_data_retrieved,
-  geo_download_key = metadata$GEO_download_key
+  geo_download_key = metadata$GEO_download_key,
+  figshare_download_key = metadata$figshare_download_key
 )
 
 # Download data ----------------------------------------------------------
@@ -32,10 +33,10 @@ dir.create("data/raw", showWarnings = FALSE)
 
 # Download GEOquery data
 get_geoquery_raw <- drake_plan(
-  geo_meta = get_metadata_geo(ids = geo_download_key, 
+  geo_meta = get_metadata_geo(ids = geo_download_key,
                     dest_dir = "data/raw",
                     download_date = data_download_date),
-  geo_raw_protein = get_raw_geo(ids = geo_meta, 
+  geo_raw_protein = get_raw_geo(ids = geo_meta,
                         dest_dir = "data/raw",
                         ftype = "protein",
                         download_date = data_download_date),
@@ -46,8 +47,13 @@ get_geoquery_raw <- drake_plan(
                                 rmfile=FALSE) # You shouldn't run this in your local machine
 )
 
-# get_figshare_raw <- drake_plan(
-# )
+get_figshare_raw <- drake_plan(
+  figshare_raw_protein = get_raw_figshare(ids = figshare_download_key, 
+                                dest_dir = "data/raw",
+                                ftype = "protein",
+                                download_date = data_download_date,
+                                rmfile=FALSE)
+)
 
 # get_10Gen_raw <- drake_plan(
 # )
@@ -59,7 +65,8 @@ get_geoquery_raw <- drake_plan(
 # )
 
 get_data_plan <- rbind(
-  get_geoquery_raw
+  # get_geoquery_raw,
+  get_figshare_raw
 )
 
 # Processing data --------------------------------------------------------
@@ -72,15 +79,19 @@ dir.create("data/processed/names/protein", showWarnings = FALSE)
 dir.create("data/processed/names/rna", showWarnings = FALSE)
 
 raw_to_SingleCellExperiment <- drake_plan(
-  geo_sce_protein = load_db(paths = geo_raw_protein, 
-                     ids = geo_download_key,
-                     info = datasets,
-                     ftype ="protein"),
-  geo_sce_rna = load_db(paths = geo_raw_rna, 
-                     ids = geo_download_key,
-                     info = datasets,
-                     ftype ="rna",
-                     rmfile=FALSE) # You shouldn't run this in your local machine
+  # geo_sce_protein = load_db(paths = geo_raw_protein, 
+  #                    ids = geo_download_key,
+  #                    info = datasets,
+  #                    ftype ="protein"),
+  # geo_sce_rna = load_db(paths = geo_raw_rna, 
+  #                    ids = geo_download_key,
+  #                    info = datasets,
+  #                    ftype ="rna",
+  #                    rmfile=FALSE) # You shouldn't run this in your local machine
+  figshare_sce_protein = load_db(paths = figshare_raw_protein, 
+                            ids = figshare_download_key,
+                            info = datasets,
+                            ftype ="protein")
 )
 
 build_protein_dictionary <- drake_plan(
@@ -88,8 +99,8 @@ build_protein_dictionary <- drake_plan(
 )
 
 process_data_plan <- rbind(
-  raw_to_SingleCellExperiment,
-  build_protein_dictionary
+  raw_to_SingleCellExperiment
+  # build_protein_dictionary
 )
 
 # Project workflow --------------------------------------------------------

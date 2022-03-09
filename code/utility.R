@@ -1,5 +1,5 @@
 ###################################
-## General purpose functions
+## General-purpose functions
 ###################################
 
 # check for empty directories

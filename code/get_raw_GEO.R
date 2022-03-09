@@ -32,7 +32,7 @@ get_geo_id <- function(id, dest_dir, ftype="protein"){
         bind_rows() %>%
         mutate(data_processing_lowercase = tolower(!!sym(id$description))) %>%
         filter(stringr::str_detect(data_processing_lowercase, id$keyword[[ftype]])) %>%
-        pull(!!sym(id$georaw))
+        pull("geo_accession")
       
       # Download raw data
       experiments %>%

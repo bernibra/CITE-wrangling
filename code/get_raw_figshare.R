@@ -15,6 +15,12 @@ get_figshare_id <- function(id, dest_dir, ftype){
   rdir_ <- file.path(basedir, paste("supp", possible_types[!(possible_types %in% ftype)], sep="_"))
   
   if((!file.exists(rdir))){
+    # Avoid downloading the same data twice
+    if (file.exists(rdir_) & id$wlink[[ftype]]==id$wlink[[possible_types[!(possible_types %in% ftype)]]]){
+      R.utils::createLink(link=rdir, target=rdir_)
+      message("---> raw files already found: ", id$id)
+      return(list.files(rdir, full.names = T))
+    }
     
     # Create directory if not there
     dir.create(rdir, showWarnings = FALSE)
@@ -25,15 +31,13 @@ get_figshare_id <- function(id, dest_dir, ftype){
       
     # Try to use the link directly if available
     if (!is.null(id$wlink[[ftype]])){
-      # Avoid downloading the same data twice
-      if (file.exists(rdir_) & id$wlink[[ftype]]==id$wlink[[possible_types[!(possible_types %in% ftype)]]]){
-        R.utils::createLink(link=rdir, target=rdir_)
-        message("---> raw files already found: ", id$id)
-        return(list.files(rdir, full.names = T))
-      }
       for(k in 1:length(id$wlink[[ftype]])){
         # Create directory as GEOquery
-        experiments_ <- file.path(rdir, paste(experiments, k, sep="_"))
+        if(length(id$wlink[[ftype]])>1){
+          experiments_ <- file.path(rdir, paste(experiments, k, sep="_"))
+        }else{
+          experiments_ <- file.path(rdir, experiments)
+        }
         dir.create(experiments_, showWarnings = FALSE)
         
         # Download links

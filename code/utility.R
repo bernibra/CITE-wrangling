@@ -1,6 +1,6 @@
-###################################
-## General-purpose functions
-###################################
+######################################################
+## General-purpose functions for processing raw data
+######################################################
 
 # check for empty directories
 check_paths <- function(paths, report=F){
@@ -28,6 +28,53 @@ should_i_load_this <- function(filename, tolerance=0.05){
     shouldi=tolerance > file.size(filename)/memuse::swap.unit(memuse::Sys.meminfo()$freeram, "bytes")@size,
     filename=filename)
   )
+}
+
+# Use a dictionary to rename features
+rename_features <- function(features, dictionary, key, value){
+  
+  # Load the dictionary
+  dict <- readr::read_delim(file.path(path, dictionary), show_col_types = F)[, c(key, value)]
+  
+  # Basic checks
+  dict <- dict[!is.na(dict[,key]),] %>% data.frame
+  colnames(dict) <- c("key", "value")
+  
+  dict %<>% group_by(key) %>% 
+    mutate(value = paste0(value, collapse = "|")) %>% distinct(key, .keep_all = T)
+  
+  # Change the names
+  features <- data.frame(key=features)
+  
+  # Merge both data.frames
+  features_ <- merge(x=features, y=dict, by = "key", all.x = TRUE)$value
+  
+  # Replace names based on dictionary
+  features$key[!is.na(features_)] <- features_[!is.na(features_)]
+  
+  return(features$key)
+}
+
+# Get row and column names for big files
+get_row_column <- function(filename){
+  
+  # Create temporal directory
+  dest_dir <- file.path(dirname(filename), "tmp")
+  dir.create(dest_dir, showWarnings = FALSE)
+  
+  # Extract rows and columns 
+  rcmd <- paste0("cut -f 1 -d'\t' ", filename, " > ", dest_dir, "/row-names.csv")
+  ccmd <- paste0("head -n 1 ", filename, " > ", dest_dir, "/column-names.csv")
+  system(rcmd)
+  system(ccmd)
+  
+  # Read rows and columns
+  rows <- readr::read_delim(paste0(dest_dir, "/row-names.csv"), delim = "\t", comment = "#", show_col_types = F)
+  column <- readr::read_delim(paste0(dest_dir, "/column-names.csv"), comment = "#", show_col_types = F)
+  
+  unlink(dest_dir, recursive = T)
+  
+  return(list(sce=NULL, rownames = (rows %>% pull(1)), colnames=colnames(column)))
 }
 
 # Get row and column names for big files

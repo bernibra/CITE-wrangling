@@ -52,7 +52,12 @@ get_figshare_raw <- drake_plan(
                                 dest_dir = "data/raw",
                                 ftype = "protein",
                                 download_date = data_download_date,
-                                rmfile=FALSE)
+                                rmfile=FALSE),
+  figshare_raw_rna = get_raw_figshare(ids = figshare_download_key,
+                                          dest_dir = "data/raw",
+                                          ftype = "rna",
+                                          download_date = data_download_date,
+                                          rmfile=FALSE) # You shouldn't run this in your local machine
 )
 
 # get_10Gen_raw <- drake_plan(
@@ -65,7 +70,7 @@ get_figshare_raw <- drake_plan(
 # )
 
 get_data_plan <- rbind(
-  # get_geoquery_raw,
+  get_geoquery_raw,
   get_figshare_raw
 )
 
@@ -79,19 +84,23 @@ dir.create("data/processed/names/protein", showWarnings = FALSE)
 dir.create("data/processed/names/rna", showWarnings = FALSE)
 
 raw_to_SingleCellExperiment <- drake_plan(
-  # geo_sce_protein = load_db(paths = geo_raw_protein, 
-  #                    ids = geo_download_key,
-  #                    info = datasets,
-  #                    ftype ="protein"),
-  # geo_sce_rna = load_db(paths = geo_raw_rna, 
-  #                    ids = geo_download_key,
-  #                    info = datasets,
-  #                    ftype ="rna",
-  #                    rmfile=FALSE) # You shouldn't run this in your local machine
+  geo_sce_protein = load_db(paths = geo_raw_protein,
+                     ids = geo_download_key,
+                     info = datasets,
+                     ftype ="protein"),
+  geo_sce_rna = load_db(paths = geo_raw_rna,
+                     ids = geo_download_key,
+                     info = datasets,
+                     ftype ="rna",
+                     rmfile=FALSE), # You shouldn't run this in your local machine
   figshare_sce_protein = load_db(paths = figshare_raw_protein, 
                             ids = figshare_download_key,
                             info = datasets,
-                            ftype ="protein")
+                            ftype ="protein"),
+  figshare_sce_rna = load_db(paths = figshare_raw_rna, 
+                                 ids = figshare_download_key,
+                                 info = datasets,
+                                 ftype ="rna")
 )
 
 build_protein_dictionary <- drake_plan(

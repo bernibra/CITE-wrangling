@@ -2,9 +2,6 @@ GEO_download_key:
   doi.org/10.1016/j.celrep.2020.03.063:
     id: GSE135325
     description: description.2
-    replicates: yes
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "Before and after treatment samples"
     keyword: 
       protein: abseq
@@ -12,9 +9,6 @@ GEO_download_key:
   doi.org/10.1038/s41587-019-0332-7:
     id: GSE139369
     description: data_processing
-    replicates: yes
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "Healthy and leukemia treatments with replicates"
     keyword: 
       protein: cite
@@ -22,9 +16,6 @@ GEO_download_key:
   doi.org/10.1186/s40364-020-00253-w:
     id: GSE152469
     description: library_source
-    replicates: yes
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "Before and after treatment samples"
     keyword:
       protein: transcriptomic
@@ -32,9 +23,6 @@ GEO_download_key:
   doi.org/10.1101/237693:
     id: GSE108313
     description: description
-    replicates: na
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "NA"
     keyword:
       protein: adt
@@ -42,9 +30,6 @@ GEO_download_key:
   doi.org/10.1038/s41592-019-0392-0:
     id: GSE126310
     description: description.2
-    replicates: no
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "Different cell types"
     keyword:
       protein: adt
@@ -52,9 +37,6 @@ GEO_download_key:
   doi.org/10.1093/nargab/lqaa025:
     id: GSE144434
     description: library_source
-    replicates: no
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "NA" 
     keyword:
       protein: transcriptomic
@@ -62,9 +44,6 @@ GEO_download_key:
   doi.org/10.1038/s41590-021-00933-1:
     id: GSE158769
     description: data_processing
-    replicates: na
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "NA"
     wlink: 
       protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
@@ -75,9 +54,6 @@ GEO_download_key:
   doi.org/10.1093/nar/gkaa314:
     id: GSE148665
     description: data_processing
-    replicates: no
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "NA"
     keyword:
       protein: cite
@@ -85,9 +61,6 @@ GEO_download_key:
   doi.org/10.1126/science.abc6261:
     id: GSE155673
     description: description
-    replicates: no
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "Covid and healthy treatments"
     keyword:
       protein: "adt"
@@ -95,9 +68,6 @@ GEO_download_key:
   doi.org/10.1016/j.cell.2021.02.018:
     id: GSE161918
     description: title
-    replicates: yes
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "Healthy and treatment and multiple temporal replicates"
     keyword:
       protein: "csp$"
@@ -105,18 +75,12 @@ GEO_download_key:
   doi.org/10.1038/s41587-021-00927-2:
     id: GSE156478 
     description: title
-    replicates: na
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "NA"
     keyword:
       protein: "cite_adt|multiome_adt"
       rna: "cite_gex|multiome_rna"
   doi.org/10.1016/j.medj.2021.01.006:
     id: GSE144744 
-    replicates: yes
-    citelink: supplementary_file_1
-    georaw: geo_accession
     info: "Healthy and treatment with replicates"
     keyword:
       protein: protein
@@ -159,9 +123,9 @@ figshare_download_key:
     id: Buus2021
     wlink:
       rna:
-        - "https://figshare.com/ndownloader/files/23101268/"
+        - "https://figshare.com/ndownloader/files/23101268"
       protein:
-        - "https://figshare.com/ndownloader/files/23101268/"
+        - "https://figshare.com/ndownloader/files/23101268"
     fname:
       rna:
         - "5P-CITE-seq_Titration_full.rds"

@@ -82,8 +82,11 @@ GSE144744:
   replace: "matrix.mtx"
   column: 2
 Buus2021:
-  info: "figshare"
+  altexp: 
+    protein: "ADT.kallisto"
 Kotliarov2020:
-  info: "figshare"
+  access:
+    rna: "x@data"
+    protein: "x@assay$CITE@raw.data"
 Shangguan2021:
   info: "figshare"

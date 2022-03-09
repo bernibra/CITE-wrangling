@@ -51,5 +51,5 @@ data/processed
 \.drake/
 
 # Data files reporting errors
-data/GEORawDataNotFound.txt
+data/RawDataNotFound.txt
 data/NOTenoughRAM.txt

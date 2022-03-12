@@ -3,7 +3,7 @@
 ###########################################################
 
 # Set method
-get_row_column <- function(x) UseMethod("get_row_column")
+get_row_column <- function(filename) UseMethod("get_row_column")
 
 
 # if the class if not recognized, simply return NULL values

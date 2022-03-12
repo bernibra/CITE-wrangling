@@ -17,185 +17,17 @@ write_warning_file <- function(scelist, filename){
   return(0)  
 }
 
-# # Function turning a matrix type object to SingleCellExperiment class
-# matrix_to_sce <- function(mat, info){
-#   
-#   tp <- info$transpose
-#   
-#   # Transpose the matrix if need be
-#   if(is.null(tp)){
-#     tp <- ncol(mat)<nrow(mat)
-#   }
-#   if(!(tp)){
-#       mat <- t(mat)
-#   }
-#   
-#   # Are there any funky columns that need to be added as coldata
-#   cell_properties <- which(colnames(mat) %in% info$coldata)
-#   
-#   if(length(cell_properties)>0){
-#     
-#     # Make data frame with the funky info
-#     coldata <- mat[,cell_properties, drop=FALSE]
-#     mat <- mat[,-cell_properties] %>% as.matrix %>% Matrix::Matrix(., sparse = T)
-#     
-#     # Make SingleCellObject
-#     sce <- SingleCellExperiment(assays = list(counts = t(mat)), colData=coldata)
-# 
-#     }else{
-#     # Make singleCellObject
-#       
-#     mat  %<>% as.matrix %>% Matrix::Matrix(., sparse = T)
-#     sce <- SingleCellExperiment(assays = list(counts = t(mat)))
-# 
-#     }
-#   
-#   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
-# }
-# 
-# # Turning a h5 object to SingleCellExperiment class via Seurat
-# h5_to_sce <- function(filename, info, ftype){
-#   
-#   # I found this to be the easiest way to get such data into SingleCellExperiment class
-#   h5 <- Seurat::Read10X_h5(filename, use.names = TRUE, unique.features = TRUE)
-#   if(!is.null(info$h5key)){
-#     h5 <- h5[[info$h5key[[ftype]]]]
-#   }
-#   sce <- Seurat::as.SingleCellExperiment(Seurat::CreateSeuratObject(h5))
-#   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
-# }
-# 
-# # Turning a mtx.gz object into a SingleCellExperiment
-# mtx_to_sce <- function(filename, info, ftype){
-# 
-#   # Find other relevant files
-#   othernames <- list.files(path = dirname(filename), pattern=gsub(info$replace, "*", basename(filename)), full.names = T)
-#   othernames <- othernames[!(othernames %in% filename)]
-#   
-#   # What are row and what are columns
-#   if(!is.null(info$common_features)){
-#     features <- file.path(dirname(filename), info$common_features)
-#   }else{
-#     features <- othernames[grepl(info$features, othernames)][1]
-#   }
-# 
-#   if(!is.null(info$common_cells)){
-#     cells <- file.path(dirname(filename), info$common_cells)
-#   }else{
-#     cells <- othernames[grepl(info$cells, othernames)][1]
-#   }
-#   
-#   # Should I transpose the matrix?
-#   mtx.transpose <- ifelse(is.null(info$transposeMTX[[ftype]]), info$transposeMTX, info$transposeMTX[[ftype]])
-# 
-#   # What column should I pick
-#   feature.column <- ifelse(is.null(info$column[[ftype]]), info$column, info$column[[ftype]])
-#   
-#   # Seurat comes in handy for reading interaction-like files into matrix objects
-#   mtx <- Seurat::ReadMtx(mtx = filename,
-#                          features = features,
-#                          cells = cells,
-#                          feature.column = feature.column,
-#                          mtx.transpose = mtx.transpose
-#                          )
-# 
-#   # Make sure the matrix is in the right order and turn into SingleCellExperiment
-#   sce <- SingleCellExperiment(assays = list(counts = mtx))
-#   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
-# }
-# 
-# rds_to_sce <- function(rds, info, ftype){
-#   if("Seurat" %in% class(rds)){
-#     sce <- Seurat::as.SingleCellExperiment(rds)
-#     if(!is.null(info$altexp[[ftype]])){
-#       sce <- altExp(sce, info$altexp[[ftype]])
-#     }
-#     return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
-#     
-#   }else if("matrix" %in% class(rds)){
-#     return(matrix_to_sce(as.matrix(rds), info))
-#     
-#   }else{
-#     eval(parse(text = paste0("f <- function(x){return(", info$access[[ftype]], ")}")))
-#     sce <- SingleCellExperiment(assays = list(counts = f(rds)))
-#     return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
-#     
-#   }
-# }
-# 
-# # Read file type and load data
-# read_raw <- function(filename, info, ftype, shouldi){
-#   print(filename)
-#   forceANY <- "None"
-#   # TODO: Make this more generalizable...
-#   if(!is.null(info$force[[ftype]])){
-#     if(info$force[[ftype]]=="mtx"){
-#       forceANY <- "mtx"
-#     }
-#   }
-#   
-#   # interaction list and complementary files for columns and rows
-#   if (grepl(".mtx$", filename) | forceANY=="mtx"){
-#     ifelse(shouldi, return(mtx_to_sce(filename, info, ftype)), return(NULL))
-#   }
-#   
-#   # File formatted as rds
-#   if (grepl(".rds$|.Rds$", filename)){
-#     ifelse(shouldi, return(rds_to_sce(readRDS(filename), info, ftype)), return(NULL))
-#   }
-#   
-#   # File formatted csv or tsv
-#   if (grepl(".csv$|.tsv$|.txt$", filename)){
-#     if(shouldi){
-#       mat <- readr::read_delim(file = filename, col_names = TRUE,
-#                                comment = "#", show_col_types = FALSE)
-#       mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
-#       mat %<>% tibble::column_to_rownames(colnames(.)[1])
-#       
-#       return(matrix_to_sce(mat, info))
-#     }else{
-#       return(get_row_column(filename))
-#     }
-#   }
-#   
-#   # File formatted as h5
-#   if (grepl(".h5$", filename)){
-#     ifelse(shouldi, return(h5_to_sce(filename, info, ftype)), return(NULL))
-#   }
-#   
-#   stop("format not found")
-# }
-
 # Look for relevant filenames in directory
 select_relevant_files <- function(filenames, info){
-
-  # A directory? jeeeez...
-  if (length(filenames)==1 & all(grepl(".tar.gz$|.tar$", filenames))){
-    # Untar
-    untar(filenames, exdir = dirname(filenames))
-    # Remove compressed folder
-    unlink(filenames)
-    # Find files
-    filenames_x <- list.files(dirname(filenames), full.names = T)
-    filenames_y <- list.files(dirname(filenames), recursive = T, full.names = T)
-    
-    if(!all(filenames_x==filenames_y)){
-      filenames <- paste(dirname(dirname(filenames_y[1])), basename(filenames_y), sep="/")
-      # Move files to main directory
-      file.rename(from=filenames_y, to=filenames)
-      # Remove empty directory
-      unlink(dirname(filenames_y[1]), recursive = T)
-    }
-  }
   
   # If there is only one file, then there is no problem
   if (length(filenames)==1){
     return(filenames)
   }
   
-  # TODO: Make this more generalizable...
-  if(!is.null(info$force)){
-    if(info$force=="mtx"){
+  # The mtx class can be tricky because the files don't always have an .mtx extension
+  if(!is.null(info$class)){
+    if(info$class=="mtx"){
       return(filenames[grepl(info$replace, filenames)])
     }
   }
@@ -206,7 +38,7 @@ select_relevant_files <- function(filenames, info){
     filenames <-  filenames[filenames_]
   }
 
-  # The keywords describe proteins RNA or HTOs generally
+  # The keywords describe proteins, RNA or HTOs generally
   ifelse(!(is.null(info$keyword)), 
           return(filenames[grepl(info$keyword, filenames)]), 
           return(filenames))
@@ -217,6 +49,11 @@ load_path <- function(path, info, ftype="protein"){
 
   # Find all raw files
   filenames <- list.files(path, full.names = T)
+  
+  # Untar if necessary
+  if (length(filenames)==1 & all(grepl(".tar.gz$|.tar$", filenames))){
+    filenames <- untar_folder(filenames)
+  }
 
   # Dealing with multiple files if possible
   filenames <- select_relevant_files(filenames = filenames, info = info)

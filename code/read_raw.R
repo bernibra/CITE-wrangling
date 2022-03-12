@@ -3,7 +3,7 @@
 ################################################
 
 # Set method
-read_raw <- function(x) UseMethod("read_raw")
+read_raw <- function(filename) UseMethod("read_raw")
 
 # Default read raw, guessing file type and loading data
 read_raw.default <- function(filename, ...){
@@ -112,9 +112,10 @@ read_raw.Seurat <- function(filename, ...){
 
 # Customizable access function for weird rds files
 read_raw.access <- function(filename, ...){
-    eval(parse(text = paste0("f <- function(x){return(", info$access, ")}")))
-    sce <- SingleCellExperiment(assays = list(counts = f(rds)))
-    return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
+  rds <- readRDS(filename)
+  rds <- eval(parse(text = paste0("(function(x){return(", info$access, ")})")))(rds)
+  sce <- SingleCellExperiment(assays = list(counts = rds))
+  return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
 # Utility function useful for the read_raw method

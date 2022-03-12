@@ -21,6 +21,27 @@ if_unzip <- function(filename){
   return(filename)
 }
 
+untar_folder <- function(filenames){
+  # Untar
+  untar(filenames, exdir = dirname(filenames))
+
+  # Remove compressed folder
+  unlink(filenames)
+  
+  # Find files
+  filenames <- list.files(dirname(filenames), full.names = T)
+  filenames_y <- list.files(dirname(filenames), recursive = T, full.names = T)
+    
+  if(!all(filenames_x==filenames_y)){
+    filenames <- paste(dirname(dirname(filenames_y[1])), basename(filenames_y), sep="/")
+    # Move files to main directory
+    file.rename(from=filenames_y, to=filenames)
+    # Remove empty directory
+    unlink(dirname(filenames_y[1]), recursive = T)
+  }
+  return(filenames)
+}
+
 # Check if one has enough RAM to read the matrix 
 should_i_load_this <- function(filename, tolerance=0.05){
   filename <- if_unzip(filename)

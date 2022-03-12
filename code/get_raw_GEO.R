@@ -13,16 +13,22 @@ get_geo_id <- function(id, dest_dir, ftype="protein"){
   rdir_ <- file.path(basedir, paste("supp", possible_types[!(possible_types %in% ftype)], sep="_"))
   
   if((!file.exists(rdir))){
+    
     # Avoid downloading the same data twice
     if (file.exists(rdir_) & id$keyword[[ftype]]==id$keyword[[possible_types[!(possible_types %in% ftype)]]]){
       R.utils::createLink(link=rdir, target=rdir_)
       message("---> raw files already found: ", id$id)
       return(list.files(rdir, full.names = T))
-    }
+    }    
     
     # Create directory if not there
     dir.create(rdir, showWarnings = FALSE)
     message("donwloading raw data")
+    
+    
+    
+
+    
     
     if(!(is.null(id$description))){
       # Find relevant supplementary files
@@ -71,7 +77,14 @@ get_geo_id <- function(id, dest_dir, ftype="protein"){
       return(0)
     }
 
-  }else{
+  
+    
+    
+    
+    
+    
+    
+    }else{
       # Avoid downloading the files every time
       message("---> raw files already found: ", id$id)
       return(list.files(rdir, full.names = T))

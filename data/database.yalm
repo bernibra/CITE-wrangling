@@ -1,26 +1,25 @@
 GSE135325:
-  features: "genes.tsv.gz"
-  cells: "barcodes.tsv.gz"
-  replace: "matrix.mtx"
-  column: 2
-  transposeMTX: False
-  transpose: True
   coldata:
     - "Sample_Name"
     - "Sample_Tag"
 GSE139369:
-  keyword: 
-    protein: "scADT"
-    rna: "scRNA"
-  transpose: False
-  coldata: NULL
+  protein:
+    keyword: "scADT"
+    transpose: False
+  rna:
+    keyword: "scRNA"
+    transpose: False
 GSE152469:
-  keyword:
-    protein: "Ab_CLL"
-    rna: "Exp"
-  transpose: True
-  coldata:
-    - "isotype_Ctrl"
+  protein:
+    keyword: "Ab_CLL"
+    transpose: True
+    coldata:
+      - "isotype_Ctrl"
+  rna:
+    keyword: "Exp"
+    transpose: True
+    coldata:
+      - "isotype_Ctrl"
 GSE108313:
   transpose: False
   coldata:
@@ -34,21 +33,19 @@ GSE126310:
     - "total_reads"
     - "bad_struct"
 GSE144434:
-  keyword:
-    protein: "Antibodies"
-    rna: "genes"
-  transpose: True
-  coldata: NULL
+  protein:
+    keyword: "Antibodies"
+    transpose: True
+  rna:
+    keyword: "genes"
+    transpose: True
 GSE158769:
   transpose: False
   coldata: NULL
 GSE148665:
   transpose: False
-  coldata: NULL
 GSE155673:
   transpose: False
-  transposeMTX: False
-  coldata: NULL
   common_features: "GSE155673_features.tsv.gz"
   features: "features.tsv.gz"
   cells: "barcodes.tsv.gz"
@@ -59,34 +56,45 @@ GSE155673:
     key: "Gene ID"
     value: "Specificity"
 GSE161918:
-  h5key:
-    protein: "Antibody Capture"
-    rna: "Gene Expression"
-  info: "h5 that can be easily converted into an sce object"
+  protein:
+    h5key: "Antibody Capture"
+  rna:
+    h5key: "Gene Expression"
 GSE156478:
-  force:
-    rna: mtx
-  transposeMTX: 
-    rna: False
-    protein: True
-  features: "proteins.txt.gz$|features.tsv.gz$"
-  cells: "barcodes.txt.gz$|barcodes.tsv.gz$"
-  replace: "mtx$|matrix.mtx$|matrix.tsv$|mtx.gz$|matrix.mtx.gz$|matrix.tsv.gz$"
-  column: 
-    rna: 2
-    protein: 1
+  protein:
+    class: mtx
+    transpose: True
+    features: "proteins.txt.gz$|features.tsv.gz$"
+    cells: "barcodes.txt.gz$|barcodes.tsv.gz$"
+    replace: "mtx$|matrix.mtx$|matrix.tsv$|mtx.gz$|matrix.mtx.gz$|matrix.tsv.gz$"
+    column: 1
+  rna:
+    class: mtx
+    transpose: False
+    features: "proteins.txt.gz$|features.tsv.gz$"
+    cells: "barcodes.txt.gz$|barcodes.tsv.gz$"
+    replace: "mtx$|matrix.mtx$|matrix.tsv$|mtx.gz$|matrix.mtx.gz$|matrix.tsv.gz$"
+    column: 2
 GSE144744:
-  transposeMTX: False
+  transpose: False
   features: "genes.tsv"
   cells: "barcodes.tsv"
   replace: "matrix.mtx"
   column: 2
 Buus2021:
-  altexp: 
-    protein: "ADT.kallisto"
+  protein:
+    class: Seurat
+    altexp: "ADT.kallisto"
+  rna:
+    class: Seurat
+    altexp: NULL
 Kotliarov2020:
-  access:
-    rna: "x@data"
-    protein: "x@assay$CITE@raw.data"
+  rna:
+    class: access
+    access: "x@data"
+  protein:
+    class: access
+    access: "x@assay$CITE@raw.data"
 Shangguan2021:
-  info: "figshare"
+  class: rna
+  transpose: False

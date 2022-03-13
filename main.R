@@ -30,7 +30,7 @@ configuration_plan <- drake_plan(
 # create download dir if not already there
 dir.create("data/raw", showWarnings = FALSE)
 
-# Download GEOquery data
+# Download data
 get_geoquery_raw <- drake_plan(
   raw_protein = get_raw(ids = download_key,
                     dest_dir = "data/raw",

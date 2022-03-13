@@ -96,5 +96,5 @@ Kotliarov2020:
     class: access
     access: "x@assay$CITE@raw.data"
 Shangguan2021:
-  class: rna
+  class: rds
   transpose: False

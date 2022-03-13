@@ -5,7 +5,6 @@ doi.org/10.1016/j.celrep.2020.03.063:
   description: description.2
   keyword: 
     protein: abseq
-    rna: abseq
 doi.org/10.1038/s41587-019-0332-7:
   setup: geo
   download: geo
@@ -13,7 +12,6 @@ doi.org/10.1038/s41587-019-0332-7:
   description: data_processing
   keyword: 
     protein: cite
-    rna: cite
 doi.org/10.1186/s40364-020-00253-w:
   setup: geo
   download: geo
@@ -21,7 +19,6 @@ doi.org/10.1186/s40364-020-00253-w:
   description: library_source
   keyword:
     protein: transcriptomic
-    rna: transcriptomic
 doi.org/10.1101/237693:
   setup: geo
   download: geo
@@ -45,21 +42,14 @@ doi.org/10.1093/nargab/lqaa025:
   description: library_source
   keyword:
     protein: transcriptomic
-    rna: transcriptomic
 doi.org/10.1038/s41590-021-00933-1:
   setup: geo
   download: wget
   id: GSE158769
-  description: data_processing
   wlink: 
     protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
-    rna: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
   fname:
     protein: GSE158769_exprs_raw.tsv.gz
-    rna: GSE158769_exprs_raw.tsv.gz
-  keyword:
-    protein: antibody
-    rna: antibody
 doi.org/10.1093/nar/gkaa314:
   id: GSE148665
   description: data_processing
@@ -94,9 +84,6 @@ doi.org/10.1016/j.medj.2021.01.006:
   setup: geo
   download: wget
   id: GSE144744 
-  keyword:
-    protein: protein
-    rna: rna
   wlink: 
     protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
     rna: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz"
@@ -107,13 +94,9 @@ doi.org/10.1038/s41591-020-0769-8:
   download: wget
   id: Kotliarov2020
   wlink:
-    rna:
-      - "https://nih.figshare.com/ndownloader/files/20706642"
     protein:
       - "https://nih.figshare.com/ndownloader/files/20706642"
   fname:
-    rna:
-      - "H1_day0_demultilexed_singlets.rds"
     protein:
       - "H1_day0_demultilexed_singlets.rds"
 doi.org/10.7554/elife.69577:
@@ -139,12 +122,8 @@ doi.org/10.7554/eLife.61973:
   download: wget
   id: Buus2021
   wlink:
-    rna:
-      - "https://figshare.com/ndownloader/files/23101268"
     protein:
       - "https://figshare.com/ndownloader/files/23101268"
   fname:
-    rna:
-      - "5P-CITE-seq_Titration_full.rds"
     protein:
       - "5P-CITE-seq_Titration_full.rds"

@@ -3,11 +3,11 @@
 ################################################
 
 # Set methods
-setup_download <- function(path) UseMethod("setup_download")
-download_raw <- function(rdir) UseMethod("download_raw")
+setup_download <- function(path, id, download_date, ...) UseMethod("setup_download", path)
+download_raw <- function(rdir, basedir, id, ftype, ...) UseMethod("download_raw", rdir)
 
 # Create directories if not there
-setup_download.default <- function(path, ...){
+setup_download.default <- function(path, id, download_date, ...){
   # Create main directory if not there
   dir.create(path, showWarnings = FALSE)
   
@@ -15,12 +15,12 @@ setup_download.default <- function(path, ...){
 }
 
 # Download metadata for geo libraries
-setup_download.geo <- function(path, ...){
+setup_download.geo <- function(path, id, download_date, ...){
   if(!file.exists(path)){
     
     # Create dir if not there
     dir.create(path, showWarnings = FALSE)
-    message("donwloading data on ", download_date)
+    message("downloading data on ", download_date)
     
     # Download metadata
     GEOquery::getGEO(id, destdir = path)
@@ -34,12 +34,12 @@ setup_download.geo <- function(path, ...){
 }
 
 # direct download with link
-download_raw.default <- function(rdir, ...){
+download_raw.default <- function(rdir, basedir, id, ftype, ...){
   return(0)
 }
 
 # direct download with link
-download_raw.wget <- function(rdir, ...){
+download_raw.wget <- function(rdir, basedir, id, ftype, ...){
 
   # This definition is useful to know what path to return
   experiments <- id$id
@@ -64,23 +64,22 @@ download_raw.wget <- function(rdir, ...){
       if (length(list.files(experiments_))==0){unlink(rdir, recursive = T)}
     }
   }
-  
+
   # Return directories if not empty
   if (!(length(list.files(rdir))==0)) {
-    return(list.files(rdir, recursive = T, full.names = T))
+    return(list.files(rdir, full.names = T))
   }else{
     return(0)
   }
- 
 }
 
 # Well formatted geo database
-download_raw.geo <- function(rdir, ...){
+download_raw.geo <- function(rdir, basedir, id, ftype, ...){
   
   # Find relevant supplementary files
   experiments <- set_names(list.files(basedir, full.names = T,pattern = "\\.txt.gz$"))%>%
-    map(function(x) GEOquery::getGEO(filename = x)) %>%
-    map(Biobase::pData)  %>%
+    purrr::map(function(x) GEOquery::getGEO(filename = x)) %>%
+    purrr::map(Biobase::pData)  %>%
     bind_rows() %>%
     mutate(data_processing_lowercase = tolower(!!sym(id$description))) %>%
     filter(stringr::str_detect(data_processing_lowercase, id$keyword[[ftype]])) %>%
@@ -88,14 +87,14 @@ download_raw.geo <- function(rdir, ...){
   
   # Download raw data
   experiments %>%
-    map(quietly(GEOquery::getGEOSuppFiles), baseDir = rdir)
+    purrr::map(quietly(GEOquery::getGEOSuppFiles), baseDir = rdir)
   
   
   # Was the data downloaded or is the new directory empty?
   if (length(list.files(rdir))==0){
     # This definition is useful to know what path to return
     experiments <- id$id
-    experiments %>% map(quietly(GEOquery::getGEOSuppFiles), baseDir = rdir)
+    experiments %>% purrr::map(quietly(GEOquery::getGEOSuppFiles), baseDir = rdir)
   }
   
   # Return directories if not empty
@@ -104,5 +103,4 @@ download_raw.geo <- function(rdir, ...){
   }else{
     return(0)
   }
-  
 }

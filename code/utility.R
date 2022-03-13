@@ -32,7 +32,7 @@ untar_folder <- function(filenames){
   filenames <- list.files(dirname(filenames), full.names = T)
   filenames_y <- list.files(dirname(filenames), recursive = T, full.names = T)
     
-  if(!all(filenames_x==filenames_y)){
+  if(!all(filenames==filenames_y)){
     filenames <- paste(dirname(dirname(filenames_y[1])), basename(filenames_y), sep="/")
     # Move files to main directory
     file.rename(from=filenames_y, to=filenames)

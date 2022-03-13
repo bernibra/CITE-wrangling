@@ -76,7 +76,7 @@ load_path <- function(path, info, ftype="protein"){
 
       # Read raw data and turn into SingleCellExperiment
       if(shouldi$shouldi){
-        sce <- read_raw(filename)
+        sce <- read_raw(filename, info)
       }else{
         sce <- get_row_column(filename)
       }

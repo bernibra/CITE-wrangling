@@ -3,55 +3,55 @@
 ################################################
 
 # Set method
-read_raw <- function(filename) UseMethod("read_raw")
+read_raw <- function(filename, info) UseMethod("read_raw", filename)
 
 # Default read raw, guessing file type and loading data
-read_raw.default <- function(filename, ...){
+read_raw.default <- function(filename, info, ...){
   
   # interaction list and complementary files for columns and rows
   if (grepl(".mtx$", filename)){
-    return(read_raw.mtx(filename))
+    return(read_raw.mtx(filename, info))
   }
 
   # File formatted as rds
   if (grepl(".rds$|.Rds$", filename)){
-    return(read_raw.rds(filename))
+    return(read_raw.rds(filename, info))
   }
   
   # File formatted csv, tsv or txt
   if (grepl(".csv$|.tsv$|.txt$", filename)){
-    return(read_raw.csv(filename))
+    return(read_raw.csv(filename, info))
   }
   
   # File formatted as h5
   if (grepl(".h5$", filename)){
-    return(read_raw.h5(filename))
+    return(read_raw.h5(filename, info))
   }
   
   stop("format not found")
 }
 
 # Read rds and consider it a csv
-read_raw.rds <- function(filename, ...){
+read_raw.rds <- function(filename, info, ...){
   
   mat <- readRDS(filename)
-  return(matrix_to_sce(mat))
+  return(matrix_to_sce(mat, info))
   
 }
 
 # Function turning a matrix type object to SingleCellExperiment class
-read_raw.csv <- function(filename, ...){
+read_raw.csv <- function(filename, info, ...){
   # Load file as matrix using readr and tibble
   mat <- readr::read_delim(file = filename, col_names = TRUE,
                            comment = "#", show_col_types = FALSE)
   mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
   mat %<>% tibble::column_to_rownames(colnames(.)[1])
  
-  return(matrix_to_sce(mat)) 
+  return(matrix_to_sce(mat, info)) 
 }
 
 # Turning a h5 object to SingleCellExperiment class via Seurat
-read_raw.h5 <- function(filename, ...){
+read_raw.h5 <- function(filename, info, ...){
   
   # I found this to be the easiest way to get such data into SingleCellExperiment class
   h5 <- Seurat::Read10X_h5(filename, use.names = TRUE, unique.features = TRUE)
@@ -63,7 +63,7 @@ read_raw.h5 <- function(filename, ...){
 }
 
 # Turning a mtx.gz object into a SingleCellExperiment
-read_raw.mtx <- function(filename, ...){
+read_raw.mtx <- function(filename, info, ...){
   
   # Find other relevant files
   othernames <- list.files(path = dirname(filename), pattern=gsub(info$replace, "*", basename(filename)), full.names = T)
@@ -101,7 +101,7 @@ read_raw.mtx <- function(filename, ...){
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
-read_raw.Seurat <- function(filename, ...){
+read_raw.Seurat <- function(filename, info, ...){
   rds <- readRDS(filename)
   sce <- Seurat::as.SingleCellExperiment(rds)
   if(!is.null(info$altexp)){
@@ -111,7 +111,7 @@ read_raw.Seurat <- function(filename, ...){
 }
 
 # Customizable access function for weird rds files
-read_raw.access <- function(filename, ...){
+read_raw.access <- function(filename, info, ...){
   rds <- readRDS(filename)
   rds <- eval(parse(text = paste0("(function(x){return(", info$access, ")})")))(rds)
   sce <- SingleCellExperiment(assays = list(counts = rds))
@@ -119,7 +119,7 @@ read_raw.access <- function(filename, ...){
 }
 
 # Utility function useful for the read_raw method
-matrix_to_sce <- function(mat, ...){
+matrix_to_sce <- function(mat, info, ...){
   
   # Do we need to transpose?
   tp <- info$transpose

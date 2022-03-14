@@ -55,7 +55,7 @@ should_i_load_this <- function(filename, tolerance=0.05){
 rename_features <- function(features, dictionary, key, value){
   
   # Load the dictionary
-  dict <- readr::read_delim(file.path(path, dictionary), show_col_types = F)[, c(key, value)]
+  dict <- readr::read_delim(dictionary, show_col_types = F)[, c(key, value)]
   
   # Basic checks
   dict <- dict[!is.na(dict[,key]),] %>% data.frame

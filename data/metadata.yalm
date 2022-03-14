@@ -51,6 +51,8 @@ doi.org/10.1038/s41590-021-00933-1:
   fname:
     protein: GSE158769_exprs_raw.tsv.gz
 doi.org/10.1093/nar/gkaa314:
+  setup: geo
+  download: geo
   id: GSE148665
   description: data_processing
   keyword:

@@ -56,10 +56,7 @@ GSE155673:
     key: "Gene ID"
     value: "Specificity"
 GSE161918:
-  protein:
-    h5key: "Antibody Capture"
-  rna:
-    h5key: "Gene Expression"
+  class: h5
 GSE156478:
   protein:
     class: mtx
@@ -99,16 +96,35 @@ Shangguan2021:
   class: rds
   transpose: False
 10x29May2019:
-  class: h5
+  protein:
+    h5key: "Antibody Capture"
+  rna:
+    h5key: "Gene Expression"
 10x19Nov2018:
-  class: h5
+  protein: 
+    h5key: "Antibody Capture"
+  rna:
+    h5key: "Gene Expression"
 10x19Nov2018-2:
-  class: h5
+  protein: 
+    h5key: "Antibody Capture"
+  rna:
+    h5key: "Gene Expression"
 10x24July2019:
   class: h5
 10x24July2019-2:
   class: h5
 10x7July2020:
-  class: h5
+  protein: 
+    h5key: "Antibody Capture"
+  rna:
+    h5key: "Gene Expression"
 Fredhutch2020:
-  class: h5
+  protein: 
+    class: h5
+    h5key: "Antibody Capture"
+    keyword: "h5seurat"
+  rna:
+    class: h5
+    h5key: "Gene Expression"
+    keyword: "h5seurat"

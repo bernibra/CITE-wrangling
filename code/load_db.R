@@ -68,6 +68,9 @@ load_path <- function(path, info, ftype="protein"){
 
     # Process raw data and save as SingleCellExperiment class if not done already
     if(!file.exists(rdir)){
+      # Progress meassage
+      message("processing ", ftype," data for ", basename(filenames[idx]))
+      
       # Check if we can actually load the document
       shouldi <- should_i_load_this(filenames[idx])
         
@@ -120,6 +123,7 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
   
   # load each dataset
   apply(datasets, 1, function(x){
+    print(x)
     # find information regarding the database
     info <- database[[ids[[x[2]]]$id]]
     

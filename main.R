@@ -74,8 +74,8 @@ build_protein_dictionary <- drake_plan(
 )
 
 process_data_plan <- rbind(
-  raw_to_SingleCellExperiment
-  # build_protein_dictionary
+  raw_to_SingleCellExperiment,
+  build_protein_dictionary
 )
 
 # Project workflow --------------------------------------------------------

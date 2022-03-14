@@ -47,22 +47,16 @@ download_raw.wget <- function(rdir, basedir, id, ftype, ...){
   # Try to use the link directly if available
   if (!is.null(id$wlink[[ftype]])){
     
+    # Create subdirectory
+    dir.create(file.path(rdir, experiments), showWarnings = FALSE)
+    
     for(k in 1:length(id$wlink[[ftype]])){
       
-      # Create directory as GEOquery
-      if(length(id$wlink[[ftype]])>1){
-        experiments_ <- file.path(rdir, paste(experiments, k, sep="_"))
-      }else{
-        experiments_ <- file.path(rdir, experiments)
-      }
-      dir.create(experiments_, showWarnings = FALSE)
-      
       # Download links
-      download.file(url = id$wlink[[ftype]][k], destfile = file.path(experiments_, id$fname[[ftype]][k]))
-      
-      # Just ensure that we didn't create an empty directory
-      if (length(list.files(experiments_))==0){unlink(rdir, recursive = T)}
+      download.file(url = id$wlink[[ftype]][k], destfile = file.path(rdir, experiments, id$fname[[ftype]][k]))
     }
+    # Just ensure that we didn't create an empty directory
+    if (length(list.files(file.path(rdir, experiments)))==0){unlink(rdir, recursive = T)}
   }
 
   # Return directories if not empty

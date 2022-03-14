@@ -105,7 +105,11 @@ read_raw.Seurat <- function(filename, info, ...){
   rds <- readRDS(filename)
   sce <- Seurat::as.SingleCellExperiment(rds)
   if(!is.null(info$altexp)){
+    cdata <- colData(sce)
     sce <- altExp(sce, info$altexp)
+    if(length(colData(sce))==0){
+      colData(sce) <- cdata
+    }
   }
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }

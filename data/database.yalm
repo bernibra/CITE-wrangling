@@ -98,3 +98,17 @@ Kotliarov2020:
 Shangguan2021:
   class: rds
   transpose: False
+10x29May2019:
+  class: h5
+10x19Nov2018:
+  class: h5
+10x19Nov2018-2:
+  class: h5
+10x24July2019:
+  class: h5
+10x24July2019-2:
+  class: h5
+10x7July2020:
+  class: h5
+Fredhutch2020:
+  class: h5

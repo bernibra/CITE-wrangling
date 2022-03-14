@@ -3,14 +3,14 @@ doi.org/10.1016/j.celrep.2020.03.063:
   download: geo
   id: GSE135325
   description: description.2
-  keyword: 
+  keyword:
     protein: abseq
 doi.org/10.1038/s41587-019-0332-7:
   setup: geo
   download: geo
   id: GSE139369
   description: data_processing
-  keyword: 
+  keyword:
     protein: cite
 doi.org/10.1186/s40364-020-00253-w:
   setup: geo
@@ -46,7 +46,7 @@ doi.org/10.1038/s41590-021-00933-1:
   setup: geo
   download: wget
   id: GSE158769
-  wlink: 
+  wlink:
     protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
   fname:
     protein: GSE158769_exprs_raw.tsv.gz
@@ -75,7 +75,7 @@ doi.org/10.1016/j.cell.2021.02.018:
 doi.org/10.1038/s41587-021-00927-2:
   setup: geo
   download: geo
-  id: GSE156478 
+  id: GSE156478
   description: title
   keyword:
     protein: "cite_adt|multiome_adt"
@@ -83,11 +83,11 @@ doi.org/10.1038/s41587-021-00927-2:
 doi.org/10.1016/j.medj.2021.01.006:
   setup: geo
   download: wget
-  id: GSE144744 
-  wlink: 
+  id: GSE144744
+  wlink:
     protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
     rna: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz"
-  fname: 
+  fname:
     protein: GSE144744_ADT_counts.tar.gz
     rna: GSE144744_RNA_counts.tar.gz
 doi.org/10.1038/s41591-020-0769-8:
@@ -103,7 +103,7 @@ doi.org/10.7554/elife.69577:
   download: wget
   id: Shangguan2021
   wlink:
-    rna: 
+    rna:
       - "https://figshare.com/ndownloader/files/27926415"
     protein:
       - "https://figshare.com/ndownloader/files/27926406"
@@ -127,3 +127,80 @@ doi.org/10.7554/eLife.61973:
   fname:
     protein:
       - "5P-CITE-seq_Titration_full.rds"
+support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.2/5k_pbmc_protein_v3:
+  download: wget
+  id: 10x29May2019
+  wlink:
+    protein:
+      - "https://cf.10xgenomics.com/samples/cell-exp/3.0.2/5k_pbmc_protein_v3/5k_pbmc_protein_v3_filtered_feature_bc_matrix.h5"
+      - "https://cf.10xgenomics.com/samples/cell-exp/3.0.2/5k_pbmc_protein_v3/5k_pbmc_protein_v3_feature_ref.csv"
+  fname:
+    protein:
+      - "5k_pbmc_protein_v3_filtered_feature_bc_matrix.h5"
+      - "5k_pbmc_protein_v3_feature_ref.csv"
+support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.0/pbmc_10k_protein_v3:
+  download: wget
+  id: 10x19Nov2018
+  wlink:
+    protein:
+      - "https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_10k_protein_v3/pbmc_10k_protein_v3_filtered_feature_bc_matrix.h5"
+      - "https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_10k_protein_v3/pbmc_10k_protein_v3_feature_ref.csv"
+  fname:
+    protein:
+      - "pbmc_10k_protein_v3_filtered_feature_bc_matrix.h5"
+      - "pbmc_10k_protein_v3_feature_ref.csv"
+10xgenomics.com/resources/datasets/pbm-cs-of-a-healthy-donor-5-gene-expression-and-cell-surface-protein-1-standard-3-0-0:
+  download: wget
+  id: 10x19Nov2018-2
+  wlink:
+    protein:
+      - "https://cf.10xgenomics.com/samples/cell-vdj/3.0.0/vdj_v1_hs_pbmc2_5gex_protein/vdj_v1_hs_pbmc2_5gex_protein_filtered_feature_bc_matrix.h5"
+      - "https://cf.10xgenomics.com/samples/cell-vdj/3.0.0/vdj_v1_hs_pbmc2_5gex_protein/vdj_v1_hs_pbmc2_5gex_protein_feature_ref.csv"
+  fname:
+    protein:
+      - "vdj_v1_hs_pbmc2_5gex_protein_filtered_feature_bc_matrix.h5"
+      - "vdj_v1_hs_pbmc2_5gex_protein_feature_ref.csv"
+10xgenomics.com/resources/datasets/human-pbmc-5-cell-surface-protein-only-next-gem-v-1-1-1-1-standard-3-1-0:
+  download: wget
+  id: 10x24July2019
+  wlink:
+    protein:
+      - "https://cf.10xgenomics.com/samples/cell-vdj/3.1.0/vdj_nextgem_hs_pbmc3_protein/vdj_nextgem_hs_pbmc3_protein_filtered_feature_bc_matrix.h5"
+      - "https://cf.10xgenomics.com/samples/cell-vdj/3.1.0/vdj_nextgem_hs_pbmc3_protein/vdj_nextgem_hs_pbmc3_protein_feature_ref.csv"
+  fname:
+    protein:
+      - "vdj_nextgem_hs_pbmc3_protein_filtered_feature_bc_matrix.h5"
+      - "vdj_nextgem_hs_pbmc3_protein_feature_ref.csv"
+10xgenomics.com/resources/datasets/human-pbmc-5-cell-surface-protein-only-v-1-1-1-standard-3-1-0:
+  download: wget
+  id: 10x24July2019-2
+  wlink:
+    protein:
+      - "https://cf.10xgenomics.com/samples/cell-vdj/3.1.0/vdj_v1_hs_pbmc3_protein/vdj_v1_hs_pbmc3_protein_filtered_feature_bc_matrix.h5"
+      - "https://cf.10xgenomics.com/samples/cell-vdj/3.1.0/vdj_v1_hs_pbmc3_protein/vdj_v1_hs_pbmc3_protein_feature_ref.csv"
+  fname:
+    protein:
+      - "vdj_v1_hs_pbmc3_protein_filtered_feature_bc_matrix.h5"
+      - "vdj_v1_hs_pbmc3_protein_feature_ref.csv"
+10xgenomics.com/resources/datasets/pbm-cs-from-a-healthy-donor-whole-transcriptome-analysis-1-1-standard-4-0-0:
+  download: wget
+  id: 10x7July2020
+  wlink:
+    protein:
+      - "https://cf.10xgenomics.com/samples/cell-vdj/4.0.0/Parent_SC5_PBMC/Parent_SC5_PBMC_filtered_feature_bc_matrix.h5"
+      - "https://cf.10xgenomics.com/samples/cell-vdj/4.0.0/Parent_SC5_PBMC/Parent_SC5_PBMC_feature_ref.csv"
+  fname:
+    protein:
+      - "Parent_SC5_PBMC_filtered_feature_bc_matrix.h5"
+      - "Parent_SC5_PBMC_feature_ref.csv"
+atlas.fredhutch.org/nygc/multimodal-pbmc:
+  download: wget
+  id: Fredhutch2020
+  wlink:
+    protein:
+      - "https://atlas.fredhutch.org/data/nygc/multimodal/pbmc_multimodal.h5seurat"
+      - "https://atlas.fredhutch.org/data/nygc/multimodal-pbmc/antibodyinfo.csv"
+  fname:
+    protein:
+      - "pbmc_multimodal.h5seurat"
+      - "antibodyinfo.csv"

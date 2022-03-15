@@ -1,0 +1,8 @@
+# General
+get_row_column is desactivated unless a class csv is defined. I should probably change this but since I don't really have RAM and I don't know what to do with those files yet, I will keep things like this for the moment.
+
+# GSE135325
+Originally I also included stim and subsample experiments (using {description.2,abseq}), now I only use the abseq actual experiments (two files matched using {title,abseq})
+
+# GSE158769
+This has multiple samples and batches, and this information is in the metatable also downloaded. 

@@ -2,7 +2,7 @@ doi.org/10.1016/j.celrep.2020.03.063:
   setup: geo
   download: geo
   id: GSE135325
-  description: description.2
+  description: title
   keyword:
     protein: abseq
 doi.org/10.1038/s41587-019-0332-7:
@@ -47,9 +47,15 @@ doi.org/10.1038/s41590-021-00933-1:
   download: wget
   id: GSE158769
   wlink:
-    protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
+    protein:
+      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz"
+    other:
+      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_meta_data.txt.gz"
   fname:
-    protein: GSE158769_exprs_raw.tsv.gz
+    protein:
+      - GSE158769_exprs_raw.tsv.gz
+    other:
+      - GSE158769_meta_data.txt.gz
 doi.org/10.1093/nar/gkaa314:
   setup: geo
   download: geo
@@ -87,11 +93,21 @@ doi.org/10.1016/j.medj.2021.01.006:
   download: wget
   id: GSE144744
   wlink:
-    protein: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
-    rna: "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz"
+    protein:
+      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
+    rna:
+      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz"
+    other
+      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_metadata_per_cell.csv.gz"
+      - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_metadata_per_sample.csv.gz"
   fname:
-    protein: GSE144744_ADT_counts.tar.gz
-    rna: GSE144744_RNA_counts.tar.gz
+    protein:
+      - GSE144744_ADT_counts.tar.gz
+    rna:
+      - GSE144744_RNA_counts.tar.gz
+    other:
+      - GSE144744_metadata_per_cell.csv.gz
+      - GSE144744_metadata_per_sample.csv.gz
 doi.org/10.1038/s41591-020-0769-8:
   download: wget
   id: Kotliarov2020

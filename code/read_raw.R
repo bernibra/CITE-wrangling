@@ -118,7 +118,12 @@ read_raw.Seurat <- function(filename, info, ...){
 read_raw.access <- function(filename, info, ...){
   rds <- readRDS(filename)
   rds <- eval(parse(text = paste0("(function(x){return(", info$access, ")})")))(rds)
-  sce <- SingleCellExperiment(assays = list(counts = rds))
+  if(!is.null(info$coldata)){
+    coldata <- eval(parse(text = paste0("(function(x){return(", info$coldata, ")})")))(rds)
+    sce <- SingleCellExperiment(assays = list(counts = rds), colData = as.data.frame(coldata)) 
+  }else{
+    sce <- SingleCellExperiment(assays = list(counts = rds))
+  }
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 

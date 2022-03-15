@@ -67,6 +67,25 @@ download_raw.wget <- function(rdir, basedir, id, ftype, ...){
   }
 }
 
+# direct download with link
+download_raw.metadata <- function(rdir, basedir, id, ftype, ...){
+  
+  # Try to use the link directly if available
+  if (!is.null(id$wlink[[ftype]])){
+    
+    for(k in 1:length(id$wlink[[ftype]])){
+      # Define file name
+      fname <- file.path(rdir, id$fname[[ftype]][k])
+      
+      # Download files if not there already
+      if(!file.exists(fname)){
+        download.file(url = id$wlink[[ftype]][k], destfile = fname)
+      }
+    }
+  }
+  return(0)
+}
+
 # Well formatted geo database
 download_raw.geo <- function(rdir, basedir, id, ftype, ...){
   

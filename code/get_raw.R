@@ -2,9 +2,12 @@
 get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
   
   # Setup download
-  basedir <- structure(file.path(dest_dir, id$id), class=id$setup)
-  setup_download(path=basedir, id=id$id, download_date=download_date)
-
+  basedir <- file.path(dest_dir, id$id)
+  setup_download(path=structure(basedir, class=id$setup), id=id$id, download_date=download_date)
+  
+  # Download metadata if not there already
+  download_raw(rdir=structure(basedir, class="metadata"), basedir=basedir, id=id, ftype="other")
+  
   # Quick check
   possible_types <- c("rna", "protein")
   if(!(ftype %in% possible_types)){

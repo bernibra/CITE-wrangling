@@ -1,4 +1,5 @@
 GSE135325:
+  samples: "Sample_Name"
   coldata:
     - "Sample_Name"
     - "Sample_Tag"
@@ -40,8 +41,14 @@ GSE144434:
     keyword: "genes"
     transpose: True
 GSE158769:
+  keyword: "raw"
   transpose: False
   coldata: NULL
+  samples:
+    file: "meta_data"
+    value:
+      - batch
+      - donor
 GSE148665:
   transpose: False
 GSE155673:
@@ -78,23 +85,35 @@ GSE144744:
   cells: "barcodes.tsv"
   replace: "matrix.mtx"
   column: 2
+  samples:
+    file: "metadata_per_cell"
+    value: "sample_10X"
 Buus2021:
   protein:
     class: Seurat
     altexp: "ADT.kallisto"
+    samples: "group"
   rna:
     class: Seurat
     altexp: NULL
+    samples: "group"
 Kotliarov2020:
   rna:
     class: access
     access: "x@data"
+    coldata: "x@meta.data"
+    samples: "sampleid"
   protein:
     class: access
     access: "x@assay$CITE@raw.data"
+    coldata: "x@meta.data"
+    samples: "sampleid"
 Shangguan2021:
   class: rds
   transpose: False
+  samples:
+    file: "cell_meta"
+    value: "sample"
 10x29May2019:
   protein:
     h5key: "Antibody Capture"

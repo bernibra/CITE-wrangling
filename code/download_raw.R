@@ -72,10 +72,11 @@ download_raw.metadata <- function(rdir, basedir, id, ftype, ...){
   
   # Try to use the link directly if available
   if (!is.null(id$wlink[[ftype]])){
+    dir.create(file.path(rdir, "metadata"), showWarnings = FALSE)
     
     for(k in 1:length(id$wlink[[ftype]])){
       # Define file name
-      fname <- file.path(rdir, id$fname[[ftype]][k])
+      fname <- file.path(rdir, "metadata", id$fname[[ftype]][k])
       
       # Download files if not there already
       if(!file.exists(fname)){

@@ -97,7 +97,7 @@ doi.org/10.1016/j.medj.2021.01.006:
       - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz"
     rna:
       - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz"
-    other
+    other:
       - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_metadata_per_cell.csv.gz"
       - "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_metadata_per_sample.csv.gz"
   fname:

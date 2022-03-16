@@ -136,14 +136,14 @@ read_raw.access <- function(filename, info, ...){
   
   # This could be any weird format that comes as an rds file. info$access can be any access function
   rds <- readRDS(filename)
-  rds <- eval(parse(text = paste0("(function(x){return(", info$access, ")})")))(rds)
+  object <- eval(parse(text = paste0("(function(x){return(", info$access, ")})")))(rds)
   
   # Make sure that the coldata was accessed as well
   if(!is.null(info$coldata)){
     coldata <- eval(parse(text = paste0("(function(x){return(", info$coldata, ")})")))(rds)
-    sce <- SingleCellExperiment(assays = list(counts = rds), colData = as.data.frame(coldata)) 
+    sce <- SingleCellExperiment(assays = list(counts = object), colData = as.data.frame(coldata)) 
   }else{
-    sce <- SingleCellExperiment(assays = list(counts = rds))
+    sce <- SingleCellExperiment(assays = list(counts = object))
   }
   
   # Add sample information if necessary

@@ -46,6 +46,7 @@ GSE158769:
   coldata: NULL
   samples:
     file: "meta_data"
+    key: "cell_id"
     value:
       - batch
       - donor
@@ -87,6 +88,7 @@ GSE144744:
   column: 2
   samples:
     file: "metadata_per_cell"
+    key: "cell_names"
     value: "sample_10X"
 Buus2021:
   protein:
@@ -113,6 +115,7 @@ Shangguan2021:
   transpose: False
   samples:
     file: "cell_meta"
+    key: "RowNames"
     value: "sample"
 10x29May2019:
   protein:

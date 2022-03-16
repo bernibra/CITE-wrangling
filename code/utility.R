@@ -43,7 +43,7 @@ untar_folder <- function(filenames){
 }
 
 # Check if one has enough RAM to read the matrix 
-should_i_load_this <- function(filename, tolerance=0.05){
+should_i_load_this <- function(filename, tolerance=0.15){
   filename <- if_unzip(filename)
   return(list(
     shouldi=tolerance > file.size(filename)/memuse::swap.unit(memuse::Sys.meminfo()$freeram, "bytes")@size,

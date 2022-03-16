@@ -79,7 +79,7 @@ download_raw.metadata <- function(rdir, basedir, id, ftype, ...){
       fname <- file.path(rdir, "metadata", id$fname[[ftype]][k])
       
       # Download files if not there already
-      if(!file.exists(fname)){
+      if(!file.exists(fname) & !file.exists(gsub("\\.gz", "", fname))){
         download.file(url = id$wlink[[ftype]][k], destfile = fname)
       }
     }

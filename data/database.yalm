@@ -67,7 +67,6 @@ GSE161918:
   class: h5
 GSE156478:
   protein:
-    class: mtx
     transpose: True
     features: "proteins.txt.gz$|features.tsv.gz$"
     cells: "barcodes.txt.gz$|barcodes.tsv.gz$"

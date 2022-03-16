@@ -37,7 +37,7 @@ reformat_protein <- function(pnames, ids){
     })
     
     if(any(sapply(plist, is.list))){
-      plist_ <- unlist(plist,recursive = F)
+      plist <- unlist(plist,recursive = F)
     }
     
     saveRDS(plist, file = file.path("data/processed/protein-data-shiny/", paste0(gsub(" ", "-", pname), ".rds")))

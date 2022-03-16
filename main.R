@@ -31,7 +31,7 @@ configuration_plan <- drake_plan(
 dir.create("data/raw", showWarnings = FALSE)
 
 # Download data
-get_geoquery_raw <- drake_plan(
+get_raw_db <- drake_plan(
   raw_protein = get_raw(ids = download_key,
                     dest_dir = "data/raw",
                     ftype = "protein",
@@ -44,8 +44,7 @@ get_geoquery_raw <- drake_plan(
 )
 
 get_data_plan <- rbind(
-  get_geoquery_raw
-  # get_figshare_raw
+  get_raw_db
 )
 
 # Processing data --------------------------------------------------------
@@ -76,8 +75,8 @@ build_protein_dictionary <- drake_plan(
 )
 
 process_data_plan <- rbind(
-  raw_to_SingleCellExperiment
-  # build_protein_dictionary
+  raw_to_SingleCellExperiment,
+  build_protein_dictionary
 )
 
 # Project workflow --------------------------------------------------------

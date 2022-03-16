@@ -1,3 +1,45 @@
+# 
+# getStandardSymbol <- function(keys, org.db = org.Hs.eg.db, keytype = "ALIAS", 
+#                               columns = c("SYMBOL","ALIAS","ENSEMBLPROT","ENSEMBL"),
+#                               max.dist = 2){
+#   # Fetch symbols based on alias
+#   res <- AnnotationDbi::select(org.db, keys = keys, keytype = keytype,
+#                                columns = columns)
+#   
+#   
+#   # If there are aliases not found, they might be antibody clone IDS
+#   # or nonstandard representations of the symbol, e.g. missing a -
+#   
+#   # Fetch all aliases for symbols that were found
+#   symbols <- res$SYMBOL[! is.na(res$SYMBOL)]
+#   aliases <- AnnotationDbi::select(org.db, keys = symbols, keytype = "SYMBOL",
+#                                    columns = columns)
+#   
+#   no_symbol <- res$ALIAS[is.na(res$SYMBOL)]
+#   nearest_match <- lapply(no_symbol, function(a){
+#     sdist <- stringdist::stringdist(a, aliases$ALIAS)
+#     a.max <- min(max.dist, nchar(a) - 1)
+#     nearest_sym <- aliases$ALIAS[sdist == min(sdist) & sdist <= a.max]
+#     if (identical(nearest_sym, character(0))){
+#       return(data.frame(QUERY = a, MATCH = FALSE, CLOSE.ALIAS = NA))
+#     }
+#     t1 <- data.frame(QUERY = a, MATCH = FALSE, CLOSE.ALIAS = nearest_sym)
+#     t2 <- dplyr::filter(aliases, ALIAS %in% nearest_sym) %>%
+#       dplyr::rename(CLOSE.ALIAS = ALIAS)
+#     dplyr::left_join(t1, t2, by = "CLOSE.ALIAS")
+#   })
+#   
+#   nearest_match <- Reduce(dplyr::full_join, nearest_match)
+#   
+#   res <- res %>%
+#     dplyr::rename(QUERY = ALIAS) %>%
+#     dplyr::filter(! is.na(SYMBOL)) %>%
+#     dplyr::mutate(MATCH = TRUE) %>%
+#     dplyr::full_join(nearest_match)
+#   
+#   return(res)
+# }
+
 basic_formating <- function(features, ftype, keywords=c("protein", "adt"), path=NULL){
   
   slice <- grepl("protein|pAbO", features$original)

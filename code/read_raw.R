@@ -109,7 +109,7 @@ read_raw.Seurat <- function(filename, info, ...){
     sce <- altExp(sce, info$altexp)
     if(length(colData(sce))==0){
       colData(sce) <- cdata
-    }
+    }s
   }
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
@@ -162,4 +162,38 @@ matrix_to_sce <- function(mat, info, ...){
   }
   
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
+}
+
+# Default read metadata, guessing file type and loading data
+read_metadata <- function(path, pattern, key, values){
+  
+  # Root path
+  rdir <- file.path(path, "meta")
+  
+  # Check if there is external metadata for this database
+  if(!file.exist(rdir)){
+    return(0)
+  }
+  
+  # Find filename for metadata
+  filename <- list.files(rdir)
+  filename <- if_unzip(filename[grepl(pattern, filename)])
+  
+  # File formatted as rds
+  if (grepl(".rds$", tolower(filename))){
+    meta <- readRDS(filename) %>%
+      tibble::rownames_to_column("RowNames") %>%
+      select(!!!syms(c(key, values)))
+    return(meta)
+  }
+  
+  # File formatted csv, tsv or txt
+  if (grepl(".csv$|.tsv$|.txt$", tolower(filename))){
+    meta <- readr::read_delim(filename, comment = "#", show_col_types = FALSE, col_names = TRUE) %>%
+      tibble::rownames_to_column("RowNames") %>%
+      select(!!!syms(c(key, values)))
+    return(meta)
+  }
+  
+  stop("format not found")
 }

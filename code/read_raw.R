@@ -109,7 +109,7 @@ read_raw.Seurat <- function(filename, info, ...){
     sce <- altExp(sce, info$altexp)
     if(length(colData(sce))==0){
       colData(sce) <- cdata
-    }s
+    }
   }
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }

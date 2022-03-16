@@ -35,7 +35,7 @@ read_raw.default <- function(filename, info, ...){
 read_raw.rds <- function(filename, info, ...){
   
   mat <- readRDS(filename)
-  return(matrix_to_sce(mat, info))
+  return(matrix_to_sce(mat, info, filename))
   
 }
 
@@ -47,7 +47,7 @@ read_raw.csv <- function(filename, info, ...){
   mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
   mat %<>% tibble::column_to_rownames(colnames(.)[1])
  
-  return(matrix_to_sce(mat, info)) 
+  return(matrix_to_sce(mat, info, filename)) 
 }
 
 # Turning a h5 object to SingleCellExperiment class via Seurat
@@ -59,6 +59,10 @@ read_raw.h5 <- function(filename, info, ...){
     h5 <- h5[[info$h5key]]
   }
   sce <- Seurat::as.SingleCellExperiment(Seurat::CreateSeuratObject(h5))
+  
+  # Add sample information if necessary
+  sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
@@ -98,37 +102,58 @@ read_raw.mtx <- function(filename, info, ...){
   
   # Make sure the matrix is in the right order and turn into SingleCellExperiment
   sce <- SingleCellExperiment(assays = list(counts = mtx))
+  
+  # Add sample information if necessary
+  sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
 read_raw.Seurat <- function(filename, info, ...){
+  # Open rds and easy sce conversion
   rds <- readRDS(filename)
   sce <- Seurat::as.SingleCellExperiment(rds)
+  
+  # Make sure we are using the right data
   if(!is.null(info$altexp)){
     cdata <- colData(sce)
     sce <- altExp(sce, info$altexp)
+    
+    # Make sure that the coldata was passed to the altExp
     if(length(colData(sce))==0){
       colData(sce) <- cdata
     }
   }
+  
+  # Add sample information if necessary
+  sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
 # Customizable access function for weird rds files
 read_raw.access <- function(filename, info, ...){
+  
+  # This could be any weird format that comes as an rds file. info$access can be any access function
   rds <- readRDS(filename)
   rds <- eval(parse(text = paste0("(function(x){return(", info$access, ")})")))(rds)
+  
+  # Make sure that the coldata was accessed as well
   if(!is.null(info$coldata)){
     coldata <- eval(parse(text = paste0("(function(x){return(", info$coldata, ")})")))(rds)
     sce <- SingleCellExperiment(assays = list(counts = rds), colData = as.data.frame(coldata)) 
   }else{
     sce <- SingleCellExperiment(assays = list(counts = rds))
   }
+  
+  # Add sample information if necessary
+  sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
 # Utility function useful for the read_raw method
-matrix_to_sce <- function(mat, info, ...){
+matrix_to_sce <- function(mat, info, filename, ...){
   
   # Do we need to transpose?
   tp <- info$transpose
@@ -161,39 +186,47 @@ matrix_to_sce <- function(mat, info, ...){
     
   }
   
+  # Add sample information if necessary
+  sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
 # Default read metadata, guessing file type and loading data
-read_metadata <- function(path, pattern, key, values){
+read_metadata <- function(sce, info, path){
   
   # Root path
-  rdir <- file.path(path, "meta")
+  rdir <- file.path(dirname(dirname(path)), "metadata")
   
   # Check if there is external metadata for this database
-  if(!file.exist(rdir)){
-    return(0)
+  if(!file.exists(rdir)){
+    if(!is.null(info$sample)){
+      colData(sce)["SAMPLE_ID"] <- colData(sce)[info$samples]
+    }
+    return(sce)
   }
   
   # Find filename for metadata
-  filename <- list.files(rdir)
-  filename <- if_unzip(filename[grepl(pattern, filename)])
+  filename <- list.files(rdir, full.names = T)
+  filename <- if_unzip(filename[grepl(info$samples$file, filename)])
   
   # File formatted as rds
   if (grepl(".rds$", tolower(filename))){
-    meta <- readRDS(filename) %>%
-      tibble::rownames_to_column("RowNames") %>%
-      select(!!!syms(c(key, values)))
-    return(meta)
+    meta <- readRDS(filename)
   }
   
   # File formatted csv, tsv or txt
   if (grepl(".csv$|.tsv$|.txt$", tolower(filename))){
-    meta <- readr::read_delim(filename, comment = "#", show_col_types = FALSE, col_names = TRUE) %>%
-      tibble::rownames_to_column("RowNames") %>%
-      select(!!!syms(c(key, values)))
-    return(meta)
+    meta <- readr::read_delim(filename, comment = "#", show_col_types = FALSE, col_names = TRUE)
   }
   
-  stop("format not found")
+  # Reformat metadata and extract relevant info
+  meta %<>% tibble::rownames_to_column("RowNames") %>%
+    dplyr::rename(CELL_ID = sym(c(info$samples$key))) %>%
+    mutate(SAMPLE_ID = paste(!!!syms(info$samples$value)), sep="_") %>%
+    select(CELL_ID, SAMPLE_ID)
+  
+  colData(sce)["SAMPLE_ID"] = meta$SAMPLE_ID[match(rownames(colData(sce)),meta$CELL_ID)]
+
+  return(sce)  
 }

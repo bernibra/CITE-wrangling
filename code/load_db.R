@@ -61,9 +61,10 @@ load_path <- function(path, info, ftype="protein"){
   for (idx in 1:length(filenames)){
 
     # Define file name
-    rdir <- paste(path, paste0(idx, ".rds"), sep = "_") %>%
+    rdir <- path %>%
       gsub("raw", paste0("processed/",ftype,"-data"), .) %>%
-      gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .)
+      gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .) %>%
+      paste(., paste0(strsplit(basename(filenames[[idx]]), split = "\\.")[[1]][1], ".rds"), sep="_")
     rdir_ <- file.path("data/processed/names", ftype)
 
     # Process raw data and save as SingleCellExperiment class if not done already
@@ -92,7 +93,10 @@ load_path <- function(path, info, ftype="protein"){
       }
 
       # Save the reformatted data as an rds file
-      if(!is.null(sce$sce)){saveRDS(object = sce$sce, file = rdir)}
+      if(!is.null(sce$sce)){
+        # Save object
+        saveRDS(object = sce$sce, file = rdir)
+      }
 
       # Find row and column names
       if(!is.null(sce$colnames)){saveRDS(object = sce$colnames, file = file.path(rdir_, paste0("cells_", basename(rdir))))}

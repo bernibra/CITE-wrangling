@@ -127,7 +127,6 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
   
   # load each dataset
   apply(datasets, 1, function(x){
-    print(x)
     # find information regarding the database
     info <- database[[ids[[x[2]]]$id]]
     

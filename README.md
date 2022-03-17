@@ -6,7 +6,7 @@ Basic workflow for the wrangling of CITE-seq data
 
 Check that the software and hardware requirements have been met.
 * Docker 20.10
-* 0.76 GB free on disk
+* YY GB free on disk
 * A lot of RAM (I haven't estimated exactly how much but it should be around 30GB)
 * Stable internet connection (otherwise you won't be able to run the whole thing)
 

@@ -7,7 +7,7 @@ RUN apt-get update \
 
 RUN R -e "install.packages(c('BiocManager', 'drake', 'purrr', 'Seurat', 'hdf5r', 'memuse'), repos = c(CRAN = 'https://mran.revolutionanalytics.com/snapshot/2022-02-01'))"
 
-RUN R -e "BiocManager::install(c('SingleCellExperiment', 'GEOquery'), version = BiocManager::version())"
+RUN R -e "BiocManager::install(c('SingleCellExperiment', 'GEOquery', 'DelayedArray'), version = BiocManager::version())"
 
 ## This might be a problem...
 #ENV USER rstudio

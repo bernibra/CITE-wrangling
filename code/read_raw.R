@@ -173,7 +173,7 @@ matrix_to_sce <- function(mat, info, filename, ...){
     
     # Make data frame with the funky info
     coldata <- mat[,cell_properties, drop=FALSE]
-    mat <- mat[,-cell_properties] %>% as.matrix %>% Matrix::Matrix(., sparse = T)
+    mat <- mat[,-cell_properties] %>% DelayedArray::DelayedArray(seed = .)
     
     # Make SingleCellObject
     sce <- SingleCellExperiment(assays = list(counts = t(mat)), colData=coldata)
@@ -181,7 +181,7 @@ matrix_to_sce <- function(mat, info, filename, ...){
   }else{
     # Make singleCellObject
     
-    mat  %<>% as.matrix %>% Matrix::Matrix(., sparse = T)
+    mat  %<>%  DelayedArray::DelayedArray(seed = .)
     sce <- SingleCellExperiment(assays = list(counts = t(mat)))
     
   }

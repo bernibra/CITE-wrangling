@@ -64,7 +64,7 @@ load_path <- function(path, info, ftype="protein"){
     rdir <- path %>%
       gsub("raw", paste0("processed/",ftype,"-data"), .) %>%
       gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .) %>%
-      paste(., paste0(strsplit(basename(filenames[[idx]]), split = "\\.")[[1]][1], ".rds"), sep="_")
+      paste(., strsplit(basename(filenames[[idx]]), split = "\\.")[[1]][1], sep="_")
     rdir_ <- file.path("data/processed/names", ftype)
 
     # Process raw data and save as SingleCellExperiment class if not done already
@@ -95,7 +95,7 @@ load_path <- function(path, info, ftype="protein"){
       # Save the reformatted data as an rds file
       if(!is.null(sce$sce)){
         # Save object
-        saveRDS(object = sce$sce, file = rdir)
+        HDF5Array::saveHDF5SummarizedExperiment(x = sce$sce, dir = rdir)
       }
 
       # Find row and column names

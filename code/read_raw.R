@@ -200,7 +200,7 @@ read_metadata <- function(sce, info, path){
   
   # Check if there is external metadata for this database
   if(!file.exists(rdir)){
-    if(!is.null(info$sample)){
+    if(!is.null(info$samples)){
       colData(sce)["SAMPLE_ID"] <- colData(sce)[info$samples]
     }
     return(sce)

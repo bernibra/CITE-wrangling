@@ -232,7 +232,8 @@ doi.org/10.1016/j.cell.2020.10.037:
   wlink:
     other:
       - "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7598382/bin/mmc1.xlsx"
-    fname:
+  fname:
+    other:
       - "supp_tables.xlsx"
 doi.org/10.1038/s41591-021-01329-2:
   setup: array

@@ -17,18 +17,18 @@ setup_download.default <- function(path, id, download_date, ...){
 # Download metadata for geo libraries
 setup_download.geo <- function(path, id, download_date, ...){
   if(!file.exists(path)){
-    
+
     # Create dir if not there
     dir.create(path, showWarnings = FALSE)
     message("downloading data on ", download_date)
-    
+
     # Download metadata
     GEOquery::getGEO(id, destdir = path)
-    
+
   } else {
-    
+
     message("---> file already found: ", id)
-    
+
   }
   return(0)
 }

@@ -222,3 +222,19 @@ atlas.fredhutch.org/nygc/multimodal-pbmc:
     protein:
       - "pbmc_multimodal.h5seurat"
       - "antibodyinfo.csv"
+doi.org/10.1016/j.cell.2020.10.037:
+  setup: array
+  download: array
+  id: E-MTAB-9357
+  keyword:
+    protein: pro
+    rna: gex
+  wlink:
+    other:
+      - "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7598382/bin/mmc1.xlsx"
+    fname:
+      - "supp_tables.xlsx"
+doi.org/10.1038/s41591-021-01329-2:
+  setup: array
+  download: array
+  id: E-MTAB-10026

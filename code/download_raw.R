@@ -33,6 +33,25 @@ setup_download.geo <- function(path, id, download_date, ...){
   return(0)
 }
 
+# Download metadata for geo libraries
+setup_download.array <- function(path, id, download_date, ...){
+  if(!file.exists(path)){
+    
+    # Create dir if not there
+    dir.create(path, showWarnings = FALSE)
+    message("downloading data on ", download_date)
+    
+    # Download metadata
+    ArrayExpress::getAE(id, path = path, type = "full", extract = TRUE)
+    
+  } else {
+    
+    message("---> file already found: ", id)
+    
+  }
+  return(0)
+}
+
 # direct download with link
 download_raw.default <- function(rdir, basedir, id, ftype, ...){
   return(0)

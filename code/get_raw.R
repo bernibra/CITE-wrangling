@@ -25,7 +25,7 @@ get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
       R.utils::createLink(link=rdir, target=rdir_)
       message("---> raw files already found: ", id$id)
       return(list.files(rdir, full.names = T))
-    }    
+    }
     
     # Create directory if not there
     dir.create(rdir, showWarnings = FALSE)

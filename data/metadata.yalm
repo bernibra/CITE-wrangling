@@ -223,12 +223,10 @@ atlas.fredhutch.org/nygc/multimodal-pbmc:
       - "pbmc_multimodal.h5seurat"
       - "antibodyinfo.csv"
 doi.org/10.1016/j.cell.2020.10.037:
-  setup: array
   download: array
   id: E-MTAB-9357
   keyword:
-    protein: pro
-    rna: gex
+    protein: "pro|gex"
   wlink:
     other:
       - "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7598382/bin/mmc1.xlsx"
@@ -236,6 +234,13 @@ doi.org/10.1016/j.cell.2020.10.037:
     other:
       - "supp_tables.xlsx"
 doi.org/10.1038/s41591-021-01329-2:
-  setup: array
   download: array
   id: E-MTAB-10026
+  keyword:
+    protein: "covid"
+  wlink:
+    other:
+      - "https://static-content.springer.com/esm/art%3A10.1038%2Fs41591-021-01329-2/MediaObjects/41591_2021_1329_MOESM3_ESM.xlsx"
+  fname:
+    other:
+      - "supp_tables.xlsx"

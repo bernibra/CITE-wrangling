@@ -157,9 +157,4 @@ E-MTAB-9357:
     keyword: "gex"
     transpose: True
 E-MTAB-10026:
-  protein:
-    keyword: "pro"
-    transpose: False
-  rna:
-    keyword: "gex"
-    transpose: False
+  class: h5

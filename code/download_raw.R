@@ -33,25 +33,6 @@ setup_download.geo <- function(path, id, download_date, ...){
   return(0)
 }
 
-# Download metadata for geo libraries
-setup_download.array <- function(path, id, download_date, ...){
-  if(!file.exists(path)){
-    
-    # Create dir if not there
-    dir.create(path, showWarnings = FALSE)
-    message("downloading data on ", download_date)
-    
-    # Download metadata
-    ArrayExpress::getAE(id, path = path, type = "full", extract = TRUE)
-    
-  } else {
-    
-    message("---> file already found: ", id)
-    
-  }
-  return(0)
-}
-
 # direct download with link
 download_raw.default <- function(rdir, basedir, id, ftype, ...){
   return(0)
@@ -136,4 +117,30 @@ download_raw.geo <- function(rdir, basedir, id, ftype, ...){
   }else{
     return(0)
   }
+}
+
+# Well formatted geo database
+download_raw.array <- function(rdir, basedir, id, ftype, ...){
+  
+  # This definition is useful to know what path to return
+  experiments <- id$id
+  
+  # Create subdirectory
+  dir.create(file.path(rdir, experiments), showWarnings = FALSE)
+  
+  # Download files
+  ArrayExpress::getAE(id$id, path = file.path(rdir, experiments), type = "full", extract = TRUE)
+  
+  # Filter files that aren't relevant
+  files <- list.files(path=file.path(rdir, experiments), full.names = F)
+  files <- paste(file.path(rdir, experiments), files[!grepl(pattern = id$keyword[[ftype]], x = files)], sep="/")
+  file.remove(files)
+  
+  # Return directories if not empty
+  if (!(length(list.files(rdir))==0)) {
+    return(list.files(rdir, full.names = T))
+  }else{
+    return(0)
+  }
+  
 }

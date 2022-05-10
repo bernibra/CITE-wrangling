@@ -9,6 +9,8 @@ RUN R -e "install.packages(c('BiocManager', 'drake', 'purrr', 'Seurat', 'hdf5r',
 
 RUN R -e "BiocManager::install(c('SingleCellExperiment', 'GEOquery', 'DelayedArray', 'HDF5Array', 'ArrayExpress'), version = BiocManager::version())"
 
+#RUN R -e "reticulate::install_miniconda(); reticulate::py_install('scanpy')"
+
 ## This might be a problem...
 #ENV USER rstudio
 

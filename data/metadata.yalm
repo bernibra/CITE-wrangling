@@ -245,16 +245,9 @@ doi.org/10.1038/s41591-021-01329-2:
     other:
       - "supp_tables.xlsx"
 doi.org/10.3389/fimmu.2021.636720:
-  download: wget
+  download: impossible
   id: PRJEB40448
   alias: Lawlor2021
-  wlink:
-    protein:
-      - "https://storage.googleapis.com/datarepo-104dd3ec-bucket/80b86293-663e-436b-a4e0-e160106ddb68/e7684c16-4b92-4540-8058-cf71978e96e5/CZI.PBMC.ADT.matrix.Rds?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=datarepo-jade-api%40terra-datarepo-production.iam.gserviceaccount.com%2F20220510%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20220510T103915Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=c635b9105f4060268f43f2b6937ea151d309305b0188dcf9ffb0a9c375aa42fbd623a5432a0794f26a732835989ed11f390935a94ae26031c0e7cb8eeb983a44823f75d6d32d1baf97009571516209752a061c3c672d5847af8ad6b84c131189fa6d6769e976ee39cbe3c3a5d69b5b8bd9665e537b406aa7e47084e3b61ebbd53a66f1758e72ba816aaf4556a56753b17a42b2a3af24a1f6ae56b2d16ada106be3373f0f3b660f4898ed29c170555655c77fa74889aead05f143a35392de59f6c5ea81eb100ba4176a97cbbd8ffcd5330dc568daeb5e78da9269017ee67e1ce4e03d6cdebca7d3c69b37d271be9f954a0295f95dd39ea08aa6cf0acd2119a570"
-    rna:
-      - "https://storage.googleapis.com/datarepo-104dd3ec-bucket/80b86293-663e-436b-a4e0-e160106ddb68/e39c880d-18bc-4f61-95e8-fe28fb0dd460/CZI.PBMC.RNA.matrix.Rds?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=datarepo-jade-api%40terra-datarepo-production.iam.gserviceaccount.com%2F20220510%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20220510T104114Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=9859a53e529f5ab7aca68b08b044fcd5d342a4b50183451bfe094b503d2844208d6c87bd923eec20f612d268bfaf5ac98326ab6adf4908497a32642df6f230c0a90bc512294229efd559cdf15172cfcf37c373dabf0777fad9e2f5b0eaf31fb1c9d6901406a231ffdf31887bda08deb3f7ad9bb39efe4b2956ef8f998d44038a52f29687ca74f193c03aab69124dd61e6ef2b3c67b28b0114e3b54fdf9d41c9cd440c52171aa2e5d305712accb30845e2cfd2a436ed52dfdc12872079cb4d193fa3c7c042c2bf35d1fe3bceebe4ee633a563721a2c05a409938804d6dabdbcd4919ef4ae57b4db3a2b4149fc4243c0ca3dff95e05e68387e99e40f89ff47cb48"
-    other:
-      - "https://storage.googleapis.com/datarepo-104dd3ec-bucket/80b86293-663e-436b-a4e0-e160106ddb68/d0db3c47-5bbf-4b33-97f1-970fde8d9976/CZI.PBMC.cell.annotations.csv?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=datarepo-jade-api%40terra-datarepo-production.iam.gserviceaccount.com%2F20220510%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20220510T104133Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=b667770a151f53509388af8138a39911992a7c03b35f3e2348c72a4d2ec0f7fd246c68ab5e9f2415f49c0c89f478173d394a6176e0d8b3cabb2c171bca7a4187a289c8d145a94a929fcae707f05dce64bff409692fff4a0653cf1a977e270af8e9ce34d3e2377c17de0b780b797983a55b3f381f86551ab0458aee1fd62fb7612d9c3614f2ecb4d6bdc13132c1b4f9bc808732d5e13c9940f09fd55bd9aec75ce9bf95f8e51467a1eb9e29fad7b41f74a0f5568cc8cb78bb06520e082ffc943f595bb503f7016e061ae4a84a336c04ec069cc6bcfe646c90a1d24110ebed298d467ca060ff5edd59bcb9499045217dc2095c2b7a4f6749435606a71e72c97202"
   fname:
     protein:
       - "CZI-PBMC-ADT-matrix.rds"

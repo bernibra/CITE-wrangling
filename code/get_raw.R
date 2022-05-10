@@ -21,7 +21,7 @@ get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
   if((!file.exists(rdir))){
     
     # Avoid downloading the same data twice
-    if (file.exists(rdir_) & is.null(id$keyword[[ftype]]) & is.null(id$wget[[ftype]])){
+    if (file.exists(rdir_) & is.null(id$keyword[[ftype]]) & is.null(id$wget[[ftype]]) & is.null(id$fname[[ftype]])){
       R.utils::createLink(link=rdir, target=rdir_)
       message("---> raw files already found: ", id$id)
       return(list.files(rdir, full.names = T))
@@ -51,7 +51,10 @@ get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
 }
 
 # Download raw data for all datasets
-get_raw <- function(ids, dest_dir, ftype="protein",download_date = NULL, rmfile=TRUE){
+get_raw <- function(ids, dest_dir, ftype="protein",download_date = NULL, rmfile=TRUE, args=NULL){
+
+  # Subset if we have an id  
+  if(!is.null(args)){ids <- ids[names(ids)[args]]}
   
   # remove info file if there
   if(file.exists("data/RawDataNotFound.txt") & rmfile){file.remove("data/RawDataNotFound.txt")}

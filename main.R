@@ -1,4 +1,4 @@
-# Prepare workspace --------------------------------------------------------
+# Prepare workspace -------------------------------------------------------
 
 pkgconfig::set_config("strings_in_dots" = "literals")
 
@@ -11,6 +11,11 @@ library(dplyr, quietly = T)
 library(SingleCellExperiment, quietly = T)
 
 f <- lapply(list.files("code", full.names = T), source)
+
+# Any arguments? ----------------------------------------------------------
+# If there aren't arguments, the pipeline will work for all datasets
+args = commandArgs(trailingOnly=TRUE)
+if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------
 
@@ -35,12 +40,14 @@ get_raw_db <- drake_plan(
   raw_protein = get_raw(ids = download_key,
                     dest_dir = "data/raw",
                     ftype = "protein",
-                    download_date = data_download_date)
+                    download_date = data_download_date,
+                    args=args)
   # raw_rna = get_raw(ids = download_key,
   #                   dest_dir = "data/raw",
   #                   ftype = "rna",
   #                   download_date = data_download_date,
-  #                   rmfile=FALSE) # You shouldn't run this in your local machine
+  #                   rmfile=FALSE,
+  #                   args=args) # You shouldn't run this in your local machine
 )
 
 get_data_plan <- rbind(

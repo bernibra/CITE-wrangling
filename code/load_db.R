@@ -131,7 +131,7 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
     # find information regarding the database
     info <- database[[ids[[x[2]]]$id]]
     
-    # CHeck if we need to distinguish between rna and protein data
+    # Check if we need to distinguish between rna and protein data
     if(!is.null(info[[ftype]])){
       load_path(path=x[1], info=info[[ftype]], ftype=ftype) 
     }else{

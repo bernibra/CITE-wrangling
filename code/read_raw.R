@@ -152,6 +152,14 @@ read_raw.access <- function(filename, info, ...){
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
+# Customizable access function for weird rds files
+read_raw.h5ad <- function(filename, info, ...){
+  
+  sce <- zellkonverter::readH5AD(raw_dat)
+
+  return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
+}
+
 # Utility function useful for the read_raw method
 matrix_to_sce <- function(mat, info, filename, ...){
   

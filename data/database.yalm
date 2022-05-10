@@ -158,3 +158,5 @@ E-MTAB-9357:
     transpose: True
 E-MTAB-10026:
   class: h5ad
+PRJEB40448
+  class: rna

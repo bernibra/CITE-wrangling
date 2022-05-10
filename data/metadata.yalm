@@ -250,9 +250,7 @@ doi.org/10.3389/fimmu.2021.636720:
   alias: Lawlor2021
   source: "https://data.humancellatlas.org/explore/projects/efea6426-510a-4b60-9a19-277e52bfa815"
   fname:
-    protein:
-      - "CZI-PBMC-ADT-matrix.rds"
-    rna:
-      - "CZI-PBMC-RNA-matrix.rds"
     other:
-      - "CZI-PBMC-cell-annotations.csv"
+      - "CZI.PBMC.ADT.matrix.rds"
+      - "CZI.PBMC.RNA.matrix.rds"
+      - "CZI.PBMC.cell.annotations.csv"

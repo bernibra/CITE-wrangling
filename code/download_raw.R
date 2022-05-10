@@ -44,13 +44,15 @@ download_raw.impossible <- function(rdir, basedir, id, ftype, ...){
   # This definition is useful to know what path to return
   experiments <- id$id
   
-  # Try to use the link directly if available
-  if (!is.null(id$fname[[ftype]])){
-    
-    # Create subdirectory
-    dir.create(file.path(rdir, experiments), showWarnings = FALSE)
-    
-  }
+  # Create subdirectory
+  dir.create(file.path(rdir, experiments), showWarnings = FALSE)
+  
+  write(paste0(
+    "The files can be downloaded using the following link:\n", id$source, "\n\n",
+    "Every file should be added to its corresponsing directory. That is, supp_rna for RNA data, supp_protein for protein data and metadata for the additional files\n",
+    "The files that should be added are the following:\n",
+    paste(id$fname[["other"]], collapse = "\n")
+  ), file=file.path(basedir, "README.txt"))
   
   return(list.files(rdir, full.names = T))
 }
@@ -88,9 +90,13 @@ download_raw.wget <- function(rdir, basedir, id, ftype, ...){
 download_raw.metadata <- function(rdir, basedir, id, ftype, ...){
   
   # Try to use the link directly if available
-  if (!is.null(id$wlink[[ftype]])){
+  if (!is.null(id$fname[[ftype]])){
     dir.create(file.path(rdir, "metadata"), showWarnings = FALSE)
-    
+  }
+  
+  # Try to use the link directly if available
+  if (!is.null(id$wlink[[ftype]])){
+
     for(k in 1:length(id$wlink[[ftype]])){
       # Define file name
       fname <- file.path(rdir, "metadata", id$fname[[ftype]][k])

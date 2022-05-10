@@ -93,7 +93,9 @@ get_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
   # Write report
   if (any(as.numeric(test[,2])==0)){
     message("Some of the raw data was not found (and hence the warnings). Find those cases in: data/RawDataNotFound.txt")
-    write.table(file = "data/RawDataNotFound.txt", test[as.numeric(test[,2])==0,c("id","which")], row.names = F, col.names = rmfile, append = !rmfile)
+    write("# Further instructions on how to solve this problem might be found in a README file in the corresponding directory\nid\twhich",
+          file = "data/RawDataNotFound.txt", append = !rmfile)
+    write.table(file = "data/RawDataNotFound.txt", test[as.numeric(test[,2])==0,c("id","which")], row.names = F, col.names = F, append = T, sep = "\t")
   }
   
   return(paths)

@@ -244,7 +244,7 @@ doi.org/10.1038/s41591-021-01329-2:
   fname:
     other:
       - "supp_tables.xlsx"
-doi.org/10.3389/fimmu.2021.636720
+doi.org/10.3389/fimmu.2021.636720:
   download: wget
   id: PRJEB40448
   alias: Lawlor2021

@@ -54,6 +54,11 @@ load_path <- function(path, info, ftype="protein"){
   if (length(filenames)==1 & all(grepl(".tar.gz$|.tar$", filenames))){
     filenames <- untar_folder(filenames)
   }
+  
+  # Unzip if necessary
+  if (length(filenames)==1 & all(grepl(".zip$", filenames))){
+    filenames <- decompress_zipfile(filenames)
+  }
 
   # Dealing with multiple files if possible
   filenames <- select_relevant_files(filenames = filenames, info = info)

@@ -21,6 +21,35 @@ if_unzip <- function(filename){
   return(filename)
 }
 
+decompress_zipfile <- function(file, .file_cache = FALSE) {
+  
+  if (.file_cache == TRUE) {
+    print("decompression skipped")
+  } else {
+    
+  # Run decompression
+  decompression <-
+      system2("unzip",
+              args = c("-o", # include override flag
+                       file),
+              stdout = TRUE)
+    
+  # uncomment to delete archive once decompressed
+  file.remove(file) 
+    
+  # Test for success criteria
+  # change the search depending on 
+  # your implementation
+  if (grepl("Warning message", tail(decompression, 1))) {
+      print(decompression)
+    }
+  }
+  
+  # Find and return new file name
+  file <- list.files(dirname(file), full.names = T)
+  return(file)
+}
+
 untar_folder <- function(filenames){
   # Untar
   untar(filenames, exdir = dirname(filenames))

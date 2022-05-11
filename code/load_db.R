@@ -57,9 +57,7 @@ load_path <- function(path, info, ftype="protein"){
   
   # Unzip if necessary
   if (length(filenames)==1 & all(grepl(".zip$", filenames))){
-    # filenames <- decompress_zipfile(file = filenames, directory = base::dirname(file))
-    unzip(filenames)
-    filename <- list.files(base::dirname(file), full.names = T)
+    filenames <- decompress_zipfile(file = filenames, directory = base::dirname(filenames))
   }
 
   # Dealing with multiple files if possible

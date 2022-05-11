@@ -19,13 +19,20 @@ if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------
 
+## This is useful to separate the files
+# metan <- names(meta)
+# sapply(metan, function(y) {x <- meta[[y]]
+#   yaml::write_yaml(x = list(download=x, load=data[[x$id]], metadata=list(doi=y)), file = file.path("data/databases/", paste0(x$id, ".yaml")))
+#   }, USE.NAMES = T, simplify = F)
+
 Sys.setenv(VROOM_CONNECTION_SIZE = "5000000")
 options(timeout = 3600)
 
 configuration_plan <- drake_plan(
   config = yaml::read_yaml(file_in("config.yaml")),
-  metadata = yaml::read_yaml(file_in("./data/metadata.yalm")),
-  datasets = yaml::read_yaml(file_in("./data/database.yalm")),
+  data = lapply(list.files(file_in("data/databases/"), full.names = T), function(x) yaml::read_yaml(x)),
+  metadata = sapply(data, function(x) setNames(list(x$download), x$metadata$doi), USE.NAMES = F),
+  datasets = sapply(data, function(x) setNames(list(x$load), x$download$id), USE.NAMES = F),
   data_download_date = config$raw_data_retrieved,
   download_key = metadata
 )
@@ -89,8 +96,8 @@ process_data_plan <- rbind(
 # Project workflow --------------------------------------------------------
 
 project_plan <- rbind(
-  configuration_plan,
-  get_data_plan
+  configuration_plan
+  # get_data_plan
   #process_data_plan
   )
 

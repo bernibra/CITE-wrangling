@@ -1,0 +1,22 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE158769
+  wlink:
+    protein: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz
+    other: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_meta_data.txt.gz
+  fname:
+    protein: GSE158769_exprs_raw.tsv.gz
+    other: GSE158769_meta_data.txt.gz
+load:
+  keyword: raw
+  transpose: no
+  coldata: ~
+  samples:
+    file: meta_data
+    key: cell_id
+    value:
+    - batch
+    - donor
+metadata:
+  doi: doi.org/10.1038/s41590-021-00933-1

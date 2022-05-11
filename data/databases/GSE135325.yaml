@@ -1,0 +1,14 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE135325
+  description: title
+  keyword:
+    protein: abseq
+load:
+  samples: Sample_Name
+  coldata:
+  - Sample_Name
+  - Sample_Tag
+metadata:
+  doi: doi.org/10.1016/j.celrep.2020.03.063

@@ -1,0 +1,18 @@
+download:
+  download: wget
+  id: 10x19Nov2018
+  wlink:
+    protein:
+    - https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_10k_protein_v3/pbmc_10k_protein_v3_filtered_feature_bc_matrix.h5
+    - https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_10k_protein_v3/pbmc_10k_protein_v3_feature_ref.csv
+  fname:
+    protein:
+    - pbmc_10k_protein_v3_filtered_feature_bc_matrix.h5
+    - pbmc_10k_protein_v3_feature_ref.csv
+load:
+  protein:
+    h5key: Antibody Capture
+  rna:
+    h5key: Gene Expression
+metadata:
+  doi: support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.0/pbmc_10k_protein_v3

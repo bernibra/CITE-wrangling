@@ -1,0 +1,28 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE144744
+  wlink:
+    protein: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_ADT_counts.tar.gz
+    rna: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_RNA_counts.tar.gz
+    other:
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_metadata_per_cell.csv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE144nnn/GSE144744/suppl/GSE144744_metadata_per_sample.csv.gz
+  fname:
+    protein: GSE144744_ADT_counts.tar.gz
+    rna: GSE144744_RNA_counts.tar.gz
+    other:
+    - GSE144744_metadata_per_cell.csv.gz
+    - GSE144744_metadata_per_sample.csv.gz
+load:
+  transpose: no
+  features: genes.tsv
+  cells: barcodes.tsv
+  replace: matrix.mtx
+  column: 2
+  samples:
+    file: metadata_per_cell
+    key: cell_names
+    value: sample_10X
+metadata:
+  doi: doi.org/10.1016/j.medj.2021.01.006

@@ -1,0 +1,16 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE144434
+  description: library_source
+  keyword:
+    protein: transcriptomic
+load:
+  protein:
+    keyword: Antibodies
+    transpose: yes
+  rna:
+    keyword: genes
+    transpose: yes
+metadata:
+  doi: doi.org/10.1093/nargab/lqaa025

@@ -1,0 +1,24 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE156478
+  description: title
+  keyword:
+    protein: cite_adt|multiome_adt
+    rna: cite_gex|multiome_rna
+load:
+  protein:
+    transpose: yes
+    features: proteins.txt.gz$|features.tsv.gz$
+    cells: barcodes.txt.gz$|barcodes.tsv.gz$
+    replace: mtx$|matrix.mtx$|matrix.tsv$|mtx.gz$|matrix.mtx.gz$|matrix.tsv.gz$
+    column: 1
+  rna:
+    class: mtx
+    transpose: no
+    features: proteins.txt.gz$|features.tsv.gz$
+    cells: barcodes.txt.gz$|barcodes.tsv.gz$
+    replace: mtx$|matrix.mtx$|matrix.tsv$|mtx.gz$|matrix.mtx.gz$|matrix.tsv.gz$
+    column: 2
+metadata:
+  doi: doi.org/10.1038/s41587-021-00927-2

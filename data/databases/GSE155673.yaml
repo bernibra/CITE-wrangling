@@ -1,0 +1,21 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE155673
+  description: description
+  keyword:
+    protein: adt
+    rna: rna$
+load:
+  transpose: no
+  common_features: GSE155673_features.tsv.gz
+  features: features.tsv.gz
+  cells: barcodes.tsv.gz
+  replace: matrix.mtx
+  column: 1
+  dictionary:
+    file: GSE155673_totalseq_a_hto.csv.gz
+    key: Gene ID
+    value: Specificity
+metadata:
+  doi: doi.org/10.1126/science.abc6261

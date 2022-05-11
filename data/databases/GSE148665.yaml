@@ -1,0 +1,12 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE148665
+  description: data_processing
+  keyword:
+    protein: cite
+    rna: cellranger
+load:
+  transpose: no
+metadata:
+  doi: doi.org/10.1093/nar/gkaa314

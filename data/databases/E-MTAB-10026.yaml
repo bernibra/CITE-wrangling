@@ -1,0 +1,13 @@
+download:
+  download: array
+  id: E-MTAB-10026
+  keyword:
+    protein: processed.4
+  wlink:
+    other: https://static-content.springer.com/esm/art%3A10.1038%2Fs41591-021-01329-2/MediaObjects/41591_2021_1329_MOESM3_ESM.xlsx
+  fname:
+    other: supp_tables.xlsx
+load:
+  class: h5ad
+metadata:
+  doi: doi.org/10.1038/s41591-021-01329-2

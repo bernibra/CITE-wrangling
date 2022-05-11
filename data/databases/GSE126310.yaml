@@ -1,0 +1,16 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE126310
+  description: description.2
+  keyword:
+    protein: adt
+    rna: gdo
+load:
+  coldata:
+  - no_match
+  - ambiguous
+  - total_reads
+  - bad_struct
+metadata:
+  doi: doi.org/10.1038/s41592-019-0392-0

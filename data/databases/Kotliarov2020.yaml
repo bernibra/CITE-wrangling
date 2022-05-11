@@ -1,0 +1,20 @@
+download:
+  download: wget
+  id: Kotliarov2020
+  wlink:
+    protein: https://nih.figshare.com/ndownloader/files/20706642
+  fname:
+    protein: H1_day0_demultilexed_singlets.rds
+load:
+  rna:
+    class: access
+    access: x@data
+    coldata: x@meta.data
+    samples: sampleid
+  protein:
+    class: access
+    access: x@assay$CITE@raw.data
+    coldata: x@meta.data
+    samples: sampleid
+metadata:
+  doi: doi.org/10.1038/s41591-020-0769-8

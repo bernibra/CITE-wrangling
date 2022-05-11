@@ -1,0 +1,18 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE152469
+  description: library_source
+  keyword:
+    protein: transcriptomic
+load:
+  protein:
+    keyword: Ab_CLL
+    transpose: yes
+    coldata: isotype_Ctrl
+  rna:
+    keyword: Exp
+    transpose: yes
+    coldata: isotype_Ctrl
+metadata:
+  doi: doi.org/10.1186/s40364-020-00253-w

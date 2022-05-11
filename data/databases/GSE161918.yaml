@@ -1,0 +1,12 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE161918
+  description: title
+  keyword:
+    protein: csp$
+    rna: rna$
+load:
+  class: h5
+metadata:
+  doi: doi.org/10.1016/j.cell.2021.02.018

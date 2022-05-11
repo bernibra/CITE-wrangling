@@ -1,0 +1,18 @@
+download:
+  download: wget
+  id: 10x7July2020
+  wlink:
+    protein:
+    - https://cf.10xgenomics.com/samples/cell-vdj/4.0.0/Parent_SC5_PBMC/Parent_SC5_PBMC_filtered_feature_bc_matrix.h5
+    - https://cf.10xgenomics.com/samples/cell-vdj/4.0.0/Parent_SC5_PBMC/Parent_SC5_PBMC_feature_ref.csv
+  fname:
+    protein:
+    - Parent_SC5_PBMC_filtered_feature_bc_matrix.h5
+    - Parent_SC5_PBMC_feature_ref.csv
+load:
+  protein:
+    h5key: Antibody Capture
+  rna:
+    h5key: Gene Expression
+metadata:
+  doi: 10xgenomics.com/resources/datasets/pbm-cs-from-a-healthy-donor-whole-transcriptome-analysis-1-1-standard-4-0-0

@@ -1,0 +1,22 @@
+download:
+  download: wget
+  id: Fredhutch2020
+  wlink:
+    protein:
+    - https://atlas.fredhutch.org/data/nygc/multimodal/pbmc_multimodal.h5seurat
+    - https://atlas.fredhutch.org/data/nygc/multimodal-pbmc/antibodyinfo.csv
+  fname:
+    protein:
+    - pbmc_multimodal.h5seurat
+    - antibodyinfo.csv
+load:
+  protein:
+    class: h5
+    h5key: Antibody Capture
+    keyword: h5seurat
+  rna:
+    class: h5
+    h5key: Gene Expression
+    keyword: h5seurat
+metadata:
+  doi: atlas.fredhutch.org/nygc/multimodal-pbmc

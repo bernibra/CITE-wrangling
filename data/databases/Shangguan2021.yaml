@@ -1,0 +1,24 @@
+download:
+  download: wget
+  id: Shangguan2021
+  wlink:
+    rna: https://figshare.com/ndownloader/files/27926415
+    protein: https://figshare.com/ndownloader/files/27926406
+    other:
+    - https://figshare.com/ndownloader/files/27926397
+    - https://figshare.com/ndownloader/files/27926418
+  fname:
+    other:
+    - 10x_cell_meta.rds
+    - 10x_sample_metadata.txt
+    protein: 10x_FB_norm.rds
+    rna: 10x_RNA_norm.rds
+load:
+  class: rds
+  transpose: no
+  samples:
+    file: cell_meta
+    key: RowNames
+    value: sample
+metadata:
+  doi: doi.org/10.7554/elife.69577

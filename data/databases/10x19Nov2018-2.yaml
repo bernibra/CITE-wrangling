@@ -1,0 +1,18 @@
+download:
+  download: wget
+  id: 10x19Nov2018-2
+  wlink:
+    protein:
+    - https://cf.10xgenomics.com/samples/cell-vdj/3.0.0/vdj_v1_hs_pbmc2_5gex_protein/vdj_v1_hs_pbmc2_5gex_protein_filtered_feature_bc_matrix.h5
+    - https://cf.10xgenomics.com/samples/cell-vdj/3.0.0/vdj_v1_hs_pbmc2_5gex_protein/vdj_v1_hs_pbmc2_5gex_protein_feature_ref.csv
+  fname:
+    protein:
+    - vdj_v1_hs_pbmc2_5gex_protein_filtered_feature_bc_matrix.h5
+    - vdj_v1_hs_pbmc2_5gex_protein_feature_ref.csv
+load:
+  protein:
+    h5key: Antibody Capture
+  rna:
+    h5key: Gene Expression
+metadata:
+  doi: 10xgenomics.com/resources/datasets/pbm-cs-of-a-healthy-donor-5-gene-expression-and-cell-surface-protein-1-standard-3-0-0

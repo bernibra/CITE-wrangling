@@ -1,0 +1,15 @@
+download:
+  download: wget
+  id: 10x24July2019
+  wlink:
+    protein:
+    - https://cf.10xgenomics.com/samples/cell-vdj/3.1.0/vdj_nextgem_hs_pbmc3_protein/vdj_nextgem_hs_pbmc3_protein_filtered_feature_bc_matrix.h5
+    - https://cf.10xgenomics.com/samples/cell-vdj/3.1.0/vdj_nextgem_hs_pbmc3_protein/vdj_nextgem_hs_pbmc3_protein_feature_ref.csv
+  fname:
+    protein:
+    - vdj_nextgem_hs_pbmc3_protein_filtered_feature_bc_matrix.h5
+    - vdj_nextgem_hs_pbmc3_protein_feature_ref.csv
+load:
+  class: h5
+metadata:
+  doi: 10xgenomics.com/resources/datasets/human-pbmc-5-cell-surface-protein-only-next-gem-v-1-1-1-1-standard-3-1-0

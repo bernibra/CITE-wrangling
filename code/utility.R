@@ -21,11 +21,16 @@ if_unzip <- function(filename){
   return(filename)
 }
 
-decompress_zipfile <- function(file, .file_cache = FALSE) {
+decompress_zipfile <- function(file, directory, .file_cache = FALSE) {
   
   if (.file_cache == TRUE) {
     print("decompression skipped")
   } else {
+  
+  # Set working directory for decompression
+  # simplifies unzip directory location behavior
+  wd <- getwd()
+  setwd(directory)
     
   # Run decompression
   decompression <-
@@ -36,6 +41,9 @@ decompress_zipfile <- function(file, .file_cache = FALSE) {
     
   # uncomment to delete archive once decompressed
   file.remove(file) 
+  
+  # Reset working directory
+  setwd(wd); rm(wd)
     
   # Test for success criteria
   # change the search depending on 
@@ -46,7 +54,7 @@ decompress_zipfile <- function(file, .file_cache = FALSE) {
   }
   
   # Find and return new file name
-  file <- list.files(dirname(file), full.names = T)
+  file <- list.files(directory, full.names = T)
   return(file)
 }
 

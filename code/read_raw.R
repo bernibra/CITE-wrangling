@@ -214,6 +214,11 @@ read_metadata <- function(sce, info, path){
     return(sce)
   }
   
+  # Skip if we are missing information
+  if(file.exists(rdir)  & is.null(info$samples)){
+    return(sce)
+  }
+  
   # Find filename for metadata
   filename <- list.files(rdir, full.names = T)
   filename <- if_unzip(filename[grepl(info$samples$file, filename)])

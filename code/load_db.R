@@ -28,7 +28,7 @@ select_relevant_files <- function(filenames, info){
   # The mtx class can be tricky because the files don't always have an .mtx extension
   if(!is.null(info$class)){
     if(info$class=="mtx"){
-      return(filenames[grepl(info$replace, filenames)])
+      return(filenames[grepl(info$replace, base::basename(filenames))])
     }
   }
 
@@ -40,7 +40,7 @@ select_relevant_files <- function(filenames, info){
 
   # The keywords describe proteins, RNA or HTOs generally
   ifelse(!(is.null(info$keyword)), 
-          return(filenames[grepl(info$keyword, filenames)]), 
+          return(filenames[grepl(info$keyword, base::basename(filenames))]), 
           return(filenames))
 }
 

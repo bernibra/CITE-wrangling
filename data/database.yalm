@@ -152,10 +152,10 @@ Fredhutch2020:
 E-MTAB-9357:
   protein:
     keyword: "pro"
-    transpose: True
+    transpose: False
   rna:
     keyword: "gex"
-    transpose: True
+    transpose: False
 E-MTAB-10026:
   class: h5ad
 PRJEB40448:

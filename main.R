@@ -96,9 +96,9 @@ process_data_plan <- rbind(
 # Project workflow --------------------------------------------------------
 
 project_plan <- rbind(
-  configuration_plan
-  # get_data_plan
-  #process_data_plan
+  configuration_plan,
+  get_data_plan
+  # process_data_plan
   )
 
 make(project_plan, lock_envir = FALSE)

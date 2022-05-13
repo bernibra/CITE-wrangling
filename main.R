@@ -14,10 +14,12 @@ f <- lapply(list.files("code", full.names = T), source)
 
 # Any arguments? ----------------------------------------------------------
 # If there aren't arguments, the pipeline will work for all datasets
-args = commandArgs(trailingOnly=TRUE)
+# args = commandArgs(trailingOnly=TRUE)
+
+args <- 18
 if(length(args)==0) args <- NULL else args <- args[1]
 
-# Configuration -----------------------------------------------------------
+# Configuration -----------------------------------------------------------un
 
 Sys.setenv(VROOM_CONNECTION_SIZE = "5000000")
 options(timeout = 3600)
@@ -77,22 +79,26 @@ raw_to_SingleCellExperiment <- drake_plan(
 )
 
 build_protein_dictionary <- drake_plan(
-  # protein_normalized = normalize_protein(paths = sce_protein, type="default"),
-  protein_db = unify_names(paths = sce_protein)
+  sce_protein_merged = merge_samples(paths = sce_protein$sce,
+                                     database = datasets,
+                                     ftype = "protein",
+                                     overwrite = TRUE)
+  # protein_normalized = normalize_protein(paths = sce_protein$names, type="default"),
+  # protein_db = unify_names(paths = sce_protein$names),
   #protein_lists = reformat_protein(pnames = protein_db, ids = datasets)
 )
 
 process_data_plan <- rbind(
-  raw_to_SingleCellExperiment
-  # build_protein_dictionary
+  raw_to_SingleCellExperiment,
+  build_protein_dictionary
 )
 
 # Project workflow --------------------------------------------------------
 
 project_plan <- rbind(
   configuration_plan,
-  get_data_plan
-  # process_data_plan
+  get_data_plan,
+  process_data_plan
   )
 
 make(project_plan, lock_envir = FALSE)

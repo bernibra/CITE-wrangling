@@ -6,6 +6,7 @@ download:
   keyword:
     protein: transcriptomic
 load:
+  separate_samples: yes
   protein:
     keyword: Ab_CLL
     transpose: yes
@@ -16,3 +17,7 @@ load:
     coldata: isotype_Ctrl
 metadata:
   doi: doi.org/10.1186/s40364-020-00253-w
+  description: "CITE-seq at 3 timepoints of one patient undergoing Ibrutinib treatment for chronic lymphocytic leukemia. 11 antibodies (Biolegend), 1 isotype control"
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  alias: "Cadot_2020"

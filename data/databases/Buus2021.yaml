@@ -16,3 +16,8 @@ load:
     samples: group
 metadata:
   doi: doi.org/10.7554/eLife.61973
+  description: "CITE-seq of PBMCs from healthy donors and lung tumour cells from a single patient.  Different antibody staining conditions were tested."
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  alias: "Buus2021"
+  genome_build: "GRCh30 (cellranger GTF)"

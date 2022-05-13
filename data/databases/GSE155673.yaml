@@ -14,3 +14,5 @@ metadata:
   description: "CITE-seq of 7 COVID-19 patients and 5 age-matched healthy controls. Bulk transcriptomics data for a larger sample pool is also available."
   tissue: "PBMC, enriched for plasmocytoid dendritic cells"
   species: "Homo sapiens"
+  alias: "Arunachalam_2020"
+  genome_build: "GrCH38 10x v3.0.0"

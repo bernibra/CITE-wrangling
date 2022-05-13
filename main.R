@@ -19,14 +19,6 @@ if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------
 
-# # This is useful to separate the files
-# meta <- yaml::read_yaml("data/metadata.yalm")
-# data <- yaml::read_yaml("data/database.yalm")
-# metan <- names(meta)
-# sapply(metan, function(y) {x <- meta[[y]]
-#   yaml::write_yaml(x = list(download=x, load=data[[x$id]], metadata=list(doi=y)), file = file.path("data/databases/", paste0(x$id, ".yaml")))
-#   }, USE.NAMES = T, simplify = F)
-
 Sys.setenv(VROOM_CONNECTION_SIZE = "5000000")
 options(timeout = 3600)
 

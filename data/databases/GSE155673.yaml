@@ -1,22 +1,14 @@
 download:
-  setup: geo
-  download: geo
+  download: wget
   id: GSE155673
-  description: description
-  keyword:
-    protein: adt
-    rna: rna$
+  wlink:
+    protein: https://fh-pi-gottardo-r-eco-public.s3.amazonaws.com/SingleCellDatasets/arunachalam_2020-adt.h5ad
+    rna: https://fh-pi-gottardo-r-eco-public.s3.amazonaws.com/SingleCellDatasets/arunachalam_2020.h5ad
+  fname:
+    protein: arunachalam_2020-adt.h5ad
+    rna: arunachalam_2020.h5ad
 load:
-  transpose: no
-  common_features: GSE155673_features.tsv.gz
-  features: features.tsv.gz
-  cells: barcodes.tsv.gz
-  replace: matrix.mtx
-  column: 1
-  dictionary:
-    file: GSE155673_totalseq_a_hto.csv.gz
-    key: Gene ID
-    value: Specificity
+  class: h5ad
 metadata:
   doi: doi.org/10.1126/science.abc6261
   description: "CITE-seq of 7 COVID-19 patients and 5 age-matched healthy controls. Bulk transcriptomics data for a larger sample pool is also available."

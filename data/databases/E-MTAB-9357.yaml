@@ -10,9 +10,9 @@ download:
 load:
   protein:
     keyword: pro
-    transpose: yes
+    transpose: no
   rna:
     keyword: gex
-    transpose: yes
+    transpose: no
 metadata:
   doi: doi.org/10.1016/j.cell.2020.10.037

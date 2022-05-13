@@ -19,3 +19,6 @@ load:
     value: Specificity
 metadata:
   doi: doi.org/10.1126/science.abc6261
+  description: "CITE-seq of 7 COVID-19 patients and 5 age-matched healthy controls. Bulk transcriptomics data for a larger sample pool is also available."
+  tissue: "PBMC, enriched for plasmocytoid dendritic cells"
+  species: "Homo sapiens"

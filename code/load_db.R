@@ -99,15 +99,11 @@ load_path <- function(path, info, ftype="protein"){
 
       # Save the reformatted data as an rds file or HDF5 depending on whether or not samples are together
       if(!is.null(sce$sce)){
-        if(!is.null(info$separate_samples)){
-          if(info$separate_samples){
-            saveRDS(object = sce$sce, file = paste0(rdir, ".rds"))
-          }else{
-            # Save object
-            HDF5Array::saveHDF5SummarizedExperiment(x = sce$sce, dir = rdir)
-          }
+        if(ifelse(is.null(info$separate_samples), FALSE, info$separate_samples)){
+          # Save object as rds
+          saveRDS(object = sce$sce, file = paste0(rdir, ".rds"))
         }else{
-          # Save object
+          # Save object as HDF5
           HDF5Array::saveHDF5SummarizedExperiment(x = sce$sce, dir = rdir)
         }
       }

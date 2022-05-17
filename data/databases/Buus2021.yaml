@@ -6,6 +6,7 @@ download:
   fname:
     protein: 5P-CITE-seq_Titration_full.rds
 load:
+  separate_samples: no
   protein:
     class: Seurat
     altexp: ADT.kallisto

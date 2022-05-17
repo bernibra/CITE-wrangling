@@ -9,6 +9,7 @@ download:
     rna: arunachalam_2020.h5ad
 load:
   class: h5ad
+  separate_samples: no
 metadata:
   doi: doi.org/10.1126/science.abc6261
   description: "CITE-seq of 7 COVID-19 patients and 5 age-matched healthy controls. Bulk transcriptomics data for a larger sample pool is also available."

@@ -1,24 +1,23 @@
+merge_idx <- function(filenames){
+  
+}
+
 # Format all datasets as SingleCellExperiments
-merge_samples <- function(paths, database, ftype="protein", overwrite=TRUE){
+merge_samples <- function(paths, files, metadata, ftype="protein", overwrite=TRUE){
   
-  # geo dataset names
-  # datasets <- stack(paths)
+  files_ <- basename(files)
   
-  return(list(a=paths, b=database))
+  newsce <- lapply(names(paths), function(x){
+    # Find id
+    idx <- metadata[[x]]$id
+    
+    # Filter by id
+    filenames <- files[grepl(idx, files_)]
+    
+    # Merge sce and save as HDF5 file
+    merge_idx(filenames)
+  })
   
-  # # load each dataset
-  # apply(datasets, 1, function(x){
-  #   
-  #   # find information regarding the database
-  #   info <- database[[ids[[x[2]]]$id]]
-  #   
-  #   # Check if we need to distinguish between rna and protein data
-  #   if(!is.null(info[[ftype]])){
-  #     load_path(path=x[1], info=info[[ftype]], ftype=ftype) 
-  #   }else{
-  #     load_path(path=x[1], info=info, ftype=ftype) 
-  #   }
-  # })
+  return(list(a=paths, b=metadata))
   
-  # return(list.files(paste0("data/processed/names/", ftype)))
 }

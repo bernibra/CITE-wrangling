@@ -79,8 +79,9 @@ raw_to_SingleCellExperiment <- drake_plan(
 )
 
 build_protein_dictionary <- drake_plan(
-  sce_protein_merged = merge_samples(paths = sce_protein$sce,
-                                     database = datasets,
+  sce_protein_merged = merge_samples(paths = raw_protein,
+                                     files = sce_protein$rds,
+                                     metadata = metadata, 
                                      ftype = "protein",
                                      overwrite = TRUE)
   # protein_normalized = normalize_protein(paths = sce_protein$names, type="default"),

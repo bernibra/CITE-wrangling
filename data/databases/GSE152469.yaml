@@ -6,12 +6,13 @@ download:
   keyword:
     protein: transcriptomic
 load:
-  separate_samples: yes
   protein:
+    separate_samples: yes
     keyword: Ab_CLL
     transpose: yes
     coldata: isotype_Ctrl
   rna:
+    separate_samples: yes
     keyword: Exp
     transpose: yes
     coldata: isotype_Ctrl

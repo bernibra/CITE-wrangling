@@ -149,6 +149,8 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
     }
   })
   
-  return(list(names=list.files(paste0("data/processed/names/", ftype)),
-              sce=list.dirs(paste0("data/processed/", ftype, "-data"), full.names = T, recursive = F)))
+  files <- list.files(paste0("data/processed/", ftype, "-data/"), recursive = F, full.names = T)
+  return(list(names=files,
+              rds=files[grepl(".rds$", files)],
+              hdf5=list.dirs(paste0("data/processed/", ftype, "-data"), full.names = T, recursive = F)))
 }

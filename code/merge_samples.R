@@ -9,7 +9,11 @@ merge_idx <- function(filenames, dir){
     }
   }
 
+  # Write h5 file
   HDF5Array::saveHDF5SummarizedExperiment(x = base_sce, dir = dir)
+
+  # Remove rds files
+  sapply(filenames, unlink)
 }
 
 # Format all datasets as SingleCellExperiments

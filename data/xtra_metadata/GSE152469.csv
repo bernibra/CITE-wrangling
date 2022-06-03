@@ -1,0 +1,4 @@
+"sample_name","time","treatment","molecule","source","geo_accession"
+"CLL_CPT1_M0","Before treatment",NA,"total RNA","PBMC","GSM4616298"
+"CLL_CPT1_M3","3 months","Ibrutinib","total RNA","PBMC","GSM4616299"
+"CLL_CPT1_M27","27 months","Ibrutinib","total RNA","PBMC","GSM4616300"

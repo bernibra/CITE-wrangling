@@ -11,12 +11,19 @@ download:
     - antibodyinfo.csv
 load:
   protein:
-    class: h5
-    h5key: Antibody Capture
+    separate_samples: no
+    class: h5seurat
+    h5key: ADT
     keyword: h5seurat
   rna:
-    class: h5
-    h5key: Gene Expression
+    separate_samples: no
+    class: h5seurat
+    h5key: SCT
     keyword: h5seurat
 metadata:
   doi: atlas.fredhutch.org/nygc/multimodal-pbmc
+  description: "CITE-seq and ECCITE-seq of PBMCs from 8 volunteers enrolled in a HIV vaccine trial. Samples collected immediately before (Day 0), and 3 and 7 days after administration of vaccine."
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  alias: "Hao_2021"
+  genome_build: "10X Chromium 3 and 10X Chromium 5"

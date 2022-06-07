@@ -16,7 +16,7 @@ f <- lapply(list.files("code", full.names = T), source)
 # If there aren't arguments, the pipeline will work for all datasets
 # args = commandArgs(trailingOnly=TRUE)
 
-args <- 14
+args <- 10
 if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------un
@@ -98,8 +98,8 @@ process_data_plan <- rbind(
 
 project_plan <- rbind(
   configuration_plan,
-  get_data_plan#,
-  # process_data_plan
+  get_data_plan,
+  process_data_plan
   )
 
 make(project_plan, lock_envir = FALSE)

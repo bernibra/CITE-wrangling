@@ -43,7 +43,8 @@ decompress_zipfile <- function(file, directory, .file_cache = FALSE) {
   file.remove(file) 
   
   # Reset working directory
-  setwd(wd); rm(wd)
+  setwd(wd)
+  rm(wd)
     
   # Test for success criteria
   # change the search depending on 

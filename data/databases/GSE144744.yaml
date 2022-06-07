@@ -15,6 +15,7 @@ download:
     - GSE144744_metadata_per_cell.csv.gz
     - GSE144744_metadata_per_sample.csv.gz
 load:
+  separate_samples: no
   transpose: no
   features: genes.tsv
   cells: barcodes.tsv
@@ -26,3 +27,8 @@ load:
     value: sample_10X
 metadata:
   doi: doi.org/10.1016/j.medj.2021.01.006
+  description: "CITEseq of blood and spatial transcriptomics of brain: 19 samples, PBMCs of nine RRMS (recurrent-relapse MS) patients with and without natalizumab treatment + 1 patient treatment only (cohort MS1); 11 untreated RRMS patients (cohort MS2); 10 PPMS patients (cohort MS3); age and sex matched healthy controls (cohort Hl1-3)"
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  alias: "Kaufmann_2021"
+  genome_build: "GRCh38 10x chromium v2/v3"

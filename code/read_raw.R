@@ -66,6 +66,14 @@ read_raw.h5 <- function(filename, info, ...){
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
+# Turning a h5seurat object to SingleCellExperiment class via Seurat
+read_raw.h5seurat <- function(filename, info, ...){
+  
+  sce <- Seurat::as.SingleCellExperiment(SeuratDisk::LoadH5Seurat(filename, assays = list(info$h5key = c("counts"))))
+  
+  return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
+}
+
 # Turning a mtx.gz object into a SingleCellExperiment
 read_raw.mtx <- function(filename, info, ...){
   

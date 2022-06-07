@@ -2,13 +2,11 @@ download:
   download: wget
   id: Fredhutch2020
   wlink:
-    protein:
-    - https://atlas.fredhutch.org/data/nygc/multimodal/pbmc_multimodal.h5seurat
-    - https://atlas.fredhutch.org/data/nygc/multimodal-pbmc/antibodyinfo.csv
+    protein: https://atlas.fredhutch.org/data/nygc/multimodal/pbmc_multimodal.h5seurat
+    other: https://atlas.fredhutch.org/data/nygc/multimodal-pbmc/antibodyinfo.csv
   fname:
-    protein:
-    - pbmc_multimodal.h5seurat
-    - antibodyinfo.csv
+    protein: pbmc_multimodal.h5seurat
+    other: antibodyinfo.csv
 load:
   protein:
     separate_samples: no

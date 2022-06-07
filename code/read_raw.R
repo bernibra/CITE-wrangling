@@ -69,7 +69,12 @@ read_raw.h5 <- function(filename, info, ...){
 # Turning a h5seurat object to SingleCellExperiment class via Seurat
 read_raw.h5seurat <- function(filename, info, ...){
   
-  sce <- Seurat::as.SingleCellExperiment(SeuratDisk::LoadH5Seurat(filename, assays = list(info$h5key = c("counts"))))
+  # Load the assay
+  key <- info$h5key
+  sce <- Seurat::as.SingleCellExperiment(SeuratDisk::LoadH5Seurat(file=as.character(filename), assays = c(key)))
+
+  # Add sample information if necessary
+  sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
   
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
@@ -164,6 +169,9 @@ read_raw.access <- function(filename, info, ...){
 read_raw.h5ad <- function(filename, info, ...){
   
   sce <- zellkonverter::readH5AD(raw_dat)
+  
+  # Add sample information if necessary
+  sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
 
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }

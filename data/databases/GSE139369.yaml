@@ -7,10 +7,17 @@ download:
     protein: cite
 load:
   protein:
+    separate_samples: yes
     keyword: scADT
     transpose: no
   rna:
+    separate_samples: yes
     keyword: scRNA
     transpose: no
 metadata:
   doi: doi.org/10.1038/s41587-019-0332-7
+  description: "CITE-seq and single cell ATAC-seq 38 samples across 2 different sequencing platforms 16 are CITE-seq, the others are scATAC-seq"
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  alias: "granja"
+  genome_build: "GRCh37"

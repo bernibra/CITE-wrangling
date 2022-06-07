@@ -4,10 +4,14 @@ download:
   wlink:
     protein: 
     - https://nih.figshare.com/ndownloader/files/20706642
+    other: 
+    - https://static-content.springer.com/esm/art%3A10.1038%2Fs41591-020-0769-8/MediaObjects/41591_2020_769_MOESM3_ESM.xlsx
     - https://nih.figshare.com/ndownloader/files/21008967
   fname:
     protein: 
     - H1_day0_demultilexed_singlets.rds
+    other: 
+    - supplementary_table.xlsx
     - neg_control_object.rds
 load:
   rna:
@@ -16,14 +20,12 @@ load:
     access: x@data
     coldata: x@meta.data
     samples: sampleid
-    keyword: demultilexed
   protein:
     separate_samples: no
     class: access
     access: x@assay$CITE@raw.data
     coldata: x@meta.data
     samples: sampleid
-    keyword: demultilexed
 metadata:
   doi: doi.org/10.1038/s41591-020-0769-8
   description: "PBMCs from 20 healthy individuals (10 high, 10 low responders) vaccinated with influenza H1N1 and seasonal vaccines.  CITE-seq of 82 surface proteins and 53201 single cells, processed in two batches on consecutive days. Provided data does not included filtering by median absolute deviation, therefore contains 58654 cells"

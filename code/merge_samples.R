@@ -1,12 +1,33 @@
+add_NAS <- function(coldata1, coldata2){
+  if(any(!(names(coldata2) %in% names(coldata1)))){
+    coldata1[names(coldata2)[!(names(coldata2) %in% names(coldata1))]] <- NA
+  }
+  if(any(!(names(coldata1) %in% names(coldata2)))){
+    coldata2[names(coldata1)[!(names(coldata1) %in% names(coldata2))]] <- NA
+  }
+  return(list(first=coldata1, second=coldata2))
+}
+
 merge_idx <- function(filenames, dir){
   
   base_sce <- readRDS(filenames[1])
-  colData(base_sce)$SAMPLE_ID <- basename(filenames[1])
+  if(!all("SAMPLE_ID" %in% names(colData(base_sce)))){
+    colData(base_sce)$SAMPLE_ID <- basename(filenames[1])
+  }
   
   if(length(filenames)>1){
     for(idx in 2:length(filenames)){
       sce <- readRDS(filenames[idx])
-      colData(sce)$SAMPLE_ID <- basename(filenames[idx])
+      if(!all("SAMPLE_ID" %in% names(colData(sce)))){
+        colData(sce)$SAMPLE_ID <- basename(filenames[idx])
+      }
+      
+      # Add NA to missing columns in colData
+      coldata <- add_NAS(colData(base_sce), colData(sce))
+      colData(base_sce) <- coldata$first
+      colData(sce) <- coldata$second
+      
+      # Merge SCE
       base_sce <- cbind(base_sce, sce)
     }
   }

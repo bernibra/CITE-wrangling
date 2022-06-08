@@ -230,8 +230,18 @@ read_metadata <- function(sce, info, path){
   
   # If the metadata is already there, simply change the name
   if(typeof(info$samples)=="character"){
-    if(any(info$samples %in% colnames(colData(sce)))){
-      colData(sce)["SAMPLE_ID"] <- colData(sce)[info$samples]
+    if(all(info$samples %in% colnames(colData(sce)))){
+      if(length(info$samples)==1){
+        colData(sce)["SAMPLE_ID"] <- colData(sce)[info$samples]
+      }else{
+        sampleid <- colData(sce) %>%
+          data.frame() %>%
+          mutate(SAMPLE_ID = paste(!!!syms(info$samples), sep="_")) %>%
+          select(SAMPLE_ID)
+        colData(sce) <- cbind(colData(sce), sampleid)
+      }
+    }else{
+      warning(paste0("Name for sample reference not found. Problem adding sample information to ", basename(path)))
     }
   }
   
@@ -265,9 +275,6 @@ read_metadata <- function(sce, info, path){
       }
     }
   }
-  
-  
-  
 
   return(sce)  
 }

@@ -13,11 +13,19 @@ load:
     class: h5seurat
     h5key: ADT
     keyword: h5seurat
+    samples:
+      - lane 
+      - donor
+      - time
   rna:
     separate_samples: no
     class: h5seurat
     h5key: SCT
     keyword: h5seurat
+    samples: 
+      - lane
+      - donor
+      - time
 metadata:
   doi: atlas.fredhutch.org/nygc/multimodal-pbmc
   description: "CITE-seq and ECCITE-seq of PBMCs from 8 volunteers enrolled in a HIV vaccine trial. Samples collected immediately before (Day 0), and 3 and 7 days after administration of vaccine."

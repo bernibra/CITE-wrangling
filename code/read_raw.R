@@ -222,40 +222,51 @@ read_metadata <- function(sce, info, path){
   # Root path
   rdir <- file.path(dirname(dirname(path)), "metadata")
   
-  # Check if there is external metadata for this database
-  if(!file.exists(rdir)){
-    if(!is.null(info$samples)){
+  # Skip if we are missing information
+  if(is.null(info$samples)){
+    return(sce)
+  }
+  
+  # If the metadata is already there, simply change the name
+  if(typeof(info$samples)=="character"){
+    if(any(info$samples %in% colnames(colData(sce)))){
       colData(sce)["SAMPLE_ID"] <- colData(sce)[info$samples]
     }
-    return(sce)
   }
   
-  # Skip if we are missing information
-  if(file.exists(rdir)  & is.null(info$samples)){
-    return(sce)
+  # Find filename for metadata if there
+  if(!is.null(info$samples$file)){
+    filename <- list.files(rdir, full.names = T)
+    filename <- if_unzip(filename[grepl(info$samples$file, filename)])
+    
+    # File formatted as rds
+    if (grepl(".rds$", tolower(filename))){
+      meta <- readRDS(filename)
+    }
+    # File formatted csv, tsv or txt
+    if (grepl(".csv$|.tsv$|.txt$", tolower(filename))){
+      meta <- readr::read_delim(filename, comment = "#", show_col_types = FALSE, col_names = TRUE)
+    }
+    
+    if(!is.null(info$samples$key)){
+      # Reformat metadata and extract relevant info
+      meta %<>% tibble::rownames_to_column("RowNames") %>%
+        dplyr::rename(CELL_ID = sym(c(info$samples$key))) %>%
+        mutate(SAMPLE_ID = paste(!!!syms(info$samples$value), sep="_"))
+      
+      meta <- meta[match(rownames(colData(sce)),meta$CELL_ID),] %>%
+        tibble::column_to_rownames(var="CELL_ID")
+      
+      if(identical(rownames(meta), colnames(sce))){
+        colData(sce) <- cbind(colData(sce), meta)
+      }else{
+        warning(paste0("Problem adding metadata to ", basename(path)))
+      }
+    }
   }
   
-  # Find filename for metadata
-  filename <- list.files(rdir, full.names = T)
-  filename <- if_unzip(filename[grepl(info$samples$file, filename)])
   
-  # File formatted as rds
-  if (grepl(".rds$", tolower(filename))){
-    meta <- readRDS(filename)
-  }
   
-  # File formatted csv, tsv or txt
-  if (grepl(".csv$|.tsv$|.txt$", tolower(filename))){
-    meta <- readr::read_delim(filename, comment = "#", show_col_types = FALSE, col_names = TRUE)
-  }
-  
-  # Reformat metadata and extract relevant info
-  meta %<>% tibble::rownames_to_column("RowNames") %>%
-    dplyr::rename(CELL_ID = sym(c(info$samples$key))) %>%
-    mutate(SAMPLE_ID = paste(!!!syms(info$samples$value)), sep="_") %>%
-    select(CELL_ID, SAMPLE_ID)
-  
-  colData(sce)["SAMPLE_ID"] = meta$SAMPLE_ID[match(rownames(colData(sce)),meta$CELL_ID)]
 
   return(sce)  
 }

@@ -1,10 +1,12 @@
 merge_idx <- function(filenames, dir){
   
   base_sce <- readRDS(filenames[1])
+  colData(base_sce)$SAMPLE_ID <- basename(filenames[1])
   
   if(length(filenames)>1){
     for(idx in 2:length(filenames)){
       sce <- readRDS(filenames[idx])
+      colData(sce)$SAMPLE_ID <- basename(filenames[idx])
       base_sce <- cbind(base_sce, sce)
     }
   }

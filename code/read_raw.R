@@ -168,7 +168,8 @@ read_raw.access <- function(filename, info, ...){
 # Customizable access function for weird rds files
 read_raw.h5ad <- function(filename, info, ...){
   
-  sce <- zellkonverter::readH5AD(raw_dat)
+  # Open file in memory
+  sce <- zellkonverter::readH5AD(as.character(filename))
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))

@@ -45,7 +45,7 @@ select_relevant_files <- function(filenames, info){
 }
 
 # Load a single geo raw dataset
-load_path <- function(path, info, ftype="protein"){
+load_path <- function(path, info, ftype="protein", id="id"){
 
   # Find all raw files
   filenames <- list.files(path, full.names = T)
@@ -70,10 +70,11 @@ load_path <- function(path, info, ftype="protein"){
       gsub("raw", paste0("processed/",ftype,"-data"), .) %>%
       gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .) %>%
       paste(., strsplit(basename(filenames[[idx]]), split = "\\.")[[1]][1], sep="_")
+
     rdir_ <- file.path("data/processed/names", ftype)
 
     # Process raw data and save as SingleCellExperiment class if not done already
-    if(!file.exists(rdir)){
+    if(!file.exists(rdir) & !file.exists(paste0(rdir, ".rds")) & !file.exists(paste0(dirname(rdir), id))){
       # Progress meassage
       message("processing ", ftype," data for ", basename(filenames[idx]))
       
@@ -150,9 +151,9 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
     
     # Check if we need to distinguish between rna and protein data
     if(!is.null(info[[ftype]])){
-      load_path(path=x[1], info=info[[ftype]], ftype=ftype) 
+      load_path(path=x[1], info=info[[ftype]], ftype=ftype, id=ids[[x[2]]]$id) 
     }else{
-      load_path(path=x[1], info=info, ftype=ftype) 
+      load_path(path=x[1], info=info, ftype=ftype, id=ids[[x[2]]]$id) 
     }
   })
   

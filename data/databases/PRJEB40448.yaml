@@ -1,14 +1,24 @@
 download:
   download: impossible
   id: PRJEB40448
-  alias: Lawlor2021
   source: https://data.humancellatlas.org/explore/projects/efea6426-510a-4b60-9a19-277e52bfa815
   fname:
     other:
     - CZI.PBMC.ADT.matrix.rds
     - CZI.PBMC.RNA.matrix.rds
+    - CZI.PBMC.HTO.matrix.rds
     - CZI.PBMC.cell.annotations.csv
 load:
-  class: rna
+  protein:
+    class: rds
+    keyword: ADT
+  rna:
+    class: rds
+    keyword: RNA
 metadata:
   doi: doi.org/10.3389/fimmu.2021.636720
+  description: "CITE-seq of PBMCs from 10 healthy adults before and after T-cell or monocyte stimulation.  16382 cells after filtering, 1638 per donor on average.  In this data set, multiplets and empty cells are present with original annotations. 39 antibodies and 9 negative controls."
+  tissue: "PMBC"
+  species: "Homo sapiens"
+  alias: "Lawlor2021"
+  genome_build: "GCA_000001405.14"

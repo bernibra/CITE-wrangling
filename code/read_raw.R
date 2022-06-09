@@ -231,7 +231,7 @@ read_metadata <- function(sce, info, path){
   }
   
   # Skip if we are missing information
-  if(file.exists(rdir)  & is.null(info$samples)){
+  if(file.exists(rdir) & is.null(info$samples)){
     return(sce)
   }
   

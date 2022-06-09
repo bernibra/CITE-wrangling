@@ -14,6 +14,7 @@ merge_idx <- function(filenames, dir, overwrite){
   if(!all("SAMPLE_ID" %in% names(colData(base_sce)))){
     colData(base_sce)$SAMPLE_ID <- basename(filenames[1])
   }
+  colData(base_sce)$FILE_ID <- basename(filenames[1])
   
   if(length(filenames)>1){
     for(idx in 2:length(filenames)){
@@ -22,6 +23,7 @@ merge_idx <- function(filenames, dir, overwrite){
       if(!all("SAMPLE_ID" %in% names(colData(sce)))){
         colData(sce)$SAMPLE_ID <- basename(filenames[idx])
       }
+      colData(sce)$FILE_ID <- basename(filenames[idx])
       
       # Add NA to missing columns in colData
       coldata <- add_NAS(colData(base_sce), colData(sce))

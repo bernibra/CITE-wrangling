@@ -16,8 +16,8 @@ f <- lapply(list.files("code", full.names = T), source)
 # If there aren't arguments, the pipeline will work for all datasets
 # args = commandArgs(trailingOnly=TRUE)
 
-c(19, 7, 18, 14, 10, 16, 23, 24, 22)
-args <- 22
+c(19, 7, 18, 14, 10, 16, 23, 24, 22, 13)
+args <- 13
 if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------un
@@ -91,8 +91,8 @@ build_protein_dictionary <- drake_plan(
 )
 
 process_data_plan <- rbind(
-  raw_to_SingleCellExperiment,
-  build_protein_dictionary
+  raw_to_SingleCellExperiment#,
+  # build_protein_dictionary
 )
 
 # Project workflow --------------------------------------------------------

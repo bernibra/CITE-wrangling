@@ -6,9 +6,15 @@ download:
   keyword:
     protein: abseq
 load:
+  separate_samples: yes
   samples: Sample_Name
   coldata:
   - Sample_Name
   - Sample_Tag
 metadata:
   doi: doi.org/10.1016/j.celrep.2020.03.063
+  description: "Targeted transcriptome of 492 immune-centric genes. Flow cytometry data is available from http://flowrepository.org/id/FR-FCM-Z266"
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  alias: "Mair_2020"
+  genome_build: "GRCh38"

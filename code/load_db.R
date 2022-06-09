@@ -104,7 +104,7 @@ load_path <- function(path, info, ftype="protein"){
           saveRDS(object = sce$sce, file = paste0(rdir, ".rds"))
         }else{
           # Save object as HDF5
-          HDF5Array::saveHDF5SummarizedExperiment(x = sce$sce, dir = rdir)
+          HDF5Array::saveHDF5SummarizedExperiment(x = sce$sce, dir = rdir, verbose = T, replace = T)
         }
       }
 
@@ -134,6 +134,13 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
 
   # geo dataset names
   datasets <- stack(paths)
+  
+  if(nrow(datasets)==0){
+    files <- list.files(paste0("data/processed/", ftype, "-data/"), recursive = F, full.names = T)
+    return(list(names=files,
+                rds=files[grepl(".rds$", files)],
+                hdf5=list.dirs(paste0("data/processed/", ftype, "-data"), full.names = T, recursive = F)))
+  }
   
   # load each dataset
   apply(datasets, 1, function(x){

@@ -8,7 +8,7 @@ add_NAS <- function(coldata1, coldata2){
   return(list(first=coldata1, second=coldata2))
 }
 
-merge_idx <- function(filenames, dir){
+merge_idx <- function(filenames, dir, overwrite){
   
   base_sce <- readRDS(filenames[1])
   if(!all("SAMPLE_ID" %in% names(colData(base_sce)))){
@@ -33,10 +33,12 @@ merge_idx <- function(filenames, dir){
   }
 
   # Write h5 file
-  HDF5Array::saveHDF5SummarizedExperiment(x = base_sce, dir = dir)
+  HDF5Array::saveHDF5SummarizedExperiment(x = base_sce, dir = dir, verbose = T, replace = T)
 
   # Remove rds files
-  sapply(filenames, unlink)
+  if(overwrite){
+    sapply(filenames, unlink)
+  }
 }
 
 # Format all datasets as SingleCellExperiments
@@ -50,10 +52,10 @@ merge_samples <- function(paths, files, metadata, ftype="protein", overwrite=TRU
     
     # Filter by id
     filenames <- files[grepl(idx, files_)]
-    
-    # Merge sce and save as HDF5 file
+
+        # Merge sce and save as HDF5 file
     if(length(filenames)>0){
-      merge_idx(filenames, dir=file.path(dirname(filenames[1]), idx))
+      merge_idx(filenames, dir=file.path(dirname(filenames[1]), idx), overwrite)
     }
   })
   

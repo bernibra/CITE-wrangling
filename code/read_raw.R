@@ -60,6 +60,9 @@ read_raw.h5 <- function(filename, info, ...){
   }
   sce <- Seurat::as.SingleCellExperiment(Seurat::CreateSeuratObject(h5))
   
+  # Move to colData if necessary
+  sce <- sce_move_to_coldata(sce, info$coldata)
+  
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
   
@@ -72,6 +75,9 @@ read_raw.h5seurat <- function(filename, info, ...){
   # Load the assay
   key <- info$h5key
   sce <- Seurat::as.SingleCellExperiment(SeuratDisk::LoadH5Seurat(file=as.character(filename), assays = c(key)))
+  
+  # Move to colData if necessary
+  sce <- sce_move_to_coldata(sce, info$coldata)
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
@@ -115,6 +121,9 @@ read_raw.mtx <- function(filename, info, ...){
   
   # Make sure the matrix is in the right order and turn into SingleCellExperiment
   sce <- SingleCellExperiment(assays = list(counts = mtx))
+
+  # Move to colData if necessary
+  sce <- sce_move_to_coldata(sce, info$coldata)
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
@@ -137,6 +146,9 @@ read_raw.Seurat <- function(filename, info, ...){
       colData(sce) <- cdata
     }
   }
+
+  # Move to colData if necessary
+  sce <- sce_move_to_coldata(sce, info$coldata)
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
@@ -158,6 +170,9 @@ read_raw.access <- function(filename, info, ...){
   }else{
     sce <- SingleCellExperiment(assays = list(counts = object))
   }
+
+  # Move to colData if necessary
+  sce <- sce_move_to_coldata(sce, info$coldata)
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
@@ -170,6 +185,9 @@ read_raw.h5ad <- function(filename, info, ...){
   
   # Open file in memory
   sce <- zellkonverter::readH5AD(as.character(filename))
+
+  # Move to colData if necessary
+  sce <- sce_move_to_coldata(sce, info$coldata)
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
@@ -278,3 +296,29 @@ read_metadata <- function(sce, info, path){
   }
   return(sce)  
 }
+
+sce_move_to_coldata <- function(sce, row){
+  
+  if(is.null(row)){
+    return(sce)
+  }
+  
+  # Are there any funky rows that need to be added as coldata
+  assay_names <- names(assays(sce))
+
+  for(x in row){
+    for(y in assay_names){
+      new_coldata <- paste0(x, y)
+      condition <- rownames(sce) %in% x
+      if (any(condition)){
+        colData(sce)[new_coldata] <- assay(sce, y)[condition,]
+      }
+    }
+  }
+  
+  condition <- rownames(sce) %in% row
+  sce <- sce[!condition, ]
+  
+  return(sce)
+}
+

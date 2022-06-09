@@ -8,5 +8,13 @@ download:
     rna: rna$
 load:
   class: h5
+  separate_samples: yes
+  coldata:
+    - "S1probe" 
 metadata:
   doi: doi.org/10.1016/j.cell.2021.02.018
+  description: "Longitudinal samples of PMBCs with FACS enrichment from 31 hospitalized COVID19 patients and 14 healthy controls."
+  tissue: "PBMC+FACS"
+  species: "Homo sapiens"
+  alias: "Liu_2021"
+  genome_build: "hg19 (cellranger 1.2.0)"

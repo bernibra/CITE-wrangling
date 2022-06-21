@@ -1,0 +1,7 @@
+"file","title","replicate","individual","Experiment","geo_accession","description","cell_types"
+"GSM4005486","PBMC AbSeq_1",1,"Donor 1, Donor 2, Donor 3","targeted transcriptome","GSM4005486","Sample 1","CD45+ Live Cells"
+"GSM4005487","PBMC AbSeq_2",2,"Donor 1, Donor 2, Donor 3","targeted transcriptome","GSM4005487","Sample 1","CD45+ Live Cells"
+"GSM4005488","SubSample",NA,"Donor 4","subsampling experiment","GSM4005488","Sample 2","CD45+ Live Cells"
+"GSM4005490","10x_Donor3_1",1,"Donor 3","whole transcriptome","GSM4005490","Sample 4","CD45+ Live Cells"
+"GSM4005491","10x_Donor3_2",2,"Donor 3","whole transcriptome","GSM4005491","Sample 4","CD45+ Live Cells"
+"...6","Stim_Experiment",NA,"Donor 5","T and NK cell stimulation","GSM4005489","Sample 3","NK and T cells"

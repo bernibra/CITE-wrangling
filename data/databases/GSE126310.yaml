@@ -7,12 +7,21 @@ download:
     protein: adt
     rna: gdo
 load:
-  separate_samples: yes
-  coldata:
-  - no_match
-  - ambiguous
-  - total_reads
-  - bad_struct
+  protein:
+    samples_keyword: "ctrl-ADT|CTCL-ADT"
+    separate_samples: yes
+    coldata:
+      - no_match
+      - ambiguous
+      - total_reads
+      - bad_struct
+  rna:
+    separate_samples: yes
+    coldata:
+      - no_match
+      - ambiguous
+      - total_reads
+      - bad_struct
 metadata:
   doi: doi.org/10.1038/s41592-019-0392-0
   description: "ECCITE-seq - simultaneous assay of TCR, CRISPR, gene expression and surface markers.  Data set includes two experiments: 1. a mixing experiment with human PBMCs (25%) human lymphoma cell lines MyLa (5%) and Sez4 (5%) and mouse NIH-3T3 cells (65%) stained with human and mouse anti-CD29. 2. ECCITE-seq of PBMCs from a healthy human donor and a patient with cutaneous T-cell lymphoma (CTCL). CRISPR and TCR sequencing results are not included in this data set"

@@ -72,7 +72,7 @@ merge_samples <- function(paths, files, metadata, database, ftype="protein", ove
         # Check if there are weird mix of samples
         for(y in info$sample_groups){
           merge_idx(filenames[grepl(y, basename(filenames))],
-                    dir=file.path(dirname(filenames[1]), idx, gsub(x = y, pattern = "\\|", replacement="_")),
+                    dir=file.path(dirname(filenames[1]), paste0(idx, gsub(x = y, pattern = "\\|", replacement="_"))),
                     overwrite)
         }
       }

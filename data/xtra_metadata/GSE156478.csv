@@ -1,0 +1,7 @@
+"sample","group","protocol","geo_accession","incubation","lysis_buffer"
+"CD28_CD3_control_CITE","control","ASAP-seq/CITE-seq","GSM4732113/GSM4732114","IL2","no lysis"
+"CD28_CD3_stim_CITE","stimulated","ASAP-seq/CITE-seq","GSM4732115/GSM4732116","IL2 and anti-CD3/CD28","no lysis"
+"CD28_CD3_LLL_control_Multiome","control","Multiome/CITE-seq","GSM5065524/GSM5065525/GSM5065526","IL2","LLL"
+"CD28_CD3_LLL_stim_Multiome","stimulated","Multiome/CITE-seq","GSM5065527/GSM5065528/GSM5065529","IL2 and anti-CD3/CD28","LLL"
+"CD28_CD3_DIG_control_Multiome","control","Multiome/CITE-seq","GSM5065530/GSM5065531/GSM5065532","IL2","DIG"
+"CD28_CD3_DIG_stim_Multiome","stimulated","Multiome/CITE-seq","GSM5065533/GSM5065534/GSM5065535","IL2 and anti-CD3/CD28","DIG"

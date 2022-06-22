@@ -102,7 +102,7 @@ load_path <- function(path, info, ftype="protein", id="id"){
       if(!is.null(info$samples_keyword)){
         samples_keyword <- grepl(info$samples_keyword, basename(rdir))
       }else{
-        samples_keyword <- FALSE
+        samples_keyword <- TRUE
       }
 
       # Save the reformatted data as an rds file or HDF5 depending on whether or not samples are together

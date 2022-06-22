@@ -8,12 +8,14 @@ download:
     rna: cite_gex|multiome_rna
 load:
   protein:
+    separate_samples: yes
     transpose: yes
     features: proteins.txt.gz$|features.tsv.gz$
     cells: barcodes.txt.gz$|barcodes.tsv.gz$
     replace: mtx$|matrix.mtx$|matrix.tsv$|mtx.gz$|matrix.mtx.gz$|matrix.tsv.gz$
     column: 1
   rna:
+    separate_samples: yes
     class: mtx
     transpose: no
     features: proteins.txt.gz$|features.tsv.gz$
@@ -22,3 +24,7 @@ load:
     column: 2
 metadata:
   doi: doi.org/10.1038/s41587-021-00927-2
+  description: "Subset of Mimitou et al 2021 (Nat Biotech) containing CITE-seq and DOGMA-seq experiments"
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  alias: "Mimitou_2021"

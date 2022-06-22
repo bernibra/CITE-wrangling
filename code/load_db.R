@@ -98,16 +98,9 @@ load_path <- function(path, info, ftype="protein", id="id"){
                                  value=info$dictionary$value)
       }
       
-      # Check if there are weird mix of samples
-      if(!is.null(info$samples_keyword)){
-        samples_keyword <- grepl(info$samples_keyword, basename(rdir))
-      }else{
-        samples_keyword <- TRUE
-      }
-
       # Save the reformatted data as an rds file or HDF5 depending on whether or not samples are together
       if(!is.null(sce$sce)){
-        if(ifelse(is.null(info$separate_samples), FALSE, info$separate_samples) & samples_keyword){
+        if(ifelse(is.null(info$separate_samples), FALSE, info$separate_samples)){
           # Save object as rds
           saveRDS(object = sce$sce, file = paste0(rdir, ".rds"))
         }else{

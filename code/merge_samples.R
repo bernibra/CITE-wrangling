@@ -45,7 +45,7 @@ merge_idx <- function(filenames, dir, overwrite){
 }
 
 # Format all datasets as SingleCellExperiments
-merge_samples <- function(paths, files, metadata, ftype="protein", overwrite=TRUE){
+merge_samples <- function(paths, files, metadata, database, ftype="protein", overwrite=TRUE){
   
   files_ <- basename(files)
   
@@ -55,10 +55,27 @@ merge_samples <- function(paths, files, metadata, ftype="protein", overwrite=TRU
     
     # Filter by id
     filenames <- files[grepl(idx, files_)]
+    
+    # Get info
+    info <- database[[idx]]
+    
+    # Check if we need to distinguish between rna and protein data
+    if(!is.null(info[[ftype]])){
+      info <- info[[ftype]] 
+    }
 
-        # Merge sce and save as HDF5 file
+    # Merge sce and save as HDF5 file
     if(length(filenames)>0){
-      merge_idx(filenames, dir=file.path(dirname(filenames[1]), idx), overwrite)
+      if(is.null(info$sample_groups)){
+        merge_idx(filenames, dir=file.path(dirname(filenames[1]), idx), overwrite)
+      }else{
+        # Check if there are weird mix of samples
+        for(y in info$sample_groups){
+          merge_idx(filenames[grepl(y, basename(filenames))],
+                    dir=file.path(dirname(filenames[1]), idx, gsub(x = y, pattern = "\\|", replacement="_")),
+                    overwrite)
+        }
+      }
     }
   })
   

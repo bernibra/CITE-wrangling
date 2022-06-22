@@ -8,7 +8,11 @@ download:
     rna: gdo
 load:
   protein:
-    samples_keyword: "ctrl-ADT|CTCL-ADT"
+    sample_groups:
+      - "ctrl-ADT|CTCL-ADT"
+      - "_sp-ADT"
+      - "_mx-ADT"
+      - "_K-ADT"
     separate_samples: yes
     coldata:
       - no_match

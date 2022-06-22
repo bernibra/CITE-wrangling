@@ -9,6 +9,9 @@ download:
 load:
   protein:
     separate_samples: yes
+    sample_groups:
+      - "CITE_ADT"
+      - "ADT_allCounts"
     transpose: yes
     features: proteins.txt.gz$|features.tsv.gz$
     cells: barcodes.txt.gz$|barcodes.tsv.gz$
@@ -16,6 +19,9 @@ load:
     column: 1
   rna:
     separate_samples: yes
+    sample_groups:
+      - "CITE_ADT"
+      - "ADT_allCounts"
     class: mtx
     transpose: no
     features: proteins.txt.gz$|features.tsv.gz$

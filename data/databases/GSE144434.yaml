@@ -14,3 +14,8 @@ load:
     transpose: yes
 metadata:
   doi: doi.org/10.1093/nargab/lqaa025
+  description: "CITE-seq of PMBCs from a healthy donor. Antibody mixes in 5-point titration curve, each concentration labelled with hashtag oligonucleotides."
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  genome_build: "GRCh38"
+  alias: "Pont_2020"

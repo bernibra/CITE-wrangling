@@ -7,9 +7,11 @@ download:
     protein: transcriptomic
 load:
   protein:
+    separate_samples: no
     keyword: Antibodies
     transpose: yes
   rna:
+    separate_samples: no
     keyword: genes
     transpose: yes
 metadata:

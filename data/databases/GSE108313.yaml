@@ -7,6 +7,7 @@ download:
     protein: adt
     rna: rna
 load:
+  separate_samples: yes
   transpose: no
   coldata:
   - bad_struct
@@ -14,3 +15,8 @@ load:
   - total_reads
 metadata:
   doi: doi.org/10.1101/237693
+  description: "CITE-seq of PBMCs from 8 human donors (A-H), 7 antibodies stained in a titration series with concentrations 5ug (micrograms), 3ug, 1ug, 0.5ug, 0.06ug and 0ug. Donor H does not include ADT and was used to estimate background signal.  8 IgM/IgG isotype controls were used. Samples were pooled in equal proportions including an equal proportion of HEK293T and 3% mouse NIH-3T3 cells as negative controls. Data for other cell hashing experiments with transcriptomic readout is available but not included in this data set."
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  genome_build: "hg19-mm10"
+  alias: "Stoeckius_2018"

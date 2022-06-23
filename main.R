@@ -16,9 +16,9 @@ f <- lapply(list.files("code", full.names = T), source)
 # If there aren't arguments, the pipeline will work for all datasets
 # args = commandArgs(trailingOnly=TRUE)
 
-done <- c(19, 7, 18, 14, 10, 16, 23, 24, 22, 13, 12, 20, 15)
+done <- c(19, 7, 18, 14, 10, 16, 23, 24, 22, 13, 12, 20, 15, 25)
 too_long <- c(21)
-args <- 15
+args <- 25
 if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------un

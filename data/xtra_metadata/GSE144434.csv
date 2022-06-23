@@ -1,0 +1,6 @@
+"mAb_titration_x","HTO_TAGnum","microgram_per_test","barcode_sequence","primary"
+0.25,1,0.5,"GTCAACTCTTTAGCG","dilution_0.25"
+0.5,2,0.5,"TGATGGCCTATTGGG","dilution_0.5"
+1,3,0.5,"TTCCGCCTCTCTTTG","dilution_1"
+2,4,0.5,"AGTAAGTTCAGCGTA","dilution_2"
+4,5,0.5,"AAGTATCGTTTCGCA","dilution_4"

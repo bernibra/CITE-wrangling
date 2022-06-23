@@ -14,6 +14,7 @@ download:
     protein: 10x_FB_norm.rds
     rna: 10x_RNA_norm.rds
 load:
+  separate_samples: no
   class: rds
   transpose: no
   samples:
@@ -22,3 +23,8 @@ load:
     value: sample
 metadata:
   doi: doi.org/10.7554/elife.69577
+  description: "CITE-seq of PBMCs from 12 patients involved in a HIV-vaccine trial. Patients had either high or low ADCP (Antibody dependent cellular phagocytosis)"
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  genome_build: "GRCH38"
+  alias: "Shangguan_2021"

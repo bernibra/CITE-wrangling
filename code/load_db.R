@@ -74,8 +74,8 @@ load_path <- function(path, info, ftype="protein", id="id"){
     rdir_ <- file.path("data/processed/names", ftype)
 
     # Process raw data and save as SingleCellExperiment class if not done already
-    if(!file.exists(rdir) & !file.exists(paste0(rdir, ".rds")) & !file.exists(paste0(dirname(rdir), id))){
-      # Progress meassage
+    if(!file.exists(rdir) & !file.exists(paste0(rdir, ".rds")) & !any(grepl(id, list.files(dirname(rdir), include.dirs = T)))){
+      # Progress message
       message("processing ", ftype," data for ", basename(filenames[idx]))
       
       # Check if we can actually load the document
@@ -88,6 +88,7 @@ load_path <- function(path, info, ftype="protein", id="id"){
       if(shouldi$shouldi){
         sce <- read_raw(filename, info)
       }else{
+        # get column and row names at least
         sce <- get_row_column(filename)
       }
 
@@ -116,11 +117,14 @@ load_path <- function(path, info, ftype="protein", id="id"){
       # Write Warning file if necessary
       write_warning_file(sce, filenames[idx])
 
-      # Compress files again to avoid using too much disc
-      # if(!(grepl(".gz$", filenames[idx]))){zip(zipfile = paste0(filenames[idx], ".gz"), files = filenames[idx])}
-
+      ## Compress files again to avoid using too much disc
+      if((grepl(".csv$|.tsv|.txt$", filenames[idx]))){R.utils::gzip(filenames[idx])}
+      
     }else{
       message("---> file already processed: ", basename(filenames[idx]))
+      ## Compress files again to avoid using too much disc
+      if((grepl(".csv$|.tsv|.txt$", filenames[idx]))){R.utils::gzip(filenames[idx])}
+      
     }
   }
 

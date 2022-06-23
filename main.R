@@ -17,8 +17,8 @@ f <- lapply(list.files("code", full.names = T), source)
 # args = commandArgs(trailingOnly=TRUE)
 
 done <- c(19, 7, 18, 14, 10, 16, 23, 24, 22, 13, 12, 20, 15, 25)
-too_long <- c(21)
-args <- 25
+too_long <- c(21, 8)
+args <- 21
 if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------un
@@ -61,6 +61,7 @@ get_data_plan <- rbind(
 
 # Processing data --------------------------------------------------------
 
+# Add main directories for processed data
 dir.create("data/processed", showWarnings = FALSE)
 dir.create("data/processed/protein-data", showWarnings = FALSE)
 dir.create("data/processed/rna-data", showWarnings = FALSE)

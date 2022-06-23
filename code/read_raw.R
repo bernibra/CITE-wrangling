@@ -19,7 +19,7 @@ read_raw.default <- function(filename, info, ...){
   }
   
   # File formatted csv, tsv or txt
-  if (grepl(".csv$|.tsv$|.txt$", filename)){
+  if (grepl(".csv$|.tsv$|.txt$|.csv.gz$|.tsv.gz$|.txt.gz$", filename)){
     return(read_raw.csv(filename, info))
   }
   
@@ -271,7 +271,7 @@ read_metadata <- function(sce, info, path){
           meta <- readRDS(filename)
         }
         # File formatted csv, tsv or txt
-        if (grepl(".csv$|.tsv$|.txt$", tolower(filename))){
+        if (grepl(".csv$|.tsv$|.txt$|.csv.gz$|.tsv.gz$|.txt.gz$", tolower(filename))){
           meta <- readr::read_delim(filename, comment = "#", show_col_types = FALSE, col_names = TRUE)
         }
         

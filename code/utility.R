@@ -138,3 +138,16 @@ split_big_file <- function(filename, chunks=1){
   
   return(0)
 }
+
+define_processed_name <- function(folder, sample_groups, id){
+
+  if(is.null(sample_groups)){
+      return(data.frame(pattern = "", 
+                        path = file.path(folder, id)))
+  }else{
+    # Check if there are weird mix of samples
+    return(data.frame(pattern= sample_groups,
+                      path=file.path(folder, paste0(id, gsub(x = sample_groups, pattern = "\\|", replacement="_")))))
+  }
+}
+

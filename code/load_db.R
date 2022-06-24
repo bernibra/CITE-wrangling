@@ -62,7 +62,8 @@ load_path <- function(path, info, ftype="protein", id="id"){
 
   # Dealing with multiple files if possible
   filenames <- select_relevant_files(filenames = filenames, info = info)
-
+  
+  # Loop over files
   for (idx in 1:length(filenames)){
 
     # Define file name
@@ -73,8 +74,11 @@ load_path <- function(path, info, ftype="protein", id="id"){
 
     rdir_ <- file.path("data/processed/names", ftype)
 
+    # Check that the files have not been processed as HDF5 already    
+    processed <- all(dir.exists(define_processed_name(dirname(rdir), info$sample_groups, id)$path))
+
     # Process raw data and save as SingleCellExperiment class if not done already
-    if(!file.exists(rdir) & !file.exists(paste0(rdir, ".rds")) & !any(grepl(id, list.files(dirname(rdir), include.dirs = T)))){
+    if(!file.exists(rdir) & !file.exists(paste0(rdir, ".rds")) & !processed){
       # Progress message
       message("processing ", ftype," data for ", basename(filenames[idx]))
       
@@ -118,12 +122,12 @@ load_path <- function(path, info, ftype="protein", id="id"){
       write_warning_file(sce, filenames[idx])
 
       ## Compress files again to avoid using too much disc
-      if((grepl(".csv$|.tsv|.txt$", filenames[idx]))){R.utils::gzip(filenames[idx])}
+      if((grepl(".csv$|.tsv$|.txt$", filename))){R.utils::gzip(filename)}
       
     }else{
       message("---> file already processed: ", basename(filenames[idx]))
       ## Compress files again to avoid using too much disc
-      if((grepl(".csv$|.tsv|.txt$", filenames[idx]))){R.utils::gzip(filenames[idx])}
+      if((grepl(".csv$|.tsv$|.txt$", filenames[idx]))){R.utils::gzip(filenames[idx])}
       
     }
   }

@@ -4,10 +4,14 @@ download:
   id: GSE108313
   description: description
   keyword:
-    protein: adt
-    rna: rna
+    protein: "adt"
+    rna: "rna"
+  wlink:
+    other: "https://static-content.springer.com/esm/art%3A10.1186%2Fs13059-018-1603-1/MediaObjects/13059_2018_1603_MOESM2_ESM.xlsx"
+  fname:
+    other: "13059_2018_1603_MOESM2_ESM.xlsx"
 load:
-  separate_samples: yes
+  separate_samples: no
   transpose: no
   coldata:
   - bad_struct

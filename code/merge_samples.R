@@ -66,16 +66,11 @@ merge_samples <- function(paths, files, metadata, database, ftype="protein", ove
 
     # Merge sce and save as HDF5 file
     if(length(filenames)>0){
-      if(is.null(info$sample_groups)){
-        merge_idx(filenames, dir=file.path(dirname(filenames[1]), idx), overwrite)
-      }else{
-        # Check if there are weird mix of samples
-        for(y in info$sample_groups){
-          merge_idx(filenames[grepl(y, basename(filenames))],
-                    dir=file.path(dirname(filenames[1]), paste0(idx, gsub(x = y, pattern = "\\|", replacement="_"))),
-                    overwrite)
-        }
-      }
+      
+      sample_groups <- define_processed_name(folder=dirname(filenames[1]), sample_groups = info$sample_groups, id = idx)
+      
+      apply(sample_groups, 1, function(y) merge_idx(filenames[grepl(y[1], basename(filenames))], dir=y[2], overwrite))
+      
     }
   })
   

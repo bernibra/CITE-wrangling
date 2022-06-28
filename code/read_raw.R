@@ -66,6 +66,9 @@ read_raw.h5 <- function(filename, info, ...){
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
   
+  # Add altExp if necessary
+  sce <- add_alt_exp(sce = sce, path = dirname(filename), alternative = info$altExp)
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
@@ -81,6 +84,9 @@ read_raw.h5seurat <- function(filename, info, ...){
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
+  
+  # Add altExp if necessary
+  sce <- add_alt_exp(sce = sce, path = dirname(filename), alternative = info$altExp)
   
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
@@ -128,6 +134,9 @@ read_raw.mtx <- function(filename, info, ...){
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
   
+  # Add altExp if necessary
+  sce <- add_alt_exp(sce = sce, path = dirname(filename), alternative = info$altExp)
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
@@ -153,6 +162,9 @@ read_raw.Seurat <- function(filename, info, ...){
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
   
+  # Add altExp if necessary
+  sce <- add_alt_exp(sce = sce, path = dirname(filename), alternative = info$altExp)
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
@@ -177,6 +189,9 @@ read_raw.access <- function(filename, info, ...){
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
   
+  # Add altExp if necessary
+  sce <- add_alt_exp(sce = sce, path = dirname(filename), alternative = info$altExp)
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
@@ -191,6 +206,9 @@ read_raw.h5ad <- function(filename, info, ...){
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
+  
+  # Add altExp if necessary
+  sce <- add_alt_exp(sce = sce, path = dirname(filename), alternative = info$altExp)
   
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
@@ -231,6 +249,9 @@ matrix_to_sce <- function(mat, info, filename, ...){
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
+
+  # Add altExp if necessary
+  sce <- add_alt_exp(sce = sce, path = dirname(filename), alternative = info$altExp)
   
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
@@ -318,6 +339,26 @@ sce_move_to_coldata <- function(sce, row){
   
   condition <- rownames(sce) %in% row
   sce <- sce[!condition, ]
+  
+  return(sce)
+}
+
+add_alt_exp <- function(sce, path, alternative=NULL){
+  
+  filename <- list.files(file.path(dirname(dirname(path)), "metadata"))
+  
+  if(is.null(alternative) | length(filename)==0){
+    return(sce)
+  }
+  
+  filename <- filename[gsub(alternative, filename)]
+  
+  if(length(filename)!=1){
+    return(sce)
+  }
+  
+  # hto <- read_raw(filename)
+  # altExp(sce) <- hto
   
   return(sce)
 }

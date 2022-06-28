@@ -4,16 +4,19 @@ download:
   id: GSE108313
   description: title
   keyword:
-    protein: "hashtag-adt|hashtag-hto"
-    rna: "rna|hto"
+    protein: "adt"
+    rna: "rna"
   wlink:
-    other: "https://static-content.springer.com/esm/art%3A10.1186%2Fs13059-018-1603-1/MediaObjects/13059_2018_1603_MOESM2_ESM.xlsx"
+    other: 
+      - "https://static-content.springer.com/esm/art%3A10.1186%2Fs13059-018-1603-1/MediaObjects/13059_2018_1603_MOESM2_ESM.xlsx"
+      - "https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM2895nnn/GSM2895283/suppl//GSM2895283_Hashtag-HTO-count.csv.gz"
   fname:
-    other: "13059_2018_1603_MOESM2_ESM.xlsx"
+    other: 
+      - "13059_2018_1603_MOESM2_ESM.xlsx"
+      - "GSM2895283_Hashtag-HTO-count.csv.gz"
 load:
   protein:
     altExp: "hashtag-hto"
-    keyword: "adt"
     separate_samples: no
     transpose: no
     coldata:
@@ -21,7 +24,7 @@ load:
       - no_match
       - total_reads
   rna:
-    keyword: "rna"
+    keywords: "RNA"
     separate_samples: no
     transpose: no
     coldata:

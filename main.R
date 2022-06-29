@@ -14,11 +14,11 @@ f <- lapply(list.files("code", full.names = T), source)
 
 # Any arguments? ----------------------------------------------------------
 # If there aren't arguments, the pipeline will work for all datasets
-# args = commandArgs(trailingOnly=TRUE)
+args = commandArgs(trailingOnly=TRUE)
 
 too_long <- c(22, 8)
 too_long_names <- c("GSE158769", "E-MTAB-10026")
-args <- 13
+# args <- 13
 if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------un
@@ -88,10 +88,10 @@ build_protein_dictionary <- drake_plan(
                                      metadata = download_data, 
                                      database = load_data,
                                      ftype = "protein",
-                                     overwrite = TRUE)
-  # sce_protein_metadata = add_metadata(filenames = names(sce_protein_merged$dirs),
-  #                                     metadata=metadata,
-  #                                     args=args)
+                                     overwrite = TRUE),
+  sce_protein_metadata = add_metadata(filenames = names(sce_protein_merged$dirs),
+                                       metadata=metadata,
+                                       args=args)
   # protein_normalized = normalize_protein(paths = sce_protein$names, type="default"),
   # protein_db = unify_names(paths = sce_protein$names),
   #protein_lists = reformat_protein(pnames = protein_db, ids = datasets)

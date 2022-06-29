@@ -12,7 +12,14 @@ download:
 load:
   protein:
     h5key: Antibody Capture
+    separate_samples: no
   rna:
     h5key: Gene Expression
+    separate_samples: no
 metadata:
   doi: 10xgenomics.com/resources/datasets/pbm-cs-from-a-healthy-donor-whole-transcriptome-analysis-1-1-standard-4-0-0
+  description: "Human peripheral blood mononuclear cells (PBMCs) of a healthy female donor aged 29 were obtained by 10x Genomics from AllCells. The whole transcriptome (parent) library was prepared with Chromium Single Cell V(D)J Reagent Kits User Guide (v1 Chemistry) with Feature Barcode technology for Cell Surface Protein (CG000186), and sequenced on an Illumina NovaSeq 6000"
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  genome_build: "GrCH38"
+  alias: "Parent_SC5_PBMC"

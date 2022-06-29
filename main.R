@@ -18,7 +18,7 @@ args = commandArgs(trailingOnly=TRUE)
 
 too_long <- c(22, 8)
 too_long_names <- c("GSE158769", "E-MTAB-10026")
-# args <- 13
+args <- 1
 if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------un

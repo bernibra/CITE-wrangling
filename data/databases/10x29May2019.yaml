@@ -12,7 +12,14 @@ download:
 load:
   protein:
     h5key: Antibody Capture
+    separate_samples: no
   rna:
     h5key: Gene Expression
+    separate_samples: no
 metadata:
-  doi: support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.2/5k_pbmc_protein_v3
+  doi: 10xgenomics.com/resources/datasets/5-k-peripheral-blood-mononuclear-cells-pbm-cs-from-a-healthy-donor-with-cell-surface-proteins-v-3-chemistry-3-1-standard-3-0-2
+  description: "Peripheral blood mononuclear cells (PBMCs) from a healthy donor were stained with a panel of 31 TotalSeq-B antibodies (BioLegend). PBMCs are primary cells with relatively small amounts of RNA (1pg RNA/cell). Libraries were prepared following the Chromium Single Cell 3 Reagent Kits v3 with Feature Barcoding technology for Cell Surface Protein User Guide (CG000185 RevB)."
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  genome_build: "GrCH38"
+  alias: "5k_pbmc_protein_v3"

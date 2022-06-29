@@ -93,7 +93,7 @@ load_path <- function(path, info, ftype="protein", id="id"){
         sce <- read_raw(filename, info)
         
         # Add altExp if necessary
-        sce$sce <- add_alt_exp(sce = sce$sce, path = dirname(filename), alternative = info$altExp)
+        sce <- add_alt_exp(sce = sce, path = dirname(filename), alternative = info$altExp)
       }else{
         # get column and row names at least
         sce <- get_row_column(filename)

@@ -25,6 +25,10 @@ sce_move_to_coldata <- function(sce, row){
 
 add_alt_exp <- function(sce, path, alternative=NULL){
   
+  # Extract SingleCellExperiment
+  sce <- sce$sce
+  
+  # Find metadata
   filename <- list.files(file.path(dirname(dirname(path)), "metadata"), full.names = T)
 
   if(is.null(alternative) | length(filename)==0){
@@ -37,16 +41,23 @@ add_alt_exp <- function(sce, path, alternative=NULL){
     return(sce)
   }
 
+  print("start")
+  
   # Load hto
   hto <- read_raw(filename, info=list())$sce
-
+  print("stop0")
+  
   # Match columns
   joint.bcs <- intersect(colnames(sce), colnames(hto))
   sce <- sce[,joint.bcs]
   hto <- hto[,joint.bcs]
   
+  print("stop1")
+  
   # Add as alternative experiment
   altExp(sce, "hto") <- hto
-  return(sce)
+  print("stop2")
+  
+  return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 

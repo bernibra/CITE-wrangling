@@ -12,7 +12,7 @@ download:
 load:
   class: h5ad
   separate_samples: no
-  samples: "sample_name"
+  samples: "sample"
 metadata:
   doi: doi.org/10.1016/j.cell.2020.10.037
   description: "PBMCs from serial blood draws of  COVID-19 patients and 18 healthy controls.  Secreted protein and metabolite data is also available."

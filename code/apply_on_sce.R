@@ -31,7 +31,7 @@ add_alt_exp <- function(sce, path, alternative=NULL){
     return(sce)
   }
   
-  filename <- filename[gsub(alternative, filename)]
+  filename <- filename[grepl(alternative, filename)]
   
   if(length(filename)!=1){
     return(sce)

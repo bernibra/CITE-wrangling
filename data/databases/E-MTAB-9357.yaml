@@ -9,10 +9,12 @@ download:
     other: supp_tables.xlsx
 load:
   protein:
+    transpose: yes
     separate_samples: yes
     keyword: pro
     transpose: no
   rna:
+    transpose: yes
     separate_samples: yes
     keyword: gex
     transpose: no

@@ -36,10 +36,17 @@ add_alt_exp <- function(sce, path, alternative=NULL){
   if(length(filename)!=1){
     return(sce)
   }
-  
+  print(filename)
+  # Load hto
   hto <- read_raw(filename, info=list())
-  altExp(sce) <- hto
+  print(hto)
   
+  joint.bcs <- intersect(colnames(sce), colnames(hto))
+  sce <- sce[,joint.bcs]
+  hto <- hto[,joint.bcs]
+  
+  altExp(sce, "hto") <- hto
+  print(sce)
   return(sce)
 }
 

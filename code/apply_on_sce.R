@@ -67,7 +67,7 @@ add_metadata <- function(filenames, metadata, args=NULL){
     
     # Check if we need to process it
     if(!(id %in% names(metadata))){
-      return(NULL)
+      return(x)
     }
     
     # Create empty sample information
@@ -89,11 +89,11 @@ add_metadata <- function(filenames, metadata, args=NULL){
     # Check if sce metadata needs to be changed
     if(!identical(metadata(sce), prepare_metadata)){
       metadata(sce) <- prepare_metadata
+      HDF5Array::quickResaveHDF5SummarizedExperiment(sce, verbose = T)
     }
     
-    HDF5Array::quickResaveHDF5SummarizedExperiment(sce, verbose = T)
-
     return(x)
   })
+  return(x)
 }
 

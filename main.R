@@ -29,10 +29,11 @@ options(timeout = 3600)
 configuration_plan <- drake_plan(
   config = yaml::read_yaml(file_in("config.yaml")),
   data = lapply(list.files(file_in("data/databases/"), full.names = T), function(x) yaml::read_yaml(x)),
-  metadata = sapply(data, function(x) setNames(list(x$download), x$metadata$doi), USE.NAMES = F),
-  datasets = sapply(data, function(x) setNames(list(x$load), x$download$id), USE.NAMES = F),
+  download_data = sapply(data, function(x) setNames(list(x$download), x$metadata$doi), USE.NAMES = F),
+  load_data = sapply(data, function(x) setNames(list(x$load), x$download$id), USE.NAMES = F),
+  metadata = sapply(data, function(x) setNames(list(x$metadata), x$download$id), USE.NAMES = F),
   data_download_date = config$raw_data_retrieved,
-  download_key = metadata
+  download_key = download_data
 )
 
 # Download data ----------------------------------------------------------
@@ -72,7 +73,7 @@ dir.create("data/processed/names/rna", showWarnings = FALSE)
 raw_to_SingleCellExperiment <- drake_plan(
   sce_protein = load_db(paths = raw_protein,
                      ids = download_key,
-                     database = datasets,
+                     database = load_data,
                      ftype ="protein")
   # sce_rna = load_db(paths = raw_rna,
   #                    ids = download_key,
@@ -84,13 +85,13 @@ raw_to_SingleCellExperiment <- drake_plan(
 build_protein_dictionary <- drake_plan(
   sce_protein_merged = merge_samples(paths = raw_protein,
                                      files = sce_protein$rds,
-                                     metadata = metadata, 
-                                     database = datasets,
+                                     metadata = download_data, 
+                                     database = load_data,
                                      ftype = "protein",
-                                     overwrite = TRUE),
-  sce_protein_metadata = add_metadata(filenames = names(sce_protein_merged$dirs),
-                                      data=data,
-                                      args=args)
+                                     overwrite = TRUE)
+  # sce_protein_metadata = add_metadata(filenames = names(sce_protein_merged$dirs),
+  #                                     metadata=metadata,
+  #                                     args=args)
   # protein_normalized = normalize_protein(paths = sce_protein$names, type="default"),
   # protein_db = unify_names(paths = sce_protein$names),
   #protein_lists = reformat_protein(pnames = protein_db, ids = datasets)

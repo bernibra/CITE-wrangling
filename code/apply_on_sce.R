@@ -55,7 +55,14 @@ add_alt_exp <- function(sce, path, alternative=NULL){
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
-add_metadata <- function(filenames, data, args=NULL){
+add_metadata <- function(filenames, metadata, args=NULL){
+  if(!is.null(args)){
+    metadata <- metadata[names(metadata)[args]]
+  }
   
+  lapply(metadata, function(x){
+    prepare_metadata <- list()
+    
+  })
 }
 

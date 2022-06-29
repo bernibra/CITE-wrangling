@@ -16,7 +16,7 @@ download:
       - "GSM2895283_Hashtag-HTO-count.csv.gz"
 load:
   protein:
-    alternative: "hashtag-hto"
+    altExp: "Hashtag-HTO"
     separate_samples: no
     transpose: no
     coldata:

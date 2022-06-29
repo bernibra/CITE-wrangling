@@ -26,6 +26,8 @@ sce_move_to_coldata <- function(sce, row){
 add_alt_exp <- function(sce, path, alternative=NULL){
   
   filename <- list.files(file.path(dirname(dirname(path)), "metadata"))
+  print(filename)
+  print(alternative)
   
   if(is.null(alternative) | length(filename)==0){
     return(sce)
@@ -33,6 +35,8 @@ add_alt_exp <- function(sce, path, alternative=NULL){
   
   filename <- filename[grepl(alternative, filename)]
   
+  print(filename)
+
   if(length(filename)!=1){
     return(sce)
   }

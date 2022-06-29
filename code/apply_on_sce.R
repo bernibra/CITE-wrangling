@@ -64,6 +64,7 @@ add_metadata <- function(filenames, metadata, args=NULL){
     # Find id
     id <- stringr::str_split(pattern = "_", string = basename(x))[[1]][1]
     print(id)
+    
     # Check if we need to process it
     if(!(id %in% names(metadata))){
       return(NULL)
@@ -90,8 +91,8 @@ add_metadata <- function(filenames, metadata, args=NULL){
       metadata(sce) <- prepare_metadata
     }
     
-    print(metadata(sce))
-    
+    HDF5Array::quickResaveHDF5SummarizedExperiment(sce, verbose = T)
+
     return(x)
   })
 }

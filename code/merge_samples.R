@@ -74,6 +74,6 @@ merge_samples <- function(paths, files, metadata, database, ftype="protein", ove
     }
   })
   
-  return(list(a=paths, b=metadata))
+  return(list(paths=paths, meta=metadata))
   
 }

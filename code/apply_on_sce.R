@@ -62,7 +62,7 @@ add_metadata <- function(filenames, metadata, args=NULL){
   
   lapply(filenames, function(x){
     # Find id
-    id <- str_split(pattern = "_", string = basename(x))[[1]][1]
+    id <- stringr::str_split(pattern = "_", string = basename(x))[[1]][1]
     print(id)
     # Check if we need to process it
     if(!(id %in% names(metadata))){

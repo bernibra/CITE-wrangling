@@ -90,6 +90,8 @@ add_metadata <- function(filenames, metadata, args=NULL){
       metadata(sce) <- prepare_metadata
     }
     
+    print(metadata(sce))
+    
     return(x)
   })
 }

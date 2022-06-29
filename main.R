@@ -89,7 +89,7 @@ build_protein_dictionary <- drake_plan(
                                      database = load_data,
                                      ftype = "protein",
                                      overwrite = TRUE),
-  sce_protein_metadata = add_metadata(filenames = names(sce_protein_merged$dirs),
+  sce_protein_metadata = add_metadata(filenames = sce_protein_merged$dirs,
                                        metadata=metadata,
                                        args=args)
   # protein_normalized = normalize_protein(paths = sce_protein$names, type="default"),

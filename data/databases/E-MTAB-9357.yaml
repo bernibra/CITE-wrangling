@@ -9,6 +9,13 @@ download:
     other: supp_tables.xlsx
 load:
   protein:
+    sample_groups:
+      - "_2.rds"
+      - "_1.rds"
+      - "BW.rds"
+      - "library_BP"
+      - "CL2.rds"
+      - "Mix_donor1.rds"
     separate_samples: yes
     keyword: pro
     transpose: yes

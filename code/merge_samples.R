@@ -18,7 +18,7 @@ merge_idx <- function(filenames, dir, overwrite){
   
   if(length(filenames)>1){
     for(idx in 2:length(filenames)){
-      #print(idx)
+      print(filenames[idx])
       sce <- readRDS(filenames[idx])
       if(!all("SAMPLE_ID" %in% names(colData(sce)))){
         colData(sce)$SAMPLE_ID <- idx

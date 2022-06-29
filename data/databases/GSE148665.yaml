@@ -10,7 +10,6 @@ download:
 load:
   class: h5ad
   separate_samples: no
-  samples: "samles"
 metadata:
   doi: doi.org/10.1093/nar/gkaa314
   description: "CITE-seq of PBMCs from one healthy donor, 10 surface markers 1372 cells and ~50k reads per cell. Data contains RAW UMIs."

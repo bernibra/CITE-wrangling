@@ -185,6 +185,13 @@ read_raw.h5ad <- function(filename, info, ...){
   
   # Open file in memory
   sce <- zellkonverter::readH5AD(as.character(filename))
+  
+  # Check name for assay
+  if(length(names(assays(sce)))==1){
+    if(names(assays(sce))=="counts"){
+      names(assays(sce)) <- "counts"
+    }
+  }
 
   # Move to colData if necessary
   sce <- sce_move_to_coldata(sce, info$coldata)

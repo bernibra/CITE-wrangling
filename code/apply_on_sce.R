@@ -60,7 +60,7 @@ add_metadata <- function(filenames, metadata, args=NULL){
     metadata <- metadata[names(metadata)[args]]
   }
   
-  lapply(filenames, function(x){
+  paths <- lapply(filenames, function(x){
     # Find id
     id <- stringr::str_split(pattern = "_", string = basename(x))[[1]][1]
     print(id)
@@ -94,6 +94,6 @@ add_metadata <- function(filenames, metadata, args=NULL){
     
     return(x)
   })
-  return(x)
+  return(paths)
 }
 

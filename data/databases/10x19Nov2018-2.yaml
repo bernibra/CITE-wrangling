@@ -12,7 +12,14 @@ download:
 load:
   protein:
     h5key: Antibody Capture
+    separate_samples: no
   rna:
     h5key: Gene Expression
+    separate_samples: no
 metadata:
   doi: 10xgenomics.com/resources/datasets/pbm-cs-of-a-healthy-donor-5-gene-expression-and-cell-surface-protein-1-standard-3-0-0
+  description: "Peripheral blood mononuclear cells (PBMCs) of a healthy donor, purchased from AllCells (Catalog no: PB001), 87% viable by Trypan blue stain. PBMCs are primary cells with relatively small amounts of RNA (1pg RNA/cell). The same cDNA was used to generate TCR (vdj_v1_hs_pbmc2_t) and B cell Ig (vdj_v1_hs_pbmc2_b) specific libraries."
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  genome_build: "GrCH38"
+  alias: "NA"

@@ -9,15 +9,13 @@ download:
     other: supp_tables.xlsx
 load:
   protein:
-    transpose: yes
     separate_samples: yes
     keyword: pro
-    transpose: no
-  rna:
     transpose: yes
+  rna:
     separate_samples: yes
     keyword: gex
-    transpose: no
+    transpose: yes
 metadata:
   doi: doi.org/10.1016/j.cell.2020.10.037
   description: "PBMCs from serial blood draws of  COVID-19 patients and 18 healthy controls.  Secreted protein and metabolite data is also available."

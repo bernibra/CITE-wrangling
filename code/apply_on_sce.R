@@ -63,10 +63,10 @@ add_metadata <- function(filenames, metadata, args=NULL){
   lapply(filenames, function(x){
     # Find id
     id <- str_split(pattern = "_", string = basename(x))[[1]][1]
-    
+    print(id)
     # Check if we need to process it
     if(!(id %in% names(metadata))){
-      return(x)
+      return(NULL)
     }
     
     # Create empty sample information
@@ -90,8 +90,7 @@ add_metadata <- function(filenames, metadata, args=NULL){
       metadata(sce) <- prepare_metadata
     }
     
-    print(names(x))
-    return(NULL)
+    return(x)
   })
 }
 

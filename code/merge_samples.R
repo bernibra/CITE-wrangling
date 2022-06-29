@@ -42,6 +42,7 @@ merge_idx <- function(filenames, dir, overwrite){
   if(overwrite){
     sapply(filenames, unlink)
   }
+  return(dir)
 }
 
 # Format all datasets as SingleCellExperiments
@@ -49,7 +50,7 @@ merge_samples <- function(paths, files, metadata, database, ftype="protein", ove
   
   files_ <- basename(files)
   
-  newsce <- lapply(names(paths), function(x){
+  lapply(names(paths), function(x){
     # Find id
     idx <- metadata[[x]]$id
     
@@ -69,11 +70,11 @@ merge_samples <- function(paths, files, metadata, database, ftype="protein", ove
       
       sample_groups <- define_processed_name(folder=dirname(filenames[1]), sample_groups = info$sample_groups, id = idx)
       
-      apply(sample_groups, 1, function(y) merge_idx(filenames[grepl(y[1], basename(filenames))], dir=y[2], overwrite))
+      dirs <- apply(sample_groups, 1, function(y) merge_idx(filenames[grepl(y[1], basename(filenames))], dir=y[2], overwrite))
       
     }
   })
   
-  return(list(paths=paths, meta=metadata))
+  return(list(paths=paths, meta=metadata, dirs=list.dirs("data/processed/protein-data/", full.names = T, recursive = F)))
   
 }

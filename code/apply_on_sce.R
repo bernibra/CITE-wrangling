@@ -32,13 +32,13 @@ add_alt_exp <- function(sce, path, alternative=NULL){
   filename <- list.files(file.path(dirname(dirname(path)), "metadata"), full.names = T)
 
   if(is.null(alternative) | length(filename)==0){
-    return(sce)
+    return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
   }
   
   filename <- filename[grepl(alternative, filename)]
 
   if(length(filename)!=1){
-    return(sce)
+    return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
   }
 
   # Load hto

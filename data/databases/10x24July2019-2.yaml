@@ -11,5 +11,11 @@ download:
     - vdj_v1_hs_pbmc3_protein_feature_ref.csv
 load:
   class: h5
+  separate_samples: no
 metadata:
   doi: 10xgenomics.com/resources/datasets/human-pbmc-5-cell-surface-protein-only-v-1-1-1-standard-3-1-0
+  description: "Human peripheral blood mononuclear cells (PBMCs) of a healthy donor were obtained from AllCells (part number: PB001). The cells were 87% viable (trypan blue stain) and were labeled with a panel of 14 TotalSeq-C antibodies and 3 isotype controls (BioLegend). Amplified cDNA from the labeled cells were used to generate cell surface protein libraries following the Chromium Single Cell V(D)J Reagent Kits User Guide with Feature Barcoding technology for Cell Surface Protein (CG000186)"
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  genome_build: "GrCH38"
+  alias: "vdj_v1_hs_pbmc3_protein"

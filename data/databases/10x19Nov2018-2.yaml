@@ -22,4 +22,4 @@ metadata:
   tissue: "PBMC"
   species: "Homo sapiens"
   genome_build: "GrCH38"
-  alias: "NA"
+  alias: "vdj_v1_hs_pbmc2_5gex_protein"

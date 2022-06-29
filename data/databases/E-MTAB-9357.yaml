@@ -1,28 +1,18 @@
 download:
-  download: array
+  download: wget
   id: E-MTAB-9357
-  keyword:
-    protein: _pro_|_gex_
   wlink:
+    protein: https://fh-pi-gottardo-r-eco-public.s3.amazonaws.com/SingleCellDatasets/su_2020-adt.h5ad
+    rna: https://fh-pi-gottardo-r-eco-public.s3.amazonaws.com/SingleCellDatasets/su_2020.h5ad
     other: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7598382/bin/mmc1.xlsx
   fname:
+    protein: su_2020-adt.h5ad
+    rna: su_2020.h5ad
     other: supp_tables.xlsx
 load:
-  protein:
-    sample_groups:
-      - "_2.rds"
-      - "_1.rds"
-      - "BW.rds"
-      - "library_BP"
-      - "CL2.rds"
-      - "Mix_donor1.rds"
-    separate_samples: yes
-    keyword: pro
-    transpose: yes
-  rna:
-    separate_samples: yes
-    keyword: gex
-    transpose: yes
+  class: h5ad
+  separate_samples: no
+  samples: "sample_name"
 metadata:
   doi: doi.org/10.1016/j.cell.2020.10.037
   description: "PBMCs from serial blood draws of  COVID-19 patients and 18 healthy controls.  Secreted protein and metabolite data is also available."

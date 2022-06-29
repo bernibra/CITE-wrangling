@@ -1,12 +1,20 @@
 download:
-  setup: geo
-  download: geo
+  download: wget
   id: GSE148665
-  description: data_processing
-  keyword:
-    protein: cite
-    rna: cellranger
+  wlink:
+    protein: "https://fh-pi-gottardo-r-eco-public.s3.amazonaws.com/SingleCellDatasets/wang_2020-adt.h5ad" 
+    rna: "https://fh-pi-gottardo-r-eco-public.s3.amazonaws.com/SingleCellDatasets/wang_2020.h5ad"
+  fname:
+    protein: "wang_2020-adt.h5ad"
+    rna: "wang_2020.h5ad"
 load:
-  transpose: no
+  class: h5ad
+  separate_samples: no
+  samples: "samles"
 metadata:
   doi: doi.org/10.1093/nar/gkaa314
+  description: "CITE-seq of PBMCs from one healthy donor, 10 surface markers 1372 cells and ~50k reads per cell. Data contains RAW UMIs."
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  genome_build: "GrCH38"
+  alias: "Wang_2020"

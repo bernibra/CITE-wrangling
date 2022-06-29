@@ -1,0 +1,20 @@
+download:
+  download: wget
+  id: GSE134759
+  wlink:
+    protein: "https://fh-pi-gottardo-r-eco-public.s3.amazonaws.com/SingleCellDatasets/witkowski_2020-adt.h5ad" 
+    rna: "https://fh-pi-gottardo-r-eco-public.s3.amazonaws.com/SingleCellDatasets/witkowski_2020.h5ad"
+  fname:
+    protein: "witkowski_2020-adt.h5ad"
+    rna: "witkowski_2020.h5ad"
+load:
+  class: h5ad
+  separate_samples: no
+  samples: "samles"
+metadata:
+  doi: doi.org/10.1016/j.ccell.2020.04.015
+  description: "CITE-seq of bone marrow from four pediatric B-cell acute lymphoblastic leukemia (B-ALL) patients at diagnosis, remission and relapse. Cells sorted into CD19+ and CD45+CD19- cells and mixed at a ratio 1:5 Independent scRNA-seq data is available for two of these patients."
+  tissue: "PBMC"
+  species: "Homo sapiens"
+  genome_build: ""
+  alias: "Witkowski_2020"

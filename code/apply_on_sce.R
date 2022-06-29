@@ -36,17 +36,17 @@ add_alt_exp <- function(sce, path, alternative=NULL){
   if(length(filename)!=1){
     return(sce)
   }
-  print(filename)
+
   # Load hto
-  hto <- read_raw(filename, info=list())
-  print(hto)
-  
+  hto <- read_raw(filename, info=list())$sce
+
+  # Match columns
   joint.bcs <- intersect(colnames(sce), colnames(hto))
   sce <- sce[,joint.bcs]
   hto <- hto[,joint.bcs]
   
+  # Add as alternative experiment
   altExp(sce, "hto") <- hto
-  print(sce)
   return(sce)
 }
 

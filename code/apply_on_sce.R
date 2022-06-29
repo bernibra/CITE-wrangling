@@ -41,22 +41,16 @@ add_alt_exp <- function(sce, path, alternative=NULL){
     return(sce)
   }
 
-  print("start")
-  
   # Load hto
   hto <- read_raw(filename, info=list())$sce
-  print("stop0")
-  
+
   # Match columns
   joint.bcs <- intersect(colnames(sce), colnames(hto))
   sce <- sce[,joint.bcs]
   hto <- hto[,joint.bcs]
   
-  print("stop1")
-  
   # Add as alternative experiment
   altExp(sce, "hto") <- hto
-  print("stop2")
   
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }

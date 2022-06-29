@@ -188,7 +188,7 @@ read_raw.h5ad <- function(filename, info, ...){
   
   # Check name for assay
   if(length(names(assays(sce)))==1){
-    if(names(assays(sce))=="counts"){
+    if(names(assays(sce))!="counts"){
       names(assays(sce)) <- "counts"
     }
   }

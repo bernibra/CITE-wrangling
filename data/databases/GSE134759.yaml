@@ -10,7 +10,7 @@ download:
 load:
   class: h5ad
   separate_samples: no
-  samples: "samles"
+  samples: "sample_name"
 metadata:
   doi: doi.org/10.1016/j.ccell.2020.04.015
   description: "CITE-seq of bone marrow from four pediatric B-cell acute lymphoblastic leukemia (B-ALL) patients at diagnosis, remission and relapse. Cells sorted into CD19+ and CD45+CD19- cells and mixed at a ratio 1:5 Independent scRNA-seq data is available for two of these patients."

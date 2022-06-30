@@ -50,6 +50,34 @@ read_raw.csv <- function(filename, info, ...){
   return(matrix_to_sce(mat, info, filename)) 
 }
 
+# Function turning a matrix type object to SingleCellExperiment class
+read_raw.fastcsv <- function(filename, info, ...){
+  # Load file as matrix using readr and tibble
+  mat <- data.table::fread(filename, sep=info$sep)
+
+  # Define colnames and rownames  
+  colnames_ <- colnames(mat)
+  rownames_ <- mat[[1]] %>% make.names(unique = T)
+  
+  # removing the first column
+  cols <- colnames_[1]
+  mat <- select(mat, -one_of(cols))
+  
+  # Assigning rownames
+  rownames(mat) <- rownames_
+  
+  # Turn into delayed array
+  mat  %<>%  DelayedArray::DelayedArray(seed = .)
+  
+  # Turn the delayed array into a singlecellexperiment
+  sce <- SingleCellExperiment(assays = list(counts = mat))
+ 
+  # Add sample information if necessary
+  sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
+  
+  return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce))) 
+}
+
 # Turning a h5 object to SingleCellExperiment class via Seurat
 read_raw.h5 <- function(filename, info, ...){
   

@@ -1,0 +1,28 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE158769
+  wlink:
+    protein: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_exprs_raw.tsv.gz
+    other: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE158nnn/GSE158769/suppl/GSE158769_meta_data.txt.gz
+  fname:
+    protein: GSE158769_exprs_raw.tsv.gz
+    other: GSE158769_meta_data.txt.gz
+load:
+  separate_samples: no
+  keyword: raw
+  transpose: no
+  coldata: ~
+  samples:
+    file: meta_data
+    key: cell_id
+    value:
+    - batch
+    - donor
+metadata:
+  doi: doi.org/10.1038/s41590-021-00933-1
+  description: "CITE-seq of memory T-cells in 259 individuals, including 128 cases at least 4 years post recovery from tuberculosis (TB) and 131 controls (household contacts with positive tuberculosis skin test who didn't develop TB disease). 12 samples have technical replicates Detailed genotype and phenotype data is also available from dbGaP on request"
+  tissue: "CD45RA- memory T-cells"
+  species: "Homo sapiens"
+  genome_build: "GRCH38 for transcriptomics, hg19 for demultiplexing"
+  alias: "Nathan_2021"

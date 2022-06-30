@@ -9,6 +9,7 @@ download:
     protein: GSE158769_exprs_raw.tsv.gz
     other: GSE158769_meta_data.txt.gz
 load:
+  class: h5ad
   separate_samples: no
   keyword: raw
   transpose: no

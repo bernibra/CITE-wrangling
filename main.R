@@ -16,9 +16,9 @@ f <- lapply(list.files("code", full.names = T), source)
 # If there aren't arguments, the pipeline will work for all datasets
 args = commandArgs(trailingOnly=TRUE)
 
-too_long <- c(22, 8)
-too_long_names <- c("GSE158769", "E-MTAB-10026")
-args <- 1
+too_long <- c(22)
+too_long_names <- c("GSE158769")
+args <- 8
 if(length(args)==0) args <- NULL else args <- args[1]
 
 # Configuration -----------------------------------------------------------un

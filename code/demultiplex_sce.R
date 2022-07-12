@@ -1,6 +1,7 @@
 # Useful information for demultiplexing:
 # http://bioconductor.org/books/3.14/OSCA.advanced/droplet-processing.html
 # https://satijalab.org/seurat/archive/v3.0/hashing_vignette.html
+# This functions will not necessarily be applied automatically as they depend on somewhat arbitrary thresholds
 
 demultiplex_sce <- function(sce, hto, FDR_threshold=0.001, by.rank=12000, lower=10){
   joint.bcs <- intersect(colnames(sce), colnames(hto))

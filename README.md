@@ -1,13 +1,13 @@
 # CITE-wrangling
 
-Basic workflow for the wrangling of CITE-seq data
+Basic workflow for the wrangling of CITE-seq data.
 
 ### 1. Requirements
 
 Check that the software and hardware requirements have been met.
 * Docker 20.10
-* YY GB free on disk
-* A lot of RAM (I haven't estimated exactly how much but it should be around 30GB)
+* At least 30GB free on disk
+* A lot of RAM (I haven't estimated exactly how much but it should be more than 50GB)
 * Stable internet connection (otherwise you won't be able to run the whole thing)
 
 ### 2. Clone the repo

@@ -1,6 +1,6 @@
 # CITE-wrangling
 
-Basic workflow for the wrangling of CITE-seq data. A full list of the datasets used at the moment can be found [here](data/list-of-papers.md)
+Basic workflow for the wrangling of CITE-seq data. A full list of the datasets used at the moment can be found [here](data/list-of-papers.md).
 
 ### 1. Requirements
 

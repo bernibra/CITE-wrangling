@@ -35,6 +35,11 @@ docker exec -u rstudio cite-wrangling-container make -C /home/rstudio/cite-wrang
 _The first time runing this might take some time again, you might want to run it over night_
 
 ### 5. Other
+
+_5.0. Using the [UNIL cluster](https://wiki.unil.ch/ci/books/service-de-calcul-haute-performance-%28hpc%29/page/how-to-access-the-clusters)_
+
+to run the pipeline in the UNIL cluster, one cannot use Docker directly, but can use a singularity cluster instead. The file defining such a container is the `cite.def` (for more information see [link](https://wiki.unil.ch/ci/books/high-performance-computing-hpc/page/sandbox-containers)). The cluster at unil uses _slurm_, so one can run the pipeline with the singularity image built with `cite.def` by executing the file `main.sh`.
+
 _5.1. Testing code_: 
 
 you can edit or develop new code and test it in the docker container by adding the code to the directory (`./code/`), rebuilding the docker image (step 3), and accessing the container through your web browser at <yourhostip:28787> (`hostname -I` in the terminal to find your host ip). It might not work if you are connected to a vpn.

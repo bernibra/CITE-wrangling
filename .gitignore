@@ -53,3 +53,6 @@ data/processed
 # Data files reporting errors
 data/RawDataNotFound.txt
 data/NOTenoughRAM.txt
+
+# Avoid adding singularity image
+.sif

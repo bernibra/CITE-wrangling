@@ -14,10 +14,9 @@ f <- lapply(list.files("code", full.names = T), source)
 
 # Any arguments? ----------------------------------------------------------
 # If there aren't arguments, the pipeline will work for all datasets
-args = commandArgs(trailingOnly=TRUE)
+args_ = commandArgs(trailingOnly=TRUE)
 
-args <- NULL
-if(length(args)==0) args <- NULL else args <- args[1]
+if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 
 # Configuration -----------------------------------------------------------un
 
@@ -31,7 +30,9 @@ configuration_plan <- drake_plan(
   load_data = sapply(data, function(x) setNames(list(x$load), x$download$id), USE.NAMES = F),
   metadata = sapply(data, function(x) setNames(list(x$metadata), x$download$id), USE.NAMES = F),
   data_download_date = config$raw_data_retrieved,
-  download_key = download_data
+  download_key = download_data,
+  db_ids = sapply(data, function(x) x$download$id, USE.NAMES = F),
+  args = if(length(which(db_ids==args_))==1) which(db_ids==args_)[[1]] else{ NULL} 
 )
 
 # Download data ----------------------------------------------------------
@@ -109,3 +110,4 @@ project_plan <- rbind(
   )
 
 make(project_plan, lock_envir = FALSE)
+

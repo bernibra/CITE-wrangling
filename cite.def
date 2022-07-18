@@ -18,34 +18,45 @@ From: ubuntu:20.04
   export DEBIAN_FRONTEND=noninteractive
   export TZ="Europe/Zurich"
   
-  apt-get install -y libopenblas-dev r-base-core libcurl4-openssl-dev libopenmpi-dev openmpi-bin openmpi-common \
+  apt-get install -y libopenblas-dev r-base-core libgeos-dev libhdf5-dev libcurl4-openssl-dev libopenmpi-dev openmpi-bin openmpi-common \
     openmpi-doc openssh-client openssh-server libssh-dev wget git nano git cmake gfortran g++ curl wget python-is-python3 \
-    autoconf bzip2 libtool libtool-bin python3-pip python-dev-is-python3 libxml2-dev libmagick++-dev
+    autoconf bzip2 libtool libtool-bin libxml2-dev libmagick++-dev
   
   R --slave -e 'install.packages("devtools", repos="https://cloud.r-project.org/")'
+  R --slave -e 'install.packages("remotes")'
   R --slave -e 'install.packages("data.table")'
   R --slave -e 'install.packages("tibble")'
-  R --slave -e 'install.packages("uwot")'
   R --slave -e 'install.packages("sctransform")'
-  R --slave -e 'install.packages("cowplot")'
-  R --slave -e 'install.packages("ggnewscale")'
-  R --slave -e 'install.packages("msigdbr")'
+  R --slave -e 'install.packages("rgeos")'
+  R --slave -e 'install.packages("hdf5r")'
+  R --slave -e 'install.packages("SeuratObject")'
   R --slave -e 'install.packages("Seurat")'
+  R --slave -e 'install.packages("Matrix")'
   R --slave -e 'install.packages("Matrix.utils")'
   R --slave -e 'install.packages("dplyr")'
+  R --slave -e 'install.packages("pkgconfig")'
   R --slave -e 'install.packages("magrittr")'
   R --slave -e 'install.packages("readr")'
   R --slave -e 'install.packages("purrr")'
+  R --slave -e 'install.packages("stringr")'
+  R --slave -e 'install.packages("R.utils")'
+  R --slave -e 'install.packages("memuse")'
   R --slave -e 'install.packages("drake")'
   R --slave -e 'install.packages("yaml")'
   R --slave -e 'install.packages("BiocManager")'
-  R --slave -e 'BiocManager::install("SpatialExperiment", ask=FALSE)'
-  R --slave -e 'BiocManager::install("STexampleData", ask=FALSE)'
   R --slave -e 'BiocManager::install("ggspavis", ask=FALSE)'
+  R --slave -e 'BiocManager::install("GEOquery", ask=FALSE)'
+  R --slave -e 'BiocManager::install("Biobase", ask=FALSE)'
+  R --slave -e 'BiocManager::install("ArrayExpress", ask=FALSE)'
   R --slave -e 'BiocManager::install("scran", ask=FALSE)'
   R --slave -e 'BiocManager::install("scater", ask=FALSE)'
   R --slave -e 'BiocManager::install("SingleCellExperiment", ask=FALSE)'
   R --slave -e 'BiocManager::install("HDF5Array", ask=FALSE)'
+  R --slave -e 'BiocManager::install("DelayedArray", ask=FALSE)'
+  R --slave -e 'BiocManager::install("zellkonverter", ask=FALSE)'
+  R --slave -e 'BiocManager::install("DropletUtils", ask=FALSE)'
+  R --slave -e 'remotes::install_github("mojaveazure/seurat-disk")'
+
   mkdir users
   mkdir scratch
-
+  mkdir work

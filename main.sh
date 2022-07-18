@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#SBATCH --chdir=/work/PRTNR/CHUV/DIR/rgottar1/citeseq/CITE-wrangling/
 #SBATCH --account rgottar1_citeseq
 #SBATCH --time 00-12:00:00
 #SBATCH --nodes 1
@@ -11,7 +12,7 @@
 
 module load singularity
 
-export SINGULARITY_BINDPATH="/users,/scratch"
+export SINGULARITY_BINDPATH="/users,/scratch,/work"
 
-singularity run ./R-4.2.1-cite.sif Rscript --vanilla main.R
+singularity run R-4.2.1-cite.sif Rscript --vanilla main.R
 

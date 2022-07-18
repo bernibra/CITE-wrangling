@@ -56,3 +56,4 @@ data/NOTenoughRAM.txt
 
 # Avoid adding singularity image
 *.sif
+cite/

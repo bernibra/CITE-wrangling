@@ -14,5 +14,5 @@ module load singularity
 
 export SINGULARITY_BINDPATH="/users,/scratch,/work"
 
-singularity run ~/CITE-wrangling/R-4.2.1-cite.sif Rscript ~/CITE-wrangling/main.R
+singularity run ~/CITE-wrangling/R-4.2.1-cite.sif Rscript ~/CITE-wrangling/main.R $1
 

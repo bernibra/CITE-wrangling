@@ -151,3 +151,12 @@ define_processed_name <- function(folder, sample_groups, id){
   }
 }
 
+countHDF5Samples <- function(rdir){
+  sce <- HDF5Array::loadHDF5SummarizedExperiment(rdir)
+  
+  if("SAMPLE_ID" %in% colnames(colData(sce))){
+    return(length(unique(sce$SAMPLE_ID)))
+  }else{
+    return(1)
+  }
+}

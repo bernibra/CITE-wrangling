@@ -6,7 +6,7 @@
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
-#SBATCH --mem 100G
+#SBATCH --mem 10G
 #SBATCH -o /scratch/bbramonm/output_%j.txt
 #SBATCH -e /scratch/bbramonm/errors_%j.txt
 
@@ -14,5 +14,5 @@ module load singularity
 
 export SINGULARITY_BINDPATH="/users,/scratch,/work"
 
-singularity run R-4.2.1-cite.sif Rscript --vanilla main.R
+singularity run ~/CITE-wrangling/R-4.2.1-cite.sif Rscript ~/CITE-wrangling/main.R
 

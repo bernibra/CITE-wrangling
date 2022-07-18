@@ -38,7 +38,7 @@ _The first time runing this might take some time again, you might want to run it
 
 _5.0. Using the [UNIL cluster](https://wiki.unil.ch/ci/books/service-de-calcul-haute-performance-%28hpc%29/page/how-to-access-the-clusters)_
 
-to run the pipeline in the UNIL cluster, one cannot use Docker directly, but can use a singularity cluster instead. The file defining such a container is the `cite.def` (for more information see [link](https://wiki.unil.ch/ci/books/high-performance-computing-hpc/page/sandbox-containers)). The cluster at unil uses _slurm_, so one can run the pipeline with the singularity image built with `cite.def` by executing the file `main.sh`.
+to run the pipeline in the UNIL cluster, one cannot use Docker directly, but can use a singularity container instead. The file defining such a container is the `cite.def` (for more information see [link](https://wiki.unil.ch/ci/books/high-performance-computing-hpc/page/sandbox-containers)). The cluster at unil uses _slurm_, so one can run the pipeline with the singularity image built with `cite.def` by executing the file `main.sh`.
 
 _5.1. Testing code_: 
 

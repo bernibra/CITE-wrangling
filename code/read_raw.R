@@ -36,9 +36,6 @@ read_raw.rds <- function(filename, info, ...){
   
   mat <- readRDS(filename)
   
-  # Turn into a sparse matrix
-  mat <- Matrix::Matrix(mat, sparse = T)
-  
   return(matrix_to_sce(mat, info, filename))
   
 }
@@ -51,12 +48,6 @@ read_raw.csv <- function(filename, info, ...){
   mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
   mat %<>% tibble::column_to_rownames(colnames(.)[1])
 
-  # Turn into matrix
-  mat <- as.matrix(mat)
-  
-  # Turn into a sparse matrix
-  mat <- Matrix::Matrix(mat, sparse = T)
-  
   return(matrix_to_sce(mat, info, filename)) 
 }
 
@@ -65,12 +56,6 @@ read_raw.fastcsv <- function(filename, info, ...){
   # Load file as matrix using readr and tibble
   mat <- data.table::fread(filename)
   
-  # Turn into a matrix
-  mat <- as.matrix(mat, rownames=1)
-  
-  # Turn into a sparse matrix
-  mat <- Matrix::Matrix(mat, sparse = T)
-
   return(matrix_to_sce(mat, info, filename))
 }
 
@@ -228,6 +213,11 @@ read_raw.h5ad <- function(filename, info, ...){
 
 # Utility function useful for the read_raw method
 matrix_to_sce <- function(mat, info, filename, ...){
+  # Turn into matrix
+  mat <- as.matrix(mat)
+  
+  # Turn into a sparse matrix
+  mat <- Matrix::Matrix(mat, sparse = T)
   
   # Do we need to transpose?
   tp <- info$transpose

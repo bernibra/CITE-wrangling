@@ -16,6 +16,8 @@ f <- lapply(list.files("code", full.names = T), source)
 # If there aren't arguments, the pipeline will work for all datasets
 args_ = commandArgs(trailingOnly=TRUE)
 
+# args_ <- c("GSE139369")
+
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 
 # Configuration -----------------------------------------------------------un
@@ -46,13 +48,13 @@ get_raw_db <- drake_plan(
                     dest_dir = "data/raw",
                     ftype = "protein",
                     download_date = data_download_date,
-                    args=args)
-  # raw_rna = get_raw(ids = download_key,
-  #                   dest_dir = "data/raw",
-  #                   ftype = "rna",
-  #                   download_date = data_download_date,
-  #                   rmfile=FALSE,
-  #                   args=args) # You shouldn't run this in your local machine
+                    args=args),
+  raw_rna = get_raw(ids = download_key,
+                    dest_dir = "data/raw",
+                    ftype = "rna",
+                    download_date = data_download_date,
+                    rmfile=FALSE,
+                    args=args) # You shouldn't run this in your local machine
 )
 
 get_data_plan <- rbind(
@@ -73,12 +75,12 @@ raw_to_SingleCellExperiment <- drake_plan(
   sce_protein = load_db(paths = raw_protein,
                      ids = download_key,
                      database = load_data,
-                     ftype ="protein")
-  # sce_rna = load_db(paths = raw_rna,
-  #                    ids = download_key,
-  #                    database = datasets,
-  #                    ftype ="rna",
-  #                    rmfile=FALSE), # You shouldn't run this in your local machine
+                     ftype ="protein"),
+  sce_rna = load_db(paths = raw_rna,
+                     ids = download_key,
+                     database = datasets,
+                     ftype ="rna",
+                     rmfile=FALSE), # You shouldn't run this in your local machine
 )
 
 build_protein_dictionary <- drake_plan(
@@ -105,8 +107,8 @@ process_data_plan <- rbind(
 
 project_plan <- rbind(
   configuration_plan,
-  get_data_plan,
-  process_data_plan
+  get_data_plan
+  # process_data_plan
   )
 
 make(project_plan, lock_envir = FALSE)

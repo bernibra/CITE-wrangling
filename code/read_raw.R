@@ -46,6 +46,9 @@ read_raw.csv <- function(filename, info, ...){
                            comment = "#", show_col_types = FALSE)
   mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
   mat %<>% tibble::column_to_rownames(colnames(.)[1])
+
+  # Turn into a sparse matrix
+  mat <- Matrix::Matrix(mat, sparse = T)
   
   return(matrix_to_sce(mat, info, filename)) 
 }
@@ -226,33 +229,39 @@ matrix_to_sce <- function(mat, info, filename, ...){
   if(is.null(tp)){
     tp <- ncol(mat)<nrow(mat)
   }
-  if(!(tp)){
-    mat <- t(mat)
+  
+  # Transpose if necessary
+  if(tp){
+    mat <- Matrix::t(mat)
   }
   
   # Are there any funky columns that need to be added as coldata
-  cell_properties <- which(colnames(mat) %in% info$coldata)
+  cell_properties <- which(rownames(mat) %in% info$coldata)
   
   if(length(cell_properties)>0){
     
     # Make data frame with the funky info
-    coldata <- mat[,cell_properties, drop=FALSE]
-    mat <- mat[,-cell_properties] %>% DelayedArray::DelayedArray(seed = .)
+    coldata <- mat[cell_properties,, drop=FALSE]
+    coldata <- Matrix::t(coldata)
+    
+    # Remove weird info
+    mat <- mat[-cell_properties,]
+    mat <- DelayedArray::DelayedArray(mat, seed = .)
     
     # Make SingleCellObject
-    sce <- SingleCellExperiment(assays = list(counts = t(mat)), colData=coldata)
+    sce <- SingleCellExperiment(assays = list(counts = mat), colData=coldata)
     
   }else{
     # Make singleCellObject
     
-    mat  %<>%  DelayedArray::DelayedArray(seed = .)
-    sce <- SingleCellExperiment(assays = list(counts = t(mat)))
+    mat <- DelayedArray::DelayedArray(mat, seed = .)
+    sce <- SingleCellExperiment(assays = list(counts = mat))
     
   }
   
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
-
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 

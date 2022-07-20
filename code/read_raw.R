@@ -50,13 +50,13 @@ read_raw.csv <- function(filename, info, ...){
                            comment = "#", show_col_types = FALSE)
   mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
   mat %<>% tibble::column_to_rownames(colnames(.)[1])
-  print("0.1")
+
   # Turn into matrix
   mat <- as.matrix(mat)
-  print("0.2")
+  
   # Turn into a sparse matrix
   mat <- Matrix::Matrix(mat, sparse = T)
-  print("0.3")
+  
   return(matrix_to_sce(mat, info, filename)) 
 }
 
@@ -228,47 +228,47 @@ read_raw.h5ad <- function(filename, info, ...){
 
 # Utility function useful for the read_raw method
 matrix_to_sce <- function(mat, info, filename, ...){
-  print("1")
+  
   # Do we need to transpose?
   tp <- info$transpose
-  print("2")
+  
   # Transpose the matrix if need be
   if(is.null(tp)){
     tp <- ncol(mat)<nrow(mat)
   }
-  print("3")
+  
   # Transpose if necessary
   if(tp){
     mat <- Matrix::t(mat)
   }
-  print("4")
+  
   # Are there any funky columns that need to be added as coldata
   cell_properties <- which(rownames(mat) %in% info$coldata)
-  print("5")
+  
   if(length(cell_properties)>0){
-    print("6")
+    
     # Make data frame with the funky info
     coldata <- mat[cell_properties,, drop=FALSE]
     coldata <- Matrix::t(coldata)
-    print("7")
+    
     # Remove weird info
     mat <- mat[-cell_properties,]
-    mat <- DelayedArray::DelayedArray(mat, seed = .)
-    print("8")
+    mat <- DelayedArray::DelayedArray(seed = mat)
+    
     # Make SingleCellObject
     sce <- SingleCellExperiment(assays = list(counts = mat), colData=coldata)
-    print("9")
+    
   }else{
     # Make singleCellObject
-    print("10")
-    mat <- DelayedArray::DelayedArray(mat, seed = .)
+    
+    mat <- DelayedArray::DelayedArray(seed = mat)
     sce <- SingleCellExperiment(assays = list(counts = mat))
-    print("11")
+    
   }
-  print("12")
+  
   # Add sample information if necessary
   sce <- read_metadata(sce = sce, info = info, path = dirname(filename))
-  print("13")
+  
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 

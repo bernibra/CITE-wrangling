@@ -35,6 +35,10 @@ read_raw.default <- function(filename, info, ...){
 read_raw.rds <- function(filename, info, ...){
   
   mat <- readRDS(filename)
+  
+  # Turn into a sparse matrix
+  mat <- Matrix::Matrix(mat, sparse = T)
+  
   return(matrix_to_sce(mat, info, filename))
   
 }
@@ -47,6 +51,9 @@ read_raw.csv <- function(filename, info, ...){
   mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
   mat %<>% tibble::column_to_rownames(colnames(.)[1])
 
+  # Turn into matrix
+  mat <- as.matrix(mat)
+  
   # Turn into a sparse matrix
   mat <- Matrix::Matrix(mat, sparse = T)
   

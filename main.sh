@@ -6,9 +6,9 @@
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
-#SBATCH --mem 10G
-#SBATCH -o /scratch/bbramonm/output_%j.txt
-#SBATCH -e /scratch/bbramonm/errors_%j.txt
+#SBATCH --mem 200gb
+#SBATCH -o /scratch/bbramonm/cite-output_%j.txt
+#SBATCH -e /scratch/bbramonm/cite-errors_%j.txt
 
 module load singularity
 

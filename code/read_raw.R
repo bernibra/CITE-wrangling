@@ -36,12 +36,14 @@ read_raw.rds <- function(filename, info, ...){
   
   mat <- readRDS(filename)
   
-  # Turn into matrix
-  mat <- as.matrix(mat)
+  if (class(mat)[1]!="dgCMatrix"){
+    # Turn into matrix
+    mat <- as.matrix(mat)
   
-  # Turn into a sparse matrix
-  mat <- Matrix::Matrix(mat, sparse = T)
-  
+    # Turn into a sparse matrix
+    mat <- Matrix::Matrix(mat, sparse = T)
+  }
+
   return(matrix_to_sce(mat, info, filename))
   
 }

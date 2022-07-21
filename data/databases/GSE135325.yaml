@@ -5,12 +5,17 @@ download:
   description: title
   keyword:
     protein: abseq
+    rna: 10x_donor
 load:
-  separate_samples: yes
-  samples: Sample_Name
-  coldata:
-  - Sample_Name
-  - Sample_Tag
+  protein:
+    transpose: yes
+    separate_samples: yes
+    samples: Sample_Name
+    coldata:
+    - Sample_Name
+    - Sample_Tag
+  rna:
+    separate_samples: no
 metadata:
   doi: doi.org/10.1016/j.celrep.2020.03.063
   description: "Targeted transcriptome of 492 immune-centric genes. Flow cytometry data is available from http://flowrepository.org/id/FR-FCM-Z266"

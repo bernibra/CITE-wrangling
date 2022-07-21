@@ -4,17 +4,28 @@ download:
   id: GSE161918
   description: title
   keyword:
-    protein: csp$
-    rna: rna$
+    protein: rna$
 load:
-  class: h5
-  separate_samples: yes
-  sample_groups:
-    - "_B1_"
-    - "_B2_"
-    - "_B3_"
-  coldata:
-    - "S1probe" 
+  protein:
+    h5key: "Antibody Capture"
+    class: h5
+    separate_samples: yes
+    sample_groups:
+      - "_B1_"
+      - "_B2_"
+      - "_B3_"
+    coldata:
+      - "S1probe"
+  rna:
+    h5key: "Gene Expression"
+    class: h5
+    separate_samples: yes
+    sample_groups:
+      - "_B1_"
+      - "_B2_"
+      - "_B3_"
+    coldata:
+      - "S1probe"
 metadata:
   doi: doi.org/10.1016/j.cell.2021.02.018
   description: "Longitudinal samples of PMBCs with FACS enrichment from 31 hospitalized COVID19 patients and 14 healthy controls."

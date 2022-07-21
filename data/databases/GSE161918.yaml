@@ -9,6 +9,10 @@ download:
 load:
   class: h5
   separate_samples: yes
+  sample_groups:
+    - "_B1_"
+    - "_B2_"
+    - "_B3_"
   coldata:
     - "S1probe" 
 metadata:

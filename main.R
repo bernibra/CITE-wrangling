@@ -82,7 +82,7 @@ raw_to_SingleCellExperiment <- drake_plan(
                      ftype ="protein"),
   sce_rna = load_db(paths = raw_rna,
                      ids = download_key,
-                     database = datasets,
+                     database = load_data,
                      ftype ="rna",
                      rmfile=FALSE), # You shouldn't run this in your local machine
 )

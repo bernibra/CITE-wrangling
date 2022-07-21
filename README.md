@@ -34,6 +34,12 @@ docker exec -u rstudio cite-wrangling-container make -C /home/rstudio/cite-wrang
 ```
 _The first time runing this might take some time again, you might want to run it over night_
 
+If you want to run the pipline for a single experiment, you can do so specifying the id. For example, for Buus2021:
+
+```
+docker exec -u rstudio cite-wrangling-container make -C /home/rstudio/cite-wrangling id="Buus2021"
+```
+
 ### 5. Other
 
 _5.0. Using the [UNIL cluster](https://wiki.unil.ch/ci/books/service-de-calcul-haute-performance-%28hpc%29/page/how-to-access-the-clusters)_
@@ -53,10 +59,3 @@ _5.3. Potential problems_:
 - if you have limited RAM, some of the datasets might have problems processing. The automatically generated file `NOTenoughRAM.txt` report on these problems. The RAM limitations can only be easily solved by using a machine with more RAM (or requesting additional RAM if running on a computer cluster). The only alternative is to split any big files into smaller ones (see an example of how to do this in function `split_big_file()` from `code/load_files.R`)
 - Some datasets require manual downloading; this will be reported in `GEOrawDataNotFound.txt`. Additionally, inside the raw data folder for a given dataset, a `README` file is sometimes generated to indicate what files to download.
 
-### 6. Alternative way to run the repository: a parallelized approach
-
-There are not many good reasons for not building a container for this repository, but one of them is for running the whole thing in some computer cluster where C libraries need to be built locally. I am sure there are smart work-arounds for this, but I haven't really been able to figure it out.
-
-The first step is installing all libraries manually (and it would probably be a good idea to work with the versions specified in the `Dockerfile`). Once this is done, one should be able to directly run the `main.R` file to download and process the data (the advantage of the `drake` package is that the pipeline is well defined there). Now, one might want to take advantage (or _need_ to take advantage) of the cluster's many cores to process the data. Since we are not running everything through the Docker image, we can now process the datasets one-by-one. To do so, we can execute the `main.R` with an additional argument specifying a dataset index. That should process only one dataset. 
-
-For the sake of running this pipeline in a computer cluster, one can also specify where the files are being stored by changing the `config.yaml` file accordingly (see argument `dest_dir`)

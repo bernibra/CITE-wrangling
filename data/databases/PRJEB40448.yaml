@@ -10,6 +10,7 @@ download:
     - "CZI.PBMC.cell.annotations.csv"
 load:
   protein:
+    altExp: "HTO.matrix"
     separate_samples: no
     class: rds
     keyword: ADT
@@ -23,6 +24,7 @@ load:
       key: "...1"
       value: "Run_Identifier"
   rna:
+    altExp: "HTO.matrix"
     separate_samples: no
     class: rds
     keyword: RNA

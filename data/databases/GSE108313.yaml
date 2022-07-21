@@ -24,6 +24,7 @@ load:
       - no_match
       - total_reads
   rna:
+    altExp: "Hashtag-HTO"
     keywords: "RNA"
     separate_samples: no
     transpose: no

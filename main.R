@@ -16,8 +16,11 @@ f <- lapply(list.files("code", full.names = T), source)
 # If there aren't arguments, the pipeline will work for all datasets
 args_ = commandArgs(trailingOnly=TRUE)
 
-done <- c("Buus2021", "GSE152469", "GSE155673")
-#args_ <- c("GSE108313")
+done <- c("Buus2021", "GSE152469", "GSE155673",
+          "10x19Nov2018", "10x19Nov2018-2", "10x24July2019", "10x24July2019-2", "10x29May2019", "10x7July2020",
+          "Fredhutch2020"
+          )
+args_ <- c("Fredhutch2020")
 
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 
@@ -49,13 +52,13 @@ get_raw_db <- drake_plan(
                     dest_dir = "data/raw",
                     ftype = "protein",
                     download_date = data_download_date,
-                    args=args)#,
-  # raw_rna = get_raw(ids = download_key,
-  #                   dest_dir = "data/raw",
-  #                   ftype = "rna",
-  #                   download_date = data_download_date,
-  #                   rmfile=FALSE,
-  #                   args=args) # You shouldn't run this in your local machine
+                    args=args),
+  raw_rna = get_raw(ids = download_key,
+                    dest_dir = "data/raw",
+                    ftype = "rna",
+                    download_date = data_download_date,
+                    rmfile=FALSE,
+                    args=args) # You shouldn't run this in your local machine
 )
 
 get_data_plan <- rbind(
@@ -76,12 +79,12 @@ raw_to_SingleCellExperiment <- drake_plan(
   sce_protein = load_db(paths = raw_protein,
                      ids = download_key,
                      database = load_data,
-                     ftype ="protein")#,
-  # sce_rna = load_db(paths = raw_rna,
-  #                    ids = download_key,
-  #                    database = datasets,
-  #                    ftype ="rna",
-  #                    rmfile=FALSE), # You shouldn't run this in your local machine
+                     ftype ="protein"),
+  sce_rna = load_db(paths = raw_rna,
+                     ids = download_key,
+                     database = datasets,
+                     ftype ="rna",
+                     rmfile=FALSE), # You shouldn't run this in your local machine
 )
 
 build_protein_dictionary <- drake_plan(

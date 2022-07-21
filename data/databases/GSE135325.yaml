@@ -16,6 +16,11 @@ load:
     - Sample_Tag
   rna:
     separate_samples: no
+    transpose: no
+    features: genes.tsv
+    cells: barcodes.tsv
+    replace: matrix.mtx
+    column: 2
 metadata:
   doi: doi.org/10.1016/j.celrep.2020.03.063
   description: "Targeted transcriptome of 492 immune-centric genes. Flow cytometry data is available from http://flowrepository.org/id/FR-FCM-Z266"

@@ -18,8 +18,9 @@ args_ = commandArgs(trailingOnly=TRUE)
 
 done <- c("Buus2021", "GSE152469", "GSE155673",
           "10x19Nov2018", "10x19Nov2018-2", "10x24July2019", "10x24July2019-2", "10x29May2019", "10x7July2020",
-          "Fredhutch2020"
+          "Fredhutch2020", "GSE144744", "Kotliarov2020", "PRJEB40448"
           )
+
 
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 

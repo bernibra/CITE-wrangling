@@ -4,8 +4,10 @@ download:
   source: https://cellxgene.cziscience.com/collections/ddfad306-714d-4cc0-9985-d9072820c530
   wlink:
     other: 
-      - "local.h5ad"
+      - "adt.h5ad"
+      - "rna.h5ad"
       - "41591_2021_1329_MOESM3_ESM.xlsx (in publication)"
+  comment: the data in cellxgene comes as a huge h5ad file with RNA and protein information stored as as the main experiment and metadata of a SingleCellExperiment, respectively. That is a funky way to deal with the adt data, and it is not worth for me to automatize the process of stripping things down. Ideally, one should download the data from cellxgene, extract the adt data from the SingleCellExperiment object's metadata, strip out the unnecessary info (keeping relevant colData), and store as an h5ad object (`/supp_protein/E-MTAB-10026/adt.h5ad`). For the RNA data, one can simply strip out the unecessary information (including the adt data) and store as an h5ad object (`/supp_rna/E-MTAB-10026/rna.h5ad`).
 load:
   separate_samples: no
   class: h5ad

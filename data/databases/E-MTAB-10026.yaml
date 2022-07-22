@@ -1,12 +1,11 @@
 download:
-  download: array
+  download: impossible
   id: E-MTAB-10026
-  keyword:
-    protein: processed.4
+  source: https://cellxgene.cziscience.com/collections/ddfad306-714d-4cc0-9985-d9072820c530
   wlink:
-    other: https://static-content.springer.com/esm/art%3A10.1038%2Fs41591-021-01329-2/MediaObjects/41591_2021_1329_MOESM3_ESM.xlsx
-  fname:
-    other: supp_tables.xlsx
+    other: 
+      - "local.h5ad"
+      - "41591_2021_1329_MOESM3_ESM.xlsx (in publication)"
 load:
   separate_samples: no
   class: h5ad

@@ -142,8 +142,10 @@ load_path <- function(path, info, ftype="protein", id="id"){
 # Format all datasets as SingleCellExperiments
 load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
   
-  if(ftype=="hto"){
-    browser()
+  if(is.null(paths[[1]])){
+    return(list(names=c(),
+                rds=c(),
+                hdf5=list.dirs(paste0("data/processed/", ftype, "-data"), full.names = T, recursive = F)))
   }
   
   # remove info files if there

@@ -37,14 +37,17 @@ read_raw.rds <- function(filename, info, ...){
   mat <- readRDS(filename)
   
   if (class(mat)[1]!="dgCMatrix"){
+    # Check if it contains coldata within the matrix
+    mat <- extract_coldata(mat, info)
+    coldata <- mat$coldata
+    
     # Turn into matrix
-    mat <- as.matrix(mat)
-  
-    # Turn into a sparse matrix
-    mat <- Matrix::Matrix(mat, sparse = T)
+    mat <- as.matrix(mat$mat)
+  }else{
+    coldata <- NULL
   }
 
-  return(matrix_to_sce(mat, info, filename))
+  return(matrix_to_sce(mat, info, coldata))
   
 }
 
@@ -56,13 +59,14 @@ read_raw.csv <- function(filename, info, ...){
   mat[[1]] <- mat %>% pull(colnames(.)[1]) %>% make.names(unique = T)
   mat %<>% tibble::column_to_rownames(colnames(.)[1])
 
+  # Check if it contains coldata within the matrix
+  mat <- extract_coldata(mat, info)
+  coldata <- mat$coldata
+  
   # Turn into matrix
-  mat <- as.matrix(mat)
+  mat <- as.matrix(mat$mat)
   
-  # Turn into a sparse matrix
-  mat <- Matrix::Matrix(mat, sparse = T)
-  
-  return(matrix_to_sce(mat, info, filename)) 
+  return(matrix_to_sce(mat, info, coldata)) 
 }
 
 # Function turning a matrix type object to SingleCellExperiment class
@@ -72,11 +76,8 @@ read_raw.fastcsv <- function(filename, info, ...){
   
   # Turn into a matrix
   mat <- as.matrix(mat, rownames=1)
-  
-  # Turn into a sparse matrix
-  mat <- Matrix::Matrix(mat, sparse = T)
 
-  return(matrix_to_sce(mat, info, filename))
+  return(matrix_to_sce(mat, info, coldata=NULL))
 }
 
 # Turning a h5 object to SingleCellExperiment class via Seurat
@@ -231,8 +232,53 @@ read_raw.h5ad <- function(filename, info, ...){
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
+extract_coldata <- function(mat, info){
+  # Do we need to transpose?
+  tp <- info$transpose
+  
+  # Transpose the matrix if need be
+  if(is.null(tp)){
+    tp <- ncol(mat)<nrow(mat)
+  }
+  
+  coldata=NULL
+  
+  if(tp){
+    # Are there any funky columns that need to be added as coldata
+    cell_properties <- which(colnames(mat) %in% info$coldata)
+    
+    if(length(cell_properties)>0){
+      
+      # Make data frame with the funky info
+      coldata <- mat[,cell_properties, drop=FALSE]
+
+      # Remove weird info
+      mat <- select(mat, -cell_properties)
+    }
+    
+  }else{
+    # Are there any funky columns that need to be added as coldata
+    cell_properties <- which(rownames(mat) %in% info$coldata)
+    
+    if(length(cell_properties)>0){
+      
+      # Make data frame with the funky info
+      coldata <- mat[cell_properties,, drop=FALSE]
+      coldata <- t(coldata)
+      
+      # Remove weird info
+      mat <- mat[-cell_properties,]
+    }
+  }
+  
+  return(list(mat=mat, coldata=coldata))
+}
+
 # Utility function useful for the read_raw method
-matrix_to_sce <- function(mat, info, filename, ...){
+matrix_to_sce <- function(mat, info, coldata, ...){
+
+  # Turn into sparse matrix  
+  mat <- Matrix::Matrix(mat, sparse = T)
   
   # Do we need to transpose?
   tp <- info$transpose
@@ -246,29 +292,16 @@ matrix_to_sce <- function(mat, info, filename, ...){
   if(tp){
     mat <- Matrix::t(mat)
   }
+
+  mat <- DelayedArray::DelayedArray(seed = mat)
   
-  # Are there any funky columns that need to be added as coldata
-  cell_properties <- which(rownames(mat) %in% info$coldata)
-  
-  if(length(cell_properties)>0){
-    
-    # Make data frame with the funky info
-    coldata <- mat[cell_properties,, drop=FALSE]
-    coldata <- Matrix::t(coldata)
-    
-    # Remove weird info
-    mat <- mat[-cell_properties,]
-    mat <- DelayedArray::DelayedArray(seed = mat)
-    
+  if(is.null(coldata)){
     # Make SingleCellObject
-    sce <- SingleCellExperiment(assays = list(counts = mat), colData=coldata)
-    
-  }else{
-    # Make singleCellObject
-    
-    mat <- DelayedArray::DelayedArray(seed = mat)
     sce <- SingleCellExperiment(assays = list(counts = mat))
     
+  }else{
+    # Make SingleCellObject
+    sce <- SingleCellExperiment(assays = list(counts = mat), colData=coldata)
   }
   
   # Add sample information if necessary
@@ -333,7 +366,6 @@ read_metadata <- function(sce, info, path){
           }
         }
       }
-      
     }
   }
   return(sce)  

@@ -7,7 +7,6 @@ read_raw <- function(filename, info) UseMethod("read_raw", filename)
 
 # Default read raw, guessing file type and loading data
 read_raw.default <- function(filename, info, ...){
-  
   # interaction list and complementary files for columns and rows
   if (grepl(".mtx$", filename)){
     return(read_raw.mtx(filename, info))
@@ -47,12 +46,13 @@ read_raw.rds <- function(filename, info, ...){
     coldata <- NULL
   }
 
-  return(matrix_to_sce(mat, info, coldata))
+  return(matrix_to_sce(mat, info, coldata, filename))
   
 }
 
 # Function turning a matrix type object to SingleCellExperiment class
 read_raw.csv <- function(filename, info, ...){
+  
   # Load file as matrix using readr and tibble
   mat <- readr::read_delim(file = filename, col_names = TRUE,
                            comment = "#", show_col_types = FALSE)
@@ -66,7 +66,7 @@ read_raw.csv <- function(filename, info, ...){
   # Turn into matrix
   mat <- as.matrix(mat$mat)
   
-  return(matrix_to_sce(mat, info, coldata)) 
+  return(matrix_to_sce(mat, info, coldata, filename)) 
 }
 
 # Function turning a matrix type object to SingleCellExperiment class
@@ -77,7 +77,7 @@ read_raw.fastcsv <- function(filename, info, ...){
   # Turn into a matrix
   mat <- as.matrix(mat, rownames=1)
 
-  return(matrix_to_sce(mat, info, coldata=NULL))
+  return(matrix_to_sce(mat, info, coldata=NULL, filename))
 }
 
 # Turning a h5 object to SingleCellExperiment class via Seurat
@@ -275,7 +275,7 @@ extract_coldata <- function(mat, info){
 }
 
 # Utility function useful for the read_raw method
-matrix_to_sce <- function(mat, info, coldata, ...){
+matrix_to_sce <- function(mat, info, coldata, filename, ...){
 
   # Turn into sparse matrix  
   mat <- Matrix::Matrix(mat, sparse = T)

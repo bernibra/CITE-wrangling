@@ -10,13 +10,15 @@ get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
   
   # Quick check
   possible_types <- c("rna", "protein")
-  if(!(ftype %in% possible_types)){
-    stop("Wha'choo talkin' 'bout, Willis?")
-  }
   
   # Define file paths
   rdir <- file.path(basedir, paste("supp", ftype, sep="_"))
-  rdir_ <- file.path(basedir, paste("supp", possible_types[!(possible_types %in% ftype)], sep="_"))
+  # rdir_ <- file.path(basedir, paste("supp", possible_types[!(possible_types %in% ftype)], sep="_"))
+  rdir_ <- file.path(basedir, "supp_protein")
+  
+  if(ftype=="hto" & ifelse(is.null(id$ignore_hto), T, id$ignore_hto)){
+    return(c())
+  }
   
   if((!file.exists(rdir))){
     
@@ -40,7 +42,7 @@ get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
     if (!(length(list.files(rdir))==0)) {
       return(experiments)
     }else{
-      return(0)
+      return(c())
     }
 
   }else{
@@ -66,7 +68,10 @@ get_raw <- function(ids, dest_dir, ftype="protein",download_date = NULL, rmfile=
   closeAllConnections()
   
   # Report empty folders and correct paths
-  paths <- get_test(paths=paths, ids=ids, dest_dir = dest_dir, ftype = ftype, rmfile=rmfile)
+  # TODO: Simplify this test as things are super convoluted now... I should make it such that hto also get tested
+  if(ftype!="hto"){
+    paths <- get_test(paths=paths, ids=ids, dest_dir = dest_dir, ftype = ftype, rmfile=rmfile)
+  }
   
   return(paths)
 }
@@ -77,6 +82,7 @@ get_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
   
   # Check those folders that are empty
   test <- data.frame(t(sapply(ids, function(id) c(id$id, length(list.files(file.path(dest_dir, id$id, paste("supp", ftype, sep="_"))))))))
+  print(test)
   colnames(test) <- c("id", "files")
   test$which <- "all"
 
@@ -84,11 +90,15 @@ get_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
   fails <- lapply(paths, function(x) check_paths(x, report = T))
   paths <- lapply(paths, function(x) check_paths(x, report = F))
   
+  print(fails)
+  print(paths)
+  
   # Write down those that don't pass the test
   fails <- unlist(fails)
   if (length(fails)>0){
     test <- rbind(test, data.frame(id=basename(dirname(dirname(fails))), files=0,which=basename(fails)))
   }
+  print(test)
 
   # Write report
   if (any(as.numeric(test[,2])==0)){

@@ -23,6 +23,8 @@ done <- c("Buus2021", "GSE152469", "GSE155673",
           "E-MTAB-10026", "GSE135325", "GSE161918"
           )
 
+args_ <- c("GSE126310")
+
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 
 # Configuration -----------------------------------------------------------un
@@ -57,9 +59,15 @@ get_raw_db <- drake_plan(
   raw_rna = get_raw(ids = download_key,
                     dest_dir = "data/raw",
                     ftype = "rna",
-                    download_date = data_download_date,
+                    download_date = raw_protein,
                     rmfile=FALSE,
-                    args=args) # You shouldn't run this in your local machine
+                    args=args),
+  raw_hto = get_raw(ids = download_key,
+                    dest_dir = "data/raw",
+                    ftype = "hto",
+                    download_date = raw_rna,
+                    rmfile=FALSE,
+                    args=args)
 )
 
 get_data_plan <- rbind(
@@ -81,11 +89,16 @@ raw_to_SingleCellExperiment <- drake_plan(
                      ids = download_key,
                      database = load_data,
                      ftype ="protein"),
-  sce_rna = load_db(paths = raw_rna,
-                     ids = download_key,
-                     database = load_data,
-                     ftype ="rna",
-                     rmfile=FALSE), # You shouldn't run this in your local machine
+  # sce_rna = load_db(paths = raw_rna,
+  #                    ids = download_key,
+  #                    database = load_data,
+  #                    ftype ="rna",
+  #                    rmfile=FALSE),
+  sce_hto = load_db(paths = raw_hto,
+                    ids = download_key,
+                    database = load_data,
+                    ftype ="hto",
+                    rmfile=FALSE)
 )
 
 build_protein_dictionary <- drake_plan(
@@ -100,7 +113,7 @@ build_protein_dictionary <- drake_plan(
                                        args=args)
   # protein_normalized = normalize_protein(paths = sce_protein$names, type="default"),
   # protein_db = unify_names(paths = sce_protein$names),
-  #protein_lists = reformat_protein(pnames = protein_db, ids = datasets)
+  # protein_lists = reformat_protein(pnames = protein_db, ids = datasets)
 )
 
 process_data_plan <- rbind(
@@ -116,4 +129,4 @@ project_plan <- rbind(
   process_data_plan
   )
 
-make(project_plan, lock_envir = FALSE)
+make(project_plan)

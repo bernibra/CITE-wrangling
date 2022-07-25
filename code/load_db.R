@@ -79,6 +79,7 @@ load_path <- function(path, info, ftype="protein", id="id"){
 
     # Process raw data and save as SingleCellExperiment class if not done already
     if(!file.exists(rdir) & !file.exists(paste0(rdir, ".rds")) & !processed){
+      
       # Progress message
       message("processing ", ftype," data for ", basename(filenames[idx]))
       
@@ -141,6 +142,10 @@ load_path <- function(path, info, ftype="protein", id="id"){
 # Format all datasets as SingleCellExperiments
 load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
   
+  if(ftype=="hto"){
+    browser()
+  }
+  
   # remove info files if there
   if(file.exists("data/NOTenoughRAM.txt") & rmfile){file.remove("data/NOTenoughRAM.txt")}
 
@@ -156,7 +161,6 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
   
   # load each dataset
   apply(datasets, 1, function(x){
-
     # find information regarding the database
     info <- database[[ids[[x[2]]]$id]]
     

@@ -20,7 +20,6 @@ get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
     return(c())
   }
   
-  
   if((!file.exists(rdir))){
     
     # Avoid downloading the same data twice

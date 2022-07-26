@@ -22,9 +22,9 @@ done <- c("Buus2021", "GSE152469", "GSE155673",
           "Fredhutch2020", "GSE144744", "Kotliarov2020", "PRJEB40448",
           "E-MTAB-10026", "GSE135325", "GSE161918"
           )
-semidone <- c("GSE126310", "GSE108313", "GSE156478", "GSE144434")
+semidone <- c("GSE126310", "GSE108313", "GSE156478", "GSE144434", "Shangguan2021", "E-MTAB-9357", "GSE148665", "GSE134759")
 
-args_ <- c("Shangguan2021")
+args_ <- c("GSE134759")
 
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 

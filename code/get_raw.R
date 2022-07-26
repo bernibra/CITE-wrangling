@@ -82,7 +82,6 @@ get_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
   
   # Check those folders that are empty
   test <- data.frame(t(sapply(ids, function(id) c(id$id, length(list.files(file.path(dest_dir, id$id, paste("supp", ftype, sep="_"))))))))
-  print(test)
   colnames(test) <- c("id", "files")
   test$which <- "all"
 
@@ -90,16 +89,12 @@ get_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
   fails <- lapply(paths, function(x) check_paths(x, report = T))
   paths <- lapply(paths, function(x) check_paths(x, report = F))
   
-  print(fails)
-  print(paths)
-  
   # Write down those that don't pass the test
   fails <- unlist(fails)
   if (length(fails)>0){
     test <- rbind(test, data.frame(id=basename(dirname(dirname(fails))), files=0,which=basename(fails)))
   }
-  print(test)
-
+  
   # Write report
   if (any(as.numeric(test[,2])==0)){
     message("Some of the raw data was not found (and hence the warnings). Find those cases in: data/RawDataNotFound.txt")

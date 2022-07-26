@@ -48,13 +48,14 @@ merge_idx <- function(filenames, dir, overwrite){
 # Format all datasets as SingleCellExperiments
 merge_samples <- function(paths, files, metadata, database, ftype="protein", overwrite=TRUE){
   
-  lapply(files, function(idx){
-    
+  dirs <- lapply(files, function(idx){
     # Files that are not merged
-    files_ <- list.files(file.path("data/processed/sce-objects/", idx,ftype), full.names = T)
+    rdsfiles <- list.files(file.path("data/processed/sce-objects/", idx,ftype), full.names = T)
+    hdf5files <- list.dirs(file.path("data/processed/sce-objects/", idx,ftype), full.names = T, recursive = F)
     
     # Filter by id
-    filenames <- files_[grepl(".rds$", files_)]
+    filenames <- rdsfiles[grepl(".rds$", rdsfiles)]
+    
     
     # Get info
     info <- database[[idx]]
@@ -66,18 +67,27 @@ merge_samples <- function(paths, files, metadata, database, ftype="protein", ove
 
     # Merge sce and save as HDF5 file
     if(length(filenames)>0){
-
+      browser()
+      
       sample_groups <- define_processed_name(folder=dirname(filenames[1]), sample_groups = info$sample_groups, id = idx)
       
       dirs <- apply(sample_groups, 1, function(y) {
         files <- filenames[grepl(y[1], basename(filenames))]
-        if(length(files)>0)
+        if(length(files)>0){
           merge_idx(files, dir=y[2], overwrite)
+          return(y[2])
+        }
       })
-      
+    }else{
+      dirs <- c()
     }
+    
+    # Collect all the resulting files
+    files <- c(hdf5files, unlist(dirs))
+    names(files) <- NULL
+    return(files)
   })
   
-  return(list(meta=metadata, dirs=list.dirs("data/processed/protein-data/", full.names = T, recursive = F)))
+  return(unlist(dirs))
   
 }

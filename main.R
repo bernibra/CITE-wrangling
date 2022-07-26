@@ -110,7 +110,7 @@ raw_to_SingleCellExperiment <- drake_plan(
 )
 
 # Merge samples if needed
-merge_samples <- drake_plan(
+merge_samples_sce <- drake_plan(
   sce_protein_merged = merge_samples(files = sce_protein,
                                      metadata = download_data, 
                                      database = load_data,
@@ -129,14 +129,14 @@ merge_samples <- drake_plan(
 )
 
 # Add metadata to each file independently. We will probably change that in the future
-add_metadata <- drake_plan(
-  add_metadata(filenames = sce_protein_merged$dirs,
+add_metadata_to_sce <- drake_plan(
+  sce_protein_processed=add_metadata(filenames = sce_protein_merged,
                                        metadata=metadata,
                                        args=args),
-  add_metadata(filenames = sce_rna_merged$dirs,
+  sce_rna_processed=add_metadata(filenames = sce_rna_merged,
                                       metadata=metadata,
                                       args=args),
-  add_metadata(filenames = sce_hto_merged$dirs,
+  sce_hto_processed=add_metadata(filenames = sce_hto_merged,
                                       metadata=metadata,
                                       args=args)
 )
@@ -150,8 +150,8 @@ add_metadata <- drake_plan(
 
 process_data_plan <- rbind(
   raw_to_SingleCellExperiment,
-  merge_samples,
-  add_metadata#,
+  merge_samples_sce,
+  add_metadata_to_sce#,
   # build_protein_dictionary
 )
 

@@ -40,8 +40,9 @@ read_raw.rds <- function(filename, info, ...){
     mat <- extract_coldata(mat, info)
     coldata <- mat$coldata
     
-    # Turn into matrix
+    # Turn into sparse matrix
     mat <- as.matrix(mat$mat)
+    mat <- Matrix::Matrix(mat, sparse = T)
   }else{
     coldata <- NULL
   }
@@ -63,8 +64,9 @@ read_raw.csv <- function(filename, info, ...){
   mat <- extract_coldata(mat, info)
   coldata <- mat$coldata
   
-  # Turn into matrix
+  # Turn into sparse matrix
   mat <- as.matrix(mat$mat)
+  mat <- Matrix::Matrix(mat, sparse = T)
   
   return(matrix_to_sce(mat, info, coldata, filename)) 
 }
@@ -74,8 +76,21 @@ read_raw.fastcsv <- function(filename, info, ...){
   # Load file as matrix using readr and tibble
   mat <- data.table::fread(filename)
   
-  # Turn into a matrix
-  mat <- as.matrix(mat, rownames=1)
+  # Define colnames and rownames
+  colnames_ <- colnames(mat)
+  rownames_ <- mat[[1]]
+  rownames_ <- make.names(rownames_, unique = T)
+  
+  # removing the first column
+  cols <- colnames_[1]
+  mat <- select(mat, -one_of(cols))
+  
+  # Turn into sparse matrix
+  mat <- as.matrix(mat)
+  mat <- Matrix::Matrix(mat, sparse=T)
+  
+  # Assigning rownames
+  rownames(mat) <- rownames_
 
   return(matrix_to_sce(mat, info, coldata=NULL, filename))
 }
@@ -276,9 +291,6 @@ extract_coldata <- function(mat, info){
 
 # Utility function useful for the read_raw method
 matrix_to_sce <- function(mat, info, coldata, filename, ...){
-
-  # Turn into sparse matrix  
-  mat <- Matrix::Matrix(mat, sparse = T)
   
   # Do we need to transpose?
   tp <- info$transpose

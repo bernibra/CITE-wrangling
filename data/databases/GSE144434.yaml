@@ -3,6 +3,7 @@ download:
   download: geo
   id: GSE144434
   description: library_source
+  ignore_hto: no
   keyword:
     protein: transcriptomic
 load:
@@ -13,6 +14,10 @@ load:
   rna:
     separate_samples: no
     keyword: genes
+    transpose: yes
+  hto:
+    separate_samples: no
+    keyword: hto
     transpose: yes
 metadata:
   doi: doi.org/10.1093/nargab/lqaa025

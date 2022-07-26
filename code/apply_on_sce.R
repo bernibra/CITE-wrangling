@@ -55,20 +55,12 @@ add_alt_exp <- function(sce, path, alternative=NULL){
   return(list(sce=sce, rownames=rownames(sce), colnames=colnames(sce)))
 }
 
-add_metadata <- function(filenames, metadata, args=NULL){
-  if(!is.null(args)){
-    metadata <- metadata[names(metadata)[args]]
-  }
+add_metadata <- function(filenames, metadata){
   
   paths <- lapply(filenames, function(x){
     # Find id
-    id <- stringr::str_split(pattern = "_", string = basename(x))[[1]][1]
-    print(id)
-    
-    # Check if we need to process it
-    if(!(id %in% names(metadata))){
-      return(x)
-    }
+    id <- basename(dirname(dirname(x)))
+    print(x)
     
     # Create empty sample information
     sample_information <- tibble::tibble()

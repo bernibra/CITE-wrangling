@@ -56,7 +56,6 @@ merge_samples <- function(paths, files, metadata, database, ftype="protein", ove
     # Filter by id
     filenames <- rdsfiles[grepl(".rds$", rdsfiles)]
     
-    
     # Get info
     info <- database[[idx]]
     

@@ -20,10 +20,10 @@ done <- c("Buus2021", "GSE152469", "GSE155673",
           "10x19Nov2018", "10x19Nov2018-2", "10x24July2019", "10x24July2019-2",
           "10x29May2019", "10x7July2020",
           "Fredhutch2020", "GSE144744", "Kotliarov2020", "PRJEB40448",
-          "E-MTAB-10026", "GSE135325", "GSE161918"
+          "E-MTAB-10026", "GSE135325", "GSE161918", "GSE126310"
           )
 
-args_ <- c("GSE126310")
+args_ <- c("GSE108313")
 
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 
@@ -132,8 +132,8 @@ process_data_plan <- rbind(
 
 project_plan <- rbind(
   configuration_plan,
-  get_data_plan,
-  process_data_plan
+  get_data_plan#,
+  # process_data_plan
   )
 
 make(project_plan, lock_envir = F)

@@ -3,35 +3,24 @@ download:
   download: geo
   id: GSE108313
   description: title
+  ignore_hto: no
   keyword:
     protein: "adt"
     rna: "rna"
+    hto: "hto"
   wlink:
     other: 
       - "https://static-content.springer.com/esm/art%3A10.1186%2Fs13059-018-1603-1/MediaObjects/13059_2018_1603_MOESM2_ESM.xlsx"
-      - "https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM2895nnn/GSM2895283/suppl//GSM2895283_Hashtag-HTO-count.csv.gz"
   fname:
     other: 
       - "13059_2018_1603_MOESM2_ESM.xlsx"
-      - "GSM2895283_Hashtag-HTO-count.csv.gz"
 load:
-  protein:
-    altExp: "Hashtag-HTO"
-    separate_samples: no
-    transpose: no
-    coldata:
-      - bad_struct
-      - no_match
-      - total_reads
-  rna:
-    altExp: "Hashtag-HTO"
-    keywords: "RNA"
-    separate_samples: no
-    transpose: no
-    coldata:
-      - bad_struct
-      - no_match
-      - total_reads
+  separate_samples: no
+  transpose: no
+  coldata:
+    - bad_struct
+    - no_match
+    - total_reads
 metadata:
   doi: doi.org/10.1101/237693
   description: "CITE-seq of PBMCs from 8 human donors (A-H), 7 antibodies stained in a titration series with concentrations 5ug (micrograms), 3ug, 1ug, 0.5ug, 0.06ug and 0ug. Donor H does not include ADT and was used to estimate background signal.  8 IgM/IgG isotype controls were used. Samples were pooled in equal proportions including an equal proportion of HEK293T and 3% mouse NIH-3T3 cells as negative controls. Data for other cell hashing experiments with transcriptomic readout is available but not included in this data set."

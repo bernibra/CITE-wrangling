@@ -42,6 +42,8 @@ configuration_plan <- drake_plan(
   data_download_date = config$raw_data_retrieved,
   RAMlimit=config$RAMlimit,
   download_key = download_data,
+  write.table(x = do.call(rbind.data.frame, lapply(names(metadata), function(x) list(id=x, alias=metadata[[x]]$alias, doi=metadata[[x]]$doi))), 
+              file = "data/list-of-papers__tmp.csv", row.names = F, col.names = T),
   db_ids = sapply(data, function(x) x$download$id, USE.NAMES = F),
   args = if(length(which(db_ids==args_))==1) which(db_ids==args_)[[1]] else{ NULL} 
 )

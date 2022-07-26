@@ -57,3 +57,4 @@ data/NOTenoughRAM.txt
 # Avoid adding singularity image
 *.sif
 cite/
+data/list-of-papers__tmp.csv

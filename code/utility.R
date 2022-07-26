@@ -81,12 +81,19 @@ untar_folder <- function(filenames){
 }
 
 # Check if one has enough RAM to read the matrix 
-should_i_load_this <- function(filename, tolerance=0.15){
+should_i_load_this <- function(filename, tolerance=0.15, RAMlimit=T){
   filename <- if_unzip(filename)
-  return(list(
-    shouldi=tolerance > file.size(filename)/memuse::swap.unit(memuse::Sys.meminfo()$freeram, "bytes")@size,
-    filename=filename)
-  )
+  if(RAMlimit){
+    return(list(
+      shouldi=tolerance > file.size(filename)/memuse::swap.unit(memuse::Sys.meminfo()$freeram, "bytes")@size,
+      filename=filename)
+    )
+  }else{
+    return(list(
+      shouldi=T,
+      filename=filename)
+    )
+  }
 }
 
 # Use a dictionary to rename features

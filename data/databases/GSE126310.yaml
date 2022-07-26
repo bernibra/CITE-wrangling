@@ -3,6 +3,7 @@ download:
   download: geo
   id: GSE126310
   description: description.2
+  ignore_hto: no
   keyword:
     protein: "adt"
     rna: "cdna"

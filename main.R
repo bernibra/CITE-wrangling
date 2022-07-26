@@ -39,6 +39,7 @@ configuration_plan <- drake_plan(
   load_data = sapply(data, function(x) setNames(list(x$load), x$download$id), USE.NAMES = F),
   metadata = sapply(data, function(x) setNames(list(x$metadata), x$download$id), USE.NAMES = F),
   data_download_date = config$raw_data_retrieved,
+  RAMlimit=config$RAMlimit,
   download_key = download_data,
   db_ids = sapply(data, function(x) x$download$id, USE.NAMES = F),
   args = if(length(which(db_ids==args_))==1) which(db_ids==args_)[[1]] else{ NULL} 
@@ -80,25 +81,31 @@ get_data_plan <- rbind(
 dir.create("data/processed", showWarnings = FALSE)
 dir.create("data/processed/protein-data", showWarnings = FALSE)
 dir.create("data/processed/rna-data", showWarnings = FALSE)
+dir.create("data/processed/hto-data", showWarnings = FALSE)
 dir.create("data/processed/names", showWarnings = FALSE)
 dir.create("data/processed/names/protein", showWarnings = FALSE)
 dir.create("data/processed/names/rna", showWarnings = FALSE)
+dir.create("data/processed/names/hto", showWarnings = FALSE)
+
 
 raw_to_SingleCellExperiment <- drake_plan(
   sce_protein = load_db(paths = raw_protein,
                      ids = download_key,
                      database = load_data,
-                     ftype ="protein"),
+                     ftype ="protein",
+                     RAMlimit=RAMlimit),
   # sce_rna = load_db(paths = raw_rna,
   #                    ids = download_key,
   #                    database = load_data,
   #                    ftype ="rna",
-  #                    rmfile=FALSE),
+  #                    rmfile=FALSE,
+  #                    RAMlimit=RAMlimit),
   sce_hto = load_db(paths = raw_hto,
                     ids = download_key,
                     database = load_data,
                     ftype ="hto",
-                    rmfile=FALSE)
+                    rmfile=FALSE,
+                    RAMlimit=RAMlimit)
 )
 
 build_protein_dictionary <- drake_plan(
@@ -129,4 +136,4 @@ project_plan <- rbind(
   process_data_plan
   )
 
-make(project_plan)
+make(project_plan, lock_envir = F)

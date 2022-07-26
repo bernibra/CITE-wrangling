@@ -45,7 +45,7 @@ select_relevant_files <- function(filenames, info){
 }
 
 # Load a single geo raw dataset
-load_path <- function(path, info, ftype="protein", id="id"){
+load_path <- function(path, info, ftype="protein", id="id", RAMlimit=T){
 
   # Find all raw files
   filenames <- list.files(path, full.names = T)
@@ -84,17 +84,15 @@ load_path <- function(path, info, ftype="protein", id="id"){
       message("processing ", ftype," data for ", basename(filenames[idx]))
       
       # Check if we can actually load the document
-      shouldi <- should_i_load_this(filenames[idx])
+      shouldi <- should_i_load_this(filenames[idx], RAMlimit=RAMlimit)
         
       # Define class
       filename <- structure(shouldi$filename, class=info$class)
 
       # Read raw data and turn into SingleCellExperiment
       if(shouldi$shouldi){
+        # Create Single Cell Experiment
         sce <- read_raw(filename, info)
-        
-        # Add altExp if necessary
-        sce <- add_alt_exp(sce = sce, path = dirname(filename), alternative = info$altExp)
       }else{
         # get column and row names at least
         sce <- get_row_column(filename)
@@ -140,7 +138,7 @@ load_path <- function(path, info, ftype="protein", id="id"){
 }
 
 # Format all datasets as SingleCellExperiments
-load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
+load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE, RAMlimit=T){
   
   if(is.null(paths[[1]])){
     return(list(names=c(),
@@ -168,9 +166,9 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE){
     
     # Check if we need to distinguish between rna and protein data
     if(!is.null(info[[ftype]])){
-      load_path(path=x[1], info=info[[ftype]], ftype=ftype, id=ids[[x[2]]]$id) 
+      load_path(path=x[1], info=info[[ftype]], ftype=ftype, id=ids[[x[2]]]$id, RAMlimit=RAMlimit) 
     }else{
-      load_path(path=x[1], info=info, ftype=ftype, id=ids[[x[2]]]$id) 
+      load_path(path=x[1], info=info, ftype=ftype, id=ids[[x[2]]]$id, RAMlimit=RAMlimit) 
     }
   })
   

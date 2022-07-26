@@ -15,7 +15,7 @@ load:
     - Sample_Name
     - Sample_Tag
   rna:
-    separate_samples: no
+    separate_samples: yes
     transpose: no
     features: genes.tsv
     cells: barcodes.tsv

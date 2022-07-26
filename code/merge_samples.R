@@ -48,14 +48,13 @@ merge_idx <- function(filenames, dir, overwrite){
 # Format all datasets as SingleCellExperiments
 merge_samples <- function(paths, files, metadata, database, ftype="protein", overwrite=TRUE){
   
-  files_ <- basename(files)
-  
-  lapply(names(paths), function(x){
-    # Find id
-    idx <- metadata[[x]]$id
+  lapply(files, function(idx){
+    
+    # Files that are not merged
+    files_ <- list.files(file.path("data/processed/sce-objects/", idx,ftype), full.names = T)
     
     # Filter by id
-    filenames <- files[grepl(idx, files_)]
+    filenames <- files_[grepl(".rds$", files_)]
     
     # Get info
     info <- database[[idx]]
@@ -79,6 +78,6 @@ merge_samples <- function(paths, files, metadata, database, ftype="protein", ove
     }
   })
   
-  return(list(paths=paths, meta=metadata, dirs=list.dirs("data/processed/protein-data/", full.names = T, recursive = F)))
+  return(list(meta=metadata, dirs=list.dirs("data/processed/protein-data/", full.names = T, recursive = F)))
   
 }

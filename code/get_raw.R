@@ -17,7 +17,7 @@ get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
   rdir_ <- file.path(basedir, "supp_protein")
   
   if(ftype=="hto" & ifelse(is.null(id$ignore_hto), T, id$ignore_hto)){
-    return(c())
+    return("Ignore")
   }
   
   if((!file.exists(rdir))){
@@ -42,7 +42,7 @@ get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
     if (!(length(list.files(rdir))==0)) {
       return(experiments)
     }else{
-      return(c())
+      return("NULL")
     }
 
   }else{
@@ -68,11 +68,8 @@ get_raw <- function(ids, dest_dir, ftype="protein",download_date = NULL, rmfile=
   closeAllConnections()
   
   # Report empty folders and correct paths
-  # TODO: Simplify this test as things are super convoluted now... I should make it such that hto also get tested
-  if(ftype!="hto"){
-    paths <- get_test(paths=paths, ids=ids, dest_dir = dest_dir, ftype = ftype, rmfile=rmfile)
-  }
-  
+  paths <- get_test(paths=paths, ids=ids, dest_dir = dest_dir, ftype = ftype, rmfile=rmfile)
+
   return(paths)
 }
 
@@ -91,7 +88,7 @@ get_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
   
   # Write down those that don't pass the test
   fails <- unlist(fails)
-  if (length(fails)>0){
+  if (length(fails[fails!="Ignore"])>0){
     test <- rbind(test, data.frame(id=basename(dirname(dirname(fails))), files=0,which=basename(fails)))
   }
   

@@ -24,7 +24,7 @@ done <- c("Buus2021", "GSE152469", "GSE155673",
           )
 semidone <- c("GSE126310", "GSE108313", "GSE156478", "GSE144434", "Shangguan2021", "E-MTAB-9357", "GSE148665", "GSE134759")
 
-args_ <- c("GSE134759")
+args_ <- c("GSE139369")
 
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 
@@ -82,27 +82,25 @@ get_data_plan <- rbind(
 
 # Add main directories for processed data
 dir.create("data/processed", showWarnings = FALSE)
-dir.create("data/processed/protein-data", showWarnings = FALSE)
-dir.create("data/processed/rna-data", showWarnings = FALSE)
-dir.create("data/processed/hto-data", showWarnings = FALSE)
+dir.create("data/processed/sce-objects", showWarnings = FALSE)
 dir.create("data/processed/names", showWarnings = FALSE)
 dir.create("data/processed/names/protein", showWarnings = FALSE)
 dir.create("data/processed/names/rna", showWarnings = FALSE)
 dir.create("data/processed/names/hto", showWarnings = FALSE)
 
-
+# Read files and turn into SCE
 raw_to_SingleCellExperiment <- drake_plan(
   sce_protein = load_db(paths = raw_protein,
                      ids = download_key,
                      database = load_data,
                      ftype ="protein",
                      RAMlimit=RAMlimit),
-  sce_rna = load_db(paths = raw_rna,
-                     ids = download_key,
-                     database = load_data,
-                     ftype ="rna",
-                     rmfile=FALSE,
-                     RAMlimit=RAMlimit),
+  # sce_rna = load_db(paths = raw_rna,
+  #                    ids = download_key,
+  #                    database = load_data,
+  #                    ftype ="rna",
+  #                    rmfile=FALSE,
+  #                    RAMlimit=RAMlimit),
   sce_hto = load_db(paths = raw_hto,
                     ids = download_key,
                     database = load_data,
@@ -111,32 +109,58 @@ raw_to_SingleCellExperiment <- drake_plan(
                     RAMlimit=RAMlimit)
 )
 
-build_protein_dictionary <- drake_plan(
-  sce_protein_merged = merge_samples(paths = raw_protein,
-                                     files = sce_protein$rds,
+# Merge samples if needed
+merge_samples <- drake_plan(
+  sce_protein_merged = merge_samples(files = sce_protein,
                                      metadata = download_data, 
                                      database = load_data,
                                      ftype = "protein",
                                      overwrite = TRUE),
-  sce_protein_metadata = add_metadata(filenames = sce_protein_merged$dirs,
-                                       metadata=metadata,
-                                       args=args)
-  # protein_normalized = normalize_protein(paths = sce_protein$names, type="default"),
-  # protein_db = unify_names(paths = sce_protein$names),
-  # protein_lists = reformat_protein(pnames = protein_db, ids = datasets)
+  sce_rna_merged = merge_samples(files = sce_rna,
+                                     metadata = download_data, 
+                                     database = load_data,
+                                     ftype = "rna",
+                                     overwrite = TRUE),
+  sce_hto_merged = merge_samples(files = sce_hto,
+                                     metadata = download_data, 
+                                     database = load_data,
+                                     ftype = "hto",
+                                     overwrite = TRUE)
 )
+
+# Add metadata to each file independently. We will probably change that in the future
+add_metadata <- drake_plan(
+  add_metadata(filenames = sce_protein_merged$dirs,
+                                       metadata=metadata,
+                                       args=args),
+  add_metadata(filenames = sce_rna_merged$dirs,
+                                      metadata=metadata,
+                                      args=args),
+  add_metadata(filenames = sce_hto_merged$dirs,
+                                      metadata=metadata,
+                                      args=args)
+)
+
+
+# build_protein_dictionary <- drake_plan(
+#   protein_normalized = normalize_protein(paths = sce_protein$names, type="default"),
+#   protein_db = unify_names(paths = sce_protein$names),
+#   protein_lists = reformat_protein(pnames = protein_db, ids = datasets)
+# )
 
 process_data_plan <- rbind(
   raw_to_SingleCellExperiment,
-  build_protein_dictionary
+  merge_samples,
+  add_metadata#,
+  # build_protein_dictionary
 )
 
 # Project workflow --------------------------------------------------------
 
 project_plan <- rbind(
   configuration_plan,
-  get_data_plan#,
-  # process_data_plan
+  get_data_plan,
+  process_data_plan
   )
 
 make(project_plan, lock_envir = F)

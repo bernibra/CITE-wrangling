@@ -63,19 +63,25 @@ load_path <- function(path, info, ftype="protein", id="id", RAMlimit=T){
   # Dealing with multiple files if possible
   filenames <- select_relevant_files(filenames = filenames, info = info)
   
+  # Create experiment folder
+  dir.create(file.path("data/processed/sce-objects/", id), showWarnings = FALSE)
+  message("processing data for: ", id)
+  
+  # Create experiment folder for ftype data
+  experimentf <- file.path("data/processed/sce-objects/", id, ftype)
+  dir.create(experimentf, showWarnings = FALSE)
+  
   # Loop over files
   for (idx in 1:length(filenames)){
 
-    # Define file name
-    rdir <- path %>%
-      gsub("raw", paste0("processed/",ftype,"-data"), .) %>%
-      gsub(paste("/supp", paste0(ftype, "/"), sep="_"), "_", .) %>%
-      paste(., strsplit(basename(filenames[[idx]]), split = "\\.")[[1]][1], sep="_")
+    rdir <- experimentf %>% 
+      paste(., strsplit(basename(filenames[[idx]]), split = "\\.")[[1]][1], sep="/")
 
     rdir_ <- file.path("data/processed/names", ftype)
 
-    # Check that the files have not been processed as HDF5 already    
-    processed <- all(dir.exists(define_processed_name(dirname(rdir), info$sample_groups, id)$path))
+    # Check that the files have not been processed as HDF5 already
+    fname <- define_processed_name(dirname(rdir), info$sample_groups, id)$path
+    processed <- all(dir.exists(fname))
 
     # Process raw data and save as SingleCellExperiment class if not done already
     if(!file.exists(rdir) & !file.exists(paste0(rdir, ".rds")) & !processed){
@@ -98,7 +104,7 @@ load_path <- function(path, info, ftype="protein", id="id", RAMlimit=T){
         sce <- get_row_column(filename)
       }
 
-      # If the dataset has a dictionary, use to rename the features
+      # If the dataset has a dictionary, use it to rename the features
       if(!is.null(info$dictionary) & !is.null(sce$rownames)){
         sce$rownames <- rename_features(features=sce$rownames, dictionary=file.path(path, info$dictionary$file),
                                  key=info$dictionary$key,
@@ -140,12 +146,6 @@ load_path <- function(path, info, ftype="protein", id="id", RAMlimit=T){
 # Format all datasets as SingleCellExperiments
 load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE, RAMlimit=T){
   
-  if(is.null(paths[[1]])){
-    return(list(names=c(),
-                rds=c(),
-                hdf5=list.dirs(paste0("data/processed/", ftype, "-data"), full.names = T, recursive = F)))
-  }
-  
   # remove info files if there
   if(file.exists("data/NOTenoughRAM.txt") & rmfile){file.remove("data/NOTenoughRAM.txt")}
 
@@ -153,14 +153,11 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE, RAMlimit
   datasets <- stack(paths)
   
   if(nrow(datasets)==0){
-    files <- list.files(paste0("data/processed/", ftype, "-data/"), recursive = F, full.names = T)
-    return(list(names=files,
-                rds=files[grepl(".rds$", files)],
-                hdf5=list.dirs(paste0("data/processed/", ftype, "-data"), full.names = T, recursive = F)))
+    return(c())
   }
   
   # load each dataset
-  apply(datasets, 1, function(x){
+  processed <- apply(datasets, 1, function(x){
     # find information regarding the database
     info <- database[[ids[[x[2]]]$id]]
     
@@ -170,10 +167,10 @@ load_db <- function(paths, ids, database, ftype="protein", rmfile=TRUE, RAMlimit
     }else{
       load_path(path=x[1], info=info, ftype=ftype, id=ids[[x[2]]]$id, RAMlimit=RAMlimit) 
     }
+    
+    return(ids[[x[2]]]$id)
   })
   
-  files <- list.files(paste0("data/processed/", ftype, "-data/"), recursive = F, full.names = T)
-  return(list(names=files,
-              rds=files[grepl(".rds$", files)],
-              hdf5=list.dirs(paste0("data/processed/", ftype, "-data"), full.names = T, recursive = F)))
+  return(unique(processed))
+
 }

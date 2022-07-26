@@ -80,9 +80,12 @@ get_data_plan <- rbind(
 dir.create("data/processed", showWarnings = FALSE)
 dir.create("data/processed/protein-data", showWarnings = FALSE)
 dir.create("data/processed/rna-data", showWarnings = FALSE)
+dir.create("data/processed/hto-data", showWarnings = FALSE)
 dir.create("data/processed/names", showWarnings = FALSE)
 dir.create("data/processed/names/protein", showWarnings = FALSE)
 dir.create("data/processed/names/rna", showWarnings = FALSE)
+dir.create("data/processed/names/hto", showWarnings = FALSE)
+
 
 raw_to_SingleCellExperiment <- drake_plan(
   sce_protein = load_db(paths = raw_protein,

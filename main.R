@@ -131,14 +131,11 @@ merge_samples_sce <- drake_plan(
 # Add metadata to each file independently. We will probably change that in the future
 add_metadata_to_sce <- drake_plan(
   sce_protein_processed=add_metadata(filenames = sce_protein_merged,
-                                       metadata=metadata,
-                                       args=args),
+                                       metadata=metadata),
   sce_rna_processed=add_metadata(filenames = sce_rna_merged,
-                                      metadata=metadata,
-                                      args=args),
+                                      metadata=metadata),
   sce_hto_processed=add_metadata(filenames = sce_hto_merged,
-                                      metadata=metadata,
-                                      args=args)
+                                      metadata=metadata)
 )
 
 

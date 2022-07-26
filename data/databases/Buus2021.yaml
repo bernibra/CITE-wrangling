@@ -1,12 +1,12 @@
 download:
   download: wget
   id: Buus2021
+  ignore_hto: no
   wlink:
     protein: https://figshare.com/ndownloader/files/23101268
   fname:
     protein: 5P-CITE-seq_Titration_full.rds
 load:
-  separate_samples: no
   protein:
     class: Seurat
     altexp: ADT.kallisto
@@ -14,6 +14,10 @@ load:
   rna:
     class: Seurat
     altexp: ~
+    samples: group
+  hto:
+    class: Seurat
+    altexp: HTO.kallisto
     samples: group
 metadata:
   doi: doi.org/10.7554/eLife.61973

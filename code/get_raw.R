@@ -1,6 +1,8 @@
 # Download raw files that contain CITE info for one dataset
 get_db <- function(id, dest_dir, ftype="protein", download_date=NULL){
   
+  message("Downloading ", id$id)
+
   # Setup download
   basedir <- file.path(dest_dir, id$id)
   setup_download(path=structure(basedir, class=id$setup), id=id$id, download_date=download_date)

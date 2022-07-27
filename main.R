@@ -22,9 +22,9 @@ done <- c("Buus2021", "GSE152469", "GSE155673",
           "Fredhutch2020", "GSE144744", "Kotliarov2020", "PRJEB40448",
           "E-MTAB-10026", "GSE135325", "GSE161918"
           )
-semidone <- c("GSE126310", "GSE108313", "GSE156478", "GSE144434", "Shangguan2021", "E-MTAB-9357", "GSE148665", "GSE134759")
+semidone <- c("GSE126310", "GSE108313", "GSE156478", "GSE144434", "Shangguan2021", "E-MTAB-9357", "GSE148665", "GSE134759", "GSE139369")
 
-args_ <- c("GSE139369")
+args_ <- c("GSE152469")
 
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 
@@ -116,11 +116,11 @@ merge_samples_sce <- drake_plan(
                                      database = load_data,
                                      ftype = "protein",
                                      overwrite = TRUE),
-  sce_rna_merged = merge_samples(files = sce_rna,
-                                     metadata = download_data, 
-                                     database = load_data,
-                                     ftype = "rna",
-                                     overwrite = TRUE),
+  # sce_rna_merged = merge_samples(files = sce_rna,
+  #                                    metadata = download_data, 
+  #                                    database = load_data,
+  #                                    ftype = "rna",
+  #                                    overwrite = TRUE),
   sce_hto_merged = merge_samples(files = sce_hto,
                                      metadata = download_data, 
                                      database = load_data,
@@ -132,8 +132,8 @@ merge_samples_sce <- drake_plan(
 add_metadata_to_sce <- drake_plan(
   sce_protein_processed=add_metadata(filenames = sce_protein_merged,
                                        metadata=metadata),
-  sce_rna_processed=add_metadata(filenames = sce_rna_merged,
-                                      metadata=metadata),
+  # sce_rna_processed=add_metadata(filenames = sce_rna_merged,
+  #                                     metadata=metadata),
   sce_hto_processed=add_metadata(filenames = sce_hto_merged,
                                       metadata=metadata)
 )

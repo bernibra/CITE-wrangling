@@ -76,10 +76,13 @@ get_raw <- function(ids, dest_dir, ftype="protein",download_date = NULL, rmfile=
 ######### TESTS ###########
 # Flag raw directories that are empty
 get_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
-  
+
   # Check those folders that are empty
-  test <- data.frame(t(sapply(ids, function(id) c(id$id, length(list.files(file.path(dest_dir, id$id, paste("supp", ftype, sep="_"))))))))
-  colnames(test) <- c("id", "files")
+  test <- data.frame(t(sapply(ids, function(id){
+    if(ftype=="hto" & ifelse(is.null(id$ignore_hto), T, id$ignore_hto)){c(id$id, 1, ftype)}
+    else{c(id$id, length(list.files(file.path(dest_dir, id$id, paste("supp", ftype, sep="_")))), ftype)}
+    })))
+  colnames(test) <- c("id", "files", "type")
   test$which <- "all"
 
   # Finding downloading problems
@@ -89,7 +92,7 @@ get_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
   # Write down those that don't pass the test
   fails <- unlist(fails)
   if (length(fails[fails!="Ignore"])>0){
-    test <- rbind(test, data.frame(id=basename(dirname(dirname(fails))), files=0,which=basename(fails)))
+    test <- rbind(test, data.frame(id=basename(dirname(dirname(fails))), files=0, type=ftype, which=basename(fails)))
   }
   
   # Write report
@@ -97,7 +100,7 @@ get_test <- function(paths, ids, dest_dir, ftype="protein", rmfile=T){
     message("Some of the raw data was not found (and hence the warnings). Find those cases in: data/RawDataNotFound.txt")
     write("# Further instructions on how to solve this problem might be found in a README file in the corresponding directory\nid\twhich",
           file = "data/RawDataNotFound.txt", append = !rmfile)
-    write.table(file = "data/RawDataNotFound.txt", test[as.numeric(test[,2])==0,c("id","which")], row.names = F, col.names = F, append = T, sep = "\t")
+    write.table(file = "data/RawDataNotFound.txt", test[as.numeric(test[,2])==0,c("id","which", "type")], row.names = F, col.names = F, append = T, sep = "\t")
   }
   
   return(paths)

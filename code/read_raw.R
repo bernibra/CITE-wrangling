@@ -308,11 +308,11 @@ matrix_to_sce <- function(mat, info, coldata, filename, ...){
   mat <- DelayedArray::DelayedArray(seed = mat)
   
   if(!is.null(info$drop)){
-    drop <- grepl(info$drop, rownames(dat))
+    drop <- grepl(info$drop, rownames(mat))
     mat <- mat[!drop, ]
   }
   if(!is.null(info$keep)){
-    keep <- grepl(info$keep, rownames(dat))
+    keep <- grepl(info$keep, rownames(mat))
     mat <- mat[keep, ]
   }
   

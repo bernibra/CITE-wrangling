@@ -2,7 +2,7 @@ download:
   download: impossible
   id: E-MTAB-10026
   source: https://cellxgene.cziscience.com/collections/ddfad306-714d-4cc0-9985-d9072820c530
-  wlink:
+  fname:
     other: 
       - "adt.h5ad"
       - "rna.h5ad"

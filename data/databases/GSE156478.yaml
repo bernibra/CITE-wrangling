@@ -3,7 +3,7 @@ download:
   download: geo
   id: GSE156478
   description: title
-  ignore_hto: no
+  ignore_hto: yes
   keyword:
     protein: cite_adt|multiome_adt
     rna: cite_gex|multiome_rna

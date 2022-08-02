@@ -23,7 +23,10 @@ load:
     separate_samples: yes
     sample_groups:
       - "CITE_GEX"
-      - "GExp_ATAC"
+      - "_LLL_CTRL"
+      - "_LLL_STIM"
+      - "_DIG_CTRL"
+      - "_DIG_STIM"
     class: mtx
     transpose: no
     features: proteins.txt.gz$|features.tsv.gz$

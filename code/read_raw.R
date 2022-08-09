@@ -336,6 +336,7 @@ read_metadata <- function(sce, info, path){
   
   # Root path
   rdir <- file.path(dirname(dirname(path)), "metadata")
+  rdir_ <- dirname(path)
   
   # Skip if we are missing information
   if(is.null(info$samples)){
@@ -360,7 +361,14 @@ read_metadata <- function(sce, info, path){
       
       if(!is.null(info$samples$file)){
         filename <- list.files(rdir, full.names = T)
-        filename <- if_unzip(filename[grepl(info$samples$file, filename)])
+        filename <- filename[grepl(info$samples$file, basename(filename))]
+        
+        if(length(filename)==0){
+          filename <- list.files(rdir_, full.names = T)
+          filename <- filename[grepl(info$samples$file, basename(filename))]
+        }
+        
+        filename <- if_unzip(filename)
         
         # File formatted as rds
         if (grepl(".rds$", tolower(filename))){

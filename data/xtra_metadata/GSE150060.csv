@@ -1,0 +1,7 @@
+"title" "source_name_ch1" "characteristics_ch1" "characteristics_ch1.1" "characteristics_ch1.2" "characteristics_ch1.5"
+"GSM4522889" "PBMC SLE1 rest" "Blood" "age [years]: 37" "Sex: female" "disease: Systemic lupus erythematosus" "experimental condition: unstimulated"
+"GSM4522890" "PBMC T1D1/HC1 rest" "Blood" "age [years]: 16/14" "Sex: male/male" "disease: Type 1 diabetes/Healthy donor" "experimental condition: unstimulated"
+"GSM4522891" "PBMC SLE1 stim" "Blood" "age [years]: 37" "Sex: female" "disease: Systemic lupus erythematosus" "experimental condition: stimulated"
+"GSM4522892" "PBMC T1D1/HC1 stim" "Blood" "age [years]: 16/14" "Sex: male/male" "disease: Type 1 diabetes/Healthy donor" "experimental condition: stimulated"
+"GSM4522893" "PBMC/Biopsy CD1 rest" "Blood/Duodenal biopsy" "age [years]: 5" "Sex: male" "disease: Coeliac disease" "experimental condition: unstimulated"
+"GSM4522894" "PBMC/Biopsy CD2 rest" "Blood/Duodenal biopsy" "age [years]: 15" "Sex: male" "disease: Coeliac disease" "experimental condition: unstimulated"

@@ -1,0 +1,67 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE150060
+  description: title
+  keyword:
+    protein: ''
+  ignore_hto: yes
+  wlink: ~
+  fname: ~
+load:
+  protein:
+    transpose: yes
+    separate_samples: yes
+    keyword: MolsPer
+    class: csv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: pABO
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: Tag_Call
+      key: Cell_Index
+      value: Sample_Name
+  rna:
+    transpose: yes
+    separate_samples: yes
+    keyword: MolsPer
+    class: csv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: pAbO
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: Tag_Call
+      key: Cell_Index
+      value: Sample_Name
+metadata:
+  doi: doi.org/10.1186/s13073-020-00756-z
+  description: 'Single-cell expression of 397 genes at the mRNA level and up to 68
+    proteins using oligo-conjugated antibodies (AbSeq) in 43656 primary CD4+ T cells
+    isolated from the blood and 31907 CD45+ cells isolated from the blood and matched
+    duodenal biopsies. Study participants included: one systemic lupus erythematosus
+    (SLE) patient (37-year-old female); one T1D patient (16-year-old male); and, one
+    autoantibody-negative healthy donor (14-year-old male). Characterisation of total
+    CD45+ immune cells isolated from a paired blood and duodenal biopsy was performed
+    in cells isolated from two paediatric coeliac disease (CD) patients with active
+    disease: one 5-year-old male with Marsh scale disease score of 3c, and one 15-year-old
+    male with Marsh scale disease score of 3b.'
+  tissue: PBMC
+  species: Homo sapiens
+  alias: Trzupek_2020
+  genome_build: BDRhapsody_Immune_Response_Panel_hs

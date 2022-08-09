@@ -4,7 +4,7 @@
 
 We created a [little app](https://github.com/bernibra/CITE-formatting) to help you add new datasets to the CITE-wranling pipeline. Clone the repository and follow the instructions to set up the app.
 
-<img src="img/CITE-formatting.png" width="200">
+<img src="img/CITE-formatting.png" width="600">
 
 Fill in the form as accurately as possible. Answering the questions regarding how to read the data might require you to manually download some of the files. Unfortunately, there is no way around it. The CITE-wrangling will do its best to read the data as is; however, the more information, the more likely it is for it to run smoothly.
 

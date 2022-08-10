@@ -5,7 +5,7 @@ download:
   description: ~
   keyword: ~
   ignore_hto: yes
-  wlink:
+  fname:
     protein:
     - citeseq_pbmc_adt_macrophages.txt.gz
     - citeseq_pbmc_adt_t_cells.txt.gz
@@ -16,7 +16,7 @@ download:
     - citeseq_pbmc_gex_t_cells.txt.gz
     - citeseq_plaque_gex_macrophages.txt.gz
     - citeseq_plaque_gex_t_cells.txt.gz
-  fname:
+  wlink:
     protein:
     - https://figshare.com/ndownloader/files/16771817?private_link=c00d88b1b25ef0c5c788
     - https://figshare.com/ndownloader/files/16771820?private_link=c00d88b1b25ef0c5c788

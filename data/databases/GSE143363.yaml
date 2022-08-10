@@ -5,11 +5,11 @@ download:
   description: ~
   keyword: ~
   ignore_hto: yes
-  wlink:
+  fname:
     protein: GSE143363_count_matrix.tsv.gz
     other: GSE143363_cell_metadata.tsv.gz
     rna: GSE143363_count_matrix.tsv.gz
-  fname:
+  wlink:
     protein: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE143363&format=file&file=GSE143363%5Fcount%5Fmatrix%2Etsv%2Egz
     other: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE143363&format=file&file=GSE143363%5Fcell%5Fmetadata%2Etsv%2Egz
     rna: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE143363&format=file&file=GSE143363%5Fcount%5Fmatrix%2Etsv%2Egz

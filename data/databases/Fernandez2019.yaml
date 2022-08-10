@@ -1,0 +1,54 @@
+download:
+  setup: ~
+  download: wget
+  id: Fernandez2019
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  wlink:
+    protein:
+    - citeseq_pbmc_adt_macrophages.txt.gz
+    - citeseq_pbmc_adt_t_cells.txt.gz
+    - citeseq_plaque_adt_macrophages.txt.gz
+    - citeseq_plaque_adt_t_cells.txt.gz
+    rna:
+    - citeseq_pbmc_gex_macrophages.txt.gz
+    - citeseq_pbmc_gex_t_cells.txt.gz
+    - citeseq_plaque_gex_macrophages.txt.gz
+    - citeseq_plaque_gex_t_cells.txt.gz
+  fname:
+    protein:
+    - https://figshare.com/ndownloader/files/16771817?private_link=c00d88b1b25ef0c5c788
+    - https://figshare.com/ndownloader/files/16771820?private_link=c00d88b1b25ef0c5c788
+    - https://figshare.com/ndownloader/files/16771829?private_link=c00d88b1b25ef0c5c788
+    - https://figshare.com/ndownloader/files/16771832?private_link=c00d88b1b25ef0c5c788
+    rna:
+    - https://figshare.com/ndownloader/files/16771823?private_link=c00d88b1b25ef0c5c788
+    - https://figshare.com/ndownloader/files/16771826?private_link=c00d88b1b25ef0c5c788
+    - https://figshare.com/ndownloader/files/16771835?private_link=c00d88b1b25ef0c5c788
+    - https://figshare.com/ndownloader/files/16771838?private_link=c00d88b1b25ef0c5c788
+load:
+  transpose: no
+  separate_samples: yes
+  keyword: ~
+  class: default
+  h5key: ~
+  altexp: ~
+  access: ~
+  drop: ~
+  keep: ~
+  coldata: ~
+  cells: ~
+  replace: ~
+  features: ~
+  column: ~
+  sample_groups: ~
+  samples: ~
+metadata:
+  doi: doi.org/10.1038/s41591-019-0590-4
+  description: CITE-seq analysis of blood and paired atherosclerotic plaque of the
+    same patient.
+  tissue: PBMC; Atherosclerotic Plaque
+  species: Homo sapiens
+  alias: Fernandez_2019
+  genome_build: GRCh38

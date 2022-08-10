@@ -1,0 +1,54 @@
+download:
+  setup: ~
+  download: impossible
+  source: "https://himc-project-data.s3.amazonaws.com/ADRA_RnD/sent_out/Neutrophil_BoneMarrow_WholeBlood_10X_Rhapsody.tar.gz"
+  comment: "In this particular case, the link works just fine. The problem is that the data is weirdly organized into different folders in a convoluted way, all compressed as a zip file, and its processing cannot be painlessly streamlined in a general manner. To add this dataset, one should first download the zip file, uncompress it, and search for the file `WholeBlood/10X/raw_feature_bc_matrix.h5` and files in `WholeBlood/10X/metadata`, store them in `./supp_protein/Qi_2020_WholeBlood/`. Then, one should search for the file `boneMarrow/10X/raw_feature_bc_matrix.h5` and files in `WholeBlood/10X/metadata`, store them in `./supp_protein/Qi_2020_boneMarrow/`. Finally, create a direct link of `./supp_protein` called `./supp_rna`."
+  id: Qi2020
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname: ~
+  wlink: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: h5
+    h5key: Antibody Capture
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: h5
+    h5key: Gene Expression
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
+metadata:
+  doi: doi.org/10.1101/2021.06.12.448210
+  description: Multi-modal CITE-seq profiling to characterize granulocytes in human
+    whole blood and bone marrow samples from two healthy donors.
+  tissue: PBMC; BM
+  species: Homo sapiens
+  alias: Qi_2020
+  genome_build: GRCh38

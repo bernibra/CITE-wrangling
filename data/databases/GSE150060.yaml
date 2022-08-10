@@ -11,7 +11,7 @@ download:
 load:
   protein:
     transpose: yes
-    separate_samples: yes
+    separate_samples: no
     keyword: MolsPer
     class: csv
     h5key: ~
@@ -31,7 +31,7 @@ load:
       value: Sample_Name
   rna:
     transpose: yes
-    separate_samples: yes
+    separate_samples: no
     keyword: MolsPer
     class: csv
     h5key: ~

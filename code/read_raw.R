@@ -336,7 +336,7 @@ read_metadata <- function(sce, info, path){
   
   # Root path
   rdir <- file.path(dirname(dirname(path)), "metadata")
-  rdir_ <- dirname(path)
+  rdir_ <- path
   
   # Skip if we are missing information
   if(is.null(info$samples)){
@@ -385,7 +385,13 @@ read_metadata <- function(sce, info, path){
             dplyr::rename(CELL_ID = sym(c(info$samples$key))) %>%
             mutate(SAMPLE_ID = paste(!!!syms(info$samples$value), sep="_"))
           
-          meta <- meta[match(rownames(colData(sce)),meta$CELL_ID),] %>%
+          name_match <- match(rownames(colData(sce)),meta$CELL_ID)
+
+          if(all(is.na(name_match))){
+            name_match <- match(rownames(colData(sce)),meta$CELL_ID %>% make.names(unique=T))
+	  }
+
+          meta <- meta[name_match,] %>%
             tibble::column_to_rownames(var="CELL_ID")
           
           if(identical(rownames(meta), colnames(sce))){

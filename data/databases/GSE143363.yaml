@@ -1,0 +1,68 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE143363
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  wlink:
+    protein: GSE143363_count_matrix.tsv.gz
+    other: GSE143363_cell_metadata.tsv.gz
+    rna: GSE143363_count_matrix.tsv.gz
+  fname:
+    protein: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE143363&format=file&file=GSE143363%5Fcount%5Fmatrix%2Etsv%2Egz
+    other: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE143363&format=file&file=GSE143363%5Fcell%5Fmetadata%2Etsv%2Egz
+    rna: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE143363&format=file&file=GSE143363%5Fcount%5Fmatrix%2Etsv%2Egz
+load:
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: csv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: '"_ADT"'
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: metadata
+      key: cell_id
+      value: sample
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: csv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: '"_ADT"'
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: metadata
+      key: cell_id
+      value: sample
+metadata:
+  doi: doi.org/10.1158/2159-8290.CD-19-0710
+  description: 'Primary human AML specimens were obtained from apheresis product,
+    peripheral blood, or bone marrow of patients with AML. Patients included: one
+    hundred consecutive patients with newly diagnosed AML and no prior therapy who
+    were prescribed VEN+AZA at our institution and had taken at least one dose of
+    either therapy. An AML patient who achieved remission but ultimately relapsed
+    from the venetoclax plus azacitidine therapy was chosen for this CITE-seq analysis.'
+  tissue: BM
+  species: Homo sapiens
+  alias: Pei_2020
+  genome_build: GRCh38

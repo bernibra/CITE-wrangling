@@ -1,0 +1,46 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE128639
+  description: title
+  keyword:
+    protein: adt
+    rna: rna
+    hto: hto
+  ignore_hto: no
+  fname:
+    other:
+    - GSE128639_MNC_ADT_Barcodes.csv.gz
+    - GSE128639_MNC_BULK_RNA_SampleIndices.csv.gz
+    - GSE128639_MNC_HTO_Barcodes.csv.gz
+  wlink:
+    other:
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE128639&format=file&file=GSE128639%5FMNC%5FADT%5FBarcodes%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE128639&format=file&file=GSE128639%5FMNC%5FBULK%5FRNA%5FSampleIndices%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE128639&format=file&file=GSE128639%5FMNC%5FHTO%5FBarcodes%2Ecsv%2Egz
+  source: ~
+  comment: ~
+load:
+  transpose: no
+  separate_samples: no
+  keyword: ~
+  class: fastcsv
+  h5key: ~
+  altexp: ~
+  access: ~
+  drop: ~
+  keep: ~
+  coldata: ~
+  cells: ~
+  replace: ~
+  features: ~
+  column: ~
+  sample_groups: ~
+  samples: ~
+metadata:
+  doi: doi.org/10.1016/j.cell.2019.05.031
+  description: CITE-seq dataset of 35,543 bone marrow cells and 25 surface proteins
+  tissue: BM
+  species: Homo sapiens
+  alias: Stuart_2019
+  genome_build: GRCh38

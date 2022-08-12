@@ -29,7 +29,7 @@ download:
     - https://figshare.com/ndownloader/files/16771838?private_link=c00d88b1b25ef0c5c788
 load:
   transpose: no
-  separate_samples: yes
+  separate_samples: no
   keyword: ~
   class: default
   h5key: ~

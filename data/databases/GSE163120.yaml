@@ -10,33 +10,27 @@ download:
     - GSE163120_Citeseq_Mouse.GBM.KO4_WT4.filtered.ADT.feature.bc.matrix.csv.gz
     - GSE163120_annot.Citeseq_Mouse.GBM.KO4_WT4.csv.gz
     - GSM4972212_Citeseq_Human.GBM.R2_5_ND8.filtered.ADT.feature.bc.matrix.csv.gz
-    - GSM4972212_annot.Citeseq_Human.GBM.R2_5_ND8.csv.gz
     rna:
     - GSE163120_Citeseq_Mouse.GBM.KO4_WT4.filtered.RNA.feature.bc.matrix.csv.gz
     - GSE163120_annot.Citeseq_Mouse.GBM.KO4_WT4.csv.gz
     - GSM4972212_Citeseq_Human.GBM.R2_5_ND8.filtered.RNA.feature.bc.matrix.csv.gz
-    - GSM4972212_annot.Citeseq_Human.GBM.R2_5_ND8.csv.gz
   wlink:
     protein:
     - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE163120&format=file&file=GSE163120%5FCiteseq%5FMouse%2EGBM%2EKO4%5FWT4%2Efiltered%2EADT%2Efeature%2Ebc%2Ematrix%2Ecsv%2Egz
     - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE163120&format=file&file=GSE163120%5Fannot%2ECiteseq%5FMouse%2EGBM%2EKO4%5FWT4%2Ecsv%2Egz
     - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSM4972212&format=file&file=GSM4972212%5FCiteseq%5FHuman%2EGBM%2ER2%5F5%5FND8%2Efiltered%2EADT%2Efeature%2Ebc%2Ematrix%2Ecsv%2Egz
-    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSM4972212&format=file&file=GSM4972212%5Fannot%2ECiteseq%5FHuman%2EGBM%2ER2%5F5%5FND8%2Ecsv%2Egz
     rna:
     - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE163120&format=file&file=GSE163120%5FCiteseq%5FMouse%2EGBM%2EKO4%5FWT4%2Efiltered%2ERNA%2Efeature%2Ebc%2Ematrix%2Ecsv%2Egz
     - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE163120&format=file&file=GSE163120%5Fannot%2ECiteseq%5FMouse%2EGBM%2EKO4%5FWT4%2Ecsv%2Egz
     - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSM4972212&format=file&file=GSM4972212%5FCiteseq%5FHuman%2EGBM%2ER2%5F5%5FND8%2Efiltered%2ERNA%2Efeature%2Ebc%2Ematrix%2Ecsv%2Egz
-    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSM4972212&format=file&file=GSM4972212%5Fannot%2ECiteseq%5FHuman%2EGBM%2ER2%5F5%5FND8%2Ecsv%2Egz
   fgroup:
     protein:
     - Mouse
     - Mouse
     - Human
-    - Human
     rna:
     - Mouse
     - Mouse
-    - Human
     - Human
   source: ~
   comment: ~

@@ -70,15 +70,32 @@ download_raw.wget <- function(rdir, basedir, id, ftype, ...){
   if (!is.null(id$wlink[[ftype]])){
     
     # Create subdirectory
-    dir.create(file.path(rdir, experiments), showWarnings = FALSE)
-    
-    for(k in 1:length(id$wlink[[ftype]])){
+    if (is.null(id$fgroup[[ftype]])){
+      dir.create(file.path(rdir, experiments), showWarnings = FALSE)
       
-      # Download links
-      download.file(url = id$wlink[[ftype]][k], destfile = file.path(rdir, experiments, id$fname[[ftype]][k]))
+      for(k in 1:length(id$wlink[[ftype]])){
+        # Download links
+        download.file(url = id$wlink[[ftype]][k], destfile = file.path(rdir, experiments, id$fname[[ftype]][k]))
+      }
+      # Just ensure that we didn't create an empty directory
+      if (length(list.files(file.path(rdir, experiments)))==0){unlink(rdir, recursive = T)}
+      
+    }else{
+      for(k in 1:length(id$wlink[[ftype]])){
+        # Create subdirectory
+        dir.create(file.path(rdir, paste(experiments, id$fgroup[[ftype]][k],sep="_")), showWarnings = FALSE)
+          
+        # Download links
+        download.file(url = id$wlink[[ftype]][k], destfile = file.path(rdir, paste(experiments, id$fgroup[[ftype]][k],sep="_"), id$fname[[ftype]][k]))
+        
+        # Just ensure that we didn't create an empty sub-directory
+        if (length(list.files(file.path(rdir, paste(experiments, id$fgroup[[ftype]][k],sep="_"))))==0){
+          unlink(file.path(rdir, paste(experiments, id$fgroup[[ftype]][k],sep="_")), recursive = T)
+        }
+      }
+      # Just ensure that we didn't create an empty directory
+      if (length(list.dirs(rdir, recursive = F))==0){unlink(rdir, recursive = T)}
     }
-    # Just ensure that we didn't create an empty directory
-    if (length(list.files(file.path(rdir, experiments)))==0){unlink(rdir, recursive = T)}
   }
 
   # Return directories if not empty

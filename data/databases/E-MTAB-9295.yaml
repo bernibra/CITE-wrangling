@@ -1,0 +1,76 @@
+download:
+  setup: ~
+  download: wget
+  id: E-MTAB-9295
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    protein: D10_D13_CITEseq_matrix.txt.gz
+    other: D10_D13_CITEseq_metadata.txt.gz
+    rna: D10_D13_CITEseq_matrix.txt.gz
+  wlink:
+    protein: https://www.ebi.ac.uk/biostudies/files/E-MTAB-9295/D10_D13_CITEseq_matrix.txt.gz
+    other: https://www.ebi.ac.uk/biostudies/files/E-MTAB-9295/D10_D13_CITEseq_metadata.txt.gz
+    rna: https://www.ebi.ac.uk/biostudies/files/E-MTAB-9295/D10_D13_CITEseq_matrix.txt.gz
+  fgroup:
+    protein: ~
+    other: ~
+    rna: ''
+  source: ~
+  comment: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: fastcsv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: TotalA$
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: metadata
+      key: cell_tag
+      value:
+      - day
+      - sorting
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: fastcsv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: TotalA$
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: metadata
+      key: cell_tag
+      value:
+      - day
+      - sorting
+metadata:
+  doi: doi.org/10.1182/blood.2020006229
+  description: This dataset contains single cell CITE-seq of human hematopoietic progenitors
+    differentiated in vitro from hiPSCs. Suspension CD235a-live cells and adherent
+    CD31+ and CD31- were analysed. ADT tags for membrane markers are also contained
+    in the dataset.
+  tissue: PSC
+  species: Homo sapiens
+  alias: Fidanza_2020
+  genome_build: GRCh38

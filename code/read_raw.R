@@ -399,6 +399,9 @@ read_metadata <- function(sce, info, path){
           }else{
             warning(paste0("Problem adding metadata to ", basename(path)))
           }
+          
+	  # Compress again the metadata file
+          if((grepl(".csv$|.tsv$|.txt$", filename))){R.utils::gzip(filenames)}
         }
       }
     }

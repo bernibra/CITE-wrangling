@@ -1,0 +1,58 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE139891
+  description: title
+  keyword:
+    protein: ab$
+    rna: 3a$|3b$
+  ignore_hto: yes
+  fname: ~
+  wlink: ~
+  fgroup: ~
+  source: ~
+  comment: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: yes
+    keyword: counts
+    class: fastcsv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
+  rna:
+    transpose: no
+    separate_samples: yes
+    keyword: umi
+    class: fastcsv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
+metadata:
+  doi: doi.org/10.1084/jem.20200483
+  description: Assessment of a few surface protein markers in parallel with RNAseq
+    using the cellular indexing of transcriptomes and epitopes by sequencing (CITE-seq)
+    technology in an independent donor
+  tissue: Tonsil
+  species: Homo sapiens
+  alias: Holmes_2020
+  genome_build: GRCh38

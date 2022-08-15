@@ -401,7 +401,7 @@ read_metadata <- function(sce, info, path){
           }
           
 	  # Compress again the metadata file
-          if((grepl(".csv$|.tsv$|.txt$", filename))){R.utils::gzip(filenames)}
+          if((grepl(".csv$|.tsv$|.txt$", filename))){R.utils::gzip(filename)}
         }
       }
     }

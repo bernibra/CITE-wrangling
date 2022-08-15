@@ -15,7 +15,7 @@ f <- lapply(list.files("code", full.names = T), source)
 # Any arguments? ----------------------------------------------------------
 # If there aren't arguments, the pipeline will work for all datasets
 args_ = commandArgs(trailingOnly=TRUE)
-args_ <- c("GSE163120")
+
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 
 # Configuration -----------------------------------------------------------un

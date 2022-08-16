@@ -38,7 +38,7 @@ load:
     h5key: Gene Expression
     altexp: ~
     access: ~
-    drop: CITE$
+    drop: ~
     keep: ~
     coldata: ~
     cells: ~
@@ -55,7 +55,7 @@ load:
     h5key: Antibody Capture
     altexp: ~
     access: ~
-    drop: ~
+    drop: CITE$
     keep: ~
     coldata: ~
     cells: ~
@@ -66,7 +66,7 @@ load:
     samples: ~
 metadata:
   doi: doi.org/10.1136/annrheumdis-2018-214865
-  description: ~
+  description: droplet-based cellular indexing of transcriptomes and epitopes by sequencing (CITE-seq), measuring cell surface proteins and messenger RNA (mRNA) transcripts at the single-cell level, for multimodal analysis of lung tissues from patients with SSc-ILD and healthy controls. Explanted tissue from two SSc-ILD samples and one additional healthy control was used for confirmation of scRNA-seq findings at the transcriptome and epitope level. Separate upper and lower lobe samples were included for each patient with SSc-ILD.
   tissue: Lung
   species: Homo sapiens
   alias: Valenzi_2019

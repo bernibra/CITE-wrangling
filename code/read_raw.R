@@ -105,6 +105,7 @@ read_raw.h5 <- function(filename, info, ...){
   }
   sce <- Seurat::as.SingleCellExperiment(Seurat::CreateSeuratObject(h5))
   
+  # Keep or drop columns
   if(!is.null(info$drop)){
     drop <- grepl(info$drop, rownames(sce))
     sce <- sce[!drop, ]
@@ -176,6 +177,16 @@ read_raw.mtx <- function(filename, info, ...){
   # Make sure the matrix is in the right order and turn into SingleCellExperiment
   sce <- SingleCellExperiment(assays = list(counts = mtx))
 
+  # Keep or drop columns
+  if(!is.null(info$drop)){
+    drop <- grepl(info$drop, rownames(sce))
+    sce <- sce[!drop, ]
+  }
+  if(!is.null(info$keep)){
+    keep <- grepl(info$keep, rownames(sce))
+    sce <- sce[keep, ]
+  }
+  
   # Move to colData if necessary
   sce <- sce_move_to_coldata(sce, info$coldata)
   

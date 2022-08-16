@@ -1,0 +1,76 @@
+download:
+  setup: ~
+  download: impossible
+  id: Trzupek2021
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    other:
+    - "matrix_resting.csv"
+    - "matrix_stimulated.csv"
+    - "metadata_resting.csv"
+    - "metadata_stimulated.csv"
+  wlink: ~
+  fgroup: ~
+  source: https://osf.io/edctn/
+  comments: The authors decided to store the data as xlsx files, and I cannot be bothered
+    to design a reading function for those. Download "Dataset S1 Resting.xlsx" and
+    "Dataset S1 Stimulated.xlsx" and turn each 1st sheet of the xlsx file as "matrix_resting.csv"
+    and "matrix_stimulated.csv", respectively. Then turn the 2nd sheet as "metadata_resting.csv"
+    and "metadata_stimulated.csv" for each file, respectively. Then, accordingly store
+    these files in `./supp_protein/Trzupek_2021_Resting/` and `./supp_protein/Trzupek_2021_Stimulated/`.
+    Finally, make a direct link of `supp_protein` named "./supp_rna".
+load:
+  protein:
+    transpose: yes
+    separate_samples: no
+    keyword: matrix
+    class: fastcsv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: pAbO
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: metadata
+      key: Cell_Index
+      value: Sample_Tag
+  rna:
+    transpose: yes
+    separate_samples: no
+    keyword: matrix
+    class: fastcsv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: pAbO
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: metadata
+      key: Cell_Index
+      value: Sample_Tag
+metadata:
+  doi: doi.org/10.1101/2021.04.27.21256106
+  description: We designed a custom panel to quantify the transcription of 534 genes
+    in parallel with the expression of 51 surface protein targets using the BD Rhapsody
+    AbSeq single-cell system. We applied this technology to profile 20,656 T and NK
+    cells isolated from peripheral blood from an SLE patient with a type I interferon
+    (IFN)-induced gene expression signature (IFNhi), and an age- and sex- matched
+    IFNlow SLE patient and healthy donor.
+  tissue: PBMC
+  species: Homo sapiens
+  alias: Trzupek_2021
+  genome_build: BDRhapsody_Immune_Response_Panel_hs

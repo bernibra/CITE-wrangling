@@ -65,7 +65,7 @@ load:
     keep: anti-human
     coldata: ~
     cells: barcodes
-    replace: matrix
+    replace: matrix.mtx
     features: features
     column: 2
     sample_groups: ~
@@ -82,7 +82,7 @@ load:
     keep: ~
     coldata: ~
     cells: barcodes
-    replace: matrix
+    replace: matrix.mtx
     features: features
     column: 2
     sample_groups: ~

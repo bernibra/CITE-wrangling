@@ -15,7 +15,7 @@ download:
 load:
   protein:
     transpose: no
-    separate_samples: yes
+    separate_samples: no
     keyword: counts
     class: fastcsv
     h5key: ~
@@ -32,7 +32,7 @@ load:
     samples: ~
   rna:
     transpose: no
-    separate_samples: yes
+    separate_samples: no
     keyword: umi
     class: fastcsv
     h5key: ~

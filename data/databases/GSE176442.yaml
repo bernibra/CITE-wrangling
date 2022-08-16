@@ -1,0 +1,95 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE176442
+  description: ~
+  keyword: ~
+  ignore_hto: no
+  fname:
+    protein: GSE176442_Group4.filtered_feature_bc_matrix.h5
+    rna: GSE176442_Group4.filtered_feature_bc_matrix.h5
+    hto: GSE176442_Group4.filtered_feature_bc_matrix.h5
+    other: GSE176442_Group4.filtered_response_annotation.txt.gz
+  wlink:
+    protein: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE176442&format=file&file=GSE176442%5FGroup4%2Efiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    rna: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE176442&format=file&file=GSE176442%5FGroup4%2Efiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    hto: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE176442&format=file&file=GSE176442%5FGroup4%2Efiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    other: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE176442&format=file&file=GSE176442%5FGroup4%2Efiltered%5Fresponse%5Fannotation%2Etxt%2Egz
+  fgroup:
+    protein: ~
+    rna: ~
+    hto: ~
+    other: ~
+  source: ~
+  comment: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: h5
+    h5key: Antibody Capture
+    altexp: ~
+    access: ~
+    drop: Hashtag
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: annotation
+      key: Barcode
+      value: Response
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: h5
+    h5key: Gene Expression
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: annotation
+      key: Barcode
+      value: Response
+  hto:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: h5
+    h5key: Antibody Capture
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: Hashtag
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: annotation
+      key: Barcode
+      value: Response
+metadata:
+  doi: doi.org/10.1126/sciimmunol.abj1031
+  description: Activated T and B cells from four patients vaccinated against COVID19
+    after kidney transplantation with Biotech/Pfizer 7 days after boost. Mixed sample
+    (non-demultiplexed) representing four patients vaccinated against COVID19 after
+    kidney transplantation, three non-responding donors and one responding donor.
+  tissue: PBMC
+  species: Homo sapiens
+  alias: RinconArevalo_2021
+  genome_build: hg19

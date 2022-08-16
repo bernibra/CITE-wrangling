@@ -1,0 +1,5 @@
+"title" "source_name_ch1" "characteristics_ch1" "characteristics_ch1.1"
+"GSM5047371" "BM_HD_2253 CITE-Seq" "Bone marrow cells from healthy donor" "genotype: healthy" "age: 2"
+"GSM5047372" "BM_HD_2253 GEX" "Bone marrow cells from healthy donor" "genotype: healthy" "age: 2"
+"GSM5047373" "BM_AgaC2 CITE-Seq" "Bone marrow cells from agammaglobulineia patient" "genotype: diseased" "age: 2"
+"GSM5047374" "BM_AgaC2 GEX" "Bone marrow cells from agammaglobulineia patient" "genotype: diseased" "age: 2"

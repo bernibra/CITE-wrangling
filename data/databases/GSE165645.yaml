@@ -1,0 +1,98 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE165645
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    protein:
+    - GSE165645_BM_AgaC2_barcodes.tsv.gz
+    - GSE165645_BM_AgaC2_features.tsv.gz
+    - GSE165645_BM_AgaC2_matrix.mtx.gz
+    - GSE165645_BM_HD_2253_barcodes.tsv.gz
+    - GSE165645_BM_HD_2253_features.tsv.gz
+    - GSE165645_BM_HD_2253_matrix.mtx.gz
+    rna:
+    - GSE165645_BM_AgaC2_barcodes.tsv.gz
+    - GSE165645_BM_AgaC2_features.tsv.gz
+    - GSE165645_BM_AgaC2_matrix.mtx.gz
+    - GSE165645_BM_HD_2253_barcodes.tsv.gz
+    - GSE165645_BM_HD_2253_features.tsv.gz
+    - GSE165645_BM_HD_2253_matrix.mtx.gz
+  wlink:
+    protein:
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FAgaC2%5Fbarcodes%2Etsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FAgaC2%5Ffeatures%2Etsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FAgaC2%5Fmatrix%2Emtx%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FHD%5F2253%5Fbarcodes%2Etsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FHD%5F2253%5Ffeatures%2Etsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FHD%5F2253%5Fmatrix%2Emtx%2Egz
+    rna:
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FAgaC2%5Fbarcodes%2Etsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FAgaC2%5Ffeatures%2Etsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FAgaC2%5Fmatrix%2Emtx%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FHD%5F2253%5Fbarcodes%2Etsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FHD%5F2253%5Ffeatures%2Etsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165645&format=file&file=GSE165645%5FBM%5FHD%5F2253%5Fmatrix%2Emtx%2Egz
+  fgroup:
+    protein:
+    - BM_AgaC2
+    - BM_AgaC2
+    - BM_AgaC2
+    - BM_HD
+    - BM_HD
+    - BM_HD
+    rna:
+    - BM_AgaC2
+    - BM_AgaC2
+    - BM_AgaC2
+    - BM_HD
+    - BM_HD
+    - BM_HD
+  source: ~
+  comment: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: anti-human
+    coldata: ~
+    cells: barcodes
+    replace: matrix
+    features: features
+    column: 2
+    sample_groups: ~
+    samples: ~
+  rna:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: anti-human
+    keep: ~
+    coldata: ~
+    cells: barcodes
+    replace: matrix
+    features: features
+    column: 2
+    sample_groups: ~
+    samples: ~
+metadata:
+  doi: doi.org/10.1084/jem.20201750
+  description: Cellular indexing of transcriptomes and epitopes by sequencing (CITE-seq)
+    to capture the expression of 132 hematopoietic cell–surface proteins on mononuclear
+    bone marrow cells from patient A.II.2 and an age-, gender-matched HD control
+  tissue: BM
+  species: Homo Sapiens
+  alias: LeCoz_2021
+  genome_build: GRCh38

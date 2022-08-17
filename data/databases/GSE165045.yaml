@@ -1,0 +1,118 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE165045
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    protein:
+    - GSE165045_BL11_filtered_contig_annotations.csv.gz
+    - GSE165045_BL11_filtered_feature_bc_matrix.h5
+    - GSE165045_BL1_filtered_contig_annotations.csv.gz
+    - GSE165045_BL1_filtered_feature_bc_matrix.h5
+    - GSE165045_BL2_filtered_contig_annotations.csv.gz
+    - GSE165045_BL2_filtered_feature_bc_matrix.h5
+    - GSE165045_BL3_filtered_contig_annotations.csv.gz
+    - GSE165045_BL3_filtered_feature_bc_matrix.h5
+    - GSE165045_BL4_filtered_contig_annotations.csv.gz
+    - GSE165045_BL4_filtered_feature_bc_matrix.h5
+    - GSE165045_BL5_filtered_contig_annotations.csv.gz
+    - GSE165045_BL5_filtered_feature_bc_matrix.h5
+    - GSE165045_BL6_filtered_contig_annotations.csv.gz
+    - GSE165045_BL6_filtered_feature_bc_matrix.h5
+    - GSE165045_BL7_filtered_contig_annotations.csv.gz
+    - GSE165045_BL7_filtered_feature_bc_matrix.h5
+    - GSE165045_BL8_filtered_contig_annotations.csv.gz
+    - GSE165045_BL8_filtered_feature_bc_matrix.h5
+    - GSE165045_BL9_filtered_contig_annotations.csv.gz
+    - GSE165045_BL9_filtered_feature_bc_matrix.h5
+  wlink:
+    protein:
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL11%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL11%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL1%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL1%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL2%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL2%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL3%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL3%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL4%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL4%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL5%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL5%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL6%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL6%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL7%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL7%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL8%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL8%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL9%5Ffiltered%5Fcontig%5Fannotations%2Ecsv%2Egz
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE165045&format=file&file=GSE165045%5FBL9%5Ffiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
+  fgroup:
+    protein:
+    - BL11
+    - BL11
+    - BL1
+    - BL1
+    - BL2
+    - BL2
+    - BL3
+    - BL3
+    - BL4
+    - BL4
+    - BL5
+    - BL5
+    - BL6
+    - BL6
+    - BL7
+    - BL7
+    - BL8
+    - BL8
+    - BL9
+    - BL9
+  source: ~
+  comments: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: h5
+    h5key: Antibody Capture
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
+  rna:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: h5
+    h5key: Gene Expression
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
+metadata:
+  doi: doi.org/10.1101/2021.04.05.438347
+  description: Single-cell level cellular indexing of transcriptomes and epitopes
+    by sequencing (CITE-Seq) and T cell receptor sequencing of pancreatic immune cells isolated from organ donors, hereditary, and idiopathic CP patients who underwent total pancreatectomy. There are some annotations available, but it seems like cells are already filtered in those.
+  tissue: Pancreas
+  species: Homo sapiens
+  alias: Lee_2021
+  genome_build: hg38

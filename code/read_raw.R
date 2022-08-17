@@ -97,7 +97,7 @@ read_raw.fastcsv <- function(filename, info, ...){
 
 # Turning a h5 object to SingleCellExperiment class via Seurat
 read_raw.h5 <- function(filename, info, ...){
-
+  browser()
   # I found this to be the easiest way to get such data into SingleCellExperiment class
   h5 <- Seurat::Read10X_h5(filename, use.names = TRUE, unique.features = TRUE)
   if(!is.null(info$h5key)){
@@ -409,13 +409,17 @@ read_metadata <- function(sce, info, path){
 
           if(all(is.na(name_match))){
             name_match <- match(rownames(colData(sce)),meta$CELL_ID %>% make.names(unique=T))
-	  }
-
-          meta <- meta[name_match,] %>%
+          }
+          
+          meta <- meta[name_match,] %>% dplyr::filter(complete.cases(.)) %>%
             tibble::column_to_rownames(var="CELL_ID")
           
           if(identical(rownames(meta), colnames(sce))){
             colData(sce) <- cbind(colData(sce), meta)
+          }else if(length(rownames(meta))/length(colnames(sce))>0.1){
+            sce <- sce[,colnames(sce) %in% rownames(meta)]
+            colData(sce) <- cbind(colData(sce), meta)
+            warning(paste0("Some cells were dropped when adding metadata to ", basename(path)))
           }else{
             warning(paste0("Problem adding metadata to ", basename(path)))
           }

@@ -97,7 +97,7 @@ read_raw.fastcsv <- function(filename, info, ...){
 
 # Turning a h5 object to SingleCellExperiment class via Seurat
 read_raw.h5 <- function(filename, info, ...){
-  
+
   # I found this to be the easiest way to get such data into SingleCellExperiment class
   h5 <- Seurat::Read10X_h5(filename, use.names = TRUE, unique.features = TRUE)
   if(!is.null(info$h5key)){

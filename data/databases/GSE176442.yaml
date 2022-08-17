@@ -7,13 +7,9 @@ download:
   ignore_hto: no
   fname:
     protein: GSE176442_Group4.filtered_feature_bc_matrix.h5
-    rna: GSE176442_Group4.filtered_feature_bc_matrix.h5
-    hto: GSE176442_Group4.filtered_feature_bc_matrix.h5
     other: GSE176442_Group4.filtered_response_annotation.txt.gz
   wlink:
     protein: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE176442&format=file&file=GSE176442%5FGroup4%2Efiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
-    rna: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE176442&format=file&file=GSE176442%5FGroup4%2Efiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
-    hto: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE176442&format=file&file=GSE176442%5FGroup4%2Efiltered%5Ffeature%5Fbc%5Fmatrix%2Eh5
     other: https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE176442&format=file&file=GSE176442%5FGroup4%2Efiltered%5Fresponse%5Fannotation%2Etxt%2Egz
   fgroup:
     protein: ~

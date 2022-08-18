@@ -6,9 +6,10 @@ download:
   keyword: ~
   ignore_hto: yes
   fname:
-    - raw_CITE_expression.csv.gz
-    - RNA_expression.csv.gz
-    - RNA_metadata.csv
+    other:
+      - raw_CITE_expression.csv.gz
+      - RNA_expression.csv.gz
+      - RNA_metadata.csv
   wlink: ~
   fgroup: ~
   source: https://singlecell.broadinstitute.org/single_cell/study/SCP1064/multi-modal-pooled-perturb-cite-seq-screens-in-patient-models-define-novel-mechanisms-of-cancer-immune-evasion

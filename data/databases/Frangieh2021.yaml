@@ -1,0 +1,45 @@
+download:
+  setup: ~
+  download: impossible
+  id: Frangieh2021
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    - raw_CITE_expression.csv.gz
+    - RNA_expression.csv.gz
+    - RNA_metadata.csv
+  wlink: ~
+  fgroup: ~
+  source: https://singlecell.broadinstitute.org/single_cell/study/SCP1064/multi-modal-pooled-perturb-cite-seq-screens-in-patient-models-define-novel-mechanisms-of-cancer-immune-evasion
+  comments: One needs to be registered to be able to download the data. Once registered,
+    one should download "raw_CITE_expression.csv.gz", "RNA_expression.csv.gz" and
+    "RNA_metadata.csv" and store these files in `./supp_protein/Frangieh_2021/`, `./supp_rna/Frangieh_2021/`,
+    and `./metadata/`, respectively.
+load:
+  transpose: no
+  separate_samples: no
+  keyword: ~
+  class: fastcsv
+  h5key: ~
+  altexp: ~
+  access: ~
+  drop: ~
+  keep: ~
+  coldata: ~
+  cells: ~
+  replace: ~
+  features: ~
+  column: ~
+  sample_groups: ~
+  samples:
+    file: metadata
+    key: NAME
+    value: condition
+metadata:
+  doi: doi.org/10.1038/s41588-021-00779-1
+  description: ~
+  tissue: ~
+  species: ~
+  alias: Frangieh_2021
+  genome_build: ~

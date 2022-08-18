@@ -1,0 +1,47 @@
+download:
+  setup: ~
+  download: impossible
+  id: E-MTAB-10143
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    other:
+      - figure1_adt.tsv
+      - figure1_rnas.tsv
+      - figure1_meta.tsv
+  wlink: ~
+  fgroup: ~
+  source: c.casar@uke.de
+  comment: Data is not in a public repository and the corresponding author needs to
+    be contacted. This kindly provided a link and password to obtain the data. There
+    are three relevant files "figure1_adt.tsv", "figure1_rnas.tsv" and "figure1_meta.tsv"
+    and store the adt data in `./supp_protein/Poch_2021/`, the RNA data in `./supp_rna/Poch_2021/`,
+    the HTO data in `./supp_hto/Poch_2021/`, and the metadata in `./metadata/`
+load:
+  transpose: no
+  separate_samples: no
+  keyword: ~
+  class: fastcsv
+  h5key: ~
+  altexp: ~
+  access: ~
+  drop: ~
+  keep: ~
+  coldata: ~
+  cells: ~
+  replace: ~
+  features: ~
+  column: ~
+  sample_groups: ~
+  samples:
+    file: meta
+    key: orig.ident
+    value: nCount_RNA
+metadata:
+  doi: doi.org/10.1016/j.jhep.2021.03.016
+  description: ~
+  tissue: ~
+  species: ~
+  alias: Poch_2021
+  genome_build: ~

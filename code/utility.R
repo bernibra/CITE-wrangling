@@ -68,7 +68,7 @@ untar_folder <- function(filenames){
   
   # Find files
   filenames <- list.files(dirname(filenames), full.names = T)
-  filenames_y <- list.files(dirname(filenames), recursive = T, full.names = T)
+  filenames_y <- unique(list.files(dirname(filenames), recursive = T, full.names = T))
     
   if(!all(filenames==filenames_y)){
     filenames <- paste(dirname(dirname(filenames_y[1])), basename(filenames_y), sep="/")

@@ -1,0 +1,120 @@
+sample_ID,patient_ID,amp_batch_ID,old_lib_name,HTO,tissue,disease,Species,library_chemistry,prime,vdj_kit,prep
+310,370,1,normal_370,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+319,403,10,403N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+320,403,11,403T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+323,406,14,406N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+324,406,15,406T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+325,408,16,normal_408,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+326,408,17,tumor_408,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+327,410,18,normal_410,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+328,410,19,tumor_410,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+311,370,2,tumor_370,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+331,458,22,458N,NA,Normal,LUAD,human,V2,3,,CD45+ FACS
+332,458,23,458T,NA,Tumor,LUAD,human,V2,3,,CD45+ FACS
+297,338,230,lib39,NA,Tumor,LUAD,human,V1,3,,CD45+ FACS
+298,338,231,lib40,NA,Tumor,LUAD,human,V1,3,,CD45+ FACS
+333,460,24,460N,NA,Normal,LUAD,human,V2,3,,CD45+ FACS
+343,522,244,5TEST1N,NA,Normal,LUSC,human,V1,5,"TCR,BCR",CD45+ bead enrichment
+344,522,245,5TEST1T,NA,Tumor,LUSC,human,V1,5,"TCR,BCR",CD45+ bead enrichment
+334,460,25,460T,NA,Tumor,LUAD,human,V2,3,,CD45+ FACS
+335,464,26,464N,NA,Normal,LUAD,human,V2,3,,CD45+ FACS
+336,464,27,464T,NA,Tumor,LUAD,human,V2,3,,CD45+ FACS
+337,514,28,514N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+338,514,29,514T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+398,714,292,714T,NA,Tumor,LUSC,human,V2,3,,CD45+ bead enrichment
+399,714,293,714N,NA,Normal,LUSC,human,V2,3,,CD45+ bead enrichment
+312,371,3,normal_371,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+339,522,30,BM174N,NA,Normal,LUSC,human,V2,3,,CD45+ bead enrichment
+413,729,307,IN190329,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+414,729,308,IT190329,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+415,725,309,HS190415I,NA,Tumor,LUAD,human,V3,3,,CD45+ bead enrichment
+340,522,31,BM174T,NA,Tumor,LUSC,human,V2,3,,CD45+ bead enrichment
+341,532,32,532N,NA,Normal,LUAD,human,V2,3,,CD45+ FACS
+342,532,33,532T,NA,Tumor,LUAD,human,V2,3,,CD45+ FACS
+448,706,342,7002v2A,"1,2",Tumor,LUSC,human,V2,3,,dead cell depletion kit
+449,706,342,7002v2A,"3,4",Normal,LUSC,human,V2,3,,dead cell depletion kit
+450,706,342,7002v2A,5,PBMC,LUSC,human,V2,3,,
+451,mouse_a20,342,7002v2A,Mouse_A20,mouse,LUSC,mouse,V2,3,,
+452,706,343,7002v2B,"1,2",Tumor,LUSC,human,V2,3,,dead cell depletion kit
+453,706,343,7002v2B,"3,4",Normal,LUSC,human,V2,3,,dead cell depletion kit
+454,706,343,7002v2B,5,PBMC,LUSC,human,V2,3,,
+455,mouse_a20,343,7002v2B,Mouse_A20,mouse,LUSC,mouse,V2,3,,
+456,706,344,7002v2C,"1,2",Tumor,LUSC,human,V2,3,,dead cell depletion kit
+457,706,344,7002v2C,"3,4",Normal,LUSC,human,V2,3,,dead cell depletion kit
+458,706,344,7002v2C,5,PBMC,LUSC,human,V2,3,,
+459,mouse_a20,344,7002v2C,Mouse_A20,mouse,LUSC,mouse,V2,3,,
+460,706,345,7002v2D,"1,2",Tumor,LUSC,human,V2,3,,dead cell depletion kit
+461,706,345,7002v2D,"3,4",Normal,LUSC,human,V2,3,,dead cell depletion kit
+462,706,345,7002v2D,5,PBMC,LUSC,human,V2,3,,
+463,mouse_a20,345,7002v2D,Mouse_A20,mouse,LUSC,mouse,V2,3,,
+464,706,346,7002v2E,"1,2",Tumor,LUSC,human,V2,3,,dead cell depletion kit
+465,706,346,7002v2E,"3,4",Normal,LUSC,human,V2,3,,dead cell depletion kit
+466,706,346,7002v2E,5,PBMC,LUSC,human,V2,3,,
+467,mouse_a20,346,7002v2E,Mouse_A20,mouse,LUSC,mouse,V2,3,,
+468,706,347,7002v2F,"1,2",Tumor,LUSC,human,V2,3,,dead cell depletion kit
+469,706,347,7002v2F,"3,4",Normal,LUSC,human,V2,3,,dead cell depletion kit
+470,706,347,7002v2F,5,PBMC,LUSC,human,V2,3,,
+471,mouse_a20,347,7002v2F,Mouse_A20,mouse,LUSC,mouse,V2,3,,
+472,706,348,7002v2G,"1,2",Tumor,LUSC,human,V2,3,,dead cell depletion kit
+473,706,348,7002v2G,"3,4",Normal,LUSC,human,V2,3,,dead cell depletion kit
+474,706,348,7002v2G,5,PBMC,LUSC,human,V2,3,,
+475,mouse_a20,348,7002v2G,Mouse_A20,mouse,LUSC,mouse,V2,3,,
+480,706,350,7002N5,NA,Normal,LUSC,human,V1,5,TCR,CD2+ bead enrichment
+481,706,351,7002T5,NA,Tumor,LUSC,human,V1,5,TCR,CD2+ bead enrichment
+36,558,36,558T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+37,564,37,564N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+38,564,38,564T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+39,569,39,569N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+313,371,4,tumor_371,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+40,569,40,569T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+41,570,41,570N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+42,570,42,570T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+43,571,43,571T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+44,572,44,572N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+45,572,45,572T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+46,578,46,578N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+47,578,47,578T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+48,581,48,581TN,1,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+49,581,48,581TN,2,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+50,581,49,581N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+314,377,5,normal_377,NA,Normal,LUSC,human,V2,3,,CD45+ bead enrichment
+51,581,50,581T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+52,584,51,584TN1,1,Tumor,LUSC,human,V2,3,,CD45+ bead enrichment
+54,584,51,584TN1,2,Normal,LUSC,human,V2,3,,CD45+ bead enrichment
+53,584,52,584TN2,1,Tumor,LUSC,human,V2,3,,CD45+ bead enrichment
+55,584,52,584TN2,2,Normal,LUSC,human,V2,3,,CD45+ bead enrichment
+56,593,53,593TN,"1,2,3,4,5,6,7,8",Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+57,593,53,593TN,"9,10",Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+58,596,54,596TN1,3,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+60,596,54,596TN1,4,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+59,596,55,596TN2,3,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+61,596,55,596TN2,4,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+62,630,56,630TN,"1,2,3,4,5",Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+63,630,56,630TN,"6,7,8,9,10",Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+315,377,6,tumor_377,NA,Tumor,LUSC,human,V2,3,,CD45+ bead enrichment
+851,800,668,800TI_0_G,NA,Tumor,LUAD,human,V3,3,NA,CD45+ bead enrichment
+316,378,7,378N,NA,Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+317,378,8,378T,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+95,626,88,626TN1,"1,2,3,4,5",Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+96,626,88,626TN1,"6,7,8,9,10",Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+97,626,89,626TN2,"1,2,3,4,5",Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+98,626,89,626TN2,"6,7,8,9,10",Normal,LUAD,human,V2,3,,CD45+ bead enrichment
+318,393,9,178,NA,Tumor,LUAD,human,V2,3,,CD45+ bead enrichment
+99,695,90,7001v2A,"1,2,3,4",Tumor,LUAD,human,V2,3,,dead cell depletion kit
+100,695,90,7001v2A,"5,6,7,8",Normal,LUAD,human,V2,3,,dead cell depletion kit
+101,695,90,7001v2A,"9,10",PBMC,LUAD,human,V2,3,,
+102,mouse_a20,90,7001v2A,Mouse_A20,mouse,NA,mouse,V2,3,,
+103,695,91,7001v2B,"1,2,3,4",Tumor,LUAD,human,V2,3,,dead cell depletion kit
+104,695,91,7001v2B,"5,6,7,8",Normal,LUAD,human,V2,3,,dead cell depletion kit
+105,695,91,7001v2B,"9,10",PBMC,LUAD,human,V2,3,,
+106,mouse_a20,91,7001v2B,Mouse_A20,mouse,NA,mouse,V2,3,,
+107,695,92,7001v2C,"1,2,3,4",Tumor,LUAD,human,V2,3,,dead cell depletion kit
+108,695,92,7001v2C,"5,6,7,8",Normal,LUAD,human,V2,3,,dead cell depletion kit
+109,695,92,7001v2C,"9,10",PBMC,LUAD,human,V2,3,,
+110,mouse_a20,92,7001v2C,Mouse_A20,mouse,NA,mouse,V2,3,,
+111,695,93,7001v2D,"1,2,3,4",Tumor,LUAD,human,V2,3,,dead cell depletion kit
+112,695,93,7001v2D,"5,6,7,8",Normal,LUAD,human,V2,3,,dead cell depletion kit
+113,695,93,7001v2D,"9,10",PBMC,LUAD,human,V2,3,,
+114,mouse_a20,93,7001v2D,Mouse_A20,mouse,NA,mouse,V2,3,,
+115,695,94,7001N5,NA,Normal,LUAD,human,V1,5,TCR,CD2+ bead enrichment
+116,695,95,7001T5,NA,Tumor,LUAD,human,V1,5,TCR,CD2+ bead enrichment

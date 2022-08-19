@@ -1,0 +1,108 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE153056
+  description: ~
+  keyword: ~
+  ignore_hto: no
+  fname:
+    protein:
+    - GSM4633606_CITE_ADT_counts.tsv.gz
+    - GSE153056_CITE_metadata.tsv.gz
+    - GSM4633609_ECCITE_Arrayed_ADT_counts.tsv.gz
+    - GSE153056_ECCITE_Arrayed_metadata.tsv.gz
+    - GSM4633615_ECCITE_ADT_counts.tsv.gz
+    - GSE153056_ECCITE_metadata.tsv.gz
+    rna:
+    - GSM4633605_CITE_cDNA_counts.tsv.gz
+    - GSM4633608_ECCITE_Arrayed_cDNA_counts.tsv.gz
+    - GSM4633614_ECCITE_cDNA_counts.tsv.gz
+    - GSE153056_CITE_metadata.tsv.gz
+    - GSE153056_ECCITE_Arrayed_metadata.tsv.gz
+    - GSE153056_ECCITE_metadata.tsv.gz
+    hto:
+    - GSE153056_CITE_metadata.tsv.gz
+    - GSE153056_ECCITE_Arrayed_metadata.tsv.gz
+    - GSE153056_ECCITE_metadata.tsv.gz
+    - GSM4633607_CITE_HTO_counts.tsv.gz
+    - GSM4633610_ECCITE_Arrayed_HTO_counts.tsv.gz
+    - GSM4633616_ECCITE_HTO_counts.tsv.gz
+  wlink:
+    protein:
+    - https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSM4633606&format=file&file=GSM4633606%5FCITE%5FADT%5Fcounts%2Etsv%2Egz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE153nnn/GSE153056/suppl/GSE153056_CITE_metadata.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4633nnn/GSM4633609/suppl/GSM4633609_ECCITE_Arrayed_ADT_counts.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE153nnn/GSE153056/suppl/GSE153056_ECCITE_Arrayed_metadata.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4633nnn/GSM4633615/suppl/GSM4633615_ECCITE_ADT_counts.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE153nnn/GSE153056/suppl/GSE153056_ECCITE_metadata.tsv.gz
+    rna:
+    - https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4633nnn/GSM4633605/suppl/GSM4633605_CITE_cDNA_counts.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4633nnn/GSM4633608/suppl/GSM4633608_ECCITE_Arrayed_cDNA_counts.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4633nnn/GSM4633614/suppl/GSM4633614_ECCITE_cDNA_counts.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE153nnn/GSE153056/suppl/GSE153056_CITE_metadata.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE153nnn/GSE153056/suppl/GSE153056_ECCITE_Arrayed_metadata.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE153nnn/GSE153056/suppl/GSE153056_ECCITE_metadata.tsv.gz
+    hto:
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE153nnn/GSE153056/suppl/GSE153056_CITE_metadata.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE153nnn/GSE153056/suppl/GSE153056_ECCITE_Arrayed_metadata.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE153nnn/GSE153056/suppl/GSE153056_ECCITE_metadata.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4633nnn/GSM4633607/suppl/GSM4633607_CITE_HTO_counts.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4633nnn/GSM4633610/suppl/GSM4633610_ECCITE_Arrayed_HTO_counts.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM4633nnn/GSM4633616/suppl/GSM4633616_ECCITE_HTO_counts.tsv.gz
+  fgroup:
+    protein:
+    - CITE
+    - CITE
+    - ECCITE_Arrayed
+    - ECCITE_Arrayed
+    - ECCITE
+    - ECCITE
+    rna:
+    - CITE
+    - ECCITE_Arrayed
+    - ECCITE
+    - CITE
+    - ECCITE_Arrayed
+    - ECCITE
+    hto:
+    - CITE
+    - ECCITE_Arrayed
+    - ECCITE
+    - CITE
+    - ECCITE_Arrayed
+    - ECCITE
+  source: ~
+  comments: ~
+load:
+  transpose: no
+  separate_samples: no
+  keyword: ~
+  class: fastcsv
+  h5key: ~
+  altexp: ~
+  access: ~
+  drop: ~
+  keep: ~
+  coldata: ~
+  cells: ~
+  replace: ~
+  features: ~
+  column: ~
+  sample_groups: ~
+  samples:
+    file: metadata
+    key: RowNames
+    value: orig.ident
+metadata:
+  doi: doi.org/10.1038/s41588-021-00778-2
+  description: First, CITE-seq on both unstimulated and stimulated THP-1 cells, which
+    enables the simultaneous measurement of cellular transcriptomes alongside surface
+    protein levels of PD-L1, PD-L2 and CD86. Second, ECCITE-seq technology, which
+    extends CRISPR compatibility to the CITE-seq protocol and enables simultaneous
+    gRNA capture. ECCITE-seq allowed us to multiplex >100 individual perturbations
+    together and to simultaneously test the effect of each in a single experiment.There
+    is also information on GDO data in the GEO file.
+  tissue: THP-1
+  species: Homo sapiens
+  alias: Papalexi_2021
+  genome_build: hg19

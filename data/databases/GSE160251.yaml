@@ -1,0 +1,77 @@
+download:
+  setup: ~
+  download: impossible
+  id: GSE160251
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname: 
+    other:
+      - GM-KV_CD34N-CD235AN (folder)
+      - GM-KV_CD34N-CD235AP (folder)
+      - GM-KV_CD34P-Bulk (folder)
+      - GM-KV_CD34P-GPI80P (folder)
+      - meta.tsv
+  wlink: ~
+  fgroup: ~
+  source: https://cells.ucsc.edu/?ds=engraftable-hsc
+  comments: The adt data does not seem to be available in GSE160251, and the data provided
+    in the data source is already normalized. The authors kindly provided the raw
+    counts after contacting them by email, and the data should be eventually updated
+    in GEO. For the proper processing of the dataset, one needs to download the ADT
+    and RNA data for the four partitions. ADT data should be stored under `./supp_protein/`
+    as four separate folders. Likewise, the RNA data should be stored in `./supp_rna/`
+    in four separate folders. The metadata of the study can be downloaded following
+    the data source, and should be stored in `./metadata/`
+load:
+  protein:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: 1
+    sample_groups: ~
+    samples:
+      file: meta
+      key: cellId
+      value: sample
+  rna:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: h5
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: meta
+      key: cellId
+      value: sample
+metadata:
+  doi: doi.org/10.1101/2020.11.11.378620
+  description: 'Single-cell profile of highly enriched FL cells to uncover the detailed
+    molecular signature of engraftable FL HSCs. In particular, a total of 26,407 FL
+    cells profiled from one fetal liver, divided across the following fractions: 8735
+    CD34+bulk cells, 7235 GPI-80+ cells, 6793 CD34−GYPA− cells and 3644 CD34−GYPA−
+    cells.'
+  tissue: Fetal liver
+  species: Homo sapiens
+  alias: Vanuytsel_2020
+  genome_build: GRCh38; GRCm38

@@ -76,7 +76,7 @@ download:
 load:
   transpose: no
   separate_samples: no
-  keyword: ~
+  keyword: counts
   class: fastcsv
   h5key: ~
   altexp: ~

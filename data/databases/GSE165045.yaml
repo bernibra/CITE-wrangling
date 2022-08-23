@@ -77,7 +77,7 @@ load:
   protein:
     transpose: no
     separate_samples: yes
-    keyword: ~
+    keyword: matrix
     class: h5
     h5key: Antibody Capture
     altexp: ~
@@ -94,7 +94,7 @@ load:
   rna:
     transpose: no
     separate_samples: yes
-    keyword: ~
+    keyword: matrix
     class: h5
     h5key: Gene Expression
     altexp: ~

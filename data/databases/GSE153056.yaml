@@ -91,7 +91,7 @@ load:
   sample_groups: ~
   samples:
     file: metadata
-    key: RowNames
+    key: "...1"
     value: orig.ident
 metadata:
   doi: doi.org/10.1038/s41588-021-00778-2

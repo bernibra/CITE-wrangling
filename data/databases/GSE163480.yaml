@@ -5,7 +5,7 @@ download:
   description: title
   keyword:
     protein: proteins
-  ignore_hto: yes
+  ignore_hto: no
   fname: ~
   wlink: ~
   fgroup: ~
@@ -23,7 +23,9 @@ load:
     drop: ~
     keep: ~
     coldata:
-    - n_genes n_counts demux_type
+    - n_genes
+    - n_counts
+    - demux_type
     - assignment
     - hashtag_counts
     - batch
@@ -32,10 +34,7 @@ load:
     features: ~
     column: ~
     sample_groups: ~
-    samples:
-      file: obs
-      key: '...1'
-      value: assignment
+    samples: ~
   rna:
     transpose: no
     separate_samples: no
@@ -56,9 +55,36 @@ load:
       file: obs
       key: '...1'
       value: assignment
+  hto:
+    transpose: yes
+    separate_samples: no
+    keyword: obs
+    class: csv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata:
+    - n_genes
+    - n_counts
+    - demux_type
+    - assignment
+    - p65
+    - c-Fos
+    - NeuN
+    - PU.1
+    - NeuN
+    - batch
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
 metadata:
   doi: doi.org/10.1038/s41592-021-01278-1
-  description: "\tSimultaneous single cell measurements of nuclear proteins and RNA
+  description: "Simultaneous single cell measurements of nuclear proteins and RNA
     with inCITE-seq, with targeted protein measurements using DNA-conjugated antibodies.
     Single nuclei (n=10,014) of HeLa cells, either untreated or after TNFa treatment,
     were profiled with inCITE-seq targeting the transcription factor p65. Single nuclei

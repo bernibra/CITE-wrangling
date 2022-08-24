@@ -1,0 +1,65 @@
+download:
+  setup: ~
+  download: impossible
+  id: Wu2021b
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    other:
+    - CITE.zip
+    - brca_mini_atlas_raw_unfiltered.zip
+    - Whole_miniatlas_meta.csv
+  wlink:
+    other: ~
+  fgroup: ~
+  source: https://singlecell.broadinstitute.org/single_cell/study/SCP1039/a-single-cell-and-spatially-resolved-atlas-of-human-breast-cancers#study-download
+  comments: "One needs to be signed in to download the data. The adt data is a file named `CITE.zip`, one should download it and inside there will be the different samples as compressed files. Uncompress them and find, for each sample `x` (CID3838; CID4379N; CID4515; CID4040; CID3946), the umi_reads (matrix, barcode and feature files) and store them in `./supp_protein/x/`. For the RNA data, one needs to download `brca_mini_atlas_raw_unfiltered.zip` file, uncompress it and store every sample `x` (three files for matrix, barcodes and features) in `./supp_rna/x/`. Finally, the metadata folder should contain the file `Whole_miniatlas_meta.csv`. Before storing such file in `metadata`, one should also open it in R and create an additional column named `barcode`, with only the barcodes (as the file contains the barcodes and sample information all-toghether as `sample_barcode`)."
+load:
+  protein:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
+    column: 1
+    sample_groups: ~
+    samples:
+      file: meta
+      key: barcode
+      value: Patient
+  rna:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: genes
+    column: 1
+    sample_groups: ~
+    samples:
+      file: meta
+      key: barcode
+      value: Patient
+metadata:
+  doi: doi.org/10.1038/s41588-021-00911-1
+  description: "Examen of the immune milieu of breast tumors at high resolution by reclustering immune cells to identify T cells and innate lymphoid cells, myeloid cells, B cells and plasmablasts. In particular, immunophenotyping using cellular indexing of transcriptomes and epitopes by sequencing four samples and performing anchor-based integration to transfer protein expression levels to the remaining cases"
+  tissue: "breast tumor cells"
+  species: "Homo sapiens"
+  alias: Wu_2021_b
+  genome_build: GRCh38

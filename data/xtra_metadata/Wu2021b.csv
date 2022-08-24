@@ -1,0 +1,27 @@
+Case ID,Gender,Age,Grade,Cancer Type,ER,PR,HER2 IHC,HER2 ISH (ratio),Ki67,Subtype by IHC,Treatment status,Details of treatment,Notable Pathological features,Stage
+3586,Female,43,3,IDC,100% 2-3+,100% 2-3+,3+,Amplified (6.8),30-50%,HER2+/ER+,Na夫e,-,Multifocal tumour with associatied high grade DCIS and extensive LVI,"pT(m)2, N2a"
+3838,Female,49,3,IDC,0,0,3+,Amplified (8.91),0.6,HER2+,Na夫e,-,Associated high grade DCIS.,"pT2, N1a"
+3921,Female,60,3,IDC,0,0,3+,Amplified (10.46),>50%,HER2+,Na夫e,-,Associated high grade DCIS and focal LVI,"pT2, N2a (Stage IIIA)"
+3941,Female,50,2,IDC,90% 3+,90% 3+,2+,Non-Amplified,0.1,ER+,Na夫e,-,Multifocal tumour with associated high grade DCIS,"pT1c, N1a, Mx"
+3946,Female,52,3,IDC,0,0,0,Non-Amplified,0.6,TNBC,Na夫e,-,Basal phenotype. Reactive lymphoid inflitrate with germinal centres. ,"pT2, N0, Mx"
+3948,Female,82,3,IDC,90% 2-3+,80% 2+,0,Non-Amplified,~10%,ER+,Na夫e,-,"Associated LCIS, with LVI and perineural invasion","pT2, N2a"
+3963,Female,61,3,IDC,30% 1+,0,0,Non-Amplified,0.43,ER+,Treated,"AC, Paclitaxel, Herceptin (administered for Dx 3 years prior)",Probable recurrence from 3 years prior,"pT2, pN0, Mx, Stage IIA"
+4040,Female,57,3,IDC,95% 3+,95% 2-3+,0,Non-Amplified,>50%,ER+,Na夫e,-,Associated high grade DCIS. ,"pT2, N0"
+4066,Female,41,2,IDC,70% 3+,0,3+,Amplified (7.7),0.3,HER2+/ER+,Treated,Neoadjuvant AC,"Associated high grade DCIS and extensive LVI. RCB-III, minimal or no-response to chemotherapy. ",pT2 N2a Mx
+4067,Female,85,2,IDC,100% 3+,95% 3+,1+,Non-Amplified,3-4%,ER+,Na夫e,-,Associated low grade DCIS and focal perineural invasion.,"pT2, N1(sn), Mx"
+4290,Female,88,2,IDC,90% 3+,30% 2+,1+,Non-Amplified,0.1,ER+,Na夫e,-,"Locally advanced, skin and chest wall muscle involvement. ","pT4b, Nx"
+4398,Female,52,3,IDC,95% 2+,80% 2+,2+,Non-Amplified,0.75,ER+,Treated,Neoadjuvant FEC-D,"Mixed morphology with associated high grade DCIS, extensive LVI and perineural invasion. RCB-III, minimal or no-response to chemotherapy. ","pT3, pN2a, pMx, Stage IIIA"
+4404-1,Female,35,3,IDC,0,0,0,Non-Amplified,0.7,TNBC,Na夫e,-,Associated high grade DCIS and focal LVI.,"pT2, N1a, Mx"
+4461,Female,54,2,IDC,95% 3+,~5% 3+,2+,Non-Amplified,0.15,ER+,Na夫e,-,"Associated intermediate to high grade DCIS, LVI and perineural invasion.","pT3, N1a, Mx"
+4463,Female,58,2,IDC,100% 2-3+,80% 2-3+,0,Non-Amplified,0.5,ER+,Na夫e,-,"IDC with areas of lobular -like growth pattern, but is E-cadherin positive. Associated low through high grade DCIS and LVI.","pT3, N1, Mx"
+4465,Female,54,3,IDC,0,0,0,Non-Amplified,0.7,TNBC,Na夫e,-,Basal phenotype - patchy CK5/6 and p63 positivity. Associated high grade DCIS at periphery of tumour mass. ,"PT2, N0(sn) Mx"
+4471,Female,55,2,ILC,100% 3+,100% 3+,0,Non-Amplified,0.2,ER+,Na夫e,-,-,"pT3, pN0 (i+)"
+4495,Female,63,3,IDC,0,0,0,Non-Amplified,0.8,TNBC,Na夫e,-,Medullary features,"pT1c, pN0"
+4497-1,Female,49,3,IDC,0,0,0,Non-Amplified,0.4,TNBC,Na夫e,-,"Highly atypical cells with circumscribed periphery, associated high grade DCIS and LVI. Accompanying lymphoid stroma.","pT2, N1a, Mx"
+4499-1,Female,47,3,IDC,0,0,0,Non-Amplified,60-70%,TNBC,Na夫e,-,BRCA2 mutation ,
+4513,Female,73,3,MBC,0,0,0,Non-Amplified,0.75,TNBC,Treated,"Neoadjuvant AC (4x), Paclitaxel (3x)","Metaplastic, spindle cell carcinoma with areas of sarcomatous appearance and inflammatory infiltrate. LVI present.  RCB-II, partial pathological response to chemotherapy","pT3, pN0, Mx, Stage IIB"
+4515,Female,67,3,IDC,0,0,0,Non-Amplified,0.6,TNBC,Na夫e,-,"Basal phenotype: CK5/6+ focal 40%, CK14+ focal 30%. Associated high grade DCIS and patchy lymphoid infiltrate.","PpT1c, pN1, Mi, Stage IIA"
+4517-1,Female,58,3,IDC,0,0,3+,Amplified,0.8,HER2+,Na夫e,-,,
+4523,Female,52,3,MBC,0,0,1+,Non-Amplified,0.9,TNBC,Treated," Neoadjuvant AC (4x), Paclitaxel (1x)","Metaplastic carcinoma with sebaceous differentiation. LVI present. RCB-II, partial pathological response to chemotherapy","pT2, pN0 (i+), pM0, Stage IIA"
+4530,Female,42,2,IDC,95% 2+,95% 3+,1+,Non-Amplified,0.05,ER+,Na夫e,-,Multifocal tumour with associated high grade DCIS and LVI.,"pT3, pN3, pMx, Stage IIIA"
+4535,Female,47,2,ILC,95% 3+,70% 2+,2+,Non-Amplified,0.1,ER+,Na夫e,-,-,"pT2, pN0 (i+),Stage IIB"

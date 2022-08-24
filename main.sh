@@ -2,7 +2,7 @@
 
 #SBATCH --chdir=/work/PRTNR/CHUV/DIR/rgottar1/citeseq/CITE-wrangling/
 #SBATCH --account rgottar1_citeseq
-#SBATCH --time 00-12:00:00
+#SBATCH --time 00-24:00:00
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1

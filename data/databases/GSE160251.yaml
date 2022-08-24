@@ -67,9 +67,9 @@ load:
 metadata:
   doi: doi.org/10.1101/2020.11.11.378620
   description: 'Single-cell profile of highly enriched FL cells to uncover the detailed
-    molecular signature of engraftable FL HSCs. In particular, a total of 26,407 FL
+    molecular signature of engraftable FL HSCs. In particular, a total of 26407 FL
     cells profiled from one fetal liver, divided across the following fractions: 8735
-    CD34+bulk cells, 7235 GPI-80+ cells, 6793 CD34−GYPA− cells and 3644 CD34−GYPA−
+    CD34+bulk cells, 7235 GPI-80+ cells, 6793 CD34-GYPA- cells and 3644 CD34-GYPA+
     cells.'
   tissue: Fetal liver
   species: Homo sapiens

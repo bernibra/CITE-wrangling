@@ -1,0 +1,97 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE163480
+  description: title
+  keyword:
+    protein: proteins
+  ignore_hto: no
+  fname: ~
+  wlink: ~
+  fgroup: ~
+  source: ~
+  comments: ~
+load:
+  protein:
+    transpose: yes
+    separate_samples: no
+    keyword: obs
+    class: csv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata:
+    - n_genes
+    - n_counts
+    - demux_type
+    - assignment
+    - hashtag_counts
+    - batch
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: matrix
+    class: fastcsv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: obs
+      key: '...1'
+      value: assignment
+  hto:
+    transpose: yes
+    separate_samples: no
+    keyword: obs
+    class: csv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata:
+    - n_genes
+    - n_counts
+    - demux_type
+    - assignment
+    - p65
+    - c-Fos
+    - NeuN
+    - PU.1
+    - NeuN
+    - batch
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
+metadata:
+  doi: doi.org/10.1038/s41592-021-01278-1
+  description: "Simultaneous single cell measurements of nuclear proteins and RNA
+    with inCITE-seq, with targeted protein measurements using DNA-conjugated antibodies.
+    Single nuclei (n=10,014) of HeLa cells, either untreated or after TNFa treatment,
+    were profiled with inCITE-seq targeting the transcription factor p65. Single nuclei
+    (n=21,583) of the mouse hippocampus after PBS or kainic acid injection were profiled
+    with inCITE-seq targeting TFs p65, c-Fos, and PU.1, as well as the RNA-binding
+    protein NeuN."
+  tissue: HeLa; mouse hippocampus
+  species: Homo sapiens; Mus musculus
+  alias: Chung_2021
+  genome_build: hg19_premrna; mm10_premrna

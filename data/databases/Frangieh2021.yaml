@@ -41,7 +41,7 @@ load:
       - condition
 metadata:
   doi: doi.org/10.1038/s41588-021-00779-1
-  description: Pooled Perturb-CITE-seq screens of ICR program genes in a patient-derived tumor–TIL co-culture model, targeting 248 genes of the ICR signature (744 targeting guides) and profiling single-cell transcriptomes and 20 surface proteins in more than 218000 cells.
+  description: "Pooled Perturb-CITE-seq screens of ICR program genes in a patient-derived tumor TIL co-culture model, targeting 248 genes of the ICR signature (744 targeting guides) and profiling single-cell transcriptomes and 20 surface proteins in more than 218000 cells."
   tissue: TILs
   species: Homo sapiens
   alias: Frangieh_2021

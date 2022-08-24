@@ -46,6 +46,8 @@ select_relevant_files <- function(filenames, info){
 
 # Load a single geo raw dataset
 load_path <- function(path, info, ftype="protein", id="id", RAMlimit=T){
+  # Start the processing of files
+  message("processing data for: ", id)
 
   # Find all raw files
   filenames <- list.files(path, full.names = T)
@@ -65,9 +67,7 @@ load_path <- function(path, info, ftype="protein", id="id", RAMlimit=T){
   
   # Create experiment folder
   dir.create(file.path("data/processed/sce-objects/", id), showWarnings = FALSE)
-  message("processing data for: ", id)
-  
-  # Create experiment folder for ftype data
+
   experimentf <- file.path("data/processed/sce-objects/", id, ftype)
   dir.create(experimentf, showWarnings = FALSE)
   

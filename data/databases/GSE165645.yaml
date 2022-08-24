@@ -89,9 +89,7 @@ load:
     samples: ~
 metadata:
   doi: doi.org/10.1084/jem.20201750
-  description: Cellular indexing of transcriptomes and epitopes by sequencing (CITE-seq)
-    to capture the expression of 132 hematopoietic cell–surface proteins on mononuclear
-    bone marrow cells from patient A.II.2 and an age-, gender-matched HD control
+  description: "Cellular indexing of transcriptomes and epitopes by sequencing (CITE-seq) to capture the expression of 132 hematopoietic cell surface proteins on mononuclear bone marrow cells from patient A.II.2 and an age-, gender-matched HD control"
   tissue: BM
   species: Homo Sapiens
   alias: LeCoz_2021

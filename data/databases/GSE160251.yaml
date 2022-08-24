@@ -35,9 +35,9 @@ load:
     drop: ~
     keep: ~
     coldata: ~
-    cells: ~
-    replace: ~
-    features: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
     column: 1
     sample_groups: ~
     samples:
@@ -55,9 +55,9 @@ load:
     drop: ~
     keep: ~
     coldata: ~
-    cells: ~
-    replace: ~
-    features: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
     column: ~
     sample_groups: ~
     samples:

@@ -1,0 +1,69 @@
+download:
+  setup: ~
+  download: wget
+  id: Krebs2020
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    protein:
+    - CB_reorder_clusters.rds
+    - CK_reorder_clusters.rds
+    - PB_reorder_clusters.rds
+    - PK_reorder_clusters_res0.8.rds
+  wlink:
+    protein:
+    - https://figshare.com/ndownloader/files/23858897?private_link=7912de1afc7fd5bbefd4
+    - https://figshare.com/ndownloader/files/23858900?private_link=7912de1afc7fd5bbefd4
+    - https://figshare.com/ndownloader/files/23858903?private_link=7912de1afc7fd5bbefd4
+    - https://figshare.com/ndownloader/files/23858906?private_link=7912de1afc7fd5bbefd4
+  fgroup:
+    protein:
+    - CB
+    - CK
+    - PB
+    - PK
+  source: ~
+  comments: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: ADT
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: orig.indent
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: RNA
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: orig.indent
+metadata:
+  doi: doi.org/10.1126/sciimmunol.aba4163
+  description: 'Human renal T cells in biopsies from patients with ANCA-GN and from healthy kidney tissue from tumor nephrectomies and identified different T cell subsets including CD4+ TRM cells with TH1 or TH17 expression signatures. That is, T cells from human kidney biopsies from controls and from individuals with ANCA-associated GN were analyzed by scRNA-seq, CITE-seq, flow cytometry, and immune histology.'
+  tissue: Renal T cells
+  species: Homo sapiens
+  alias: Krebs_2020
+  genome_build: GRCh38

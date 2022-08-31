@@ -43,6 +43,7 @@ data/raw
 
 # Processed data
 data/processed
+data/processed_tmp
 
 # Mac files
 *.DS_Store

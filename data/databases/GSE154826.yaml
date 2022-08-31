@@ -94,7 +94,7 @@ download:
 load:
   protein:
     transpose: no
-    separate_samples: yes
+    separate_samples: no
     keyword: ~
     class: mtx
     h5key: ~
@@ -111,7 +111,7 @@ load:
     samples: ~
   rna:
     transpose: no
-    separate_samples: yes
+    separate_samples: no
     keyword: ~
     class: mtx
     h5key: ~
@@ -128,7 +128,7 @@ load:
     samples: ~
   hto:
     transpose: no
-    separate_samples: yes
+    separate_samples: no
     keyword: ~
     class: mtx
     h5key: ~

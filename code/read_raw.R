@@ -202,7 +202,7 @@ read_raw.Seurat <- function(filename, info, ...){
   
   # Make sure we are using the right data
   if(!is.null(info$altexp)){
-    if(mainExpName(sce)!=info$altExp){
+    if(mainExpName(sce)!=info$altexp){
       cdata <- colData(sce)
       sce <- altExp(sce, info$altexp)
       

@@ -202,7 +202,7 @@ read_raw.Seurat <- function(filename, info, ...){
   
   # Make sure we are using the right data
   if(!is.null(info$altexp)){
-    if(mainExpName(sce)!=info$altExp){
+    if(mainExpName(sce)!=info$altexp){
       cdata <- colData(sce)
       sce <- altExp(sce, info$altexp)
       
@@ -413,6 +413,10 @@ read_metadata <- function(sce, info, path){
           if(all(is.na(name_match))){
             meta$CELL_ID <- meta$CELL_ID %>% make.names(unique=T)
             name_match <- match(rownames(colData(sce)),meta$CELL_ID)
+            if(all(is.na(name_match))){
+              colnames(sce) <- colnames(sce) %>% make.names(unique=T)
+              name_match <- match(rownames(colData(sce)),meta$CELL_ID)
+            }
           }
           
           meta <- meta[name_match,] %>% dplyr::filter(complete.cases(.)) %>%

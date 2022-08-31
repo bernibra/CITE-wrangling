@@ -413,6 +413,10 @@ read_metadata <- function(sce, info, path){
           if(all(is.na(name_match))){
             meta$CELL_ID <- meta$CELL_ID %>% make.names(unique=T)
             name_match <- match(rownames(colData(sce)),meta$CELL_ID)
+            if(all(is.na(name_match))){
+              colnames(sce) <- colnames(sce) %>% make.names(unique=T)
+              name_match <- match(rownames(colData(sce)),meta$CELL_ID)
+            }
           }
           
           meta <- meta[name_match,] %>% dplyr::filter(complete.cases(.)) %>%

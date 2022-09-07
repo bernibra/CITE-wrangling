@@ -1,5 +1,5 @@
 
-rootdir <- "../data/processed/names/abnames-proteins/"
+rootdir <- "../data/processed/names/abnames-protein/"
 dir.create(rootdir, showWarnings = F)
 
 mainfolders <- list.dirs("../data/processed/sce-objects/", full.names = T, recursive = F)

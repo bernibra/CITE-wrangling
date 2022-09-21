@@ -6,7 +6,7 @@
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
-#SBATCH --mem 250gb
+#SBATCH --mem 300gb
 #SBATCH -o /scratch/bbramonm/cite-output_%j.txt
 #SBATCH -e /scratch/bbramonm/cite-errors_%j.txt
 

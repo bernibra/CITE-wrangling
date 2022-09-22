@@ -7,7 +7,7 @@ download:
     protein: cite
 load:
   protein:
-    separate_samples: yes
+    separate_samples: no
     keyword: scADT
     transpose: no
   rna:

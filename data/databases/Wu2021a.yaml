@@ -8,10 +8,10 @@ download:
   fname: ~
   wlink: ~
   fgroup: ~
-  source: j.reeves@garvan.org.au
-  comments: The only way to obtain the raw counts is by contacting the authors. They
+  source: "j.reeves@garvan.org.au"
+  comments: "The only way to obtain the raw counts is by contacting the authors. They
     provided a link where to download the data. It comes as a big seurat object that
-    should be stored in `./supp_protein/Wu_2021_a/`
+    should be stored in `./supp_protein/Wu_2021_a/`"
 load:
   protein:
     transpose: no
@@ -49,10 +49,7 @@ load:
     samples: orig.ident
 metadata:
   doi: doi.org/10.1186/s13073-021-00885-z
-  description: CITE-Seq on a single breast cancer case cryopreserved as CT using a
-    panel of 15 canonical cell type markers. Samples were stained with 10X Chromium
-    3′ mRNA capture compatible TotalSeq-A antibodies (BioLegend, USA). Staining was
-    performed as previously described by Stoeckius et al. (2017).
+  description: "CITE-Seq on a single breast cancer case cryopreserved as CT using a panel of 15 canonical cell type markers. Samples were stained with 10X Chromium 3 mRNA capture compatible TotalSeq-A antibodies (BioLegend, USA). Staining was performed as previously described by Stoeckius et al. (2017)."
   tissue: breast cancer solid tissues
   species: Homo sapiens
   alias: Wu_2021_a

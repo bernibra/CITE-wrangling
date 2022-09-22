@@ -23,7 +23,7 @@ load:
     altexp: ~
     access: ~
     drop: ~
-    keep: '"_ADT"'
+    keep: "_ADT"
     coldata: ~
     cells: ~
     replace: ~
@@ -42,7 +42,7 @@ load:
     h5key: ~
     altexp: ~
     access: ~
-    drop: '"_ADT"'
+    drop: "_ADT"
     keep: ~
     coldata: ~
     cells: ~
@@ -56,12 +56,7 @@ load:
       value: sample
 metadata:
   doi: doi.org/10.1158/2159-8290.CD-19-0710
-  description: 'Primary human AML specimens were obtained from apheresis product,
-    peripheral blood, or bone marrow of patients with AML. Patients included: one
-    hundred consecutive patients with newly diagnosed AML and no prior therapy who
-    were prescribed VEN+AZA at our institution and had taken at least one dose of
-    either therapy. An AML patient who achieved remission but ultimately relapsed
-    from the venetoclax plus azacitidine therapy was chosen for this CITE-seq analysis.'
+  description: 'Primary human AML specimens were obtained from apheresis product, peripheral blood, or bone marrow of patients with AML. Patients included: one hundred consecutive patients with newly diagnosed AML and no prior therapy who were prescribed VEN+AZA at our institution and had taken at least one dose of either therapy. An AML patient who achieved remission but ultimately relapsed from the venetoclax plus azacitidine therapy was chosen for this CITE-seq analysis.'
   tissue: BM
   species: Homo sapiens
   alias: Pei_2020

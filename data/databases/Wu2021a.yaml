@@ -1,0 +1,59 @@
+download:
+  setup: ~
+  download: impossible
+  id: Wu2021a
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname: ~
+  wlink: ~
+  fgroup: ~
+  source: j.reeves@garvan.org.au
+  comments: The only way to obtain the raw counts is by contacting the authors. They
+    provided a link where to download the data. It comes as a big seurat object that
+    should be stored in `./supp_protein/Wu_2021_a/`
+load:
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: ADT
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: orig.ident
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: RNA
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: orig.ident
+metadata:
+  doi: doi.org/10.1186/s13073-021-00885-z
+  description: CITE-Seq on a single breast cancer case cryopreserved as CT using a
+    panel of 15 canonical cell type markers. Samples were stained with 10X Chromium
+    3′ mRNA capture compatible TotalSeq-A antibodies (BioLegend, USA). Staining was
+    performed as previously described by Stoeckius et al. (2017).
+  tissue: breast cancer solid tissues
+  species: Homo sapiens
+  alias: Wu_2021_a
+  genome_build: GRCh38

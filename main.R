@@ -151,3 +151,5 @@ project_plan <- rbind(
   )
 
 make(project_plan, lock_envir = F)
+
+warnings()

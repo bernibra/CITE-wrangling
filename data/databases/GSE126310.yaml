@@ -17,7 +17,7 @@ load:
       - total_reads
       - bad_struct
   rna:
-    transpose: no
+    transpose: yes
     separate_samples: no
     coldata:
       - no_match

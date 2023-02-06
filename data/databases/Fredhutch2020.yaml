@@ -27,7 +27,7 @@ load:
       - donor
       - time
 metadata:
-  doi: atlas.fredhutch.org/nygc/multimodal-pbmc
+  doi: https://doi.org/10.1016/j.cell.2021.04.048
   description: "CITE-seq and ECCITE-seq of PBMCs from 8 volunteers enrolled in a HIV vaccine trial. Samples collected immediately before (Day 0), and 3 and 7 days after administration of vaccine."
   tissue: "PBMC"
   species: "Homo sapiens"

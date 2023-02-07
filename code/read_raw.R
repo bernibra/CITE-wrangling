@@ -382,12 +382,25 @@ read_metadata <- function(sce, info, path){
       
     }else if(typeof(info$samples)=="list"){
       
+
       if(!is.null(info$samples$file)){
         filename <- list.files(rdir, full.names = T)
+
+        # Untar if necessary
+        if (length(filename)==1 & all(grepl(".tar.gz$|.tar$", filename))){
+          filename <- untar_folder(filename)
+        }
+
         filename <- filename[grepl(info$samples$file, basename(filename))]
         
         if(length(filename)==0){
           filename <- list.files(rdir_, full.names = T)
+
+          # Untar if necessary
+          if (length(filename)==1 & all(grepl(".tar.gz$|.tar$", filename))){
+            filename <- untar_folder(filename)
+          }
+
           filename <- filename[grepl(info$samples$file, basename(filename))]
         }
         
@@ -398,7 +411,7 @@ read_metadata <- function(sce, info, path){
           meta <- readRDS(filename)
         }
         # File formatted csv, tsv or txt
-        if (grepl(".csv$|.tsv$|.txt$|.csv.gz$|.tsv.gz$|.txt.gz$", tolower(filename))){
+        if (grepl(".csv$|.tsv$|.txt$|.best$|.csv.gz$|.tsv.gz$|.txt.gz$", tolower(filename))){
           meta <- readr::read_delim(filename, comment = "#", show_col_types = FALSE, col_names = TRUE)
         }
         

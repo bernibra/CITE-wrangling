@@ -3,6 +3,7 @@ download:
   download: geo
   id: GSE161918
   description: title
+  ignore_hto: no
   keyword:
     protein: rna$
 load:
@@ -16,6 +17,7 @@ load:
       - "_B3_"
     coldata:
       - "S1probe"
+    drop: HTO
   rna:
     h5key: "Gene Expression"
     class: h5
@@ -26,6 +28,17 @@ load:
       - "_B3_"
     coldata:
       - "S1probe"
+  hto:
+    h5key: "Antibody Capture"
+    class: h5
+    separate_samples: yes
+    sample_groups:
+      - "_B1_"
+      - "_B2_"
+      - "_B3_"
+    coldata:
+      - "S1probe"
+    keep: HTO
 metadata:
   doi: doi.org/10.1016/j.cell.2021.02.018
   description: "Longitudinal samples of PMBCs with FACS enrichment from 31 hospitalized COVID19 patients and 14 healthy controls."

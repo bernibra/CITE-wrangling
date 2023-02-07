@@ -419,7 +419,7 @@ read_metadata <- function(sce, info, path){
             }
           }
           
-          meta <- meta[name_match,] %>% dplyr::filter(complete.cases(.)) %>%
+          meta <- meta[name_match,] %>% dplyr::filter(complete.cases("CELL_ID")) %>%
             tibble::column_to_rownames(var="CELL_ID")
           
           if(identical(rownames(meta), colnames(sce))){

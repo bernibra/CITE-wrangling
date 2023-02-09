@@ -1,48 +1,74 @@
 download:
   setup: geo
-  download: geo
+  download: wget
   id: GSE161918
-  description: title
+  description: ~
+  keyword: ~
   ignore_hto: no
-  keyword:
-    protein: rna$
+  fname:
+    protein: GSE161918_AllBatches_SeuratObj.rds.gz
+  wlink:
+    protein: "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE161918&format=file&file=GSE161918%5FAllBatches%5FSeuratObj%2Erds%2Egz"
+  fgroup:
+    protein: ~
+  source: ~
+  comments: ~
 load:
   protein:
-    h5key: "Antibody Capture"
-    class: h5
+    transpose: no
     separate_samples: yes
-    sample_groups:
-      - "_B1_"
-      - "_B2_"
-      - "_B3_"
-    coldata:
-      - "S1probe"
-    drop: HTO
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: CITE
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: sample_id
   rna:
-    h5key: "Gene Expression"
-    class: h5
+    transpose: no
     separate_samples: yes
-    sample_groups:
-      - "_B1_"
-      - "_B2_"
-      - "_B3_"
-    coldata:
-      - "S1probe"
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: RNA
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: sample_id
   hto:
-    h5key: "Antibody Capture"
-    class: h5
+    transpose: no
     separate_samples: yes
-    sample_groups:
-      - "_B1_"
-      - "_B2_"
-      - "_B3_"
-    coldata:
-      - "S1probe"
-    keep: HTO
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: HTO
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: sample_id
 metadata:
-  doi: doi.org/10.1016/j.cell.2021.02.018
+  doi: "doi.org/10.1016/j.cell.2021.02.018"
   description: "Longitudinal samples of PMBCs with FACS enrichment from 31 hospitalized COVID19 patients and 14 healthy controls."
-  tissue: "PBMC+FACS"
+  tissue: 'PBMC+FACS'
   species: "Homo sapiens"
-  alias: "Liu_2021"
-  genome_build: "hg19 (cellranger 1.2.0)"
+  alias: Liu_2021
+  genome_build: 'hg19 (cellranger 1.2.0)'

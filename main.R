@@ -16,12 +16,14 @@ f <- lapply(list.files("code", full.names = T), source)
 # If there aren't arguments, the pipeline will work for all datasets
 args_ = commandArgs(trailingOnly=TRUE)
 
+args_ <- c("GSE160251")
+
 if(length(args_)==0) args_ <- "NULL" else args_ <- args_[1]
 
 # Configuration -----------------------------------------------------------un
 
 Sys.setenv(VROOM_CONNECTION_SIZE = "5000000")
-options(timeout = 3600)
+options(timeout = 20000)
 
 configuration_plan <- drake_plan(
   config = yaml::read_yaml(file_in("config.yaml")),

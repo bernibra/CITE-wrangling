@@ -2,11 +2,11 @@
 
 #SBATCH --chdir=/work/PRTNR/CHUV/DIR/rgottar1/citeseq/CITE-wrangling/
 #SBATCH --account rgottar1_citeseq
-#SBATCH --time 00-24:00:00
+#SBATCH --time 00-50:00:00
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
-#SBATCH --mem 20gb
+#SBATCH --mem 300gb
 #SBATCH -o /scratch/bbramonm/cite-output_%j.txt
 #SBATCH -e /scratch/bbramonm/cite-errors_%j.txt
 

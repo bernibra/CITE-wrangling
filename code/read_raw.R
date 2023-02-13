@@ -421,6 +421,7 @@ read_metadata <- function(sce, info, path){
             dplyr::rename(CELL_ID = sym(c(info$samples$key))) %>%
             mutate(SAMPLE_ID = paste(!!!syms(info$samples$value), sep="_"))
           
+    	  browser()
           name_match <- match(rownames(colData(sce)),meta$CELL_ID)
 
           if(all(is.na(name_match))){

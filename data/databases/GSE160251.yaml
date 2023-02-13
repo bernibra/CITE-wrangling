@@ -22,7 +22,7 @@ download:
     and RNA data for the four partitions. ADT data should be stored under `./supp_protein/`
     as four separate folders. Likewise, the RNA data should be stored in `./supp_rna/`
     in four separate folders. The metadata of the study can be downloaded following
-    the data source, and should be stored in `./metadata/`
+    the data source, and should be stored in `./xtra_metadata/` under the name of `GSE160251.csv`.
 load:
   protein:
     transpose: no
@@ -40,10 +40,7 @@ load:
     features: features
     column: 1
     sample_groups: ~
-    samples:
-      file: meta
-      key: cellId
-      value: sample
+    samples: ~
   rna:
     transpose: no
     separate_samples: yes
@@ -60,10 +57,7 @@ load:
     features: features
     column: ~
     sample_groups: ~
-    samples:
-      file: meta
-      key: cellId
-      value: sample
+    samples: ~
 metadata:
   doi: doi.org/10.1101/2020.11.11.378620
   description: 'Single-cell profile of highly enriched FL cells to uncover the detailed molecular signature of engraftable FL HSCs. In particular, a total of 26407 FL cells profiled from one fetal liver, divided across the following fractions: 8735 CD34+bulk cells, 7235 GPI-80+ cells, 6793 CD34-GYPA- cells and 3644 CD34-GYPA+ cells.'

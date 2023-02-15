@@ -418,34 +418,26 @@ read_metadata <- function(sce, info, path){
         if(!is.null(info$samples$key)){
           # Reformat metadata and extract relevant info
           meta %<>% tibble::rownames_to_column("RowNames") %>%
-            dplyr::rename(CELL_ID = sym(c(info$samples$key))) %>%
+            dplyr::rename(METADATA_CELL_ID = sym(c(info$samples$key))) %>%
             mutate(SAMPLE_ID = paste(!!!syms(info$samples$value), sep="_"))
           
-    	  browser()
-          name_match <- match(rownames(colData(sce)),meta$CELL_ID)
+          name_match <- match(rownames(colData(sce)),meta$METADATA_CELL_ID)
 
           if(all(is.na(name_match))){
-            meta$CELL_ID <- meta$CELL_ID %>% make.names(unique=T)
-            name_match <- match(rownames(colData(sce)),meta$CELL_ID)
-            if(all(is.na(name_match))){
-              colnames(sce) <- colnames(sce) %>% make.names(unique=T)
-              name_match <- match(rownames(colData(sce)),meta$CELL_ID)
-            }
+            meta$METADATA_CELL_ID <- meta$METADATA_CELL_ID %>% make.names(unique=T)
+            name_match <- match(rownames(colData(sce)),meta$METADATA_CELL_ID)
           }
-          
-          meta <- meta[name_match,] %>% dplyr::filter(complete.cases("CELL_ID")) %>%
-            tibble::column_to_rownames(var="CELL_ID")
-          
-          if(identical(rownames(meta), colnames(sce))){
-            colData(sce) <- cbind(colData(sce), meta)
-          }else if(length(rownames(meta))/length(colnames(sce))>0.1){
-            sce <- sce[,colnames(sce) %in% rownames(meta)]
-            colData(sce) <- cbind(colData(sce), meta)
-            warning(paste0("Some cells were dropped when adding metadata to ", basename(path)))
-          }else{
-            warning(paste0("Problem adding metadata to ", basename(path)))
+
+	  if(all(is.na(name_match))){
+            colnames(sce) <- colnames(sce) %>% make.names(unique=T)
+            name_match <- match(rownames(colData(sce)),meta$METADATA_CELL_ID)
           }
-          
+
+	  if(!all(is.na(name_match))){
+            meta <- meta[name_match,] %>% mutate(CELL_ID = rownames(colData(sce)))  %>% tibble::column_to_rownames(var="CELL_ID")
+            colData(sce) <- cbind(colData(sce), meta)
+	  }
+
 	  # Compress again the metadata file
           if((grepl(".csv$|.tsv$|.txt$", filename))){R.utils::gzip(filename)}
         }

@@ -52,7 +52,7 @@ you can edit or develop new code and test it in the docker container by adding t
 
 _5.2. Adding new datasets_:
 
-new datasets can be added, but one needs to follow [certain instructions](https://github.com/bernibra/CITE-wrangling) to preserve the workflow.
+new datasets can be added, but one needs to follow [certain instructions](data/README.md) to preserve the workflow.
 
 _5.3. Potential problems_:
 - if the internet connection is not stable, some of the datasets might have problems downloading. The automatically generated file `GEOrawDataNotFound.txt` reports on some of these problems. One possibility is to rerun the code. To do so, first delete the directory in `data/raw` for the corresponding id. Then, open and R session and run `drake::clean()` or delete the `.drake` directory. Then, one can simply execute the project workflow again (todo: simplify this so that drake identifies it; I belive `file_out()` will do the trick). That said, sometimes it's simply that the file does not exist (go figure!), in which case there is not much that the pipline can do. Maybe you should email the authors.

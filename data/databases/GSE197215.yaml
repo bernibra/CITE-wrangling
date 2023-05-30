@@ -49,10 +49,7 @@ load:
     samples: ~
 metadata:
   doi: doi.org/10.1136/jitc-2020-002328
-  description: |-
-    Single-cell mRNA sequencing in
-    conjunction with CITE-seq characterization of CAR T cells generated from a healthy
-    donor and two patients with acute lymphoblastic leukemia.
+  description: Single-cell mRNA sequencing in conjunction with CITE-seq characterization of CAR T cells generated from a healthy donor and two patients with acute lymphoblastic leukemia.
   tissue: PBMC
   species: Homo sapiens
   alias: Bai_2022

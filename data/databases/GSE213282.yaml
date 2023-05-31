@@ -1,38 +1,95 @@
 download:
   setup: geo
-  download: geo
+  download: wget
   id: GSE213282
-  description: title
-  keyword:
-    protein: cite
-    rna: scrna
-  ignore_hto: yes
-  fname: ~
-  wlink: ~
-  fgroup: ~
+  description: ~
+  keyword: ~
+  ignore_hto: no
+  fname:
+    protein:
+    - GSE213282_barcodes.tsv.gz
+    - GSE213282_features.tsv.gz
+    - GSE213282_matrix.mtx.gz
+    other: GSE213282_metadata.csv.gz
+  wlink:
+    protein:
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE213nnn/GSE213282/suppl/GSE213282_barcodes.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE213nnn/GSE213282/suppl/GSE213282_features.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE213nnn/GSE213282/suppl/GSE213282_matrix.mtx.gz
+    other: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE213nnn/GSE213282/suppl/GSE213282_metadata.csv.gz
+  fgroup:
+    protein: ~
+    other: ~
   source: ~
   comments: ~
 load:
-  transpose: no
-  separate_samples: yes
-  keyword: ~
-  class: default
-  h5key: ~
-  altexp: ~
-  access: ~
-  drop: ~
-  keep: ~
-  coldata: ~
-  cells: ~
-  replace: ~
-  features: ~
-  column: ~
-  sample_groups: ~
-  samples: ~
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ENSG000
+    keep: ~
+    feature_drop_or_keep: 1
+    coldata: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
+    column: 2
+    sample_groups: ~
+    samples:
+      file: metadata
+      key: '...1'
+      value: Calls
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ENSG000
+    feature_drop_or_keep: 1
+    coldata: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
+    column: 2
+    sample_groups: ~
+    samples:
+      file: metadata
+      key: '...1'
+      value: Calls
+  hto:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: HTO
+    feature_drop_or_keep: 2
+    coldata: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
+    column: 2
+    sample_groups: ~
+    samples:
+      file: metadata
+      key: '...1'
+      value: Calls
 metadata:
-  doi: sadasdasdsadas
-  description: ~
-  tissue: ~
-  species: ~
-  alias: GSE213282
-  genome_build: ~
+  doi: doi.org/10.1038/s41598-022-24371-7
+  description: "Tested a pool of 188 Biolegend TotalSeq C antibodies that were oligonucleotide-tagged to be compatible with 10 × Genomics 5 sequencing. For titration, we used the antibodies at the recommended concentration (1 ×) and generated higher (2 ×) and lower (1/5 ×, 1/25 ×) concentration."
+  tissue: PBMC
+  species: Homo sapiens
+  alias: Nettersheim_2022
+  genome_build: GRCh38

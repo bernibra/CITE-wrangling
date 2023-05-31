@@ -1,25 +1,34 @@
 download:
   setup: geo
-  download: geo
+  download: wget
   id: GSE197215
-  description: data_processing
-  keyword:
-    protein: cite
-    rna: mrna
+  description: ~
+  keyword: ~
   ignore_hto: yes
-  fname: ~
-  wlink: ~
-  fgroup: ~
+  fname:
+    protein:
+    - GSE197215_Integrated_object_of_CD19_3T3_condition.rds.gz
+    - GSE197215_Integrated_object_of_CD3_CD28_beads_condition.rds.gz
+    - GSE197215_Integrated_object_of_mesothelin_3T3_condition.rds.gz
+    - GSE197215_Integrated_object_of_unstimulated_condition.rds.gz
+  wlink:
+    protein:
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE197nnn/GSE197215/suppl/GSE197215_Integrated_object_of_CD19_3T3_condition.rds.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE197nnn/GSE197215/suppl/GSE197215_Integrated_object_of_CD3_CD28_beads_condition.rds.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE197nnn/GSE197215/suppl/GSE197215_Integrated_object_of_mesothelin_3T3_condition.rds.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE197nnn/GSE197215/suppl/GSE197215_Integrated_object_of_unstimulated_condition.rds.gz
+  fgroup:
+    protein: ~
   source: ~
   comments: ~
 load:
   protein:
     transpose: no
-    separate_samples: yes
+    separate_samples: no
     keyword: ~
-    class: csv
+    class: Seurat
     h5key: ~
-    altexp: ~
+    altexp: ADT
     access: ~
     drop: ~
     keep: ~
@@ -29,14 +38,14 @@ load:
     features: ~
     column: ~
     sample_groups: ~
-    samples: ~
+    samples: orig.ident
   rna:
     transpose: no
-    separate_samples: yes
+    separate_samples: no
     keyword: ~
-    class: csv
+    class: Seurat
     h5key: ~
-    altexp: ~
+    altexp: RNA
     access: ~
     drop: ~
     keep: ~
@@ -46,10 +55,10 @@ load:
     features: ~
     column: ~
     sample_groups: ~
-    samples: ~
+    samples: orig.ident
 metadata:
   doi: doi.org/10.1136/jitc-2020-002328
-  description: "Single-cell mRNA sequencing in conjunction with CITE-seq characterization of CAR T cells generated from a healthy donor and two patients with acute lymphoblastic leukemia."
+  description: 'Single-cell mRNA sequencing in conjunction with CITE-seq characterization of CAR T cells generated from a healthy donor and two patients with acute lymphoblastic leukemia.'
   tissue: PBMC
   species: Homo sapiens
   alias: Bai_2022

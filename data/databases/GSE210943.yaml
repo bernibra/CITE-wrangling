@@ -1,38 +1,77 @@
 download:
   setup: geo
-  download: geo
+  download: wget
   id: GSE210943
-  description: description
-  keyword:
-    protein: adt
-    rna: mrna
+  description: ~
+  keyword: ~
   ignore_hto: yes
-  fname: ~
-  wlink: ~
-  fgroup: ~
+  fname:
+    protein:
+    - GSE210943_3089-1_filtered_feature_bc_matrix.h5
+    - GSE210943_3089-2_filtered_feature_bc_matrix.h5
+    - GSE210943_3147_filtered_feature_bc_matrix.h5
+    - GSE210943_3238_filtered_feature_bc_matrix.h5
+    - GSE210943_3280-1_filtered_feature_bc_matrix.h5
+    - GSE210943_3280-2_filtered_feature_bc_matrix.h5
+    - GSE210943_3309-1_filtered_feature_bc_matrix.h5
+    - GSE210943_3309-2_filtered_feature_bc_matrix.h5
+    - GSE210943_3515_filtered_feature_bc_matrix.h5
+    - GSE210943_3579_filtered_feature_bc_matrix.h5
+  wlink:
+    protein:
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3089-1_filtered_feature_bc_matrix.h5
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3089-2_filtered_feature_bc_matrix.h5
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3147_filtered_feature_bc_matrix.h5
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3238_filtered_feature_bc_matrix.h5
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3280-1_filtered_feature_bc_matrix.h5
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3280-2_filtered_feature_bc_matrix.h5
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3309-1_filtered_feature_bc_matrix.h5
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3309-2_filtered_feature_bc_matrix.h5
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3515_filtered_feature_bc_matrix.h5
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE210nnn/GSE210943/suppl/GSE210943_3579_filtered_feature_bc_matrix.h5
+  fgroup:
+    protein: ~
   source: ~
   comments: ~
 load:
-  transpose: no
-  separate_samples: yes
-  keyword: ~
-  class: default
-  h5key: ~
-  altexp: ~
-  access: ~
-  drop: ~
-  keep: ~
-  coldata: ~
-  cells: ~
-  replace: ~
-  features: ~
-  column: ~
-  sample_groups: ~
-  samples: ~
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: h5
+    h5key: Antibody Capture
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: h5
+    h5key: Gene Expression
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: ~
 metadata:
-  doi: dasdas
-  description: ~
-  tissue: ~
-  species: ~
-  alias: asdas
-  genome_build: ~
+  doi: doi.org/10.1126/scitranslmed.add9012
+  description: "Characterization of the NK cell response among 264 children followed in the East African International Centers of Excellence in Malaria Research (ICEMR) cohorts in Eastern Uganda. The authors used multiparameter flow cytometry, cellular indexing of transcriptomes and epitopes by sequencing (CITE-seq), epigenetic profiling using cytometry by time of flight (EpiTOF), and assay for transposase-accessible chromatin using sequencing (ATAC-seq), along with functional assays, to comprehensively profile NK cell responses."
+  tissue: PBMC
+  species: Homo sapiens
+  alias: Ty_2023
+  genome_build: GRCh38

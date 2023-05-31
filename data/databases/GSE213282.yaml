@@ -40,10 +40,7 @@ load:
     features: features
     column: 2
     sample_groups: ~
-    samples:
-      file: metadata
-      key: '...1'
-      value: Calls
+    samples: ~
   rna:
     transpose: no
     separate_samples: no
@@ -61,10 +58,7 @@ load:
     features: features
     column: 2
     sample_groups: ~
-    samples:
-      file: metadata
-      key: '...1'
-      value: Calls
+    samples: ~
   hto:
     transpose: no
     separate_samples: no
@@ -82,13 +76,10 @@ load:
     features: features
     column: 2
     sample_groups: ~
-    samples:
-      file: metadata
-      key: '...1'
-      value: Calls
+    samples: ~
 metadata:
   doi: doi.org/10.1038/s41598-022-24371-7
-  description: "Tested a pool of 188 Biolegend TotalSeq C antibodies that were oligonucleotide-tagged to be compatible with 10 × Genomics 5 sequencing. For titration, we used the antibodies at the recommended concentration (1 ×) and generated higher (2 ×) and lower (1/5 ×, 1/25 ×) concentration."
+  description: "Tested a pool of 188 Biolegend TotalSeq C antibodies that were oligonucleotide-tagged to be compatible with 10 x Genomics 5 sequencing. For titration, we used the antibodies at the recommended concentration (1x) and generated higher (2x) and lower (1/5x, 1/25x) concentration."
   tissue: PBMC
   species: Homo sapiens
   alias: Nettersheim_2022

@@ -1,0 +1,38 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE213282
+  description: title
+  keyword:
+    protein: cite
+    rna: scrna
+  ignore_hto: yes
+  fname: ~
+  wlink: ~
+  fgroup: ~
+  source: ~
+  comments: ~
+load:
+  transpose: no
+  separate_samples: yes
+  keyword: ~
+  class: default
+  h5key: ~
+  altexp: ~
+  access: ~
+  drop: ~
+  keep: ~
+  coldata: ~
+  cells: ~
+  replace: ~
+  features: ~
+  column: ~
+  sample_groups: ~
+  samples: ~
+metadata:
+  doi: sadasdasdsadas
+  description: ~
+  tissue: ~
+  species: ~
+  alias: GSE213282
+  genome_build: ~

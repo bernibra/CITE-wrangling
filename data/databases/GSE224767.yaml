@@ -1,0 +1,38 @@
+download:
+  setup: geo
+  download: geo
+  id: GSE224767
+  description: title
+  keyword:
+    protein: dna
+  ignore_hto: yes
+  fname: ~
+  wlink: ~
+  fgroup: ~
+  source: ~
+  comments: ~
+load:
+  transpose: no
+  separate_samples: no
+  keyword: ~
+  class: default
+  h5key: ~
+  altexp: ~
+  access: ~
+  drop: ~
+  keep: ~
+  feature_drop_or_keep: ~
+  coldata: ~
+  cells: ~
+  replace: ~
+  features: ~
+  column: ~
+  sample_groups: ~
+  samples: ~
+metadata:
+  doi: doi.org/10.3389/fimmu.2023.1107582
+  description: ~
+  tissue: ~
+  species: ~
+  alias: Colpitts2023
+  genome_build: ~

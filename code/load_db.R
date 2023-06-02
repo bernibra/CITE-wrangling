@@ -52,6 +52,7 @@ load_path <- function(path, info, ftype="protein", id="id", RAMlimit=T){
   # Find all raw files
   filenames <- list.files(path, full.names = T)
   
+  browser()
   # Untar if necessary
   if (length(filenames)==1 & all(grepl(".tar.gz$|.tar$", filenames))){
     filenames <- untar_folder(filenames)

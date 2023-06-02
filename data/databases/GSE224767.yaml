@@ -1,38 +1,75 @@
 download:
-  setup: geo
-  download: geo
+  setup: ~
+  download: impossible
   id: GSE224767
-  description: title
-  keyword:
-    protein: dna
-  ignore_hto: yes
-  fname: ~
-  wlink: ~
-  fgroup: ~
-  source: ~
-  comments: ~
-load:
-  transpose: no
-  separate_samples: no
+  description: ~
   keyword: ~
-  class: default
-  h5key: ~
-  altexp: ~
-  access: ~
-  drop: ~
-  keep: ~
-  feature_drop_or_keep: ~
-  coldata: ~
-  cells: ~
-  replace: ~
-  features: ~
-  column: ~
-  sample_groups: ~
-  samples: ~
+  ignore_hto: yes
+  fname:
+    other:
+    - GSE224767_RAW.tar
+    - GSE224767_feature_reference.csv.gz
+  wlink:
+    other: ~
+  fgroup: ~
+  source: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE224767
+  comments: The structure of the data is weird as there are two experiments compressed
+    as `.tar` files, which in turn are compressed together. Each experiment also has
+    two subfolders, one for the raw data and one for the filtered data. That is a
+    funky way to store the data, and it is not worth for me to automatize the process
+    of uncompressing things down and finding the right directory. Ideally, one should
+    download the data from GEO, extract the two experiments by uncompressing the main
+    file, and in turn uncompressing the two experiments `pancreas_sort` and `spleen`.
+    Then, for ADT data, one should select the data from the `raw_feature_bc_matrix`
+    and store it in (`./supp_protein/pancreas_sort/matrix.mtx.gz`; `./supp_protein/pancreas_sort/features.tsv.gz`;
+    and `./supp_protein/pancreas_sort/barcodes.tsv.gz`). For the RNA data, one can
+    simply hyper link the `./supp_protein` as `./supp_rna`. The file `GSE224767_feature_reference.csv.gz`
+    should be stored in `./metadata/`
+load:
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ENSG000
+    keep: ~
+    feature_drop_or_keep: 1
+    coldata: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
+    column: 1
+    sample_groups: ~
+    samples: ~
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ENSG000
+    feature_drop_or_keep: 1
+    coldata: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
+    column: 1
+    sample_groups: ~
+    samples: ~
 metadata:
   doi: doi.org/10.3389/fimmu.2023.1107582
-  description: ~
-  tissue: ~
-  species: ~
+  description: Cellular Indexing of Transcriptomes and Epitopes by sequencing (CITE-seq)
+    for studies involving enzymatic digestion of human tissue. We tested epitope susceptibility
+    of 92 antibodies commonly used to differentiate immune lineages and cell states
+    on human peripheral blood mononuclear cells following treatment with an enzymatic
+    digestion cocktail used to isolate islets.
+  tissue: PBMC
+  species: Homo sapiens
   alias: Colpitts2023
-  genome_build: ~
+  genome_build: GRCh38

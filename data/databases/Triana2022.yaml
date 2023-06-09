@@ -1,0 +1,75 @@
+download:
+  setup: ~
+  download: wget
+  id: Triana2022
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    protein:
+    - AML.rds
+    - 200AB_projected.rds
+    - WTA_projected.rds
+    - Healthy.rds
+  wlink:
+    protein:
+    - https://figshare.com/ndownloader/files/41104247
+    - https://figshare.com/ndownloader/files/41038739
+    - https://figshare.com/ndownloader/files/41038073
+    - https://figshare.com/ndownloader/files/41037917
+  fgroup:
+    protein: ~
+  source: ~
+  comments: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: AB
+    access: ~
+    drop: ~
+    keep: ~
+    feature_drop_or_keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: Batch
+  rna:
+    transpose: no
+    separate_samples: no
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: RNA
+    access: ~
+    drop: ~
+    keep: ~
+    feature_drop_or_keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples: Batch
+metadata:
+  doi: doi.org/10.1038/s41590-021-01059-0
+  description: A series of Abseq experiments, in which mononuclear BM cells from hip
+    aspirates were labelled with 97-197 oligo-tagged antibodies, followed by targeted
+    or whole transcriptome scRNAseq on the Rhapsody platform. For targeted single-cell
+    transcriptome profiling, the authors establish a custom panel consisting of 462
+    mRNAs covering all HSPC differentiation stages, cell type identity genes, mRNAs
+    of surface receptors and additional genes that permit the characterization of
+    cellular states. Using this panel, in combination with 97 surface markers, the
+    authors analyzed the BM of three young healthy donors, and three aged healthy
+    donors. This dataset serves as a reference dataset
+  tissue: BM
+  species: Homo sapiens
+  alias: Triana_2022
+  genome_build: GRCh38

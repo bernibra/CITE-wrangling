@@ -213,23 +213,8 @@ read_raw.mtx <- function(filename, info, ...){
 read_raw.Seurat <- function(filename, info, ...){
   # Open rds and easy sce conversion
   rds <- readRDS(filename)
-  sce <- Seurat::as.SingleCellExperiment(rds)
+  sce <- Seurat::as.SingleCellExperiment(rds, assay = info$altexp)
   
-  # Make sure we are using the right data
-  if(!is.null(info$altexp)){
-    if(mainExpName(sce)!=info$altexp){
-      cdata <- colData(sce)
-      sce <- altExp(sce, info$altexp)
-      
-      # Make sure that the coldata was passed to the altExp
-      if(length(colData(sce))==0){
-        colData(sce) <- cdata
-      }
-    }
-  }
-  
-  SingleCellExperiment::removeAltExps(sce)
-
   # Move to colData if necessary
   sce <- sce_move_to_coldata(sce, info$coldata)
   

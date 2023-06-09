@@ -71,5 +71,5 @@ metadata:
     digestion cocktail used to isolate islets.
   tissue: PBMC
   species: Homo sapiens
-  alias: Colpitts2023
+  alias: Colpitts_2023
   genome_build: GRCh38

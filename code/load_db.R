@@ -77,6 +77,7 @@ load_path <- function(path, info, ftype="protein", id="id", RAMlimit=T){
 
     rdir <- experimentf %>% 
       paste(., paste(basename(dirname(filenames[[idx]])), strsplit(basename(filenames[[idx]]), split = "\\.")[[1]][1], sep="-"), sep="/")
+    rdir <- file.path(dirname(rdir), paste0(id, "-", basename(rdir)))
 
     rdir_ <- file.path("data/processed/names", ftype)
 

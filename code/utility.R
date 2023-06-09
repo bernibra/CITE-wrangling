@@ -154,7 +154,7 @@ define_processed_name <- function(folder, sample_groups, id){
   }else{
     # Check if there are weird mix of samples
     return(data.frame(pattern= sample_groups,
-                      path=file.path(folder, paste0(id, gsub(x = sample_groups, pattern = "\\|", replacement="_")))))
+                      path=file.path(folder, paste0(id, "-", gsub(x = sample_groups, pattern = "\\|", replacement="_")))))
   }
 }
 

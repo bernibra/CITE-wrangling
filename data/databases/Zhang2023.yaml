@@ -1,0 +1,66 @@
+download:
+  setup: ~
+  download: wget
+  id: Zhang2023
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    protein: PBMC_vaccine_CITE.rds
+  wlink:
+    protein: https://zenodo.org/records/7555405/files/PBMC_vaccine_CITE.rds
+  fgroup:
+    protein: ~
+  source: ~
+  comments: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: ADT
+    access: ~
+    drop: ~
+    keep: ~
+    feature_drop_or_keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+    - donor
+    - timepoint
+  rna:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: Seurat
+    h5key: ~
+    altexp: RNA
+    access: ~
+    drop: ~
+    keep: ~
+    feature_drop_or_keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+    - donor
+    - timepoint
+metadata:
+  doi: doi.org/10.1038/s41590-023-01608-9
+  description: 'CITE-seq PBMC samples for six donors characterizing SARS-CoV-2 immune
+    response to vaccination and infection. The samples were collected at four time
+    points: immediately before (Day 0) vaccination, after primary vaccination (Day
+    2, Day 10), and seven days after boost vaccination (Day 28).'
+  tissue: PBMC
+  species: Homo sapiens
+  alias: Zhang_2023
+  genome_build: GRCh38

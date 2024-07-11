@@ -1,0 +1,73 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE190570
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    protein: GSE190570_Antibodies_Raw.csv.gz
+    other: GSE190570_Metadata.csv.gz
+    rna: GSE190570_Genes_Raw.csv.gz
+  wlink:
+    protein: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE190nnn/GSE190570/suppl/GSE190570%5FAntibodies%5FRaw.csv.gz
+    other: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE190nnn/GSE190570/suppl/GSE190570%5FMetadata.csv.gz
+    rna: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE190nnn/GSE190570/suppl/GSE190570%5FGenes%5FRaw.csv.gz
+  fgroup:
+    protein: ~
+    other: ~
+    rna: ''
+  source: ~
+  comments: ~
+load:
+  protein:
+    transpose: yes
+    separate_samples: yes
+    keyword: Antibodies
+    class: csv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    feature_drop_or_keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: Metadata
+      key: Cell_Index
+      value: SampleTags
+  rna:
+    transpose: yes
+    separate_samples: yes
+    keyword: Genes
+    class: csv
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    feature_drop_or_keep: ~
+    coldata: ~
+    cells: ~
+    replace: ~
+    features: ~
+    column: ~
+    sample_groups: ~
+    samples:
+      file: Metadata
+      key: Cell_Index
+      value: SampleTags
+metadata:
+  doi: doi.org/10.3389/fimmu.2023.1239148
+  description: PMBCs of CITE-seq from 61 patients with coronary artery disease. Note
+    that while the article reports 61 patients, the metadata only contains information
+    for 41 patients (using those only here).
+  tissue: PBMC
+  species: Homo sapiens
+  alias: Iqneibi_2023
+  genome_build: GRCh38

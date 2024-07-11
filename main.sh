@@ -10,7 +10,7 @@
 #SBATCH -o /scratch/bbramonm/cite-output_%j.txt
 #SBATCH -e /scratch/bbramonm/cite-errors_%j.txt
 
-module load singularity
+module load singularityce
 
 export SINGULARITY_BINDPATH="/users,/scratch,/work"
 

@@ -18,7 +18,7 @@ From: ubuntu:20.04
   export DEBIAN_FRONTEND=noninteractive
   export TZ="Europe/Zurich"
   
-  apt-get install -y libopenblas-dev r-base-core libgeos-dev libhdf5-dev libcurl4-openssl-dev libopenmpi-dev openmpi-bin openmpi-common \
+  apt-get install -y libopenblas-dev r-base-core libgeos-dev libhdf5-dev libcurl4-openssl-dev libopenmpi-dev openmpi-bin openmpi-common libfontconfig1-dev cmake \
     openmpi-doc openssh-client openssh-server libssh-dev wget git nano git cmake gfortran g++ curl wget python-is-python3 \
     autoconf bzip2 libtool libtool-bin libxml2-dev libmagick++-dev
   
@@ -56,6 +56,7 @@ From: ubuntu:20.04
   R --slave -e 'BiocManager::install("zellkonverter", ask=FALSE)'
   R --slave -e 'BiocManager::install("DropletUtils", ask=FALSE)'
   R --slave -e 'remotes::install_github("mojaveazure/seurat-disk")'
+  R --slave -e 'BiocManager::install("SpatialDecon", ask=FALSE)'
 
   mkdir users
   mkdir scratch

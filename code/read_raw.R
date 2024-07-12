@@ -196,7 +196,7 @@ read_raw.mtx <- function(filename, info, ...){
     	sce <- sce[!drop, ]
     }else{
     	drop <- grepl(info$drop, rownames(sce))
-    	sce <- sce[!drop, ]
+    	sce <- sce[!(drop[(skip.feature+1):length(drop)]), ]
     }
   }
   if(!is.null(info$keep)){
@@ -207,7 +207,7 @@ read_raw.mtx <- function(filename, info, ...){
           readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE, delim="\t")
           })
         keep <- grepl(info$keep, feature_information[,info$feature_drop_or_keep] %>% pull())
-        sce <- sce[keep, ]
+        sce <- sce[keep[(skip.feature+1):length(keep)], ]
     }else{
     	keep <- grepl(info$keep, rownames(sce))
     	sce <- sce[keep, ]

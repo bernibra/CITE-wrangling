@@ -142,8 +142,11 @@ read_raw.h5seurat <- function(filename, info, ...){
 # Turning a mtx.gz object into a SingleCellExperiment
 read_raw.mtx <- function(filename, info, ...){
   
+  matrix_file_name <- gsub(".gz$", "", info$replace)
+  matrix_file_name <- paste0(gsub(".mtx$", "", matrix_file_name), ".mtx")
+  
   # Find other relevant files
-  othernames <- list.files(path = dirname(filename), pattern=gsub(info$replace, "*", basename(filename)), full.names = T)
+  othernames <- list.files(path = dirname(filename), pattern=gsub(matrix_file_name, "*", basename(filename)), full.names = T)
   othernames <- othernames[!(othernames %in% filename)]
   
   # What are row and what are columns
@@ -162,8 +165,11 @@ read_raw.mtx <- function(filename, info, ...){
   # Should I transpose the matrix?
   mtx.transpose <- info$transpose
   
-  # What column should I pick
+  # What column should I pick for features
   feature.column <- if(is.null(info$column)){2}else{info$column}
+
+  # What column should I pick for cells
+  cell.column <- if(is.null(info$column.cell)){1}else{info$column.cell}
   
   # should we skip any cells
   skip.cell <- if(is.null(info$skip.cell)){0}else{info$skip.cell}
@@ -171,10 +177,10 @@ read_raw.mtx <- function(filename, info, ...){
   # should we skip any features
   skip.feature <- if(is.null(info$skip.feature)){0}else{info$skip.feature}
   
-  # should we skip any cells
+  # delimiter for the cell file
   cell.sep <- if(is.null(info$cell.sep)){"\t"}else{info$cell.sep}
   
-  # should we skip any cells
+  # delimiter for the feature file
   feature.sep <- if(is.null(info$feature.sep)){"\t"}else{info$feature.sep}
   
   # Seurat comes in handy for reading interaction-like files into matrix objects
@@ -183,7 +189,7 @@ read_raw.mtx <- function(filename, info, ...){
                          cells = cells,
                          cell.sep = cell.sep,
                          feature.sep = feature.sep,
-                         cell.column = 1,
+                         cell.column = cell.column,
                          feature.column = feature.column,
                          mtx.transpose = mtx.transpose,
                          skip.feature = skip.feature,

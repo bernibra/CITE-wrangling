@@ -38,7 +38,8 @@ load:
     cells: GSE171964_barcodes_v2
     replace: GSE171964_countsmatrix_v2.mtx
     features: GSE171964_feats_v2
-    column: 1
+    column: 2
+    column.cell: 2
     skip.cell: 1
     skip.feature: 1
     cell.sep: " "
@@ -63,7 +64,8 @@ load:
     cells: GSE171964_barcodes_v2
     replace: GSE171964_countsmatrix_v2.mtx
     features: GSE171964_feats_v2
-    column: 1
+    column: 2
+    column.cell: 2
     skip.cell: 1
     skip.feature: 1
     cell.sep: " "

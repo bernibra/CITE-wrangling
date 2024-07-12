@@ -163,14 +163,22 @@ read_raw.mtx <- function(filename, info, ...){
   mtx.transpose <- info$transpose
   
   # What column should I pick
-  feature.column <- ifelse(is.null(info$column), info$column, info$column)
+  feature.column <- if(is.null(info$column)){1}else{info$column}
+  
+  # should we skip any cells
+  skip.cell <- if(is.null(info$skip.cell)){0}else{info$skip.cell}
+  
+  # should we skip any cells
+  skip.feature <- if(is.null(info$skip.feature)){0}else{info$skip.feature}
   
   # Seurat comes in handy for reading interaction-like files into matrix objects
   mtx <- Seurat::ReadMtx(mtx = filename,
                          features = features,
                          cells = cells,
                          feature.column = feature.column,
-                         mtx.transpose = mtx.transpose
+                         mtx.transpose = mtx.transpose,
+                         skip.feature = skip.feature,
+                         skip.cell = skip.cell
   )
   
   # Make sure the matrix is in the right order and turn into SingleCellExperiment

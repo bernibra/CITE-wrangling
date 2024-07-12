@@ -39,6 +39,8 @@ load:
     replace: GSE171964_countsmatrix_v2.mtx
     features: GSE171964_feats_v2
     column: 1
+    skip.cell: 1
+    skip.feature: 1
     sample_groups: ~
     samples:
       file: geo_pheno_v2
@@ -60,6 +62,8 @@ load:
     replace: GSE171964_countsmatrix_v2.mtx
     features: GSE171964_feats_v2
     column: 1
+    skip.cell: 1
+    skip.feature: 1
     sample_groups: ~
     samples:
       file: geo_pheno_v2

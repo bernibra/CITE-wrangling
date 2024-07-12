@@ -71,7 +71,11 @@ add_metadata <- function(filenames, metadata){
     # Check if there is any sample information
     extra <- paste0("data/xtra_metadata/", id, ".csv")
     if(file.exists(extra)){
-      sample_information <- readr::read_delim(extra)
+      sample_information <- tryCatch({
+        readr::read_delim(extra)
+        }, error = function(r){
+        readr::read_delim(extra, delim = ",")
+        })
     }
     
     # Add sample information to metadata

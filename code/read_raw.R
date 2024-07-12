@@ -163,18 +163,27 @@ read_raw.mtx <- function(filename, info, ...){
   mtx.transpose <- info$transpose
   
   # What column should I pick
-  feature.column <- if(is.null(info$column)){1}else{info$column}
+  feature.column <- if(is.null(info$column)){2}else{info$column}
   
   # should we skip any cells
   skip.cell <- if(is.null(info$skip.cell)){0}else{info$skip.cell}
   
-  # should we skip any cells
+  # should we skip any features
   skip.feature <- if(is.null(info$skip.feature)){0}else{info$skip.feature}
+  
+  # should we skip any cells
+  cell.sep <- if(is.null(info$cell.sep)){"\t"}else{info$cell.sep}
+  
+  # should we skip any cells
+  feature.sep <- if(is.null(info$feature.sep)){"\t"}else{info$feature.sep}
   
   # Seurat comes in handy for reading interaction-like files into matrix objects
   mtx <- Seurat::ReadMtx(mtx = filename,
                          features = features,
                          cells = cells,
+                         cell.sep = cell.sep,
+                         feature.sep = feature.sep,
+                         cell.column = 1,
                          feature.column = feature.column,
                          mtx.transpose = mtx.transpose,
                          skip.feature = skip.feature,
@@ -187,27 +196,27 @@ read_raw.mtx <- function(filename, info, ...){
   # Keep or drop columns
   if(!is.null(info$drop)){
     if(!is.null(info$feature_drop_or_keep)){
-      feature_information <- tryCatch({
-        readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE)
-      },error=function(e){
-        readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE, delim="\t")
-      })
+      if(is.null(info$feature.sep)){
+        feature_information <- readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE)
+      }else{
+        feature_information <- readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE, delim=feature.sep)
+      }
       drop <- grepl(info$drop, feature_information[,info$feature_drop_or_keep] %>% pull())
-    	sce <- sce[!drop, ]
+    	sce <- sce[!(drop[(skip.feature+1):length(drop)]), ]
     }else{
     	drop <- grepl(info$drop, rownames(sce))
-    	sce <- sce[!(drop[(skip.feature+1):length(drop)]), ]
+    	sce <- sce[!drop, ]
     }
   }
   if(!is.null(info$keep)){
     if(!is.null(info$feature_drop_or_keep)){
-        feature_information <- tryCatch({
-          readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE)
-          },error=function(e){
-          readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE, delim="\t")
-          })
-        keep <- grepl(info$keep, feature_information[,info$feature_drop_or_keep] %>% pull())
-        sce <- sce[keep[(skip.feature+1):length(keep)], ]
+      if(is.null(info$feature.sep)){
+        feature_information <- readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE)
+      }else{
+        feature_information <- readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE, delim=feature.sep)
+      }
+      keep <- grepl(info$keep, feature_information[,info$feature_drop_or_keep] %>% pull())
+      sce <- sce[keep[(skip.feature+1):length(keep)], ]
     }else{
     	keep <- grepl(info$keep, rownames(sce))
     	sce <- sce[keep, ]

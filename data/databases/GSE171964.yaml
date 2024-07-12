@@ -33,7 +33,7 @@ load:
     access: ~
     drop: ~
     keep: _ADT
-    feature_drop_or_keep: 1
+    feature_drop_or_keep: 2
     coldata: ~
     cells: GSE171964_barcodes_v2
     replace: GSE171964_countsmatrix_v2.mtx
@@ -41,6 +41,8 @@ load:
     column: 1
     skip.cell: 1
     skip.feature: 1
+    cell.sep: " "
+    feature.sep: " "
     sample_groups: ~
     samples:
       file: geo_pheno_v2
@@ -56,7 +58,7 @@ load:
     access: ~
     drop: _ADT
     keep: ~
-    feature_drop_or_keep: 1
+    feature_drop_or_keep: 2
     coldata: ~
     cells: GSE171964_barcodes_v2
     replace: GSE171964_countsmatrix_v2.mtx
@@ -64,6 +66,8 @@ load:
     column: 1
     skip.cell: 1
     skip.feature: 1
+    cell.sep: " "
+    feature.sep: " "
     sample_groups: ~
     samples:
       file: geo_pheno_v2

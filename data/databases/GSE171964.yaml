@@ -36,7 +36,7 @@ load:
     feature_drop_or_keep: 1
     coldata: ~
     cells: GSE171964_barcodes_v2
-    replace: GSE171964_countsmatrix_v2
+    replace: GSE171964_countsmatrix_v2.mtx
     features: GSE171964_feats_v2
     column: 1
     sample_groups: ~
@@ -57,7 +57,7 @@ load:
     feature_drop_or_keep: 1
     coldata: ~
     cells: GSE171964_barcodes_v2
-    replace: GSE171964_countsmatrix_v2
+    replace: GSE171964_countsmatrix_v2.mtx
     features: GSE171964_feats_v2
     column: 1
     sample_groups: ~

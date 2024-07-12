@@ -187,8 +187,12 @@ read_raw.mtx <- function(filename, info, ...){
   # Keep or drop columns
   if(!is.null(info$drop)){
     if(!is.null(info$feature_drop_or_keep)){
-	feature_information <- readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE)
-    	drop <- grepl(info$drop, feature_information[,info$feature_drop_or_keep] %>% pull())
+      feature_information <- tryCatch({
+        readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE)
+      },error=function(e){
+        readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE, delim="\t")
+      })
+      drop <- grepl(info$drop, feature_information[,info$feature_drop_or_keep] %>% pull())
     	sce <- sce[!drop, ]
     }else{
     	drop <- grepl(info$drop, rownames(sce))
@@ -197,7 +201,11 @@ read_raw.mtx <- function(filename, info, ...){
   }
   if(!is.null(info$keep)){
     if(!is.null(info$feature_drop_or_keep)){
-        feature_information <- readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE)
+        feature_information <- tryCatch({
+          readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE)
+          },error=function(e){
+          readr::read_delim(features, comment = "#", show_col_types = FALSE, col_names = FALSE, delim="\t")
+          })
         keep <- grepl(info$keep, feature_information[,info$feature_drop_or_keep] %>% pull())
         sce <- sce[keep, ]
     }else{

@@ -1,0 +1,76 @@
+download:
+  setup: geo
+  download: wget
+  id: GSE171964
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    protein:
+    - GSE171964_countsmatrix_v2.mtx.gz
+    - GSE171964_barcodes_v2.tsv.gz
+    - GSE171964_feats_v2.tsv.gz
+    other: GSE171964_geo_pheno_v2.csv.gz
+  wlink:
+    protein:
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE171nnn/GSE171964/suppl/GSE171964%5Fcountsmatrix%5Fv2.mtx.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE171nnn/GSE171964/suppl/GSE171964%5Fbarcodes%5Fv2.tsv.gz
+    - https://ftp.ncbi.nlm.nih.gov/geo/series/GSE171nnn/GSE171964/suppl/GSE171964%5Ffeats%5Fv2.tsv.gz
+    other: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE171nnn/GSE171964/suppl/GSE171964%5Fgeo%5Fpheno%5Fv2.csv.gz
+  fgroup:
+    protein: ~
+    other: ~
+  source: ~
+  comments: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: _ADT
+    feature_drop_or_keep: 1
+    coldata: ~
+    cells: GSE171964_barcodes_v2
+    replace: GSE171964_countsmatrix_v2
+    features: GSE171964_feats_v2
+    column: 1
+    sample_groups: ~
+    samples:
+      file: geo_pheno_v2
+      key: barcode
+      value: sample_id
+  rna:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: _ADT
+    keep: ~
+    feature_drop_or_keep: 1
+    coldata: ~
+    cells: GSE171964_barcodes_v2
+    replace: GSE171964_countsmatrix_v2
+    features: GSE171964_feats_v2
+    column: 1
+    sample_groups: ~
+    samples:
+      file: geo_pheno_v2
+      key: barcode
+      value: sample_id
+metadata:
+  doi: doi.org/10.1038/s41586-021-03791-x
+  description: CITE-seq of 6 patients treated with the Pfizer BioNTech BNT162b2 mRNA
+    vaccine. PBMC was isolated from 6 volunteers before, 24 or 48 hours, and 7 days
+    after the primary and secondary immunization.
+  tissue: PBMC
+  species: Homo sapiens
+  alias: Arunachalam_2023
+  genome_build: GRCh38

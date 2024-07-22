@@ -190,11 +190,18 @@ load:
     drop: ~
     keep: "Antibody Capture"
     feature_drop_or_keep: 3
-    coldata: ~
+    coldata:
+    - "CD45RB"
+    - "Hashtag1"
+    - "Hashtag2"
+    - "Hashtag3"
+    - "Hashtag4"
+    - "Hashtag5"
+    - "Hashtag6"
     cells: barcodes
     replace: matrix.mtx
     features: features
-    column: 2
+    column: 1
     column.cell: 1
     skip.feature: 0
     skip.cell: 0
@@ -217,7 +224,7 @@ load:
     cells: barcodes
     replace: matrix.mtx
     features: features
-    column: 2
+    column: 1
     column.cell: 1
     skip.feature: 0
     skip.cell: 0

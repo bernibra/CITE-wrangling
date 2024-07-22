@@ -16,6 +16,51 @@ download:
     - barcodes.tsv.gz
     - features.tsv.gz
     - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
     other: E-MTAB-12392.sdrf.txt
   wlink:
     protein:
@@ -28,6 +73,51 @@ download:
     - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S11barcodes.tsv.gz
     - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S11features.tsv.gz
     - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S11matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S13barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S13features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S13matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S14barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S14features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S14matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S16barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S16features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S16matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S17barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S17features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S17matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S18barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S18features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S18matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S19barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S19features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S19matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S20barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S20features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S20matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S21barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S21features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S21matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S22barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S22features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S22matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S23barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S23features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S23matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S24barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S24features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S24matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S25barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S25features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S25matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S26barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S26features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S26matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S27barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S27features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S27matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S28barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S28features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S28matrix.mtx.gz
     other: https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/E-MTAB-12392.sdrf.txt
   fgroup:
     protein:
@@ -40,6 +130,51 @@ download:
     - S11
     - S11
     - S11
+    - S13
+    - S13
+    - S13
+    - S14
+    - S14
+    - S14
+    - S16
+    - S16
+    - S16
+    - S17
+    - S17
+    - S17
+    - S18
+    - S18
+    - S18
+    - S19
+    - S19
+    - S19
+    - S20
+    - S20
+    - S20
+    - S21
+    - S21
+    - S21
+    - S22
+    - S22
+    - S22
+    - S23
+    - S23
+    - S23
+    - S24
+    - S24
+    - S24
+    - S25
+    - S25
+    - S25
+    - S26
+    - S26
+    - S26
+    - S27
+    - S27
+    - S27
+    - S28
+    - S28
+    - S28
     other: ~
   source: ~
   comments: ~
@@ -53,8 +188,8 @@ load:
     altexp: ~
     access: ~
     drop: ~
-    keep: ~
-    feature_drop_or_keep: 2
+    keep: "Antibody Capture"
+    feature_drop_or_keep: 3
     coldata: ~
     cells: barcodes
     replace: matrix.mtx
@@ -76,8 +211,8 @@ load:
     altexp: ~
     access: ~
     drop: ~
-    keep: ~
-    feature_drop_or_keep: 2
+    keep: "Gene Expression"
+    feature_drop_or_keep: 3
     coldata: ~
     cells: barcodes
     replace: matrix.mtx

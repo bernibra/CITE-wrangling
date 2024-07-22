@@ -1,0 +1,105 @@
+download:
+  setup: ~
+  download: wget
+  id: E-MTAB-12392
+  description: ~
+  keyword: ~
+  ignore_hto: yes
+  fname:
+    protein:
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    - barcodes.tsv.gz
+    - features.tsv.gz
+    - matrix.mtx.gz
+    other: E-MTAB-12392.sdrf.txt
+  wlink:
+    protein:
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S1barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S1features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S1matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S3barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S3features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S3matrix.mtx.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S11barcodes.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S11features.tsv.gz
+    - https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/S11matrix.mtx.gz
+    other: https://www.ebi.ac.uk/biostudies/files/E-MTAB-12392/E-MTAB-12392.sdrf.txt
+  fgroup:
+    protein:
+    - S1
+    - S1
+    - S1
+    - S3
+    - S3
+    - S3
+    - S11
+    - S11
+    - S11
+    other: ~
+  source: ~
+  comments: ~
+load:
+  protein:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    feature_drop_or_keep: 2
+    coldata: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
+    column: 2
+    column.cell: 1
+    skip.feature: 0
+    skip.cell: 0
+    cell.sep: ~
+    feature.sep: ~
+    sample_groups: ~
+    samples: ~
+  rna:
+    transpose: no
+    separate_samples: yes
+    keyword: ~
+    class: mtx
+    h5key: ~
+    altexp: ~
+    access: ~
+    drop: ~
+    keep: ~
+    feature_drop_or_keep: 2
+    coldata: ~
+    cells: barcodes
+    replace: matrix.mtx
+    features: features
+    column: 2
+    column.cell: 1
+    skip.feature: 0
+    skip.cell: 0
+    cell.sep: ~
+    feature.sep: ~
+    sample_groups: ~
+    samples: ~
+metadata:
+  doi: doi.org/10.1172/jci.insight.165299
+  description: '6 patients with severe COVID-19 were followed longitudinally during
+    hospitalization and up to 1 year after infection, when they also received a vaccine.
+    For each time point and patient, PBMCs were collected and split into 3 pools:
+    1/3 was sequenced straight; from 1/3 of the samples B cells were enriched (B cell
+    enrichment kit from StemCell) and from 1/3 of the samples, antigen-specific cells
+    were sorted using barcoded N, S and RBD probes. All samples were further stained
+    using a cocktail of 181 barcoded Abs.'
+  tissue: PBMC
+  species: Homo sapiens
+  alias: Scharf_2022
+  genome_build: GRCh38

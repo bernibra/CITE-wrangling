@@ -227,9 +227,6 @@ read_raw.mtx <- function(filename, info, ...){
     	keep <- grepl(info$keep, rownames(sce))
     	sce <- sce[keep, ]
     }
-
-    keep <- grepl(info$keep, rownames(sce))
-    sce <- sce[keep, ]
   }
   
   # Move to colData if necessary
